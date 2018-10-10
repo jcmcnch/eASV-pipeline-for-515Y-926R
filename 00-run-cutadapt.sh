@@ -18,7 +18,7 @@ for item in `ls 00-raw/*.R1.fastq.gz`
 	-g ^GTGYCAGCMGCCGCGGTAA -G ^CCGYCAATTYMTTTRAGTTT \
 	-o 01-trimmed/${filestem}.R1.trimmed.fastq \
 	-p 01-trimmed/${filestem}.R2.trimmed.fastq $R1 $R2 \
-	2>&1 | tee -a 01-trimmed/logs/${filestem}.cutadapt.stderrout
+	2>&1 | tee -a logs/01-trimmed/${filestem}.cutadapt.stderrout
 
 done
 
