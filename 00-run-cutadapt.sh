@@ -2,8 +2,9 @@
 
 source activate qiime2-2018.8
 
+mkdir logs
 mkdir 01-trimmed
-mkdir 01-trimmed/logs
+mkdir logs/01-trimmed/
 
 for item in `ls 00-raw/*.R1.fastq.gz` 
 
