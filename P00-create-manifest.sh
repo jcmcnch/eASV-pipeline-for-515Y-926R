@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#shortcut for making manifests based on fasta file names
+#script assumes you have the same number of FWD and REV reads and that they're named in a meaninful way (i.e. samplename.1.fastq.gz)
+
+cutME=".SILVA_132_PROK_1.fastq" #the bit you want to cut from the file names, leaving only the sample name
+
+for item in `ls fastq/*1.fastq` ; do basename $item $cutME ;done > names
+for item in `ls fastq/*1.fastq` ; do basename $item $cutME ;done >> names
+
+for item in `ls fastq/*1.fastq` ; do printf \$PWD/$item'\n'; done > reads
+for item in `ls fastq/*2.fastq` ; do printf \$PWD/$item'\n'; done >> reads
+
+for item in `ls fastq/*1.fastq` ; do printf "forward\n" ; done > direction
+for item in `ls fastq/*2.fastq` ; do printf "reverse\n" ; done >> direction
+
+printf "sample-id,absolute-filepath,direction\n" > manifest.csv
+paste -d, names reads direction >> manifest.csv
+
+rm names reads direction
