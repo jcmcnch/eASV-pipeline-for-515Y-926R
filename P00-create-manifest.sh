@@ -5,8 +5,8 @@
 
 cutME=".trimmed.SILVA_132_PROK.cdhit95pc_1.fastq" #the bit you want to cut from the file names, leaving only the sample name
 
-for item in `ls 00-fastq/*1.fastq` ; do basename $item $cutME ;done > names
-for item in `ls 00-fastq/*1.fastq` ; do basename $item $cutME ;done >> names
+for item in `ls 00-fastq/*1.fastq` ; do echo `basename $item $cutME` | sed 's/_/-/' ;done > names
+for item in `ls 00-fastq/*1.fastq` ; do echo `basename $item $cutME` | sed 's/_/-/' ;done >> names
 
 for item in `ls 00-fastq/*1.fastq` ; do printf \$PWD/$item'\n'; done > reads
 for item in `ls 00-fastq/*2.fastq` ; do printf \$PWD/$item'\n'; done >> reads
