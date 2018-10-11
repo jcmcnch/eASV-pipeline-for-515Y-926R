@@ -4,6 +4,10 @@ source activate bbmap-env
 
 mkdir 02-PROKs
 mkdir 02-EUKs
+
+mkdir 02-PROKs/fastq
+mkdir 02-EUKs/fastq
+
 mkdir logs/02-bbsplit
 
 for item in `ls 01-trimmed/*.R1.trimmed.fastq`
@@ -21,7 +25,7 @@ for item in `ls 01-trimmed/*.R1.trimmed.fastq`
 
 done
 
-mv *EUK*fastq 02-EUKs
-mv *PROK*fastq 02-PROKs
+mv *EUK*fastq 02-EUKs/fastq
+mv *PROK*fastq 02-PROKs/fastq
 
 source deactivate
