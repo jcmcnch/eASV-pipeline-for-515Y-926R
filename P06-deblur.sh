@@ -9,3 +9,4 @@ qiime deblur denoise-16S \
   --verbose 2>&1 | tee -a logs/06-deblur/deblur.txt
   
 mv deblur.log logs/06-deblur
+source deactivate
