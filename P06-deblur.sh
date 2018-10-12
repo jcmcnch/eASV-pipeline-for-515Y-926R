@@ -7,3 +7,5 @@ qiime deblur denoise-16S \
   --p-sample-stats \
   --output-dir 06-deblurred \
   --verbose 2>&1 | tee -a logs/06-deblur/deblur.txt
+  
+mv deblur.log logs/06-deblur
