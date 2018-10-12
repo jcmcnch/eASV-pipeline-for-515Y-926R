@@ -5,3 +5,5 @@ qiime demux summarize \
 --i-data 04-QCd/filtered_sequences.qza \
 --output-dir 05-QCd-quality \
 --verbose
+
+source deactivate
