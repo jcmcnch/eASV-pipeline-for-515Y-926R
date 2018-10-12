@@ -6,3 +6,5 @@ qiime quality-filter q-score-joined \
   --verbose
 
 qiime tools export --input-path 04-QCd/filter_stats.qza --output-path 04-QCd/
+
+source deactivate
