@@ -5,3 +5,5 @@ qiime tools import \
   --input-path manifest.csv \
   --output-path 16s.qza \
   --input-format PairedEndFastqManifestPhred33
+  
+source deactivate
