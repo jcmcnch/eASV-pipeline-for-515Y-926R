@@ -6,6 +6,6 @@ qiime deblur denoise-other \
   --i-demultiplexed-seqs 08-QCd-seqs/filtered_sequences.qza \
   --p-trim-length -1 \
   --p-sample-stats \
-  --output-dir 08-deblur
+  --output-dir 09-deblurred
 
 source deactivate
