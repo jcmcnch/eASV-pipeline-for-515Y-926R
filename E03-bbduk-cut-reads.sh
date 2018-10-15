@@ -1,5 +1,8 @@
 #!/bin/bash
 
+mkdir logs
+mkdir logs/03-bbduk
+
 source activate bbmap-env
 
 trimleft=$1
@@ -20,9 +23,9 @@ for item in `ls 00-fastq/*.trimmed.SILVA_132_and_PR2_EUK.cdhit95pc_1.fastq`
 	R2in=$filestem.trimmed.SILVA_132_and_PR2_EUK.cdhit95pc_2.fastq
 
 	bbduk.sh in=$indir/$R1in out=$outdir/`basename $R1in .fastq`.trimmed.fastq \
-	minlength=$trimleft forcetrimright=$(($trimleft - 1))
+	minlength=$trimleft forcetrimright=$(($trimleft - 1)) 2>&1 | tee -a logs/03-bbduk/R1-bbduk.log
 	bbduk.sh in=$indir/$R2in out=$outdir/`basename $R2in .fastq`.trimmed.fastq \
-        minlength=$trimright forcetrimright=$(($trimright - 1))
+        minlength=$trimright forcetrimright=$(($trimright - 1)) 2>&1 | tee -a logs/03-bbduk/R2-bbduk.log
 
 done
 
@@ -61,7 +64,7 @@ for item in `ls 03-size-selected/*repaired.1.fastq`
 
 	mv $path/$repairedR1 $path/$R1
 	mv $path/$repairedR2 $path/$R2
-
+	
 done
 
 source deactivate
