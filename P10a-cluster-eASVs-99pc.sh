@@ -7,7 +7,7 @@ qiime vsearch cluster-features-de-novo \
 	--i-table 06-deblurred/table.qza \
 	--p-perc-identity 0.99 \
 	--p-threads 10 \
-	--output-dir clustered-ESVs-99pc \
+	--output-dir clustered-eASVs-99pc \
 	--verbose
 
 source deactivate 
