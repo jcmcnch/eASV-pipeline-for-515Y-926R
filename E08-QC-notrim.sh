@@ -7,4 +7,6 @@ qiime quality-filter q-score \
   --p-min-length-fraction 1.0 \
   --verbose
 
+qiime tools export --input-path 08-QCd-seqs/filter_stats.qza --output-path 08-QCd-seqs/
+
 source deactivate
