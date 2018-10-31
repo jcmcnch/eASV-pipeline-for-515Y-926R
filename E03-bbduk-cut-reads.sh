@@ -8,6 +8,9 @@ source activate bbmap-env
 trimleft=$1
 trimright=$2
 
+echo "forward trim length = $trimleft bp" > trim_lengths.txt
+echo "reverse trim length = $trimright bp" >> trim_lengths.txt
+
 if [[ ${#1} -eq 0 ]] ; then
     echo 'Please enter your desired trim length on the left (R1) read. e.g. E03-bbduk-cut-reads.sh 210 <right trim length>'
     exit 0
