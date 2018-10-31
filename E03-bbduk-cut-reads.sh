@@ -8,6 +8,16 @@ source activate bbmap-env
 trimleft=$1
 trimright=$2
 
+if [[ ${#1} -eq 0 ]] ; then
+    echo 'Please enter your desired trim length on the left (R1) read. e.g. E03-bbduk-cut-reads.sh 210 <right trim length>'
+    exit 0
+fi
+
+if [[ ${#2} -eq 0 ]] ; then
+    echo 'Please enter your desired trim length on the right (R2) read. e.g. E03-bbduk-cut-reads.sh <left trim length> 170'
+    exit 0
+fi
+
 #slice and dice
 
 for item in `ls 00-fastq/*.trimmed.SILVA_132_and_PR2_EUK.cdhit95pc_1.fastq`
