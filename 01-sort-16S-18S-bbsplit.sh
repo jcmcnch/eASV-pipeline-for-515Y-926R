@@ -2,6 +2,8 @@
 
 source activate bbmap-env
 
+cp /home/db/in-silico-mocks/*fastq 01-trimmed/
+
 mkdir 02-PROKs
 mkdir 02-EUKs
 
@@ -27,5 +29,7 @@ done
 
 mv *EUK*fastq 02-EUKs/00-fastq
 mv *PROK*fastq 02-PROKs/00-fastq
+
+rm -rf ref
 
 source deactivate
