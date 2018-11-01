@@ -11,6 +11,8 @@ if [[ ${#1} -eq 0 ]] ; then
     exit 0
 fi
 
+echo "Deblur trim length = ${trimlength} bp" > deblur_trim_length.txt
+
 qiime deblur denoise-16S \
   --i-demultiplexed-seqs 04-QCd/filtered_sequences.qza \
   --p-trim-length $trimlength \
