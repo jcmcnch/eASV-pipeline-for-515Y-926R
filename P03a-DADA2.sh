@@ -15,6 +15,9 @@ if [[ ${#2} -eq 0 ]] ; then
     exit 0
 fi
 
+echo "DADA2 truncation length for forward reads = ${trunclenf} bp" > DADA2_trunclengths.txt
+echo "DADA2 truncation length for reverse reads = ${trunclenr} bp" >> DADA2_trunclengths.txt
+
 qiime dada2 denoise-paired \
   --i-demultiplexed-seqs 16s.qza \
   --p-trim-left-f 0 \
