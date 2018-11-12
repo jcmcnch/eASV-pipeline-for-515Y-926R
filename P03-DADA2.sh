@@ -24,7 +24,7 @@ qiime dada2 denoise-paired \
   --p-trim-left-r 0 \
   --p-trunc-len-f $trunclenf \
   --p-trunc-len-r $trunclenr \
-  --output-dir 03a-DADA2d \
+  --output-dir 03-DADA2d \
   --p-n-threads 10 \
   --verbose
 
