@@ -2,6 +2,7 @@
 
 source activate qiime2-2018.8
 
+mkdir logs/
 mkdir logs/03-DADA2/
 
 trunclenf=$1
