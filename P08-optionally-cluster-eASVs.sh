@@ -3,15 +3,15 @@
 source activate qiime2-2018.8-vsearch-hacked
 
 if [[ ${#1} -eq 0 ]] ; then
-    echo 'Please enter a clustering level for VSEARCH. e.g. E13a-cluster-eASVs-99pc.sh 99'
+    echo 'Please enter a clustering level for VSEARCH. e.g. P08-optionally-cluster-eASVs.sh 99'
     exit 0
 fi
 
 clusteringlevel=$1
 
 qiime vsearch cluster-features-de-novo \
-	--i-sequences 06-deblurred/representative_sequences.qza \
-	--i-table 06-deblurred/table.qza \
+	--i-sequences 03-DADA2d/representative_sequences.qza \
+	--i-table 03-DADA2d/table.qza \
 	--p-perc-identity 0.$clusteringlevel \
 	--p-threads 10 \
 	--output-dir clustered-eASVs-${clusteringlevel}pc \
