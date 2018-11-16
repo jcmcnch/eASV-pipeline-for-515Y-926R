@@ -10,8 +10,8 @@ if [[ ${#1} -eq 0 ]] ; then
 fi
 
 qiime vsearch cluster-features-de-novo \
-	--i-sequences 09-deblurred/representative_sequences.qza \
-	--i-table 09-deblurred/table.qza \
+	--i-sequences 08-DADA2d/representative_sequences.qza \
+	--i-table 08-DADA2d/table.qza \
 	--p-perc-identity 0.$clusteringlevel \
 	--p-threads 10 \
 	--output-dir clustered-eASVs-${clusteringlevel}pc \
