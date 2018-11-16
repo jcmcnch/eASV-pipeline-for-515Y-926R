@@ -5,4 +5,8 @@ Scripts are either python or bash scripts, and are designed for the pre-set cond
 
 An associated protocol that describes the steps in more detail can be found here:
 
-https://www.protocols.io/private/6C81EC4BC2074A76D7ACF80E2F0603B7
+https://www.protocols.io/private/C0F9404AB3DAEC96683F142351CEF59C
+
+If you're following the default Fuhrman Lab pipeline, just pull down the DADA2 branch:
+
+`git clone -b DADA2 --single-branch https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R.git`
