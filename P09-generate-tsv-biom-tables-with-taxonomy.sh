@@ -12,7 +12,7 @@ for item in `ls */*table.qza`
 	rmdir exports/$name
 done
 
-qiime tools export --input-path 07-classified/classification.qza --output-path exports/
+qiime tools export --input-path 05-classified/classification.qza --output-path exports/
 
 sed -i '1c#OTUID	taxonomy	confidence' exports/taxonomy.tsv
 
