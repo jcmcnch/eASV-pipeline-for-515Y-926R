@@ -2,6 +2,8 @@
 
 source activate qiime2-2018.8
 
+mkdir logs/03-DADA2/
+
 trunclenf=$1
 trunclenr=$2
 
@@ -26,6 +28,6 @@ qiime dada2 denoise-paired \
   --p-trunc-len-r $trunclenr \
   --output-dir 03-DADA2d \
   --p-n-threads 10 \
-  --verbose
+  --verbose 2>&1 | tee -a logs/03-DADA2/DADA2.stderrout
 
 source deactivate
