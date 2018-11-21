@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #shortcut for making manifests based on fasta file names
-#script assumes you have the same number of FWD and REV reads and that they're named in a meaninful way (i.e. samplename.1.fastq.gz)
+#script assumes you have the same number of FWD and REV reads and that they're named in a meaningful way (i.e. samplename.1.fastq.gz)
 
 #remove empty files
 find ./00-fastq -size  0 -print0 | xargs -0 rm --
