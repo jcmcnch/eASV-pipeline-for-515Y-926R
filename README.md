@@ -17,7 +17,7 @@ There may be some cases in which you wish to use Deblur (for example, perhaps yo
 You can follow this protocol for the Deblur Fuhrman lab pipeline (non-default but maybe it will be useful):
 https://www.protocols.io/private/6C81EC4BC2074A76D7ACF80E2F0603B7
 
-If you'd like to use these scripts as a starting point for your analysis but are not using the Fuhrman lab primers / mock communities, we think it's safer to use Deblur*. YOu can pull down the scripts here which have some changes to make them more generally applihttps://www.protocols.io/private/6C81EC4BC2074A76D7ACF80E2F0603B7cable (they also include some templates for preparing your classfication database):
+If you'd like to use these scripts as a starting point for your analysis but are not using the Fuhrman lab primers / mock communities, we think it's safer to use Deblur*. You can pull down the scripts here which have some changes to make them more generally applicable (e.g. they include some templates for preparing your classfication database):
 
 `git clone -b Deblur-template --single-branch https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R.git`
 
