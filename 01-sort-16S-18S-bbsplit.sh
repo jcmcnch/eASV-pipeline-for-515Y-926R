@@ -2,7 +2,8 @@
 
 source activate bbmap-env
 
-cp /home/db/in-silico-mocks/*fastq 01-trimmed/
+#we normally add in our in-silico mocks to check the denoising pipeline's performance, but this is only relevant if you actually have real mocks as well
+#cp /home/db/in-silico-mocks/*fastq 01-trimmed/
 
 mkdir 02-PROKs
 mkdir 02-EUKs
