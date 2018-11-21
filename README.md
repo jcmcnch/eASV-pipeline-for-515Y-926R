@@ -6,6 +6,7 @@ Scripts are either python or bash scripts, and are designed for the pre-set cond
 If you're doing the bbsplit step, you can find the necessary PROK/EUK databases here:
 
 https://drive.google.com/file/d/14zL-cudiNAqsGbCyVa3DWlSsKxr64CIa/view?usp=sharing
+
 https://drive.google.com/file/d/19Bq_g1Saqe6hASAcKFK3KnIVc9eFp1qp/view?usp=sharing
 
 If you're following the default Fuhrman Lab pipeline, just pull down the DADA2 branch:
