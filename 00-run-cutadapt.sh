@@ -14,7 +14,7 @@ for item in `ls 00-raw/*.R1.fastq.gz`
 	R1=00-raw/$filestem.R1.fastq.gz
 	R2=00-raw/$filestem.R2.fastq.gz
 
-        cutadapt --pair-filter=any --error-rate=0.2 --discard-untrimmed \
+        cutadapt --no-indels --pair-filter=any --error-rate=0.2 --discard-untrimmed \
 	-g ^GTGYCAGCMGCCGCGGTAA -G ^CCGYCAATTYMTTTRAGTTT \
 	-o 01-trimmed/${filestem}.R1.trimmed.fastq \
 	-p 01-trimmed/${filestem}.R2.trimmed.fastq $R1 $R2 \
