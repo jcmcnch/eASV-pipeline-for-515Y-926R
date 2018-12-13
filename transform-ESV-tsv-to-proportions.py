@@ -43,11 +43,11 @@ if args.minimum_abundance_filtered_output is not None:
 	aMax = []
 	minabundDF = normbiomDF
 	for index, row in minabundDF.iterrows():
-	    if float(row[1:].max()) < float(args.minimum_abundance_threshold):
-		minabundDF = minabundDF.drop(index)
-	    else:
-		rowMax = row[1:].max()
-		aMax.append(rowMax)
+		if float(row[1:].max()) < float(args.minimum_abundance_threshold):
+			minabundDF = minabundDF.drop(index)
+	    	else:
+			rowMax = row[1:].max()
+			aMax.append(rowMax)
 
 	seMax = pd.Series(aMax)
 	minabundDF["max"] = seMax.values
