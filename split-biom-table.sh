@@ -4,7 +4,7 @@ table=$1
 taxon=$2
 
 if [[ ${#1} -eq 0 ]] ; then
-    echo 'Please enter a table to split.'
+    echo 'Please enter the path to a qza table to split.'
     exit 0
 fi
 
