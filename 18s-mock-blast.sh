@@ -11,6 +11,6 @@ if [[ ${#2} -eq 0 ]] ; then
 fi
 
 
-blastn -qcov_hsp_perc 100 -outfmt 6 -query $1 -db /home/db/in-silico-mocks/BLAST-db/18s/all_seqs_NR_corrected.fasta > $2
+blastn -outfmt 6 -query $1 -db /home/db/in-silico-mocks/BLAST-db/18s/all_seqs_NR_corrected.fasta > $2
 
 cat /home/db/other/outfmt6-headers | cat - $2 > temp && mv temp $2
