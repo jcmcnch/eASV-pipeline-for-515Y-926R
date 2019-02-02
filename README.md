@@ -9,6 +9,12 @@ https://drive.google.com/file/d/14zL-cudiNAqsGbCyVa3DWlSsKxr64CIa/view?usp=shari
 
 https://drive.google.com/file/d/19Bq_g1Saqe6hASAcKFK3KnIVc9eFp1qp/view?usp=sharing
 
+To build the splitting database (it's already done on kraken.usc.edu), run the following command:
+
+`bbsplit.sh build=1 ref=SILVA_132_and_PR2_EUK.cdhit95pc.fasta,SILVA_132_PROK.cdhit95pc.fasta path=EUK-PROK-bbsplit-db`
+
+Then point the splitting script ("01-sort-16S-18S-bbsplit.sh") to the full path of the directory specified above in the path=<dir> part of the command.
+
 If you're following the default Fuhrman Lab pipeline, just pull down the DADA2 branch:
 
 `git clone -b DADA2 --single-branch https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R.git`
