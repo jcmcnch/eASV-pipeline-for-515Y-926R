@@ -13,7 +13,7 @@ To build the splitting database (it's already done on kraken.usc.edu), run the f
 
 `bbsplit.sh build=1 ref=SILVA_132_and_PR2_EUK.cdhit95pc.fasta,SILVA_132_PROK.cdhit95pc.fasta path=EUK-PROK-bbsplit-db`
 
-Then point the splitting script ("01-sort-16S-18S-bbsplit.sh") to the full path of the directory specified above in the path part of the command.
+Then edit the splitting script ("01-sort-16S-18S-bbsplit.sh") so that it points to the full path of the directory specified above in the path part of the command.
 
 If you're following the default Fuhrman Lab pipeline, just pull down the DADA2 branch:
 
