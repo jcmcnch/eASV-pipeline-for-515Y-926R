@@ -35,11 +35,11 @@ Then edit the splitting script ("01-sort-16S-18S-bbsplit.sh") so that it points 
 
 *CLASSIFIERS*
 
-You'll also need the PhytoRef classifier for better chloroplast assignments. Just make sure to point the "P10..." script to the location where you downloaded the qza file:
+You'll also need the PhytoRef classifier for better chloroplast assignments. Just make sure to point the splitting/reclassification script to the location where you downloaded the qza file:
 
 https://drive.google.com/file/d/1CFg5IRVyQlbOWQ_F2O-Riv0Ar08OMbW0/view?usp=sharing
 
-I've also included a PR2 classification step so you can compare results to SILVA 132 (big thanks to Du Niu who shared this on the qiime2 forum):
+I've also included a PR2 classification step so you can compare results to SILVA 132 (big thanks to Du Niu who shared this on the qiime2 forum). Make sure to also change the path location in the appropriate splitting/reclassification script:
 
 https://drive.google.com/file/d/190tihIuhZ_rf1TCkzYTOn-9F32FJ5cAD/view?usp=sharing
 
