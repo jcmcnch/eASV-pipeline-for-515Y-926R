@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for item in `ls exports/*.with-tax.tsv`
+for item in `ls 15-exports/*.with*tax.tsv`
 	do
 	outdir=`echo $item | cut -d\/ -f1`
 	filestem=`basename $item .tsv`
