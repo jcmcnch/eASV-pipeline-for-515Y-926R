@@ -7,8 +7,11 @@ This is a collection of basic scripts for analyzing mixed 16S/18S amplicon seque
 The main difference between this pipeline and standard workflows is that it contains an initial 16S/18S splitting step, which is accomplished using bbsplit against curated 16S / 18S databases derived from SILVA132 and PR2. Other notable differences include:
 
 -We allow for up to 20% mismatches in the primer, meaning taxa that are amplified despite primer mismatches will be retained in the results
+
 -Automatic classification/splitting as noted above
+
 -An automated workflow for processing 18S sequences that do not overlap
+
 -Inclusion of semi-automated methods to validate the performance of your denoising algorithm with the Fuhrman Lab mock communities
 
 Scripts are written with python or bash, and are designed for the pre-set conda environments on kraken.usc.edu. However, they could easily be used elsewhere by installing the conda environment for qiime2 specified in the scripts and a separate environment (called bbmap-env) that has Brian Bushnell's Bestus Bioinformaticus Tools installed.
