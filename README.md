@@ -6,15 +6,15 @@ This is a collection of basic scripts for analyzing mixed 16S/18S amplicon seque
 
 The main difference between this pipeline and standard workflows is that it contains an initial 16S/18S splitting step, which is accomplished using bbsplit against curated 16S / 18S databases derived from SILVA132 and PR2. Other notable differences include:
 
--We allow for up to 20% mismatches in the primer, meaning taxa that are amplified despite primer mismatches will be retained in the results
+-Semi-automated methods to validate the performance of your denoising algorithm with the Fuhrman Lab mock communities
 
--Automatic classification/splitting as noted above
+-20% mismatches allowed in the primer removal step, meaning taxa that are amplified despite primer mismatches will be retained in the results
 
 -An automated workflow for processing 18S sequences that do not overlap
 
--Inclusion of semi-automated methods to validate the performance of your denoising algorithm with the Fuhrman Lab mock communities
+-Automatic classification/splitting as noted above
 
-Scripts are written with python or bash, and are designed for the pre-set conda environments on kraken.usc.edu. However, they could easily be used elsewhere by installing the conda environment for qiime2 specified in the scripts and a separate environment (called bbmap-env) that has Brian Bushnell's Bestus Bioinformaticus Tools installed.
+Scripts are written with python or bash, and are designed for the pre-set conda environments on kraken.usc.edu. However, they could easily be used elsewhere by installing the conda environment for qiime2 specified in the scripts (currently qiime2-2018.8) and a separate environment (called bbmap-env) that has Brian Bushnell's Bestus Bioinformaticus Tools installed.
 
 To start using them, just clone the repository as follows:
 
@@ -59,3 +59,21 @@ https://drive.google.com/file/d/190tihIuhZ_rf1TCkzYTOn-9F32FJ5cAD/view?usp=shari
 If you need to make your own classifiers for PR2 and PhytoRef (i.e. you're not using the same primers), you can use Niu Du's pre-made artifacts found here: https://github.com/ndu-UCSD/Oceanic_database
 
 *While DADA2 is superior to Deblur in terms of sequence recovery (especially for our Eukaryotic amplicons - ~80% DADA2 vs ~20% Deblur), we have noticed that it creates spurious eASVs on occasion (a spurious eASV is defined here as an eASV with 1 mismatch to the reference mock community sequence that cannot be accounted for by sample bleedthrough). This seems to be either due to noisy data (e.g. 2x300 PE reads) or due to something that trips up the error model (i.e. it happened once when we had in extra mocks from the same run but different lane that had more reads on average than the first lane). For us, this isn't necessarily a problem since we use the mocks as a way to validate our results, and we can tweak parameters to avoid these potential artifacts. But for those who don't have access to the mocks, or those who are working with data downloaded from the SRA, then it will be easier to use Deblur.
+
+Current automatic splitting/plotting capabilities (a tsv table and graph will be produced for each of these categories):
+
+16S (all filtering steps based on SILVA132 classifications, chloroplasts always classified with PhytoRef):
+-All heterotrophs (excluding cyanobacteria/chloroplasts and mitochondria)
+-All prokaryotes (excluding chloroplasts/mitochondria)
+-16S with mitochondria subtracted
+-16S with chloroplasts subtracted
+-Only cyanobacteria
+-Cyanobacteria + chloroplasts
+-Only chloroplasts
+-Only mitochondria
+
+18S:
+-All 18S sequences, classified using SILVA132
+-All 18S sequences, classified using PR2
+-18S sequences with Metazoa subtracted according to SILVA132 classifications
+-18S sequences with Metazoa subtracted according to PR2 classifications
