@@ -13,8 +13,11 @@ for item in `ls */*table.qza && ls */*/*table.qza`
 done
 
 qiime tools export --input-path 09-subsetting/tax-merged/chloroplasts-PhytoRef-reclassified-merged-classification.qza --output-path 10-exports/
+#qiime tools export --input-path reclassified/PhytoRef_include_D_3__Chloroplast_subset_reclassified.qza --output-path 10-exports/taxonomy-PhytoRef
+#mv 10-exports/taxonomy-PhytoRef/taxonomy.tsv  10-exports/taxonomy-PhytoRef.tsv ; rmdir 10-exports/taxonomy-PhytoRef/
 
 sed -i '1c#OTUID	taxonomy	confidence' 10-exports/taxonomy.tsv
+#sed -i '1c#OTUID	taxonomy	confidence' 10-exports/taxonomy-PhytoRef.tsv
 
 #Tutorial here: https://forum.qiime2.org/t/exporting-and-modifying-biom-tables-e-g-adding-taxonomy-annotations/3630
 for item in `ls 10-exports/*biom`
