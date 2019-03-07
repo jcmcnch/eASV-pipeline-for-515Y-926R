@@ -64,7 +64,11 @@ Current automatic splitting/plotting capabilities (a tsv table and graph will be
 
 16S (all filtering steps based on SILVA132 classifications, chloroplasts always classified with PhytoRef):
 
--All heterotrophs (excluding cyanobacteria/chloroplasts and mitochondria)
+-16s excluding cyanobacteria, chloroplasts and mitochondria
+
+-16S excluding Archaea
+
+-Archaea only
 
 -All prokaryotes (excluding chloroplasts/mitochondria)
 
