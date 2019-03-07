@@ -82,4 +82,18 @@ qiime taxa filter-table \
   --p-exclude "D_4__Mitochondria,D_1__Cyanobacteria" \
   --o-filtered-table 09-subsetting/split-tables/exclude_D_1__Cyanobacteria_exclude_D_4__Mitochondria_filtered_table.qza
 
+#Create Archaea-only table
+qiime taxa filter-table \
+  --i-table 03-DADA2d/table.qza \
+  --i-taxonomy 05-classified/classification.qza \
+  --p-include "D_0__Archaea" \
+  --o-filtered-table 09-subsetting/split-tables/include_D_0__Archaea_filtered_table.qza
+
+#Create Archaea-free table
+qiime taxa filter-table \
+  --i-table 03-DADA2d/table.qza \
+  --i-taxonomy 05-classified/classification.qza \
+  --p-exclude "D_0__Archaea" \
+  --o-filtered-table 09-subsetting/split-tables/exclude_D_0__Archaea_filtered_table.qza
+
 source deactivate
