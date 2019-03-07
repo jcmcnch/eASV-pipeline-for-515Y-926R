@@ -63,17 +63,29 @@ If you need to make your own classifiers for PR2 and PhytoRef (i.e. you're not u
 Current automatic splitting/plotting capabilities (a tsv table and graph will be produced for each of these categories):
 
 16S (all filtering steps based on SILVA132 classifications, chloroplasts always classified with PhytoRef):
+
 -All heterotrophs (excluding cyanobacteria/chloroplasts and mitochondria)
+
 -All prokaryotes (excluding chloroplasts/mitochondria)
+
 -16S with mitochondria subtracted
+
 -16S with chloroplasts subtracted
+
 -Only cyanobacteria
+
 -Cyanobacteria + chloroplasts
+
 -Only chloroplasts
+
 -Only mitochondria
 
 18S:
+
 -All 18S sequences, classified using SILVA132
+
 -All 18S sequences, classified using PR2
+
 -18S sequences with Metazoa subtracted according to SILVA132 classifications
+
 -18S sequences with Metazoa subtracted according to PR2 classifications
