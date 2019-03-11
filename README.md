@@ -52,7 +52,7 @@ You'll also need the PhytoRef classifier for better chloroplast assignments. Jus
 
 https://drive.google.com/file/d/1CFg5IRVyQlbOWQ_F2O-Riv0Ar08OMbW0/view?usp=sharing
 
-I've also included a PR2 classification step so you can compare results to SILVA 132 (big thanks to Du Niu who shared this on the qiime2 forum). Make sure to also change the path location in the appropriate splitting/reclassification script:
+I've also included a PR2 classification step so you can compare results to SILVA 132 (big thanks to Niu Du who shared this on the qiime2 forum). Make sure to also change the path location in the appropriate splitting/reclassification script:
 
 https://drive.google.com/file/d/190tihIuhZ_rf1TCkzYTOn-9F32FJ5cAD/view?usp=sharing
 
