@@ -48,15 +48,27 @@ Then edit the splitting script ("01-sort-16S-18S-bbsplit.sh") so that it points 
 
 *CLASSIFIERS (Trained on the 515Y/926R primer pair)*
 
+The default taxonomy we use is SILVA132. A pre-trained classifier for the 515Y/926R primer pair can be found here (just point the scripts to where you downloaded the file on your server/laptop):
+
+https://drive.google.com/file/d/1-ep-NisSqHc-pOgLxQVDVDsXnqgXEYpB/view?usp=sharing
+
 You'll also need the PhytoRef classifier for better chloroplast assignments. Just make sure to point the splitting/reclassification script to the location where you downloaded the qza file:
 
 https://drive.google.com/file/d/1CFg5IRVyQlbOWQ_F2O-Riv0Ar08OMbW0/view?usp=sharing
 
-I've also included a PR2 classification step so you can compare results to SILVA 132 (big thanks to Du Niu who shared this on the qiime2 forum). Make sure to also change the path location in the appropriate splitting/reclassification script:
+I've also included a PR2 classification step so you can compare results to SILVA 132 (big thanks to Niu Du who shared the artifacts on the qiime2 forum). Make sure to also change the path location in the appropriate splitting/reclassification script:
 
 https://drive.google.com/file/d/190tihIuhZ_rf1TCkzYTOn-9F32FJ5cAD/view?usp=sharing
 
 If you need to make your own classifiers for PR2 and PhytoRef (i.e. you're not using the same primers), you can use Niu Du's pre-made artifacts found here: https://github.com/ndu-UCSD/Oceanic_database
+
+If you need to make your own classifier for SILVA132 (i.e. you're not using our primers), you can use this pre-imported sequence artifact for the 97% OTUs provided by SILVA (just subset and train for your primers according to the scripts on Niu Du's github page or the "T"-prefaced scripts in the "deblur-template-pipeline"):
+
+https://drive.google.com/file/d/1rEfiuvlECUsUX9gPcv-2riAsb_8EI7Z9/view?usp=sharing
+
+You'll also need the associated taxonomy:
+
+https://drive.google.com/file/d/1iXYwwZky8V2HfwXh3kMTnG_7Y5sSYBtP/view?usp=sharing
 
 *While DADA2 is superior to Deblur in terms of sequence recovery (especially for our Eukaryotic amplicons - ~80% DADA2 vs ~20% Deblur), we have noticed that it creates spurious eASVs on occasion (a spurious eASV is defined here as an eASV with 1 mismatch to the reference mock community sequence that cannot be accounted for by sample bleedthrough). This seems to be either due to noisy data (e.g. 2x300 PE reads) or due to something that trips up the error model (i.e. it happened once when we had in extra mocks from the same run but different lane that had more reads on average than the first lane). For us, this isn't necessarily a problem since we use the mocks as a way to validate our results, and we can tweak parameters to avoid these potential artifacts. But for those who don't have access to the mocks, or those who are working with data downloaded from the SRA, then it will be easier to use Deblur.
 
