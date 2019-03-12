@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -e samples-to-keep.tsv ] ; then
+if [ -e samples-to-keep* ] ; then
 
         echo "samples-to-keep.tsv found, continuing with script."
 else
