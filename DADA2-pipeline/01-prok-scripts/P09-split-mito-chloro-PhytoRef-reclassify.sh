@@ -51,7 +51,7 @@ qiime taxa filter-table \
   --i-table 03-DADA2d/table.qza \
   --i-taxonomy 05-classified/classification.qza \
   --p-include "D_1__Cyanobacteria" \
-  --o-filtered-table 09-subsetting/split-tables/include_D_1__Cyanobacteria_filtered_table.qza
+  --o-filtered-table 09-subsetting/split-tables/include_D_1__Cyanobacteria_NOTE_includes_chloroplasts_filtered_table.qza
 
 #Create Chloroplast-free Cyanobacteria table
 qiime taxa filter-table \
