@@ -51,7 +51,7 @@ qiime taxa filter-table \
   --i-table 06-deblurred/table.qza \
   --i-taxonomy 07-classified/classification.qza \
   --p-include "D_1__Cyanobacteria" \
-  --o-filtered-table 12-subsetting/split-tables/include_D_1__Cyanobacteria_filtered_table.qza
+  --o-filtered-table 12-subsetting/split-tables/include_D_1__Cyanobacteria_NOTE_includes_chloroplasts_filtered_table.qza
 
 #Create Chloroplast-free Cyanobacteria table
 qiime taxa filter-table \
@@ -80,7 +80,7 @@ qiime taxa filter-table \
   --i-table 06-deblurred/table.qza \
   --i-taxonomy 07-classified/classification.qza \
   --p-exclude "D_4__Mitochondria,D_1__Cyanobacteria" \
-  --o-filtered-table 12-subsetting/split-tables/exclude_D_1__Cyanobacteria_exclude_D_4__Mitochondria_filtered_table.qza
+  --o-filtered-table 12-subsetting/split-tables/exclude_D_1__Cyanobacteria_exclude_D_4__Mitochondria_NOTE_excludes_chloroplasts_filtered_table.qza
 
 #Create Archaea-only table
 qiime taxa filter-table \
