@@ -30,13 +30,13 @@ for item in `ls 15-exports/all-18S-seqs.biom`
 	biom add-metadata -i $item -o 15-exports/$filestem.with-PR2-tax.biom --observation-metadata-fp 15-exports/taxonomy-PR2.tsv --sc-separated taxonomy
 done
 
-for item in `ls 15-exports/exclude*table.biom | grep "SILVA132"`
+for item in `ls 15-exports/*clude*table.biom | grep "SILVA132"`
 	do
 	filestem=`basename $item .biom`
 	biom add-metadata -i $item -o 15-exports/$filestem.with-tax.biom --observation-metadata-fp 15-exports/taxonomy-SILVA132.tsv --sc-separated taxonomy
 done
 
-for item in `ls 15-exports/exclude*table.biom | grep "PR2"`
+for item in `ls 15-exports/*clude*table.biom | grep "PR2"`
 	do
 	filestem=`basename $item .biom`
 	biom add-metadata -i $item -o 15-exports/$filestem.with-tax.biom --observation-metadata-fp 15-exports/taxonomy-PR2.tsv --sc-separated taxonomy
