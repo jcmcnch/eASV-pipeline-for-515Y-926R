@@ -5,6 +5,7 @@ from Bio.Blast.Applications import NcbiblastxCommandline
 from Bio.Blast import NCBIXML
 import argparse
 import pandas as pd
+import numpy as np
 from collections import Counter
 
 parser = argparse.ArgumentParser(description='This script BLASTs your denoised sequences against exact mock sequences, identifying potential artifacts and summarizing this information in your tsv OTU table.')
@@ -40,6 +41,8 @@ else:
 
 default_outfmt6_cols = 'qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore'.strip().split(' ')
 
+tsvasvout = str(args.tsvasvtable).rsplit('.',1)[0] + ".mockinfo.tsv"
+
 if args.ssu_type == "18s":
 
     forwardout = str(args.repseqs).rsplit('.',1)[0] + ".R1.fa"
@@ -74,32 +77,56 @@ if args.ssu_type == "18s":
     fwdBLASTdf = fwdBLASTdf[(fwdBLASTdf['length'] >= forwardtrim) & (fwdBLASTdf['gapopen'] == 0)]
 
     hashFWDmismatchinfo = {}
+    hashFWDmockID = {}
     hashREVmismatchinfo = {}
+    hashREVmockID = {}
 
     for i in fwdBLASTdf['qseqid'].unique():
 
         hashFWDmismatchinfo[i] = fwdBLASTdf.loc[fwdBLASTdf['qseqid'] == i]['mismatch'].min()
+        hashFWDmockID[i] = list(fwdBLASTdf.loc[(fwdBLASTdf['qseqid'] == i) & (fwdBLASTdf['mismatch'] == fwdBLASTdf.loc[fwdBLASTdf['qseqid'] == i]['mismatch'].min())]['sseqid'])[0]
 
     for i in revBLASTdf['qseqid'].unique():
 
         hashREVmismatchinfo[i] = revBLASTdf.loc[revBLASTdf['qseqid'] == i]['mismatch'].min()
+        hashREVmockID[i] = list(revBLASTdf.loc[(revBLASTdf['qseqid'] == i) & (revBLASTdf['mismatch'] == revBLASTdf.loc[revBLASTdf['qseqid'] == i]['mismatch'].min())]['sseqid'])[0]
 
     hashALLmismatchinfo = {}
+    hashALLmockIDs = {}
 
     for key in hashFWDmismatchinfo:
 
         hashALLmismatchinfo[key] = hashFWDmismatchinfo[key] + hashFWDmismatchinfo[key]
 
+    for key in hashFWDmockID:
+
+        if key in hashREVmockID:
+
+            hashALLmockIDs[key] = (';').join([hashFWDmockID[key], hashREVmockID[key]])
+
+        else:
+
+            hashALLmockIDs[key] = hashFWDmockID[key]
+
     ASVdf = pd.read_table(args.tsvasvtable, header=0, index_col="#OTU ID")
 
+    ASVdf['BLAST sseqid matches FWD REV'] = ASVdf.index.map(hashALLmockIDs)
     ASVdf['Minimum mismatches to mock'] = ASVdf.index.map(hashALLmismatchinfo)
 
-    mockSums = ASVdf[ASVdf['Minimum mismatches to mock'] == 0].sum(axis=0)
+    #Reorder
+    cols = list(ASVdf)
+    cols.insert(0, cols.pop(cols.index('BLAST sseqid matches FWD REV')))
+    ASVdf = ASVdf.loc[:, cols]
 
-    #print(mockSums)
+    #Reorder
+    cols = list(ASVdf)
+    cols.insert(0, cols.pop(cols.index('Minimum mismatches to mock')))
+    ASVdf = ASVdf.loc[:, cols]
 
-    ASVdf = pd.concat([pd.DataFrame.transpose(mockSums), ASVdf])
+    mockSums = ASVdf[ASVdf['Minimum mismatches to mock'] == 0].sum(axis=0) #Sum the proportions where mismatches = 0 (i.e. perfect hits to mocks)
+    ASVdf.loc["Sum of mock perfect hits"] = (["", "", ""] + mockSums.tolist()[3:]) #Change series to list
 
-    print(ASVdf.head(10))
+    #Reorder
+    ASVdf = pd.concat([ASVdf.loc[["Sum of mock perfect hits"],:], ASVdf.drop("Sum of mock perfect hits", axis=0).sort_values(by=['Minimum mismatches to mock'])], axis=0)
 
-    #ASVdf.to_csv("foo.tsv", encoding='utf-8', sep="\t", index=True)
+    ASVdf.to_csv(tsvasvout, encoding='utf-8', sep="\t", index=True)
