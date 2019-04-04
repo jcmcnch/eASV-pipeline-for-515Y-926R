@@ -76,37 +76,29 @@ if args.ssu_type == "18s":
     revBLASTdf = revBLASTdf[(revBLASTdf['length'] >= reversetrim) & (revBLASTdf['gapopen'] == 0)]
     fwdBLASTdf = fwdBLASTdf[(fwdBLASTdf['length'] >= forwardtrim) & (fwdBLASTdf['gapopen'] == 0)]
 
-    hashFWDmismatchinfo = {}
-    hashFWDmockID = {}
-    hashREVmismatchinfo = {}
-    hashREVmockID = {}
+    hashALLmockIDs = {}
+    hashALLmismatchinfo = {}
 
     for i in fwdBLASTdf['qseqid'].unique():
 
-        hashFWDmismatchinfo[i] = fwdBLASTdf.loc[fwdBLASTdf['qseqid'] == i]['mismatch'].min()
-        hashFWDmockID[i] = list(fwdBLASTdf.loc[(fwdBLASTdf['qseqid'] == i) & (fwdBLASTdf['mismatch'] == fwdBLASTdf.loc[fwdBLASTdf['qseqid'] == i]['mismatch'].min())]['sseqid'])[0]
+        minloc = fwdBLASTdf.loc[fwdBLASTdf['qseqid'] == i]['mismatch'].idxmin()
+        fwdmockmatch = fwdBLASTdf.loc[minloc]['sseqid']
+        revSubFrame = revBLASTdf.loc[revBLASTdf['qseqid'] == i]
 
-    for i in revBLASTdf['qseqid'].unique():
+        if ( i in list(revBLASTdf['qseqid'].unique()) ) & (fwdmockmatch in list(revSubFrame['sseqid'])): # ) and (fwdmockmatch in list(revBLASTdf['q'])):
 
-        hashREVmismatchinfo[i] = revBLASTdf.loc[revBLASTdf['qseqid'] == i]['mismatch'].min()
-        hashREVmockID[i] = list(revBLASTdf.loc[(revBLASTdf['qseqid'] == i) & (revBLASTdf['mismatch'] == revBLASTdf.loc[revBLASTdf['qseqid'] == i]['mismatch'].min())]['sseqid'])[0]
+            minlocrev = revBLASTdf.loc[(revBLASTdf['qseqid'] == i) & (revBLASTdf['sseqid'] == fwdBLASTdf.loc[minloc]['sseqid']) ]['mismatch'].idxmin()
 
-    hashALLmismatchinfo = {}
-    hashALLmockIDs = {}
+            fwdID = fwdBLASTdf.loc[minloc]['sseqid']
+            revID = revBLASTdf.loc[minlocrev]['sseqid']
 
-    for key in hashFWDmismatchinfo:
+            fwdmismatches = fwdBLASTdf.loc[minloc]['mismatch']
+            revmismatches = revBLASTdf.loc[minlocrev]['mismatch']
 
-        hashALLmismatchinfo[key] = hashFWDmismatchinfo[key] + hashFWDmismatchinfo[key]
+            hashALLmismatchinfo[i] = fwdmismatches + revmismatches
+            hashALLmockIDs[i] = ';'.join([fwdID, revID])
 
-    for key in hashFWDmockID:
-
-        if key in hashREVmockID:
-
-            hashALLmockIDs[key] = (';').join([hashFWDmockID[key], hashREVmockID[key]])
-
-        else:
-
-            hashALLmockIDs[key] = hashFWDmockID[key]
+    print(hashALLmockIDs)
 
     ASVdf = pd.read_table(args.tsvasvtable, header=0, index_col="#OTU ID")
 
