@@ -6,14 +6,14 @@ mkdir 09-subsetting/split-seqs
 mkdir 09-subsetting/reclassified
 mkdir 09-subsetting/tax-merged
 
-#Filter only Chloroplast eASVs from overall table
+#Make subset of sequences that include only Chloroplast eASVs
 qiime taxa filter-table \
   --i-table 03-DADA2d/table.qza \
   --i-taxonomy 05-classified/classification.qza \
   --p-include "D_3__Chloroplast" \
   --o-filtered-table 09-subsetting/split-tables/include_D_3__Chloroplast_filtered_table.qza
   
-#Filter out Chloroplast eASVs from overall table
+#Make subset of sequences that exclude Chloroplast eASVs
 qiime taxa filter-table \
   --i-table 03-DADA2d/table.qza \
   --i-taxonomy 05-classified/classification.qza \
