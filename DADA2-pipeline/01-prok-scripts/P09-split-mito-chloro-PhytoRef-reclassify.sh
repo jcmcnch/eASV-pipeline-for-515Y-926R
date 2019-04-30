@@ -17,7 +17,7 @@ qiime taxa filter-table \
 qiime taxa filter-table \
   --i-table 03-DADA2d/table.qza \
   --i-taxonomy 05-classified/classification.qza \
-  --p-exckyde "D_3__Chloroplast" \
+  --p-exclude "D_3__Chloroplast" \
   --o-filtered-table 09-subsetting/split-tables/exclude_D_3__Chloroplast_filtered_table.qza
 
 #Filter only Chloroplast sequences from representative_sequences using default SILVA132 classification
