@@ -6,14 +6,14 @@ mkdir 09-subsetting/split-seqs
 mkdir 09-subsetting/reclassified
 mkdir 09-subsetting/tax-merged
 
-#Make subset of sequences that include only Chloroplast eASVs
+#Make subset of the biom tables that include only Chloroplast eASVs
 qiime taxa filter-table \
   --i-table 03-DADA2d/table.qza \
   --i-taxonomy 05-classified/classification.qza \
   --p-include "D_3__Chloroplast" \
   --o-filtered-table 09-subsetting/split-tables/include_D_3__Chloroplast_filtered_table.qza
   
-#Make subset of sequences that exclude Chloroplast eASVs
+#Make subset of the biom tables that exclude Chloroplast eASVs
 qiime taxa filter-table \
   --i-table 03-DADA2d/table.qza \
   --i-taxonomy 05-classified/classification.qza \
@@ -26,6 +26,13 @@ qiime taxa filter-seqs \
   --i-taxonomy 05-classified/classification.qza \
   --p-include "D_3__Chloroplast" \
   --o-filtered-sequences 09-subsetting/split-seqs/include_D_3__Chloroplast_subset_filtered_seqs.qza
+
+#Filter Chloroplast sequences out from representative_sequences using default SILVA132 classification
+qiime taxa filter-seqs \
+  --i-sequences 03-DADA2d/representative_sequences.qza \
+  --i-taxonomy 05-classified/classification.qza \
+  --p-exclude "D_3__Chloroplast" \
+  --o-filtered-sequences 09-subsetting/split-seqs/exclude_D_3__Chloroplast_subset_filtered_seqs.qza
 
 #Reclassify with PhytoRef
 qiime feature-classifier classify-sklearn \
