@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source activate qiime2-2018.8-vsearch-hacked
+source activate qiime2-2019.4-vsearch-hacked
 
 clusteringlevel=$1
 
@@ -17,6 +17,6 @@ qiime vsearch cluster-features-de-novo \
 	--output-dir clustered-eASVs-${clusteringlevel}pc \
 	--verbose
 
-source deactivate 
+conda deactivate 
 
 echo "Don't forget to copy your UC file manually as noted in the protocol documentation. This information may come in handy later!"

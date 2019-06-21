@@ -1,5 +1,5 @@
 #!/bin/bash
-source activate qiime2-2018.8
+source activate qiime2-2019.4
 
 qiime tools import \
   --type 'SampleData[SequencesWithQuality]' \
@@ -7,4 +7,4 @@ qiime tools import \
   --output-path 18s-concat.qza \
   --input-format SingleEndFastqManifestPhred33
 
-source deactivate
+conda deactivate

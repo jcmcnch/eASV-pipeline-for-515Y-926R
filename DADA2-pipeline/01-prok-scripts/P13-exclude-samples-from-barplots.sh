@@ -11,7 +11,7 @@ fi
 mkdir 13-customized-barplots/
 mkdir 13-customized-barplots/subsetted-tables/
 
-source activate qiime2-2018.8
+source activate qiime2-2019.4
 
 for STK in `ls samples-to-keep*`; do
 
@@ -47,4 +47,4 @@ for item in `ls 13-customized-barplots/*/visualization.qzv`; do
 
 done
 
-source deactivate
+conda deactivate

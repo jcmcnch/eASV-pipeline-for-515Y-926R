@@ -17,4 +17,4 @@ for item in `ls 03-size-selected/*1.trimmed.fastq`
 
 done
 
-source deactivate
+conda deactivate

@@ -1,5 +1,5 @@
 #!/bin/bash
-source activate qiime2-2018.8
+source activate qiime2-2019.4
 mkdir 09-subsetting
 mkdir 09-subsetting/split-tables
 mkdir 09-subsetting/split-seqs
@@ -110,4 +110,4 @@ qiime taxa filter-table \
   --p-exclude "D_0__Archaea" \
   --o-filtered-table 09-subsetting/split-tables/exclude_D_0__Archaea_filtered_table.qza
 
-source deactivate
+conda deactivate

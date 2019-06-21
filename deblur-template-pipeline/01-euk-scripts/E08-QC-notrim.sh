@@ -1,5 +1,5 @@
 #!/bin/bash
-source activate qiime2-2018.8
+source activate qiime2-2019.4
 
 qiime quality-filter q-score \
   --i-demux 18s-concat.qza \
@@ -9,4 +9,4 @@ qiime quality-filter q-score \
 
 qiime tools export --input-path 08-QCd-seqs/filter_stats.qza --output-path 08-QCd-seqs/
 
-source deactivate
+conda deactivate

@@ -1,5 +1,5 @@
 #!/bin/bash
-source activate qiime2-2018.8
+source activate qiime2-2019.4
 
 qiime taxa barplot \
   --i-table 08-DADA2d/table.qza \
@@ -7,4 +7,4 @@ qiime taxa barplot \
   --m-metadata-file sample-metadata.tsv \
   --output-dir 12-barplots
 
-source deactivate
+conda deactivate

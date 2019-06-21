@@ -1,5 +1,5 @@
 #!/bin/bash
-source activate qiime2-2018.8 
+source activate qiime2-2019.4 
 
 mkdir 14-reclassified
 mkdir 14-reclassified/chloroplasts
@@ -102,7 +102,7 @@ qiime feature-classifier classify-sklearn \
         --p-confidence -1 \
         --o-classification 14-reclassified/chloroplasts/chloroplast-minus1-p-confidence-classification.qza
  
-source deactivate
+conda deactivate
 
 
 

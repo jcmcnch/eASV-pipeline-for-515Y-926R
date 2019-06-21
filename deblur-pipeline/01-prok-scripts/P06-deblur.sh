@@ -2,7 +2,7 @@
 
 mkdir logs/06-deblur
 
-source activate qiime2-2018.8
+source activate qiime2-2019.4
 
 trimlength=$1
 
@@ -21,4 +21,4 @@ qiime deblur denoise-16S \
   --verbose 2>&1 | tee -a logs/06-deblur/deblur.txt
   
 mv deblur.log logs/06-deblur
-source deactivate
+conda deactivate

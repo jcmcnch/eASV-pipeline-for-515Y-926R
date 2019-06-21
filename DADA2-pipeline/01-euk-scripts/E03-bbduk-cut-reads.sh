@@ -80,4 +80,4 @@ for item in `ls 03-size-selected/*repaired.1.fastq`
 	
 done
 
-source deactivate
+conda deactivate

@@ -1,5 +1,5 @@
 #!/bin/bash
-source activate qiime2-2018.8
+source activate qiime2-2019.4
 mkdir 14-subsetting
 mkdir 14-subsetting/split-tables
 mkdir 14-subsetting/split-seqs
@@ -60,4 +60,4 @@ qiime taxa filter-table \
     --p-include "division_Metazoa" \
     --o-filtered-table 14-subsetting/split-tables/include_division_Metazoa_PR2_filtered_table.qza
 
-source deactivate
+conda deactivate

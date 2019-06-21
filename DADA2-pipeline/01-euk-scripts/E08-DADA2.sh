@@ -1,5 +1,5 @@
 #!/bin/bash
-source activate qiime2-2018.8
+source activate qiime2-2019.4
 
 qiime dada2 denoise-single \
   --i-demultiplexed-seqs 18s-concat.qza \
@@ -9,4 +9,4 @@ qiime dada2 denoise-single \
   --p-n-threads 10 \
   --verbose
 
-source deactivate
+conda deactivate

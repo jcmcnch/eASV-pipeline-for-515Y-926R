@@ -32,4 +32,4 @@ mv *PROK*fastq 02-PROKs/00-fastq
 
 rm -rf ref
 
-source deactivate
+conda deactivate

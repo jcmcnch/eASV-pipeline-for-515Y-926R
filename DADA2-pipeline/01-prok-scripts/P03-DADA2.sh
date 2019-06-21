@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source activate qiime2-2018.8
+source activate qiime2-2019.4
 
 mkdir logs/
 mkdir logs/03-DADA2/
@@ -31,4 +31,4 @@ qiime dada2 denoise-paired \
   --p-n-threads 10 \
   --verbose 2>&1 | tee -a logs/03-DADA2/DADA2.stderrout
 
-source deactivate
+conda deactivate

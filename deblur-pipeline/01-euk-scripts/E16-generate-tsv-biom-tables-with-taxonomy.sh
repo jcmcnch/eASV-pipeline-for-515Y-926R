@@ -2,7 +2,7 @@
 
 mkdir 16-exports
 
-source activate qiime2-2018.8
+source activate qiime2-2019.4
 
 for item in `ls */*table.qza && ls */*/*table.qza`
 	do
@@ -48,4 +48,4 @@ for item in `ls 16-exports/*.with*tax.biom`
 	biom convert -i $item -o 16-exports/$filestem.tsv --to-tsv --header-key taxonomy
 done
 
-source deactivate
+conda deactivate

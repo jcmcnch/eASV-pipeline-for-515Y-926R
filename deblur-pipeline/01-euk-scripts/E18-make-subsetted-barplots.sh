@@ -1,5 +1,5 @@
 #!/bin/bash
-source activate qiime2-2018.8
+source activate qiime2-2019.4
 
 mkdir 18-subsetted-reclassified-barplots
 
@@ -53,4 +53,4 @@ for item in `ls 18-subsetted-reclassified-barplots/*/visualization.qzv`; do
 
 done
 
-source deactivate
+conda deactivate

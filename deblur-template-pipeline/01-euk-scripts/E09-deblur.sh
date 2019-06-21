@@ -1,6 +1,6 @@
 #!/bin/bash
 mkdir logs/09-deblur
-source activate qiime2-2018.8
+source activate qiime2-2019.4
 
 qiime deblur denoise-other \
   --i-reference-seqs /home/db/bbsplit-db/SILVA_132_and_PR2_EUK.cdhit95pc.qza \
@@ -11,4 +11,4 @@ qiime deblur denoise-other \
   
 mv deblur.log logs/09-deblur
 
-source deactivate
+conda deactivate
