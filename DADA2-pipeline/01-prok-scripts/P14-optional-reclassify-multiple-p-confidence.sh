@@ -1,5 +1,5 @@
 #!/bin/bash
-source activate qiime2-2018.8 
+source activate qiime2-2019.4
 
 mkdir 14-reclassified
 mkdir 14-reclassified/chloroplasts
