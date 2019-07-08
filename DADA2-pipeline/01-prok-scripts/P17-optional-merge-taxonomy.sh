@@ -8,7 +8,7 @@ mkdir 17-taxonomy-lookup-table/non-chloroplasts
 
 #Chloroplasts 
 
-#Part 1: Cut the first two columns (OTU ID and default (0.7) taxonomy) from the transformed to proportions .tsv file.
+#Part 1: Cut the first two columns (eASV ID and default (0.7) taxonomy) from the transformed to proportions .tsv file.
 cut -f1,2 15-exports/04-converted-biom-to-tsv/chloroplasts/PhytoRef-chloroplast-default-p-confidence-converted-biom.proportions.tsv | sed '1s/taxonomy/taxonomy-default-point7/' > 17-taxonomy-lookup-table/chloroplasts/Chloroplasts-Lookup-Table.tsv
 
 # Part 2: Add the taxonomy from all the other TSV files, not including the default. 
@@ -20,7 +20,7 @@ cut -f3- 15-exports/04-converted-biom-to-tsv/chloroplasts/PhytoRef-chloroplast-d
 
 #Non-Chloroplasts
 
-#Part 1:  Cut the first columns (OTU ID) from the transformed to proportions SILVA132 .tsv file (an arbituary choice, just want the OTU ID).
+#Part 1:  Cut the first column (eASV ID) from the transformed to proportions SILVA132 .tsv file (an arbituary choice, just want the eASV ID).
 cut -f1 15-exports/04-converted-biom-to-tsv/non-chloroplasts/SILVA132-non-chloroplast-default-p-confidence-converted-biom.proportions.tsv > 17-taxonomy-lookup-table/non-chloroplasts/Non-Chloroplasts-Lookup-Table.tsv
 
 #Part 2: Add the taxonomy from all the proportion TSV files.
