@@ -9,13 +9,13 @@ mkdir 17-taxonomy-lookup-table/non-chloroplasts
 #Chloroplasts 
 
 #Part 1: Cut the first two columns (eASV ID and default (0.7) taxonomy) from the transformed to proportions .tsv file.
-cut -f1,2 15-exports/04-converted-biom-to-tsv/chloroplasts/PhytoRef-chloroplast-default-p-confidence-converted-biom.proportions.tsv | sed '1s/taxonomy/taxonomy-default-point7/' > 17-taxonomy-lookup-table/chloroplasts/Chloroplasts-Lookup-Table.tsv
+cut -f1,2 15-exports/04-converted-biom-to-tsv/chloroplasts/PhytoRef-chloroplast-default-p-confidence-converted-biom.proportions.tsv | sed '1s/taxonomy/taxonomy-PhytoRef-default/' > 17-taxonomy-lookup-table/chloroplasts/Chloroplasts-Lookup-Table.tsv
 
 # Part 2: Add the taxonomy from all the other TSV files, not including the default. 
 for item in `ls 15-exports/04-converted-biom-to-tsv/chloroplasts/*proportions.tsv | grep -v "default"`; do confidence=`basename $item | cut -d\- -f1,3` &&  cut -f2 $item | sed "1s/taxonomy/taxonomy-$confidence/" | paste 17-taxonomy-lookup-table/chloroplasts/Chloroplasts-Lookup-Table.tsv - | sponge 17-taxonomy-lookup-table/chloroplasts/Chloroplasts-Lookup-Table.tsv ; done
 
 #Part 3: Add the remaining columns with sample information. 
-cut -f3- 15-exports/04-converted-biom-to-tsv/chloroplasts/PhytoRef-chloroplast-default-p-confidence-converted-biom.proportions.tsv | sed '1s/taxonomy/taxonomy-default-point7/' | paste 17-taxonomy-lookup-table/chloroplasts/Chloroplasts-Lookup-Table.tsv - | sponge 17-taxonomy-lookup-table/chloroplasts/Chloroplasts-Lookup-Table.tsv
+cut -f3- 15-exports/04-converted-biom-to-tsv/chloroplasts/PhytoRef-chloroplast-default-p-confidence-converted-biom.proportions.tsv | paste 17-taxonomy-lookup-table/chloroplasts/Chloroplasts-Lookup-Table.tsv - | sponge 17-taxonomy-lookup-table/chloroplasts/Chloroplasts-Lookup-Table.tsv
 
 
 #Non-Chloroplasts
