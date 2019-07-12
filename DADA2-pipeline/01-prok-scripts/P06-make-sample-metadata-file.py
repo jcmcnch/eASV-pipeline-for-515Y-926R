@@ -1,4 +1,4 @@
-#!/home/anaconda/miniconda2/envs/qiime2-2018.8/bin/python
+#!/home/anaconda/miniconda2/envs/qiime2-2019.4/bin/python
 
 #simple script to make an example sample-metadata.tsv file from existing data
 #usage: python this_script manifest.csv > output
