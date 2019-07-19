@@ -43,7 +43,7 @@ for item in `ls 15-exports/02-taxonomy-tsv/non-chloroplasts/*.tsv`
         biom add-metadata -i 15-exports/01-biom-tables/exclude_D_3__Chloroplast_filtered_table.biom -o 15-exports/03-biom-tables-with-tax/non-chloroplasts/$filestem.biom --observation-metadata-fp $item --sc-separated taxonomy
 done 
 
-#Part 4: Convert the final .biom table into a .tsv file. 
+#Part 4: Convert the final (taxonomy with metadata) .biom table into a .tsv file. 
 
 for item in `ls 15-exports/03-biom-tables-with-tax/non-chloroplasts/*.biom`
 	do
@@ -78,7 +78,7 @@ for item in `ls 15-exports/02-taxonomy-tsv/chloroplasts/*.tsv`
         biom add-metadata -i 15-exports/01-biom-tables/include_D_3__Chloroplast_filtered_table.biom -o 15-exports/03-biom-tables-with-tax/chloroplasts/$filestem.biom --observation-metadata-fp $item --sc-separated taxonomy
 done
 
-#Part 4: Convert the final .biom table into a .tsv file.
+#Part 4: Convert the final (taxonomy with metadata) .biom table into a .tsv file.
 
 for item in `ls 15-exports/03-biom-tables-with-tax/chloroplasts/*.biom`
         do
