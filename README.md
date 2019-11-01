@@ -21,7 +21,7 @@ The main difference between this pipeline and standard workflows is that it cont
 
 *Automatic classification/splitting as noted above
 
-Scripts are written with python or bash, and are designed for the pre-set conda environments on kraken.usc.edu. However, they could easily be used elsewhere by installing the conda environment for qiime2 specified in the scripts (currently qiime2-2018.8) and a separate environment (called bbmap-env) that has Brian Bushnell's Bestus Bioinformaticus Tools installed.
+Scripts are written with python or bash, and are designed for the pre-set conda environments on kraken.usc.edu. However, they could easily be used elsewhere by installing the conda environment for qiime2 specified in the scripts (currently qiime2-2019.4) and a separate environment (called bbmap-env) that has Brian Bushnell's Bestus Bioinformaticus Tools installed.
 
 To start using them, just clone the repository as follows:
 
@@ -57,15 +57,15 @@ Then edit the splitting script ("01-sort-16S-18S-bbsplit.sh") so that it points 
 
 The default taxonomy we use is SILVA132. A pre-trained classifier for the 515Y/926R primer pair can be found here (just point the scripts to where you downloaded the file on your server/laptop):
 
-https://drive.google.com/file/d/1-ep-NisSqHc-pOgLxQVDVDsXnqgXEYpB/view?usp=sharing
+https://drive.google.com/file/d/1xwQi1zIZvcJe9yfIksT0sxq9_4RlEN_m/view?usp=sharing
 
 You'll also need the PhytoRef classifier for better chloroplast assignments. Just make sure to point the splitting/reclassification script to the location where you downloaded the qza file:
 
-https://drive.google.com/file/d/1CFg5IRVyQlbOWQ_F2O-Riv0Ar08OMbW0/view?usp=sharing
+https://drive.google.com/file/d/1mUrBtSzUcpnGKpQKlC5nM6thg72MYWir/view?usp=sharing
 
 I've also included a PR2 classification step so you can compare results to SILVA 132 (big thanks to Niu Du who shared the artifacts on the qiime2 forum). Make sure to also change the path location in the appropriate splitting/reclassification script:
 
-https://drive.google.com/file/d/190tihIuhZ_rf1TCkzYTOn-9F32FJ5cAD/view?usp=sharing
+https://drive.google.com/file/d/1kXSRs62J3HqVe17isel8Oe14U3XQ1NN1/view?usp=sharing
 
 If you need to make your own classifiers for PR2 and PhytoRef (i.e. you're not using the same primers), you can use Niu Du's pre-made artifacts found here: https://github.com/ndu-UCSD/Oceanic_database
 
@@ -77,7 +77,7 @@ You'll also need the associated taxonomy:
 
 https://drive.google.com/file/d/1iXYwwZky8V2HfwXh3kMTnG_7Y5sSYBtP/view?usp=sharing
 
-*While DADA2 is superior to Deblur in terms of sequence recovery (especially for our Eukaryotic amplicons - ~80% DADA2 vs ~20% Deblur), we have noticed that it creates spurious eASVs on occasion (a spurious eASV is defined here as an eASV with 1 mismatch to the reference mock community sequence that cannot be accounted for by sample bleedthrough). This seems to be either due to noisy data (e.g. 2x300 PE reads) or due to something that trips up the error model (i.e. it happened once when we had in extra mocks from the same run but different lane that had more reads on average than the first lane). For us, this isn't necessarily a problem since we use the mocks as a way to validate our results, and we can tweak parameters to avoid these potential artifacts. But for those who don't have access to the mocks, or those who are working with data downloaded from the SRA, then it will be easier to use Deblur.
+*While DADA2 is superior to Deblur in terms of sequence recovery (especially for our Eukaryotic amplicons - ~80% DADA2 vs ~20% Deblur), we have noticed that it creates spurious eASVs on occasion (a spurious eASV is defined here as an eASV with 1 mismatch to the reference mock community sequence that cannot be accounted for by sample bleedthrough). This seems to be either due to noisy data (e.g. 2x300 PE reads) or due to something that trips up the error model (i.e. it happened once when we had in extra mocks from the same run but different lane that had more reads on average than the first lane). For us, this isn't necessarily a problem since we use the mocks as a way to validate our results, and we can tweak parameters to avoid these potential artifacts. But for those who don't have access to the mocks, or those who are working with data downloaded from the SRA, then it will be easier to use Deblur. HOWEVER, I've recently come across some evidence that deblur may be removing closely-related things and thus potentially distorting the quantitative nature of the amplicon sequences. More to come on this, but at this point if you must exclude all false positives then deblur seems the best choice - whereas if you're concerned about false negatives and making sure your data is as quantitatively accurate as possible, DADA2 seems to be the way to go.
 
 Current automatic splitting/plotting capabilities (a tsv table and graph will be produced for each of these categories):
 
