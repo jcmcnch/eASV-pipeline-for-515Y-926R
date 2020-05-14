@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source activate qiime2-2019.4-vsearch-hacked
+source activate qiime2-2019.4
 
 clusteringlevel=$1
 

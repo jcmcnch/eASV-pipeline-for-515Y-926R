@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source activate qiime2-2019.4-vsearch-hacked
+source activate qiime2-2019.4
 
 if [[ ${#1} -eq 0 ]] ; then
     echo 'Please enter a clustering level for VSEARCH. e.g. P11-optionally-cluster-eASVs.sh 99'
