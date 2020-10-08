@@ -1,4 +1,4 @@
-#!/home/anaconda/miniconda2/bin/python
+#!/usr/bin/env python
 
 import csv
 import argparse
@@ -29,13 +29,13 @@ for astrLine in csv.reader(open(args.input), csv.excel_tab):
 		hashParentLookup[child] = parent
 		hashCentroidTable[parent].append(child)
 
-with open(args.output_summary, 'wb') as csvfile:
+with open(args.output_summary, 'w') as csvfile:
 	filewriter = csv.writer(csvfile, delimiter="\t")
 	for key, value in hashCentroidTable.items():
 		csvlist = (',').join(value)
 		filewriter.writerow([key, csvlist])
 
-with open(args.output_lookup, 'wb') as csvfile:
+with open(args.output_lookup, 'w') as csvfile:
 	filewriter = csv.writer(csvfile, delimiter="\t")
 	for key, value in hashParentLookup.items():
 		filewriter.writerow([key, value])
