@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source activate qiime2-2019.4
+source activate /home/jesse/miniconda3/envs/qiime2-dev/
 
 if [[ ${#1} -eq 0 ]] ; then
     echo 'Please enter a clustering level for VSEARCH. e.g. E13a-cluster-eASVs-99pc.sh 99'

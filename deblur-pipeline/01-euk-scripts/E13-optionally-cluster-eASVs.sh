@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source activate qiime2-2019.4
+source activate /home/jesse/miniconda3/envs/qiime2-dev/
 
 clusteringlevel=$1
 
