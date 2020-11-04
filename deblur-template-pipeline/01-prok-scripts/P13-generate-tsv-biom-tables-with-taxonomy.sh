@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/bash -i
 
 mkdir 13-exports
 
-source activate qiime2-2019.4
+conda activate qiime2-2019.4
 
 for item in `ls */*table.qza && ls */*/*table.qza`
 	do

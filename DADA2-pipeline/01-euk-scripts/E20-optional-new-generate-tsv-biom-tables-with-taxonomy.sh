@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 
 mkdir 20-exports
 mkdir 20-exports/02-taxonomy-tsv
@@ -13,7 +13,7 @@ mkdir 20-exports/04-converted-biom-to-tsv
 mkdir 20-exports/04-converted-biom-to-tsv/PR2
 mkdir 20-exports/04-converted-biom-to-tsv/SILVA132
 
-source activate qiime2-2019.4
+conda activate qiime2-2019.4
 
 #####Part A: Convert the all 18S table.qza into a .biom table
 

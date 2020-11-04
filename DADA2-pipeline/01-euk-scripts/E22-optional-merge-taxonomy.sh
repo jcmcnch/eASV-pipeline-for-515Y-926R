@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 
 mkdir 22-taxonomy-lookup-table
 

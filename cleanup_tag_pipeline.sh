@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 #cleanup pipeline to save space
 #please also gzip your raw files if applicable
 

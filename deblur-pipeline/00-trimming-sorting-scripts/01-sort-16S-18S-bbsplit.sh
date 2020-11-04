@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/bash -i
 
-source activate bbmap-env
+conda activate bbmap-env
 
 cp /home/db/in-silico-mocks/*fastq 01-trimmed/
 

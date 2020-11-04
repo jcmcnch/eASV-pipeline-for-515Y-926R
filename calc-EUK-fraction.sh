@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 
 for item in 02-PROKs/00-fastq/*.SILVA_132_PROK.cdhit95pc_1.fastq; do 
 

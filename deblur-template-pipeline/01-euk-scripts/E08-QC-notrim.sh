@@ -1,5 +1,5 @@
-#!/bin/bash
-source activate qiime2-2019.4
+#!/bin/bash -i
+conda activate qiime2-2019.4
 
 qiime quality-filter q-score \
   --i-demux 18s-concat.qza \

@@ -1,5 +1,5 @@
-#!/bin/bash
-source activate qiime2-2019.4
+#!/bin/bash -i
+conda activate qiime2-2019.4
 
 qiime dada2 denoise-single \
   --i-demultiplexed-seqs 18s-concat.qza \

@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/bash -i
 
-source activate bbmap-env
+conda activate bbmap-env
 
 #we normally add in our in-silico mocks to check the denoising pipeline's performance, but this is only relevant if you actually have real mocks as well
 #cp /home/db/in-silico-mocks/*fastq 01-trimmed/

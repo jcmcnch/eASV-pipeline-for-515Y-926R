@@ -1,5 +1,5 @@
-#!/bin/bash
-source activate qiime2-2019.4
+#!/bin/bash -i
+conda activate qiime2-2019.4
 mkdir 15-subsetting
 mkdir 15-subsetting/split-tables
 mkdir 15-subsetting/split-seqs

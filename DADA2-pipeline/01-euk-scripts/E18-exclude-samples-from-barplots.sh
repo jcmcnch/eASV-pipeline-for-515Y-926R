@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 
 if [ -e samples-to-keep* ] ; then
 
@@ -11,7 +11,7 @@ fi
 mkdir 18-customized-barplots/
 mkdir 18-customized-barplots/subsetted-tables/
 
-source activate qiime2-2019.4 
+conda activate qiime2-2019.4 
 
 #Use qiime feature-table filter-samples to modify the feature tables to include only the samples-to-keep (STK) 
 for STK in `ls samples-to-keep*`; do

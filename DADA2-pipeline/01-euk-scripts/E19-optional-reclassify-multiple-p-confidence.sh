@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/bash -i
 
-source activate qiime2-2019.4
+conda activate qiime2-2019.4
 
 mkdir 19-reclassified
 mkdir 19-reclassified/SILVA132

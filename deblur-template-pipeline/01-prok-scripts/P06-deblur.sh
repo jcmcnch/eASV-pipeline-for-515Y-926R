@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/bash -i
 
 mkdir logs/06-deblur
 
-source activate qiime2-2019.4
+conda activate qiime2-2019.4
 
 trimlength=$1
 

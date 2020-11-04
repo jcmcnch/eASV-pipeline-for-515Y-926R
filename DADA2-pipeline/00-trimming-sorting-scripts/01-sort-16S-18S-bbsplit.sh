@@ -1,14 +1,11 @@
-#!/bin/bash
+#!/bin/bash -i
 
-source activate bbmap-env
+conda activate bbmap-env
 
 cp /home/db/in-silico-mocks/*fastq 01-trimmed/
 
-mkdir 02-PROKs
-mkdir 02-EUKs
-
-mkdir 02-PROKs/00-fastq
-mkdir 02-EUKs/00-fastq
+mkdir -p 02-PROKs/00-fastq
+mkdir -p 02-EUKs/00-fastq
 
 mkdir logs/02-bbsplit
 

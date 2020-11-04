@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 
 mkdir 17-taxonomy-lookup-table
 mkdir 17-taxonomy-lookup-table/chloroplasts

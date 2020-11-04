@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 
 mkdir 15-exports
 mkdir 15-exports/02-taxonomy-tsv
@@ -13,7 +13,7 @@ mkdir 15-exports/04-converted-biom-to-tsv
 mkdir 15-exports/04-converted-biom-to-tsv/non-chloroplasts
 mkdir 15-exports/04-converted-biom-to-tsv/chloroplasts
 
-source activate qiime2-2019.4 
+conda activate qiime2-2019.4 
 
 ############
 #Part A: Non-chloroplasts

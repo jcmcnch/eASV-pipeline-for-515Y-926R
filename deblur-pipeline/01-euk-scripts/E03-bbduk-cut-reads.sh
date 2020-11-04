@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/bash -i
 
 mkdir logs
 mkdir logs/03-bbduk
 
-source activate bbmap-env
+conda activate bbmap-env
 
 trimleft=$1
 trimright=$2

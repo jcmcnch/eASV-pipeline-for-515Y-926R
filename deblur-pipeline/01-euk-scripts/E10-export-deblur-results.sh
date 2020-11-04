@@ -1,5 +1,5 @@
-#!/bin/bash
-source activate qiime2-2019.4
+#!/bin/bash -i
+conda activate qiime2-2019.4
 
 qiime tools export --input-path 09-deblurred/representative_sequences.qza --output-path 09-deblurred/
 qiime tools export --input-path 09-deblurred/stats.qza --output-path 09-deblurred/

@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/bash -i
 
-source activate bbmap-env
+conda activate bbmap-env
 
 mkdir 04-concatenated
 

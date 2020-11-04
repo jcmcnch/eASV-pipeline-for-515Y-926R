@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 
 if [[ ${#1} -eq 0 ]] ; then
     echo 'Please enter a query fasta file as the second argument (after this scripts name).'

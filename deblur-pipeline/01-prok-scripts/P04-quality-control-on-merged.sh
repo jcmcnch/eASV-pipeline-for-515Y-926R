@@ -1,5 +1,5 @@
-#!/bin/bash
-source activate qiime2-2019.4
+#!/bin/bash -i
+conda activate qiime2-2019.4
 qiime quality-filter q-score-joined \
   --i-demux 03-merged/joined_sequences.qza \
   --output-dir 04-QCd \

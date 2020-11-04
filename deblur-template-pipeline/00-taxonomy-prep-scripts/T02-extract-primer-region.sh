@@ -1,5 +1,5 @@
-#!/bin/bash
-source activate qiime2-2019.4
+#!/bin/bash -i
+conda activate qiime2-2019.4
 
 qiime feature-classifier extract-reads \
   --i-sequences /home/db/SILVA_132/qiime_db/SILVA_132_99_OTUs.qza \

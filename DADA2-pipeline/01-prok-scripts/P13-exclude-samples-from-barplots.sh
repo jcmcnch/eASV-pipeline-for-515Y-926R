@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 
 if [ -e samples-to-keep* ] ; then
 
@@ -11,7 +11,7 @@ fi
 mkdir 13-customized-barplots/
 mkdir 13-customized-barplots/subsetted-tables/
 
-source activate qiime2-2019.4
+conda activate qiime2-2019.4
 
 for STK in `ls samples-to-keep*`; do
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 
 if [[ ${#1} -eq 0 ]] ; then
     echo 'Please enter a query fasta file as the second argument (after this scripts name).'
@@ -20,7 +20,7 @@ if [[ ${#3} -eq 0 ]] ; then
     exit 0
 fi
 
-source activate biopython-env
+conda activate biopython-env
 
 python3 /home/jesse/eASV-pipeline-for-515Y-926R/DADA2-pipeline/02-utility-scripts/split_18S_eASV_by_trim_length.py \
   --repseqs $1 --forwardtrim $2 --reversetrim $3
@@ -32,7 +32,7 @@ filestem=`basename $1 .fasta`
 blastn -query $filestem.R1.fasta -db /home/db/in-silico-mocks/BLAST-db/18s/all_seqs_NR_corrected.fasta -outfmt 6 -out $filestem.R1.blastout.tsv
 blastn -query $filestem.R2.fasta -db /home/db/in-silico-mocks/BLAST-db/18s/all_seqs_NR_corrected.fasta -outfmt 6 -out $filestem.R2.blastout.tsv
 
-source activate biopython-env
+conda activate biopython-env
 
 python3 /home/jesse/eASV-pipeline-for-515Y-926R/DADA2-pipeline/02-utility-scripts/identify_quantify_mock_artifacts.py --forwardtrim $2 --reversetrim $3 --tsvasvtable $4 --forwardBLASTout $filestem.R1.blastout.tsv --reverseBLASTout $filestem.R2.blastout.tsv
 

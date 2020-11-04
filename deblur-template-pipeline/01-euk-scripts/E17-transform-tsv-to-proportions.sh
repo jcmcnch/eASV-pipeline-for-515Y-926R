@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 
 for item in `ls 16-exports/*.with*tax.tsv`
 	do
