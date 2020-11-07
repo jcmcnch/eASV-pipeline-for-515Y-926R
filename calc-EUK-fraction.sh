@@ -1,12 +1,29 @@
 #!/bin/bash -i
 
-for item in 02-PROKs/00-fastq/*.SILVA_132_PROK.cdhit95pc_1.fastq; do 
+rm eukrunfile.sh 2> /dev/null
+rm prokrunfile.sh 2> /dev/null
 
-	filestem=`basename $item .SILVA_132_PROK.cdhit95pc_1.fastq`
-	prokCount=`grep -c "^@" $item`
-	eukCount=`grep -c "^@" 02-EUKs/00-fastq/$filestem.SILVA_132_and_PR2_EUK.cdhit95pc_1.fastq` 
-	totalSeqs=$(python -c "print($eukCount + $prokCount)") 
-	eukFrac=`bc <<< "scale=8; $eukCount/$totalSeqs"` 
-	printf "$filestem\t$eukFrac\n"
+for item in `ls 02-PROKs/00-fastq/*.SILVA_132_PROK.cdhit95pc_1.fastq | grep -vE "unknown|insilico"`; do 
+	printf "cat $item\n"
 
-done
+done > prokrunfile.sh
+
+chmod u+x prokrunfile.sh
+totalPROKseqs=`./prokrunfile.sh | grep -c "^@"`
+
+for item in `ls 02-EUKs/00-fastq/*EUK.cdhit95pc_1.fastq | grep -vE "unknown|insilico"`; do 
+
+        printf "cat $item\n"
+
+done > eukrunfile.sh
+chmod u+x eukrunfile.sh
+totalEUKseqs=`./eukrunfile.sh | grep -c "^@"`
+
+totalSeqs=$(python -c "print($totalEUKseqs + $totalPROKseqs)")
+eukFrac=`bc <<< "scale=8; $totalEUKseqs/$totalSeqs"` 
+printf "There were $totalPROKseqs total PROK seqs.\n"
+printf "There were $totalEUKseqs total EUK seqs.\n"
+printf "The total run-specific EUK fraction is $eukFrac\n"
+
+rm eukrunfile.sh
+rm prokrunfile.sh
