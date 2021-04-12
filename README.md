@@ -1,13 +1,13 @@
 # eASV-pipeline-for-515Y-926R
 
-***Update April 2021
+***Update April 2021:
 Pipeline now uses latest versions of SILVA138 and PR2 (which includes plastid sequences that were previously found in a separate database known as phytoRef). For those running the pipeline on kraken, just pull down the new scripts. For those running the pipeline elsewhere, you can find the necessary classifiers [here](https://osf.io/z8arq/). Raw artifacts are also provided for others in case you wish to slice these databases to different primer regions.***
 
 ***UPDATE July 2019 - The purpose of these additional scripts is to easily compare the classifications at different confidence levels all in one file known as a “Lookup Table”. This is particularly useful in instances where the default classification classifies the eASV as “Bacteria”, but a less stringent confidence level might classify that eASV further as actually a Mitochondrial sequence. 
 One of the options of the qiime feature-classifier classify-sklearn step is to designate the --p-confidence threshold, which limits the depth for taxonomic assignments. The default setting is 0.7, indicating that the classifier is at least 70% confident in its classification. New scripts were added to the pipeline to re-run the classification step at less stringent confidence levels (0.5, 0.3, and -1). A --p-confidence value set at -1 disables the confidence calculation. 
-* EUK Scripts: E19-E22
-* PROK Scripts: P14-P17
-* For the DADA2 version of the pipeline only\*
+- EUK Scripts: E19-E22
+- PROK Scripts: P14-P17
+- For the DADA2 version of the pipeline only\*
 ***
 
 
