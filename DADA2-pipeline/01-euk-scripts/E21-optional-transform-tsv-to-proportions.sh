@@ -11,9 +11,9 @@ for item in `ls 20-exports/04-converted-biom-to-tsv/PR2/*biom.tsv`; do
 
 done
 
-#SILVA132
+#SILVA138
 
-for item in `ls 20-exports/04-converted-biom-to-tsv/SILVA132/*biom.tsv`; do
+for item in `ls 20-exports/04-converted-biom-to-tsv/SILVA138/*biom.tsv`; do
 
         outdir=`dirname $item`
         filestem=`basename $item .tsv`

@@ -25,8 +25,8 @@ cut -f3- 10-exports/include_D_3__Chloroplast_filtered_table.with-tax.proportions
 
 #Non-Chloroplasts
 
-#Part 1:  Cut the first column two columns (eASV ID and default (0.7) taxonomy) from the transformed to proportions SILVA132 .tsv file.
-cut -f1,2 10-exports/exclude_D_3__Chloroplast_filtered_table.with-tax.proportions.tsv | sed '1s/taxonomy/taxonomy-SILVA132-default-point7/' > 17-taxonomy-lookup-table/non-chloroplasts/Non-Chloroplasts-Lookup-Table.tsv
+#Part 1:  Cut the first column two columns (eASV ID and default (0.7) taxonomy) from the transformed to proportions SILVA138 .tsv file.
+cut -f1,2 10-exports/exclude_D_3__Chloroplast_filtered_table.with-tax.proportions.tsv | sed '1s/taxonomy/taxonomy-SILVA138-default-point7/' > 17-taxonomy-lookup-table/non-chloroplasts/Non-Chloroplasts-Lookup-Table.tsv
 
 #Part 2: Add the taxonomy from all other proportion TSV files, not including the default.
 for item in `ls 15-exports/04-converted-biom-to-tsv/non-chloroplasts/*point5-p-confidence-converted-biom.proportions.tsv` ; do confidence=`basename $item | cut -d\- -f1,4` &&  cut -f2 $item | sed "1s/taxonomy/taxonomy-$confidence/" | paste 17-taxonomy-lookup-table/non-chloroplasts/Non-Chloroplasts-Lookup-Table.tsv - | sponge 17-taxonomy-lookup-table/non-chloroplasts/Non-Chloroplasts-Lookup-Table.tsv ; done

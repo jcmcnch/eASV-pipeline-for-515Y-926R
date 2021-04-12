@@ -15,7 +15,7 @@ for item in `ls */*/*table.qza | grep "PR2"`; do
 
 done
 
-for item in `ls */*/*table.qza | grep "SILVA132"`; do
+for item in `ls */*/*table.qza | grep "SILVA138"`; do
 
   name=`basename $item _table.qza`
 
@@ -35,7 +35,7 @@ for item in `ls */*table.qza`; do
     --i-table $item \
     --i-taxonomy 10-classified/classification.qza \
     --m-metadata-file sample-metadata.tsv \
-    --output-dir 17-subsetted-reclassified-barplots/$name.SILVA132
+    --output-dir 17-subsetted-reclassified-barplots/$name.SILVA138
 
   qiime taxa barplot \
     --i-table $item \

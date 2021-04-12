@@ -42,7 +42,7 @@ for item in `ls 18-customized-barplots/subsetted-tables/*qza | grep "table.qza"`
 done
 
 
-#All 18S sequences using SILVA132 classifications
+#All 18S sequences using SILVA138 classifications
 for item in `ls 18-customized-barplots/subsetted-tables/*qza | grep "table.qza"`; do
 
   name=`basename $item .qza`
@@ -51,7 +51,7 @@ for item in `ls 18-customized-barplots/subsetted-tables/*qza | grep "table.qza"`
     --i-table $item \
     --i-taxonomy 10-classified/classification.qza \
     --m-metadata-file sample-metadata.tsv \
-    --output-dir 18-customized-barplots/all-18S-seqs-SILVA132
+    --output-dir 18-customized-barplots/all-18S-seqs-SILVA138
 
 done
 
@@ -70,8 +70,8 @@ for item in `ls 18-customized-barplots/subsetted-tables/*qza | grep "PR2"`; do
 done
 
 
-#Subsetted tables (without metazoans or only metazoans) with SILVA132 classifications
-for item in `ls 18-customized-barplots/subsetted-tables/*qza | grep "SILVA132"`; do
+#Subsetted tables (without metazoans or only metazoans) with SILVA138 classifications
+for item in `ls 18-customized-barplots/subsetted-tables/*qza | grep "SILVA138"`; do
 
   name=`basename $item .qza`
 
