@@ -2,9 +2,8 @@
 
 conda activate qiime2-2019.4
 
-mkdir logs
 mkdir 01-trimmed
-mkdir logs/01-trimmed/
+mkdir -p logs/01-trimmed/
 
 for item in `ls 00-raw/*.R1.fastq.gz` 
 
