@@ -1,5 +1,7 @@
 #!/bin/bash -i
 
+conda activate qiime2-2019.4
+
 #PR2
 
 for item in `ls 20-exports/04-converted-biom-to-tsv/PR2/*biom.tsv`; do

@@ -1,5 +1,7 @@
 #!/bin/bash -i
 
+conda activate qiime2-2019.4
+
 for item in `ls 15-exports/04-converted-biom-to-tsv/non-chloroplasts/*.tsv`; do
 	
 	outdir=`dirname $item`

@@ -1,5 +1,7 @@
 #!/bin/bash -i
 
+conda activate qiime2-2019.4
+
 for item in `ls 10-exports/*.with-tax.tsv`; do
 	
 	outdir=`dirname $item`
