@@ -20,9 +20,9 @@ conda activate qiime2-2019.4
 
 #Part 1: Convert the exclude-chloroplasts filtered table into a .biom table  
 
-qiime tools export --input-path 09-subsetting/split-tables/exclude_D_3__Chloroplast_filtered_table.qza --output-path 15-exports/01-biom-tables
+qiime tools export --input-path 09-subsetting/split-tables/exclude_o__Chloroplast_filtered_table.qza --output-path 15-exports/01-biom-tables
 
-mv 15-exports/01-biom-tables/feature-table.biom 15-exports/01-biom-tables/exclude_D_3__Chloroplast_filtered_table.biom
+mv 15-exports/01-biom-tables/feature-table.biom 15-exports/01-biom-tables/exclude_o__Chloroplast_filtered_table.biom
  
 
 #Part 2: Convert classification.qza files (14-reclassfied directory) to taxonomy.tsv files. Then, use sed to add "#OTUID taxonomy confidence" to the taxonomy.tsv files as headers. 
@@ -40,7 +40,7 @@ done
 for item in `ls 15-exports/02-taxonomy-tsv/non-chloroplasts/*.tsv`
         do
         filestem=`basename $item .tsv`
-        biom add-metadata -i 15-exports/01-biom-tables/exclude_D_3__Chloroplast_filtered_table.biom -o 15-exports/03-biom-tables-with-tax/non-chloroplasts/$filestem.biom --observation-metadata-fp $item --sc-separated taxonomy
+        biom add-metadata -i 15-exports/01-biom-tables/exclude_o__Chloroplast_filtered_table.biom -o 15-exports/03-biom-tables-with-tax/non-chloroplasts/$filestem.biom --observation-metadata-fp $item --sc-separated taxonomy
 done 
 
 #Part 4: Convert the final (taxonomy with metadata) .biom table into a .tsv file. 
@@ -56,9 +56,9 @@ done
 
 #Part 1: Convert the chloroplasts-ONLY filtered table into a .biom table
 
-qiime tools export --input-path 09-subsetting/split-tables/include_D_3__Chloroplast_filtered_table.qza --output-path 15-exports/01-biom-tables
+qiime tools export --input-path 09-subsetting/split-tables/include_o__Chloroplast_filtered_table.qza --output-path 15-exports/01-biom-tables
 
-mv 15-exports/01-biom-tables/feature-table.biom 15-exports/01-biom-tables/include_D_3__Chloroplast_filtered_table.biom
+mv 15-exports/01-biom-tables/feature-table.biom 15-exports/01-biom-tables/include_o__Chloroplast_filtered_table.biom
 
 #Part 2: Convert classification.qza files (14-reclassfied directory) to taxonomy.tsv files. Then, use sed to add "#OTUID taxonomy confidence" to the taxonomy.tsv files as headers.
 
@@ -75,7 +75,7 @@ done
 for item in `ls 15-exports/02-taxonomy-tsv/chloroplasts/*.tsv`
         do
         filestem=`basename $item .tsv`
-        biom add-metadata -i 15-exports/01-biom-tables/include_D_3__Chloroplast_filtered_table.biom -o 15-exports/03-biom-tables-with-tax/chloroplasts/$filestem.biom --observation-metadata-fp $item --sc-separated taxonomy
+        biom add-metadata -i 15-exports/01-biom-tables/include_o__Chloroplast_filtered_table.biom -o 15-exports/03-biom-tables-with-tax/chloroplasts/$filestem.biom --observation-metadata-fp $item --sc-separated taxonomy
 done
 
 #Part 4: Convert the final (taxonomy with metadata) .biom table into a .tsv file.
