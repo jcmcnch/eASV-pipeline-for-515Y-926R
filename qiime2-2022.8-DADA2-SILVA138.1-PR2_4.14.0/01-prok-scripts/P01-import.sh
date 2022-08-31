@@ -4,8 +4,8 @@ conda activate $qiime2version
 
 qiime tools import \
   --type 'SampleData[PairedEndSequencesWithQuality]' \
-  --input-path manifest.csv \
+  --input-path manifest.tsv \
   --output-path 16s.qza \
-  --input-format PairedEndFastqManifestPhred33
+  --input-format PairedEndFastqManifestPhred33V2
   
 conda deactivate
