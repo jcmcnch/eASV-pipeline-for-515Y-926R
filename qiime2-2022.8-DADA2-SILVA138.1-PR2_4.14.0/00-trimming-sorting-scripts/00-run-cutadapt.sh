@@ -12,7 +12,7 @@ for item in `ls 00-raw/*$rawFileEndingR1`
 
 	filestem=`basename $item $rawFileEndingR1`
 	R1=00-raw/${filestem}$rawFileEndingR1
-	R2=00-raw/${filestem}$rawFileEndingR1
+	R2=00-raw/${filestem}$rawFileEndingR2
 
         cutadapt --no-indels --pair-filter=any --error-rate=0.2 --discard-untrimmed \
 	-g ^GTGYCAGCMGCCGCGGTAA -G ^CCGYCAATTYMTTTRAGTTT \
