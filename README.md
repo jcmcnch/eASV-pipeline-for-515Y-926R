@@ -20,7 +20,7 @@ Yeh, Y.C., McNichol, J., Needham, D., Fichot, E., Berdjeb, L., Fuhrman, J., 2021
 
 ## 0. Quickstart and Reproducibility
 
-*** This tutorial assumes you are running scripts in a GNU/Linux system and miniconda already installed. If you need help installing miniconda, [check out instructions here](https://docs.qiime2.org/2022.8/install/native/). Make sure to do the `conda init` step at the end of the installation (normally just say 'yes' when prompted). **
+** This tutorial assumes you are running scripts in a GNU/Linux system and miniconda already installed. If you need help installing miniconda, [check out instructions here](https://docs.qiime2.org/2022.8/install/native/). Make sure to do the `conda init` step at the end of the installation (normally just say 'yes' when prompted). **
 
 ** There is no reason why this shouldn't work on OSX or WSL but I haven't tested it. If you would like to contribute scripts for your different setup you can open a pull request or email them to me. **
 
