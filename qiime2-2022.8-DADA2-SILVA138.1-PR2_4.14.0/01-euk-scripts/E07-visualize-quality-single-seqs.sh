@@ -1,5 +1,5 @@
 #!/bin/bash -i
-conda activate qiime2-2019.4
+conda activate $qiime2version
 
 qiime demux summarize \
   --i-data 18s-concat.qza \

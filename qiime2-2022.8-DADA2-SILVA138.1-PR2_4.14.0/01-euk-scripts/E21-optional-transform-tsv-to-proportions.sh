@@ -1,6 +1,6 @@
 #!/bin/bash -i
 
-conda activate qiime2-2019.4
+conda activate $qiime2version
 
 #PR2
 
@@ -13,9 +13,9 @@ for item in `ls 20-exports/04-converted-biom-to-tsv/PR2/*biom.tsv`; do
 
 done
 
-#SILVA138
+#SILVA
 
-for item in `ls 20-exports/04-converted-biom-to-tsv/SILVA138/*biom.tsv`; do
+for item in `ls 20-exports/04-converted-biom-to-tsv/SILVA/*biom.tsv`; do
 
         outdir=`dirname $item`
         filestem=`basename $item .tsv`

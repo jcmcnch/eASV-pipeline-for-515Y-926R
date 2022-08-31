@@ -1,5 +1,5 @@
 #!/bin/bash -i
-conda activate qiime2-2019.4
+conda activate $qiime2version
 
 mkdir 17-subsetted-reclassified-barplots
 
@@ -15,7 +15,7 @@ for item in `ls */*/*table.qza | grep "PR2"`; do
 
 done
 
-for item in `ls */*/*table.qza | grep "SILVA138"`; do
+for item in `ls */*/*table.qza | grep "SILVA"`; do
 
   name=`basename $item _table.qza`
 
@@ -35,7 +35,7 @@ for item in `ls */*table.qza`; do
     --i-table $item \
     --i-taxonomy 10-classified/classification.qza \
     --m-metadata-file sample-metadata.tsv \
-    --output-dir 17-subsetted-reclassified-barplots/$name.SILVA138
+    --output-dir 17-subsetted-reclassified-barplots/$name.SILVA
 
   qiime taxa barplot \
     --i-table $item \

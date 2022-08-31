@@ -11,7 +11,7 @@ fi
 mkdir 13-customized-barplots/
 mkdir 13-customized-barplots/subsetted-tables/
 
-conda activate qiime2-2019.4
+conda activate $qiime2version
 
 for STK in `ls samples-to-keep*`; do
 

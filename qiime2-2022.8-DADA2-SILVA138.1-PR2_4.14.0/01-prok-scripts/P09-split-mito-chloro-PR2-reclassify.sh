@@ -1,5 +1,9 @@
 #!/bin/bash -i
-conda activate qiime2-2019.4
+conda activate $qiime2version
+
+source ../515FY-926R.cfg 2> /dev/null
+source 515FY-926R.cfg 2> /dev/null
+
 mkdir 09-subsetting
 mkdir 09-subsetting/split-tables
 mkdir 09-subsetting/split-seqs
@@ -20,27 +24,27 @@ qiime taxa filter-table \
   --p-exclude "o__Chloroplast" \
   --o-filtered-table 09-subsetting/split-tables/exclude_o__Chloroplast_filtered_table.qza
 
-#Filter only Chloroplast sequences from representative_sequences using default SILVA138 classification
+#Filter only Chloroplast sequences from representative_sequences using default SILVA classification
 qiime taxa filter-seqs \
   --i-sequences 03-DADA2d/representative_sequences.qza \
   --i-taxonomy 05-classified/classification.qza \
   --p-include "o__Chloroplast" \
   --o-filtered-sequences 09-subsetting/split-seqs/include_o__Chloroplast_subset_filtered_seqs.qza
 
-#Filter Chloroplast sequences out from representative_sequences using default SILVA138 classification
+#Filter Chloroplast sequences out from representative_sequences using default SILVA classification
 qiime taxa filter-seqs \
   --i-sequences 03-DADA2d/representative_sequences.qza \
   --i-taxonomy 05-classified/classification.qza \
   --p-exclude "o__Chloroplast" \
   --o-filtered-sequences 09-subsetting/split-seqs/exclude_o__Chloroplast_subset_filtered_seqs.qza
 
-#Reclassify with PhytoRef
+#Reclassify with PR2
 qiime feature-classifier classify-sklearn \
-  --i-classifier /home/db/PR2/v4.12.0/qiime2/pr2_version_4.12.0_16S_mothur.seqs.sliced_515-926.classifier.qza \
+  --i-classifier $PR2db \
   --i-reads 09-subsetting/split-seqs/include_o__Chloroplast_subset_filtered_seqs.qza \
   --o-classification 09-subsetting/reclassified/include_o__Chloroplast_subset_reclassified_PhytoRef.qza
 
-#Merge taxonomies (the first one takes precedence so the PhytoRef classifications will overwrite the SILVA138 IDs)
+#Merge taxonomies (the first one takes precedence so the PhytoRef classifications will overwrite the SILVA IDs)
 qiime feature-table merge-taxa \
   --i-data 09-subsetting/reclassified/include_o__Chloroplast_subset_reclassified_PhytoRef.qza \
   --i-data 05-classified/classification.qza \

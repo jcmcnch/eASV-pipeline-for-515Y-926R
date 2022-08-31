@@ -2,7 +2,7 @@
 
 mkdir 10-exports
 
-conda activate qiime2-2019.4
+conda activate $qiime2version
 
 for item in `ls */*table.qza && ls */*/*table.qza`
 	do

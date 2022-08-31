@@ -11,7 +11,7 @@ fi
 mkdir 18-customized-barplots/
 mkdir 18-customized-barplots/subsetted-tables/
 
-conda activate qiime2-2019.4 
+conda activate $qiime2version 
 
 #Use qiime feature-table filter-samples to modify the feature tables to include only the samples-to-keep (STK) 
 for STK in `ls samples-to-keep*`; do
@@ -42,7 +42,7 @@ for item in `ls 18-customized-barplots/subsetted-tables/*qza | grep "table.qza"`
 done
 
 
-#All 18S sequences using SILVA138 classifications
+#All 18S sequences using SILVA classifications
 for item in `ls 18-customized-barplots/subsetted-tables/*qza | grep "table.qza"`; do
 
   name=`basename $item .qza`
@@ -51,7 +51,7 @@ for item in `ls 18-customized-barplots/subsetted-tables/*qza | grep "table.qza"`
     --i-table $item \
     --i-taxonomy 10-classified/classification.qza \
     --m-metadata-file sample-metadata.tsv \
-    --output-dir 18-customized-barplots/all-18S-seqs-SILVA138
+    --output-dir 18-customized-barplots/all-18S-seqs-SILVA
 
 done
 
@@ -70,8 +70,8 @@ for item in `ls 18-customized-barplots/subsetted-tables/*qza | grep "PR2"`; do
 done
 
 
-#Subsetted tables (without metazoans or only metazoans) with SILVA138 classifications
-for item in `ls 18-customized-barplots/subsetted-tables/*qza | grep "SILVA138"`; do
+#Subsetted tables (without metazoans or only metazoans) with SILVA classifications
+for item in `ls 18-customized-barplots/subsetted-tables/*qza | grep "SILVA"`; do
 
   name=`basename $item .qza`
 

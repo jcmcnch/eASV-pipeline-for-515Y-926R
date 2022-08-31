@@ -13,7 +13,7 @@ mkdir 15-exports/04-converted-biom-to-tsv
 mkdir 15-exports/04-converted-biom-to-tsv/non-chloroplasts
 mkdir 15-exports/04-converted-biom-to-tsv/chloroplasts
 
-conda activate qiime2-2019.4 
+conda activate $qiime2version 
 
 ############
 #Part A: Non-chloroplasts
