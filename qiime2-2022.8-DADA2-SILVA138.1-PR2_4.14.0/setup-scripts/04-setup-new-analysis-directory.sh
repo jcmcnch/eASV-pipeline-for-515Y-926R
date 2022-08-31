@@ -10,7 +10,7 @@ studyName=$1
 studyDir=/home/$USER/515FY-926R-pipeline/$studyName
 mkdir -p $studyDir/scripts $studyDir/runscripts $studyDir/01-trimmed $studyDir/02-PROKs/scripts $studyDir/02-EUKs/scripts
 
-cp 00-trimming-scripts/* 02-utility-scripts/* $studyDir/scripts
+cp 00-trimming-sorting-scripts/* 02-utility-scripts/* $studyDir/scripts
 cp 01-prok-scripts/* $studyDir/02-PROKs/scripts
 cp 01-euk-scripts/* $studyDir/02-EUKs/scripts
 
