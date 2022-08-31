@@ -8,8 +8,11 @@ fi
 studyName=$1
 
 studyDir=/home/$USER/515FY-926R-pipeline/$studyName
-mkdir -p $studyDir
+mkdir -p $studyDir/scripts $studyDir/runscripts $studyDir/01-trimmed $studyDir/02-PROKs/scripts $studyDir/02-EUKs/scripts
+
+cp 00-trimming-scripts/* 02-utility-scripts/* $studyDir/scripts
+cp 01-prok-scripts/* $studyDir/02-PROKs/scripts
+cp 01-euk-scripts/* $studyDir/02-EUKs/scripts
 
 cp config/qiime2-2022.8...blah $studyDir/515FY-926R.cfg
-
 echo "studyName=$studyName" >> $studyDir/515FY-926R.cfg
