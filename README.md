@@ -1,6 +1,8 @@
 # A Software Pipeline for 3-Domain Universal Primers
 
-Citing this work:
+---
+
+**Citing this work:**
 
 If you find this pipeline useful to your research, we ask that you cite this github repository (with the version used in your analysis) as well as the following two papers:
 
@@ -8,7 +10,9 @@ McNichol, J., Berube, P., Biller, S., Fuhrman, J., 2021. [Evaluating and Improvi
 
 Yeh, Y.C., McNichol, J., Needham, D., Fichot, E., Berdjeb, L., Fuhrman, J., 2021. [Comprehensive single-PCR 16S and 18S rRNA community analysis validated with mock communities, and estimation of sequencing bias against 18S](https://sfamjournals.onlinelibrary.wiley.com/doi/10.1111/1462-2920.15553). Environmental Microbiology. doi: 10.1111/1462-2920.15553.
 
-Table of contents:
+---
+
+**Table of contents:**
 
 0. [QuickStart and Reproducibility](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#0-quickstart-and-reproducibility)
 1. [Preamble](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#1-preamble)
