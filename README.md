@@ -1,6 +1,26 @@
-# eASV-pipeline-for-515Y-926R
+# A Software Pipeline for 3-Domain Universal Primers
 
-*** Update September 2022:
+Citing this work:
+
+If you find this pipeline useful to your research, we ask that you cite this github repository (with the version used in your analysis) as well as the following two papers:
+
+McNichol, J., Berube, P., Biller, S., Fuhrman, J., 2021. [Evaluating and Improving SSU rRNA PCR Primer Coverage for Bacteria, Archaea, and Eukaryotes Using Metagenomes from Global Ocean Surveys](https://journals.asm.org/doi/10.1128/mSystems.00565-21). mSystems. 6(3), e00565-2
+
+Yeh, Y.C., McNichol, J., Needham, D., Fichot, E., Berdjeb, L., Fuhrman, J., 2021. [Comprehensive single-PCR 16S and 18S rRNA community analysis validated with mock communities, and estimation of sequencing bias against 18S](https://sfamjournals.onlinelibrary.wiley.com/doi/10.1111/1462-2920.15553). Environmental Microbiology. doi: 10.1111/1462-2920.15553.
+
+Table of contents:
+
+0. [QuickStart and Reproducibility](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#0-quickstart-and-reproducibility)
+1. [Preamble](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#1-preamble)
+2. [Pipeline Architecture](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#2-pipeline-architecture)
+
+## 0. Quickstart and Reproducibility
+
+## 1. Preamble
+
+## 2. Pipeline Architecture 
+
+*** Update September 2022:***
 
 A major overhaul of the pipeline is underway. My do list includes:
 
@@ -8,7 +28,7 @@ A major overhaul of the pipeline is underway. My do list includes:
 - Including some helper scripts to set everything up to make it easier for others to implement
 - Adding a configuration file which will help automate the pipeline process and allow for easier switching of qiime2 versions and provide output files with date, study name, and other relevant metadata
 - More explicit integration of the final merging step to create a unified 16S & 18S table to take full advantage of the 3-domain nature of this pipeline
-- Making a tutorial video that will summarize a typical use case of this pipeline***
+- Making a tutorial video that will summarize a typical use case of this pipeline
 
 
 ***Update April 2021:
