@@ -2,7 +2,7 @@
 
 source 515FY-926R.cfg
 
-conda activate $qiime2version
+conda activate cutadapt-env
 
 mkdir -p 01-trimmed logs/01-trimmed/
 
