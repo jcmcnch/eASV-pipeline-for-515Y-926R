@@ -2,7 +2,7 @@
 
 currdir=$PWD
 
-mkdir /home/$USER/databases/qiime2-classification-db ; cd /home/$USER/databases/qiime2-classification-db
+mkdir -p /home/$USER/databases/qiime2-classification-db ; cd /home/$USER/databases/qiime2-classification-db 
 
 #download database files from OSF, raw artifacts, and scripts
 for item in w32ac nvgru ; do curl -O -J -L https://osf.io/$item/download ; done
