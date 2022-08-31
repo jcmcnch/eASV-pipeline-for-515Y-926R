@@ -20,16 +20,33 @@ Yeh, Y.C., McNichol, J., Needham, D., Fichot, E., Berdjeb, L., Fuhrman, J., 2021
 
 ## 0. Quickstart and Reproducibility
 
-**Note:** This tutorial assumes you are running scripts in a GNU/Linux system and miniconda already installed. If you need help installing miniconda, [check out instructions here](https://docs.qiime2.org/2022.8/install/native/). Make sure to do the `conda init` step at the end of the installation (normally just say 'yes' when prompted).
+**Note:** This tutorial assumes you are running scripts in a GNU/Linux system and miniconda already installed. If you need help installing miniconda, [check out instructions on the qiime2 page here](https://docs.qiime2.org/2022.8/install/native/). Make sure to do the `conda init` step at the end of the installation (normally just say 'yes' when prompted).
 
 **Note número dos:** There is no reason why this shouldn't work on OSX or WSL but I haven't tested it. If you would like to contribute scripts for your different setup you can open a pull request or email them to me.
 
-1. Install qiime2 by running:
+1. Clone the repo:
 
 ```
-#to install qiime2-2022.8
+
+```
+
+2. Enter the folder for the latest `qiime2` version:
+
+`cd qiime2-2022.8-DADA2-SILVA138.1-PR2_4.14.0`
+
+3. Install `qiime2` by running the following script (see `qiime2` install link above if you want a different version or want a different operating system):
+
+```
+#to install qiime2-2022.8 for GNU/Linux systems
+#needs to be modified for different versions or operating systems
 ./setup-scripts/00-install-qiime2-2022.8.sh
 ```
+
+2. Install accessory conda environments (for initial trimming and splitting steps). This has only been tested on GNU/Linux so again, YMMV. See note above if you want to contribute your setup scripts.
+
+
+
+3. 
 
 ## 1. Preamble
 
