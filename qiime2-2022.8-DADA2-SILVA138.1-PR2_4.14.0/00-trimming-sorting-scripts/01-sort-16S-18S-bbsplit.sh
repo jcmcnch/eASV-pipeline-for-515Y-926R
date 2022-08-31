@@ -2,6 +2,8 @@
 
 conda activate bbmap-env
 
+source 515FY-926R.cfg
+
 cp /home/db/in-silico-mocks/*fastq 01-trimmed/
 
 mkdir -p 02-PROKs/00-fastq
