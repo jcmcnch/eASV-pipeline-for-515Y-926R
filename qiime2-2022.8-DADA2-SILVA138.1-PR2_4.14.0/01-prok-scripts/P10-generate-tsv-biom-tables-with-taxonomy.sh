@@ -1,8 +1,8 @@
 #!/bin/bash -i
+source ../515FY-926R.cfg
+conda activate $qiime2version
 
 mkdir 10-exports
-
-conda activate $qiime2version
 
 for item in `ls */*table.qza && ls */*/*table.qza`
 	do

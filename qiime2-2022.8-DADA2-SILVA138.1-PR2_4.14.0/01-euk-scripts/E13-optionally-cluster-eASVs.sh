@@ -1,6 +1,6 @@
 #!/bin/bash -i
 
-conda activate /home/jesse/miniconda3/envs/qiime2-dev/
+conda activate /home/$USER/miniconda3/envs/qiime2-dev/
 
 clusteringlevel=$1
 

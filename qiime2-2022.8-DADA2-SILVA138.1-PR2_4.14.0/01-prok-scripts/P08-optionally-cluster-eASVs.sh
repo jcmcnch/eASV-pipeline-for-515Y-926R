@@ -1,6 +1,6 @@
 #!/bin/bash -i
 
-conda activate /home/jesse/miniconda3/envs/qiime2-dev/
+conda activate /home/$USER/miniconda3/envs/qiime2-dev/
 
 if [[ ${#1} -eq 0 ]] ; then
     echo 'Please enter a clustering level for VSEARCH. e.g. P08-optionally-cluster-eASVs.sh 99'

@@ -1,5 +1,5 @@
 #!/bin/bash -i
-
+source ../515FY-926R.cfg
 conda activate $qiime2version
 
 for item in `ls 15-exports/04-converted-biom-to-tsv/non-chloroplasts/*.tsv`; do

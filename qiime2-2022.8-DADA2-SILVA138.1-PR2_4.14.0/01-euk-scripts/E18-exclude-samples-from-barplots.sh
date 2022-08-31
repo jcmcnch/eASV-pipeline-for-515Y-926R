@@ -8,9 +8,9 @@ else
         exit 0
 fi
 
-mkdir 18-customized-barplots/
-mkdir 18-customized-barplots/subsetted-tables/
+mkdir -p 18-customized-barplots/subsetted-tables/
 
+source ../515FY-926R.cfg
 conda activate $qiime2version 
 
 #Use qiime feature-table filter-samples to modify the feature tables to include only the samples-to-keep (STK) 

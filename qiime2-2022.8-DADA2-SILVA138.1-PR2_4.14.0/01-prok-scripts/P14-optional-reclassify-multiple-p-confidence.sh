@@ -1,8 +1,6 @@
 #!/bin/bash -i
+source ../515FY-926R.cfg
 conda activate $qiime2version
-
-source ../515FY-926R.cfg 2> /dev/null
-source 515FY-926R.cfg 2> /dev/null
 
 mkdir 14-reclassified
 mkdir 14-reclassified/chloroplasts

@@ -1,4 +1,5 @@
 #!/bin/bash -i
+source ../515FY-926R.cfg
 conda activate $qiime2version
 
 qiime taxa barplot \

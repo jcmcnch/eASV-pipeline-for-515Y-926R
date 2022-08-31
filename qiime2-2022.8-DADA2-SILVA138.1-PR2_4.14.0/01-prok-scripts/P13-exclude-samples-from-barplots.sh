@@ -11,6 +11,7 @@ fi
 mkdir 13-customized-barplots/
 mkdir 13-customized-barplots/subsetted-tables/
 
+source ../515FY-926R.cfg
 conda activate $qiime2version
 
 for STK in `ls samples-to-keep*`; do
