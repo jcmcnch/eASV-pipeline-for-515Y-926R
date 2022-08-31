@@ -1,5 +1,17 @@
 # eASV-pipeline-for-515Y-926R
 
+*** Update September 2022:
+
+A major overhaul of the pipeline is underway. My do list includes:
+
+- Updating latest classifiers
+- Including some helper scripts to set everything up to make it easier for others to implement
+- Adding a configuration file which will help automate the pipeline process and allow for easier switching of qiime2 versions and provide output files with date, study name, and other relevant metadata
+- More explicit integration of the final merging step to create a unified 16S & 18S table to take full advantage of the 3-domain nature of this pipeline
+- Making a tutorial video that will summarize a typical use case of this pipeline
+
+ ***
+
 ***Update April 2021:
 Pipeline now uses latest versions of SILVA138 and PR2 (which includes plastid sequences that were previously found in a separate database known as phytoRef). For those running the pipeline on kraken, just pull down the new scripts. For those running the pipeline elsewhere, you can find the necessary classifiers [here](https://osf.io/z8arq/). Raw artifacts are also provided for others in case you wish to slice these databases to different primer regions.***
 
