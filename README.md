@@ -24,10 +24,13 @@ Yeh, Y.C., McNichol, J., Needham, D., Fichot, E., Berdjeb, L., Fuhrman, J., 2021
 
 **Note número dos:** There is no reason why this shouldn't work on OSX or WSL but I haven't tested it. If you would like to contribute scripts for your different setup you can open a pull request or email them to me.
 
-1. Clone the repo:
+1. Clone the repo and enter the directory:
 
 ```
-
+#if you're running a fresh system may need to install git
+sudo apt-get install git
+git clone git@github.com:jcmcnch/eASV-pipeline-for-515Y-926R.git
+cd eASV-pipeline-for-515Y-926R
 ```
 
 2. Enter the folder for the latest `qiime2` version:
@@ -38,15 +41,23 @@ Yeh, Y.C., McNichol, J., Needham, D., Fichot, E., Berdjeb, L., Fuhrman, J., 2021
 
 ```
 #to install qiime2-2022.8 for GNU/Linux systems
+#it will also install mamba for you which is faster than conda
 #needs to be modified for different versions or operating systems
 ./setup-scripts/00-install-qiime2-2022.8.sh
 ```
 
 2. Install accessory conda environments (for initial trimming and splitting steps). This has only been tested on GNU/Linux so again, YMMV. See note above if you want to contribute your setup scripts.
 
+```
+#install 2-3 other conda environments
+./setup-scripts/01-install-conda-envs.sh
+```
 
+3. Download and create the necessary databases:
 
-3. 
+```
+
+```
 
 ## 1. Preamble
 
