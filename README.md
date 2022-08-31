@@ -29,7 +29,7 @@ Yeh, Y.C., McNichol, J., Needham, D., Fichot, E., Berdjeb, L., Fuhrman, J., 2021
 ```
 #if you're running a fresh system may need to install git
 sudo apt-get install git
-git clone git@github.com:jcmcnch/eASV-pipeline-for-515Y-926R.git
+git clone https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R.git 
 cd eASV-pipeline-for-515Y-926R
 ```
 
