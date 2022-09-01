@@ -5,7 +5,7 @@
 
 cutME=".trimmed.SILVA_132_and_PR2_EUK.cdhit95pc_concatenated.fastq" #the bit you want to cut from the file names, leaving only the sample name
 
-printf "sample-id	forward-absolute-filepath\n" > manifest-concat.tsv
+printf "sample-id	absolute-filepath\n" > manifest-concat.tsv
 
 for item in `ls 04-concatenated/*concatenated.fastq` ; do
 
