@@ -1,26 +1,12 @@
 #!/bin/bash -i
 
-mkdir logs
-mkdir logs/03-bbduk
+mkdir -p logs/03-bbduk
 
 source ../515FY-926R.cfg
 conda activate bbmap-env
 
-trimleft=$1
-trimright=$2
-
-if [[ ${#1} -eq 0 ]] ; then
-    echo 'Please enter your desired trim length on the left (R1) read. e.g. E03-bbduk-cut-reads.sh 210 <right trim length>'
-    exit 0
-fi
-
-if [[ ${#2} -eq 0 ]] ; then
-    echo 'Please enter your desired trim length on the right (R2) read. e.g. E03-bbduk-cut-reads.sh <left trim length> 170'
-    exit 0
-fi
-
-echo "forward trim length = $trimleft bp" > trim_lengths.txt
-echo "reverse trim length = $trimright bp" >> trim_lengths.txt
+echo "forward trim length = $trimR1 bp" > trim_lengths.txt
+echo "reverse trim length = $trimR2 bp" >> trim_lengths.txt
 
 #slice and dice
 
@@ -37,9 +23,9 @@ for item in `ls 00-fastq/*.trimmed.SILVA_132_and_PR2_EUK.cdhit95pc_1.fastq`
 	R2in=$filestem.trimmed.SILVA_132_and_PR2_EUK.cdhit95pc_2.fastq
 
 	bbduk.sh in=$indir/$R1in out=$outdir/`basename $R1in .fastq`.trimmed.fastq \
-	minlength=$trimleft forcetrimright=$(($trimleft - 1)) 2>&1 | tee -a logs/03-bbduk/R1-bbduk.log
+	minlength=$trimR1 forcetrimright=$(($trimR1 - 1)) 2>&1 | tee -a logs/03-bbduk/R1-bbduk.log
 	bbduk.sh in=$indir/$R2in out=$outdir/`basename $R2in .fastq`.trimmed.fastq \
-        minlength=$trimright forcetrimright=$(($trimright - 1)) 2>&1 | tee -a logs/03-bbduk/R2-bbduk.log
+        minlength=$trimR2 forcetrimright=$(($trimR2 - 1)) 2>&1 | tee -a logs/03-bbduk/R2-bbduk.log
 
 done
 
