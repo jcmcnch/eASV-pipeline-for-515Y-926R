@@ -9,7 +9,7 @@ find ./00-fastq -size  0 -print0 | xargs -0 rm -- 2> /dev/null
 #the bit you want to cut from the file names, leaving only the sample name
 cutME=".trimmed.SILVA_132_and_PR2_EUK.cdhit95pc_1.fastq"
 
-printf "sample-id       forward-absolute-filepath       reverse-absolute-filepath\n" > manifest-viz.tsv
+printf "sample-id	forward-absolute-filepath	reverse-absolute-filepath\n" > manifest-viz.tsv
 
 for item in `ls 00-fastq/*1.fastq` ; do
 
@@ -18,7 +18,6 @@ for item in `ls 00-fastq/*1.fastq` ; do
         R1=`ls 00-fastq/$sampleIDstring*1.fastq`
         R2=`ls 00-fastq/$sampleIDstring*2.fastq`
 
-        printf "$sampleID       \$PWD/$R1       \$PWD/$R2\n" >> manifest-viz.tsv
+        printf "$sampleID	\$PWD/$R1	\$PWD/$R2\n" >> manifest-viz.tsv
 
 done
-

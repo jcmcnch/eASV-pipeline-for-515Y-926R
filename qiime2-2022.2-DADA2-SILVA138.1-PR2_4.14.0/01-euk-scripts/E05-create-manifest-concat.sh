@@ -6,7 +6,7 @@
 cutME=".trimmed.SILVA_132_and_PR2_EUK.cdhit95pc_concatenated.fastq" #the bit you want to cut from the file names, leaving only the sample name
 
 
-printf "sample-id       forward-absolute-filepath       reverse-absolute-filepath\n" > manifest.tsv
+printf "sample-id	forward-absolute-filepath	reverse-absolute-filepath\n" > manifest.tsv
 
 for item in `ls 00-fastq/*1.fastq` ; do
 
@@ -15,6 +15,6 @@ for item in `ls 00-fastq/*1.fastq` ; do
         R1=`ls 00-fastq/$sampleIDstring*1.fastq`
         R2=`ls 00-fastq/$sampleIDstring*2.fastq`
 
-        printf "$sampleID       \$PWD/$R1       \$PWD/$R2\n" >> manifest.tsv
+        printf "$sampleID	\$PWD/$R1	\$PWD/$R2\n" >> manifest.tsv
 
 done
