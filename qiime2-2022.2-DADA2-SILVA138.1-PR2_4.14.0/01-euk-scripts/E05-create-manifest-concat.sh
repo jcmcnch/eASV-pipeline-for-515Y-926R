@@ -11,7 +11,7 @@ for item in `ls 04-concatenated/*concatenated.fastq` ; do
 
         sampleID=`basename $item $cutME | sed 's/_/-/g'` #remove underscores before importing
         sampleIDstring=`basename $item $cutME`
-        R1=`ls 00-fastq/$sampleIDstring*.fastq`
+        R1=`ls 04-concatenated/$sampleIDstring*.fastq`
 
         printf "$sampleID	\$PWD/$R1\n" >> manifest-concat.tsv
 
