@@ -3,6 +3,7 @@
 mkdir logs
 mkdir logs/03-bbduk
 
+source ../515FY-926R.cfg
 conda activate bbmap-env
 
 trimleft=$1

@@ -1,16 +1,12 @@
 #!/bin/bash -i
 
-mkdir 20-exports
-mkdir 20-exports/02-taxonomy-tsv
-mkdir 20-exports/02-taxonomy-tsv/PR2
+mkdir -p 20-exports/02-taxonomy-tsv/PR2 
 mkdir 20-exports/02-taxonomy-tsv/SILVA
 
-mkdir 20-exports/03-biom-tables-with-tax/
-mkdir 20-exports/03-biom-tables-with-tax/PR2
+mkdir -p 20-exports/03-biom-tables-with-tax/PR2
 mkdir 20-exports/03-biom-tables-with-tax/SILVA
 
-mkdir 20-exports/04-converted-biom-to-tsv
-mkdir 20-exports/04-converted-biom-to-tsv/PR2
+mkdir -p 20-exports/04-converted-biom-to-tsv/PR2
 mkdir 20-exports/04-converted-biom-to-tsv/SILVA
 
 source ../515FY-926R.cfg

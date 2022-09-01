@@ -5,13 +5,16 @@
 
 cutME=".trimmed.SILVA_132_and_PR2_EUK.cdhit95pc_concatenated.fastq" #the bit you want to cut from the file names, leaving only the sample name
 
-for item in `ls 04-concatenated/*concatenated.fastq` ; do echo `basename $item $cutME | sed 's/\_/\-/g'` ; done > names
 
-for item in `ls 04-concatenated/*concatenated.fastq` ; do printf "$PWD/${item}\n"; done > reads
+printf "sample-id       forward-absolute-filepath       reverse-absolute-filepath\n" > manifest.tsv
 
-for item in `ls 04-concatenated/*concatenated.fastq` ; do printf "forward\n" ; done > direction
+for item in `ls 00-fastq/*1.fastq` ; do
 
-printf "sample-id,absolute-filepath,direction\n" > manifest-concat.csv
-paste -d, names reads direction >> manifest-concat.csv
+        sampleID=`basename $item $cutME | sed 's/_/-/g'` #remove underscores before importing
+        sampleIDstring=`basename $item $cutME`
+        R1=`ls 00-fastq/$sampleIDstring*1.fastq`
+        R2=`ls 00-fastq/$sampleIDstring*2.fastq`
 
-rm names reads direction
+        printf "$sampleID       \$PWD/$R1       \$PWD/$R2\n" >> manifest.tsv
+
+done

@@ -9,16 +9,16 @@ find ./00-fastq -size  0 -print0 | xargs -0 rm -- 2> /dev/null
 #the bit you want to cut from the file names, leaving only the sample name
 cutME=".trimmed.SILVA_132_and_PR2_EUK.cdhit95pc_1.fastq"
 
-for item in `ls 00-fastq/*1.fastq` ; do echo `basename $item $cutME` | sed 's/\_/\-/g' ;done > names
-for item in `ls 00-fastq/*1.fastq` ; do echo `basename $item $cutME` | sed 's/\_/\-/g' ;done >> names
+printf "sample-id       forward-absolute-filepath       reverse-absolute-filepath\n" > manifest-viz.tsv
 
-for item in `ls 00-fastq/*1.fastq` ; do printf \$PWD/$item'\n'; done > reads
-for item in `ls 00-fastq/*2.fastq` ; do printf \$PWD/$item'\n'; done >> reads
+for item in `ls 00-fastq/*1.fastq` ; do
 
-for item in `ls 00-fastq/*1.fastq` ; do printf "forward\n" ; done > direction
-for item in `ls 00-fastq/*2.fastq` ; do printf "reverse\n" ; done >> direction
+        sampleID=`basename $item $cutME | sed 's/_/-/g'` #remove underscores before importing
+        sampleIDstring=`basename $item $cutME`
+        R1=`ls 00-fastq/$sampleIDstring*1.fastq`
+        R2=`ls 00-fastq/$sampleIDstring*2.fastq`
 
-printf "sample-id,absolute-filepath,direction\n" > manifest-viz.csv
-paste -d, names reads direction >> manifest-viz.csv
+        printf "$sampleID       \$PWD/$R1       \$PWD/$R2\n" >> manifest-viz.tsv
 
-rm names reads direction
+done
+
