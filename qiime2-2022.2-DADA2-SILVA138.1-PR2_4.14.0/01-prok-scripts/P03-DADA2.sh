@@ -2,8 +2,7 @@
 source ../515FY-926R.cfg
 conda activate $qiime2version
 
-mkdir logs/
-mkdir logs/03-DADA2/
+mkdir -p logs/03-DADA2/
 
 echo "DADA2 truncation length for forward reads = $trimR1 bp" > DADA2_trunclengths.txt
 echo "DADA2 truncation length for reverse reads = $trimR2 bp" >> DADA2_trunclengths.txt
