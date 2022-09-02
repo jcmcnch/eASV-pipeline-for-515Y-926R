@@ -55,7 +55,7 @@ cd eASV-pipeline-for-515Y-926R
 ```
 
 2. Install accessory conda environments (for initial trimming and splitting steps). This has only been tested on GNU/Linux so again, YMMV. See note above if you want to contribute your setup scripts.
-
+1
 ```
 #install 2-3 other conda environments
 ./setup-scripts/01-install-conda-envs.sh
@@ -69,7 +69,19 @@ cd eASV-pipeline-for-515Y-926R
 
 ## 1. Preamble
 
+Metabarcoding using SSU rRNA as a marker gene is a powerful technique for profiling biological communities. My (admittedly subjective) impression is that metabarcoding studies are separated into roughly three different camps:
 
+1. Those studying the "microbiome", i.e. *Bacteria* and *Archaea*.
+2. Those studying microbial *Eukarya*, i.e. things like phytoplankton or heterotrophic protists.
+3. Those studying macroscopic *Eukarya*, such as animals or plants.
+
+Group 1 tends to use 16S SSU rRNA as a marker gene, while groups 2 and 3 will use 18S. PCR primer design has followed this paradigm, with many primer sets having been designed to target a specific group of interest while discriminating against another (i.e. *Bacteria* and *Archaea* but not *Eukarya*).
+
+However, 16S and 18S are, in evolutionary terms, the same molecule. Therefore, SSU rRNA primers that target **both 16S and 18S** in the same PCR assay exist. It's really important to not that this is **not** two sets of primers. It is a single set of primers (1 forward, 1 reverse) that **amplifies 16S from Archaea, Bacteria, Chloroplasts and Mitochondria alongside Eukaryotic nuclear 18S in the same assay**. This happens literally in the same tube.
+
+The fact that this is possible is (in my opinion) mind-blowing. It tells us there are binding regions in SSU rRNA that have been so evolutionarily conserved across ~3.5 **billion** years of evolutionary history that we can still use them in our assays to amplify vastly different organisms. We're talking bacteria to chloroplasts to protists to jellyfish. That different.
+
+To illustrate this visually, I want to show
 
 ## 2. Pipeline Architecture 
 
