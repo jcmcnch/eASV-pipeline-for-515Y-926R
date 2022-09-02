@@ -10,6 +10,6 @@ qiime taxa barplot \
   --m-metadata-file sample-metadata.tsv \
   --output-dir 07-barplots-PR2-chloroplast-tax
 
-mv 07-barplots-PR2-chloroplast-tax/visualization.qzv 07-barplots-PR2-chloroplast-tax/$timestamp.$studyName.16S.barplot.qzv
+mv 07-barplots-PR2-chloroplast-tax/visualization.qzv 07-barplots-PR2-chloroplast-tax/$timestamp.$studyName.16S.barplot-PR2-chloroplast-tax.qzv
 
 conda deactivate
