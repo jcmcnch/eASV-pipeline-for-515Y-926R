@@ -1,12 +1,10 @@
 #!/bin/bash -i
 source ../515FY-926R.cfg
 conda activate $qiime2version
-mkdir 14-subsetting
-mkdir 14-subsetting/split-tables
+
+mkdir -p 14-subsetting/split-tables
 mkdir 14-subsetting/split-seqs
-mkdir 14-subsetting/reclassified-PR2
-mkdir 14-subsetting/reclassified-PR2/fixed
-mkdir 14-subsetting/reclassified-PR2/fixed/taxonomy-as-metadata
+mkdir -p 14-subsetting/reclassified-PR2/fixed/taxonomy-as-metadata
 
 #Reclassify with PR2
 qiime feature-classifier classify-sklearn \
@@ -18,12 +16,18 @@ qiime feature-classifier classify-sklearn \
 qiime tools export \
   --input-path 14-subsetting/reclassified-PR2/classification.qza \
   --output-path 14-subsetting/reclassified-PR2/fixed
+
 qiime metadata tabulate \
   --m-input-file 14-subsetting/reclassified-PR2/fixed/taxonomy.tsv  \
   --o-visualization 14-subsetting/reclassified-PR2/fixed/taxonomy-as-metadata.qzv
+
 qiime tools export \
   --input-path 14-subsetting/reclassified-PR2/fixed/taxonomy-as-metadata.qzv \
   --output-path 14-subsetting/reclassified-PR2/fixed/taxonomy-as-metadata
+
+#remove line with #q2:types - is this a bug?
+sed -i '/#q2:types/d' 14-subsetting/reclassified-PR2/fixed/taxonomy-as-metadata/metadata.tsv
+
 qiime tools import \
   --type 'FeatureData[Taxonomy]' \
   --input-path 14-subsetting/reclassified-PR2/fixed/taxonomy-as-metadata/metadata.tsv \
