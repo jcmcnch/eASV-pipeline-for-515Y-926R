@@ -34,7 +34,7 @@ for item in `ls 13-customized-barplots/subsetted-tables/*qza`; do
 
   qiime taxa barplot \
     --i-table $item \
-    --i-taxonomy 09-subsetting/tax-merged/chloroplasts-PhytoRef-reclassified-merged-classification.qza \
+    --i-taxonomy 09-subsetting/tax-merged/chloroplasts-PR2-reclassified-merged-classification.qza \
     --m-metadata-file sample-metadata.tsv \
     --output-dir 13-customized-barplots/$name
 

@@ -10,7 +10,7 @@ for item in `ls */*/*table.qza`; do
 
   qiime taxa barplot \
     --i-table $item \
-    --i-taxonomy 09-subsetting/tax-merged/chloroplasts-PhytoRef-reclassified-merged-classification.qza \
+    --i-taxonomy 09-subsetting/tax-merged/chloroplasts-PR2-reclassified-merged-classification.qza \
     --m-metadata-file sample-metadata.tsv \
     --output-dir 12-subsetted-reclassified-barplots/$name
 

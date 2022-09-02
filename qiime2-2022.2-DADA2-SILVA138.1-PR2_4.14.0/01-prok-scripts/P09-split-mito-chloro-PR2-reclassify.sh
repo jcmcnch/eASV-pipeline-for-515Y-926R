@@ -40,13 +40,13 @@ qiime taxa filter-seqs \
 qiime feature-classifier classify-sklearn \
   --i-classifier $PR2db \
   --i-reads 09-subsetting/split-seqs/include_o__Chloroplast_subset_filtered_seqs.qza \
-  --o-classification 09-subsetting/reclassified/include_o__Chloroplast_subset_reclassified_PhytoRef.qza
+  --o-classification 09-subsetting/reclassified/include_o__Chloroplast_subset_reclassified_PR2.qza
 
-#Merge taxonomies (the first one takes precedence so the PhytoRef classifications will overwrite the SILVA IDs)
+#Merge taxonomies (the first one takes precedence so the PR2 classifications will overwrite the SILVA IDs)
 qiime feature-table merge-taxa \
-  --i-data 09-subsetting/reclassified/include_o__Chloroplast_subset_reclassified_PhytoRef.qza \
+  --i-data 09-subsetting/reclassified/include_o__Chloroplast_subset_reclassified_PR2.qza \
   --i-data 05-classified/classification.qza \
-  --o-merged-data 09-subsetting/tax-merged/chloroplasts-PhytoRef-reclassified-merged-classification.qza
+  --o-merged-data 09-subsetting/tax-merged/chloroplasts-PR2-reclassified-merged-classification.qza
 
 #Filter out Chloroplasts from overall table
 qiime taxa filter-table \

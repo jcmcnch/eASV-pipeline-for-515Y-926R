@@ -38,22 +38,22 @@ qiime feature-classifier classify-sklearn \
         --i-classifier $PR2db \
         --i-reads 09-subsetting/split-seqs/include_o__Chloroplast_subset_filtered_seqs.qza \
         --p-confidence 0.5 \
-        --o-classification 14-reclassified/chloroplasts/PhytoRef-chloroplast-point5-p-confidence-classification.qza
+        --o-classification 14-reclassified/chloroplasts/PR2-chloroplast-point5-p-confidence-classification.qza
 
-#Classify all the chloroplast 16S sequences with PhytoRef at the [0.3] p-confidence level
+#Classify all the chloroplast 16S sequences with PR2 at the [0.3] p-confidence level
 
 qiime feature-classifier classify-sklearn \
         --i-classifier $PR2db \
         --i-reads 09-subsetting/split-seqs/include_o__Chloroplast_subset_filtered_seqs.qza \
         --p-confidence 0.3 \
-        --o-classification 14-reclassified/chloroplasts/PhytoRef-chloroplast-point3-p-confidence-classification.qza
+        --o-classification 14-reclassified/chloroplasts/PR2-chloroplast-point3-p-confidence-classification.qza
 
-#Classify all the chloroplast 16S sequences with PhytoRef and do not set a confidence disable the confidence calculation [-1]
+#Classify all the chloroplast 16S sequences with PR2 and do not set a confidence disable the confidence calculation [-1]
 
 qiime feature-classifier classify-sklearn \
         --i-classifier $PR2db \
         --i-reads 09-subsetting/split-seqs/include_o__Chloroplast_subset_filtered_seqs.qza \
         --p-confidence -1 \
-        --o-classification 14-reclassified/chloroplasts/PhytoRef-chloroplast-minus1-p-confidence-classification.qza
+        --o-classification 14-reclassified/chloroplasts/PR2-chloroplast-minus1-p-confidence-classification.qza
  
 conda deactivate

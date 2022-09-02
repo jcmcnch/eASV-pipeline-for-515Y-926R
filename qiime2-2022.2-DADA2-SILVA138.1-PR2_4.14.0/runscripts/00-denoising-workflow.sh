@@ -18,12 +18,12 @@ cd 02-PROKs
 ./scripts/P07-make-barplot.sh
 #did not cluster this time, seemed to confuse collaborators and adds too much data to CMAP
 #./scripts/P08-optionally-cluster-eASVs.sh
-./scripts/P09-split-mito-chloro-PhytoRef-reclassify.sh
+./scripts/P09-split-mito-chloro-PR2-reclassify.sh
 #These biom tables are then the input for merging scripts
 ./scripts/P10-generate-tsv-biom-tables-with-taxonomy.sh
 #following step optional, gives you proportional data to play with
 ./scripts/P11-transform-tsv-to-proportions.sh
-#./scripts/P12a-remake-barplot-with-PhytoRef-taxonomy.sh
+#./scripts/P12a-remake-barplot-with-PR2-taxonomy.sh
 #./scripts/P12-make-subsetted-barplots.sh
 #./scripts/P13-exclude-samples-from-barplots.sh
 #./scripts/P14-optional-reclassify-multiple-p-confidence.sh
