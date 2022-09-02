@@ -12,7 +12,7 @@ import sys
 counter = 1
 
 for astrLine in csv.reader(open(sys.argv[1]), csv.excel_tab):
-	counter -= 1
-	if counter < 1:
-		if astrLine[2] == "forward-absolute-filepath":
-			print(astrLine[0])
+        print(astrLine[0])
+        if counter < 1:
+            if astrLine[1] == "forward-absolute-filepath":
+                print(astrLine[0])
