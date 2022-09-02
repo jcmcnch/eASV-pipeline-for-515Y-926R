@@ -2,6 +2,14 @@
 
 ---
 
+**Latest News (2022-09-02):**
+
+- The new version of the pipeline and associated helper scripts are mostly working, so feel free to test them out as I refine things
+- Classification databases updated to PR2 4.14.0, SILVA138.1
+- New helper scripts and configuration files make pipeline a lot easier to implement. It's basically "plug and chug" now so long as you're familiar with `conda` and the bash terminal
+
+---
+
 **Citing this work:**
 
 If you find this pipeline useful to your research, we ask that you cite this github repository (with the version used in your analysis) as well as the following two papers:
