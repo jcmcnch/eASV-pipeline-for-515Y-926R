@@ -9,8 +9,8 @@ else
 fi
 
 #print headers
-printf "sample-id       Example1_categorical_change_me  Example2_numeric_change_me\n" > sample-metadata.tsv
-printf "#q2:types       categorical     numeric\n" >> sample-metadata.tsv
+printf "sample-id	Example1_categorical_change_me	Example2_numeric_change_me\n" > sample-metadata.tsv
+printf "#q2:types	categorical	numeric\n" >> sample-metadata.tsv
 
 #get sample IDs from manifest file
 cut -f1 manifest-concat.tsv | tail -n+2 >> sample-metadata.tsv
