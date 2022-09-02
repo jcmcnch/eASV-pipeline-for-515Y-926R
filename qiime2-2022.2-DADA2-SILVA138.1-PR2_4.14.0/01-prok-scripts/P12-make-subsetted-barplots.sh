@@ -21,7 +21,7 @@ done
 for item in `ls 12-subsetted-reclassified-barplots/*/visualization.qzv`; do
 
   name=`dirname $item | cut -d\/ -f2`
-  mv $item 12-subsetted-reclassified-barplots/$timestamp.$studyName.18S.$name.qzv
+  mv $item 12-subsetted-reclassified-barplots/$timestamp.$studyName.16S.$name.qzv
   rmdir `dirname $item`
 
 done
