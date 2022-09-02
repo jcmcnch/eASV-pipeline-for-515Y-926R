@@ -81,7 +81,33 @@ However, 16S and 18S are, in evolutionary terms, the same molecule. Therefore, S
 
 The fact that this is possible is (in my opinion) mind-blowing. It tells us there are binding regions in SSU rRNA that have been so evolutionarily conserved across ~3.5 **billion** years of evolutionary history that we can still use them in our assays to amplify vastly different organisms. We're talking bacteria to chloroplasts to protists to jellyfish. That different.
 
-To illustrate this visually, I want to show
+To illustrate this visually, I want to show an example of this primer set applied to two different datasets that come from a recent research cruise. 
+
+---
+
+The first dataset is derived from DNA extracted from 1 L of whole seawater from the Pacific Ocean filtered on a 0.2 µm Sterivex filter. Therefore, it contains organisms ranging from prokaryotes to eukaryotes to even bits and pieces of animals or their larval stages / propagules.
+
+This is what it looks like as a sequence pool (a number of samples mixed together after PCR amplification):
+
+![LJ-Gradients](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R/blob/master/visualizations/220902_122853_LJ-GRADIENTS-samples-trace.png)
+
+What you should notice in this graph is there is a large peak at 539 bp, and a much smaller peak at 707 bp. The big peak is 16S. Bacteria, Archaea, plastids, mitochondria. The small peak is 18S from protists, metazoa, picoeukaryotes, etc.
+
+---
+
+The second dataset is DNA extracted from the same region of the Pacific Ocean, except this time the larger organisms were concentrated. Therefore, it contains animals, protists, microeukaryotes, etc.
+
+This is what its trace looks like.
+
+![NM-Gradients](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R/blob/master/visualizations/220902_122853_NM-GRADIENTS-samples-trace.png)
+
+It's the mirror image! This time the 16S peak is tiny (could be mitochondria, plastids, or the animal-associated "microbiome") whereas the 18S peak is massive.
+
+---
+
+Again, this is the same primer set. Same procedure. Yet it works quite well on both classes of samples!
+
+Why haven't people used this approach before? That's where this pipeline comes in.
 
 ## 2. Pipeline Architecture 
 
