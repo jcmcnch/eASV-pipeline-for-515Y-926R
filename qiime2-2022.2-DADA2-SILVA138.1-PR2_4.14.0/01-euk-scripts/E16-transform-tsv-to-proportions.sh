@@ -14,9 +14,3 @@ for item in `ls 15-exports/*.with*tax.tsv`
 		--cumulative_abundance_filtered_output $outdir/$filestem.proportions-cumabund-0.99.tsv --cumulative_abundance_threshold 0.99
 
 done
-
-for item in 15-exports/*proportions* ; do
-
-        mv $item 15-exports/$timestamp.$studyName.18S.`basename $item`
-
-done
