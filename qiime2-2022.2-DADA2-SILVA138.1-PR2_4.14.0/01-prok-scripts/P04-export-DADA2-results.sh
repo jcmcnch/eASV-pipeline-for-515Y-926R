@@ -11,7 +11,7 @@ biom convert -i 03-DADA2d/feature-table.biom -o 03-DADA2d/feature-table.biom.tsv
 
 for item in 03-DADA2d/*fasta 03-DADA2d/*tsv ; do
 
-	mv $item 03-DADA2d/$timestamp.$studyName.`basename $item`
+	mv $item 03-DADA2d/$timestamp.$studyName.16S.`basename $item`
 
 done
 
