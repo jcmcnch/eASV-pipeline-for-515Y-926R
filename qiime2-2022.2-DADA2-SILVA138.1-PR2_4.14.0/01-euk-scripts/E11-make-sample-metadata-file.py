@@ -1,18 +1,16 @@
-#!/usr/bin/env python
+#!/bin/bash -i
 
-#simple script to make an example sample-metadata.tsv file from existing data
-#usage: python this_script manifest.csv > output
+if [ -e sample-metadata.tsv ] ; then
 
-print("\t".join(["#SampleID","Example1_categorical_change_me","Example2_numeric_change_me"]))
-print("\t".join(["#q2:types","categorical","numeric"]))
+        echo "sample-metadata.tsv alreads exists. Please check the existing file to see if you want to regenerate a blank sample-metadata.tsv file from your manifest. If you do, please delete sample-metadata.tsv manually and rerun this script."
+        exit 0
+else
+        echo "sample-metadata.tsv not found. For your convenience, this script will now generate a blank sample-metadata.tsv file which you can fill in with your metadata. Such metadata is very useful for making qiime2 plots that can be sorted and organized by your metadata."
+fi
 
-import csv
-import sys
+#print headers
+printf "sample-id       Example1_categorical_change_me  Example2_numeric_change_me\n" > sample-metadata.tsv
+printf "#q2:types       categorical     numeric\n" >> sample-metadata.tsv
 
-counter = 1
-
-for astrLine in csv.reader(open(sys.argv[1])):
-	counter -= 1
-	if counter < 1:
-		if astrLine[2] == "forward":
-			print(astrLine[0])
+#get sample IDs from manifest file
+cut -f1 manifest-concat.tsv | tail -n+2 >> sample-metadata.tsv
