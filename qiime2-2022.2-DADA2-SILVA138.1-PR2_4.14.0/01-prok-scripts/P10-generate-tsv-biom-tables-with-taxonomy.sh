@@ -2,6 +2,8 @@
 source ../515FY-926R.cfg
 conda activate $qiime2version
 
+timestamp=`date +"%y%m%d-%H%M"`
+
 mkdir 10-exports
 
 for item in `ls */*table.qza && ls */*/*table.qza`
@@ -27,6 +29,12 @@ for item in `ls 10-exports/*.with-tax.biom`
 	do
 	filestem=`basename $item .biom`
 	biom convert -i $item -o 10-exports/$filestem.tsv --to-tsv --header-key taxonomy
+done
+
+for item in 10-exports/* ; do
+
+        mv $item 10-exports/$timestamp.$studyName.`basename $item`
+
 done
 
 conda deactivate
