@@ -1,4 +1,4 @@
-# A Software Pipeline for 3-Domain Universal Primers
+# A Software Pipeline for 3-Domain Universal Primers (515Y / 926R)
 
 ---
 
@@ -68,6 +68,8 @@ cd eASV-pipeline-for-515Y-926R
 ```
 
 ## 1. Preamble
+
+
 
 ## 2. Pipeline Architecture 
 
