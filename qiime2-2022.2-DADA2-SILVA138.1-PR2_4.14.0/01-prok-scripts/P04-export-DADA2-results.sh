@@ -2,6 +2,8 @@
 source ../515FY-926R.cfg
 conda activate $qiime2version
 
+timestamp=`date +"%y%m%d-%H%M"`
+
 qiime tools export --input-path 03-DADA2d/representative_sequences.qza --output-path 03-DADA2d/
 qiime tools export --input-path 03-DADA2d/denoising_stats.qza --output-path 03-DADA2d/
 qiime tools export --input-path 03-DADA2d/table.qza --output-path 03-DADA2d/
