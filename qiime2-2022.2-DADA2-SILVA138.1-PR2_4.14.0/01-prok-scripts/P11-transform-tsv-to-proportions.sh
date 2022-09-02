@@ -18,6 +18,6 @@ done
 
 for item in 10-exports/*proportions* ; do
 
-        mv $item 10-exports/$timestamp.$studyName.`basename $item`
+        mv $item 10-exports/$timestamp.$studyName.16S.`basename $item`
 
 done
