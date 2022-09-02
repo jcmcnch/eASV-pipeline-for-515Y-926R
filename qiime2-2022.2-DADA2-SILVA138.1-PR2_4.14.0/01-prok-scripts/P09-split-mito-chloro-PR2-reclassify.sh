@@ -2,8 +2,7 @@
 source ../515FY-926R.cfg
 conda activate $qiime2version
 
-mkdir 09-subsetting
-mkdir 09-subsetting/split-tables
+mkdir -p 09-subsetting/split-tables
 mkdir 09-subsetting/split-seqs
 mkdir 09-subsetting/reclassified
 mkdir 09-subsetting/tax-merged
