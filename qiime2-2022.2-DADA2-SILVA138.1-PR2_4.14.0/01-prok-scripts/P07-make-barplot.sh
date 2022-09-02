@@ -10,6 +10,6 @@ qiime taxa barplot \
   --m-metadata-file sample-metadata.tsv \
   --output-dir 07-barplots
 
-mv 07-barplots/visualization.qzv 07-barplots/$timestamp.$studyName.barplot.qzv
+mv 07-barplots/visualization.qzv 07-barplots/$timestamp.$studyName.16S.barplot.qzv
 
 conda deactivate
