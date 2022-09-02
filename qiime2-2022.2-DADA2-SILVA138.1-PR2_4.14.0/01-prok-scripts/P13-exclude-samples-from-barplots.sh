@@ -8,8 +8,7 @@ else
         exit 0
 fi
 
-mkdir 13-customized-barplots/
-mkdir 13-customized-barplots/subsetted-tables/
+mkdir -p 13-customized-barplots/subsetted-tables/
 
 source ../515FY-926R.cfg
 conda activate $qiime2version
