@@ -116,9 +116,13 @@ However, for *Eukarya*, the binding coordinates for the primers are 562 and 1150
 
 What does this all mean? Well, modern *Illumina* sequencing has a maximum paired-end read length of 300bp but typically you can't use all of that length. Some has to be trimmed off to remove low-quality bases, especially from the reverse read. With what you're left with, the 16S (prokaryotic) amplicons from the forward and reverse reads overlap, but the 18S reads do not.
 
-And this length difference is the main reason why this pipeline was developed. Most amplicon sequencing pipelines have a 
+And this length difference is the main reason why this pipeline was developed. Most amplicon sequencing pipelines have a step that requires overlap. This makes sense for 16S but not for 18S. So a normal pipeline dealing with data from the 515Y/926R primers will discard 18S reads because they do not overlap. Based on an initial prototype by [Mike Lee](https://astrobiomike.github.io/) (thanks Mike!), Jesse McNichol refined and finalized a way of splitting 16S and 18S reads *in-silico* and pipeline grew from there. Since then, Yi-Chun Yeh, Melody Aleman and Colette Fletcher-Hoppe have made important contributions to the pipeline, many of which of course were inspired by Jed Fuhrman's ideas. Read on to learn more how the pipeline is constructed and what it can do for you. Or if you already know that, just use the quickstart above to run the pipeline on your data.
 
 ## 2. Pipeline Architecture 
+
+I think a visual summary of the pipeline is always helpful. So here's a diagram:
+
+![Pipeline structure](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R/blob/master/visualizations/qiime2-pipeline.svg)
 
 *** Update September 2022:***
 
