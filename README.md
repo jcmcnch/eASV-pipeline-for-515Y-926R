@@ -82,7 +82,7 @@ Group 1 tends to use 16S SSU rRNA as a marker gene, while groups 2 and 3 will us
 
 However, 16S and 18S are, in evolutionary terms, the same molecule. Therefore, SSU rRNA primers that target **both 16S and 18S** in the same PCR assay exist. It's really important to note that this is **not** two sets of primers. It is a single set of primers (1 forward, 1 reverse) that **amplifies 16S from Archaea, Bacteria, Chloroplasts and Mitochondria alongside Eukaryotic nuclear 18S in the same assay**. This happens literally in the same tube.
 
-The fact that this is possible is (in my opinion) mind-blowing. It tells us there are binding regions in SSU rRNA that have been so evolutionarily conserved across ~3.5 **billion** years of evolutionary history that we can still use them in our assays to amplify vastly different organisms. We're talking bacteria to chloroplasts to protists to jellyfish. That different.
+The fact that this is possible is (in my opinion) mind-blowing. It tells us there are regions in the SSU rRNA molecule that have been so evolutionarily conserved across ~3.5 **billion** years of evolutionary history that it is possible to design primers that amplify vastly different organisms. We're talking about the difference between bacteria to chloroplasts to protists to jellyfish. That different!
 
 To illustrate this visually, I want to show an example of this primer set applied to two different datasets that come from a recent research cruise. 
 
@@ -98,19 +98,25 @@ What you should notice in this graph is there is a large peak at 539 bp, and a m
 
 ---
 
-The second dataset is DNA extracted from the same region of the Pacific Ocean, except this time the larger organisms were concentrated. Therefore, it contains animals, protists, microeukaryotes, etc.
+The second dataset is DNA extracted from the same region of the Pacific Ocean, except this time the larger organisms were concentrated in a net tow. Therefore, the majority of the DNA comes from animals, protists, microeukaryotes, etc.
 
 This is what its trace looks like.
 
 ![NM-Gradients](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R/blob/master/visualizations/220902_122853_NM-GRADIENTS-samples-trace.png)
 
-It's the mirror image! This time the 16S peak is tiny (could be mitochondria, plastids, or the animal-associated "microbiome") whereas the 18S peak is massive.
+It's the mirror image! This time the 16S peak (546 bp) is tiny (could be mitochondria, plastids, or the animal-associated "microbiome") whereas the 18S peak (736 bp) is massive.
 
 ---
 
 Again, this is the same primer set. Same procedure. Yet it works quite well on both classes of samples!
 
-Why haven't people used this approach before? That's where this pipeline comes in.
+Why hasn't this approach been used commonly before? One reason comes from the mismatch between sequencing lengths and the length of the amplicon. The primers this pipeline (others are possible) is designed for bind at the SSU rRNA coordinates 515 / 926 (using *E. coli* as a reference). That means the amplicon should be approximately 411 bp for most *Bacteria* (this depends on the biology of the organism - extreme oligotrophs have shorter rRNA sequences; NB: traces above are longer because they already have the *Illumina* adapters ligated on it). *Archaea* should be approximately the same.
+
+However, for *Eukarya*, the binding coordinates for the primers are 562 and 1150 (in *S. cerevisieae* coordinates). That's an eukaryotic amplicon of 588 bp. Similar caveats apply about organismal biology but on average eukaryotic amplicons will be 177 bp longer than prokaryotic amplicons.
+
+What does this all mean? Well, modern *Illumina* sequencing has a maximum paired-end read length of 300bp but typically you can't use all of that length. Some has to be trimmed off to remove low-quality bases, especially from the reverse read. With what you're left with, the 16S (prokaryotic) amplicons from the forward and reverse reads overlap, but the 18S reads do not.
+
+And this length difference is the main reason why this pipeline was developed. Most amplicon sequencing pipelines have a 
 
 ## 2. Pipeline Architecture 
 
