@@ -6,7 +6,7 @@
 
 - The new version of the pipeline and associated helper scripts are mostly working, so feel free to test them out as I refine things
 - PROK pipeline tested up to step P12a
-- EUK pipeline tested up to step E16 
+- EUK pipeline tested up to step E17 
 - Classification databases updated to PR2 4.14.0, SILVA138.1
 - New helper scripts and configuration files make pipeline a lot easier to implement. It's basically "plug and chug" now so long as you're familiar with `conda` and the bash terminal
 
