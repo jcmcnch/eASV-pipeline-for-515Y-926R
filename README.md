@@ -4,7 +4,8 @@
 
 **Latest News (2022-09-02):**
 
-- The new version of the pipeline and associated helper scripts are mostly working, so feel free to test them out as I refine things
+- The new version of the pipeline and associated helper scripts are mostly working, so feel free to test them out as I refine things]
+- New tutorial under construction
 - PROK pipeline tested up to step P12a
 - EUK pipeline tested up to step E17 
 - Classification databases updated to PR2 4.14.0, SILVA138.1
@@ -66,7 +67,7 @@ cd eASV-pipeline-for-515Y-926R
 3. Download and create the necessary databases:
 
 ```
-
+Tutorial under construction... we apologize for the inconvenience ;-)
 ```
 
 ## 1. Preamble
@@ -79,7 +80,7 @@ Metabarcoding using SSU rRNA as a marker gene is a powerful technique for profil
 
 Group 1 tends to use 16S SSU rRNA as a marker gene, while groups 2 and 3 will use 18S. PCR primer design has followed this paradigm, with many primer sets having been designed to target a specific group of interest while discriminating against another (i.e. *Bacteria* and *Archaea* but not *Eukarya*).
 
-However, 16S and 18S are, in evolutionary terms, the same molecule. Therefore, SSU rRNA primers that target **both 16S and 18S** in the same PCR assay exist. It's really important to not that this is **not** two sets of primers. It is a single set of primers (1 forward, 1 reverse) that **amplifies 16S from Archaea, Bacteria, Chloroplasts and Mitochondria alongside Eukaryotic nuclear 18S in the same assay**. This happens literally in the same tube.
+However, 16S and 18S are, in evolutionary terms, the same molecule. Therefore, SSU rRNA primers that target **both 16S and 18S** in the same PCR assay exist. It's really important to note that this is **not** two sets of primers. It is a single set of primers (1 forward, 1 reverse) that **amplifies 16S from Archaea, Bacteria, Chloroplasts and Mitochondria alongside Eukaryotic nuclear 18S in the same assay**. This happens literally in the same tube.
 
 The fact that this is possible is (in my opinion) mind-blowing. It tells us there are binding regions in SSU rRNA that have been so evolutionarily conserved across ~3.5 **billion** years of evolutionary history that we can still use them in our assays to amplify vastly different organisms. We're talking bacteria to chloroplasts to protists to jellyfish. That different.
 
