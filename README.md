@@ -110,7 +110,9 @@ It's the mirror image! This time the 16S peak (546 bp) is tiny (could be mitocho
 
 Again, this is the same primer set. Same procedure. Yet it works quite well on both classes of samples!
 
-Why hasn't this approach been used commonly before? One reason comes from the mismatch between sequencing lengths and the length of the amplicon. The primers this pipeline (others are possible) is designed for bind at the SSU rRNA coordinates 515 / 926 (using *E. coli* as a reference). That means the amplicon should be approximately 411 bp for most *Bacteria* (this depends on the biology of the organism - extreme oligotrophs have shorter rRNA sequences; NB: traces above are longer because they already have the *Illumina* adapters ligated on it). *Archaea* should be approximately the same.
+Why hasn't this approach been used commonly before? One reason comes from the mismatch between sequencing lengths and the length of the amplicon. The primers this pipeline is designed for\* bind at the SSU rRNA coordinates 515 / 926 (using *E. coli* as a reference). That means the amplicon should be approximately 411 bp for most *Bacteria* (this depends on the biology of the organism - extreme oligotrophs have shorter rRNA sequences; NB: traces above are longer because they already have the *Illumina* adapters ligated on it). *Archaea* should be approximately the same.
+
+\* *Note: Other universal primers are possible and have been proven to work. There is another universal binding location at 1392, so you can do 926F/1392R or 515F/1392R.*
 
 However, for *Eukarya*, the binding coordinates for the primers are 562 and 1150 (in *S. cerevisieae* coordinates). That's an eukaryotic amplicon of 588 bp. Similar caveats apply about organismal biology but on average eukaryotic amplicons will be 177 bp longer than prokaryotic amplicons.
 
