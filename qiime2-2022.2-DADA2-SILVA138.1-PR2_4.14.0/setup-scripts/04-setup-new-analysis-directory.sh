@@ -1,8 +1,12 @@
 #!/bin/bash -i
 
 if [[ ${#1} -eq 0 ]] ; then
-    echo 'Please enter a memorable and informative name for your project (no spaces - use dashes or underscores instead). This name will be used to create an analysis directory and will be appended to output files.'
+    echo 'Please enter a memorable and informative name for your project as an argument after this script < e.g. ./setup-scripts/04-setup-new-analysis-directory.sh EXAMPLENAME > (make sure the name does not include any spaces - use dashes or underscores instead). This name will be used to create an analysis directory and will be appended to output files.'
     exit 0
+fi
+
+if [[ ! ${#1} -eq 0 ]] ; then
+    echo "An analysis directory has been created for you at /home/$USER/515FY-926R-pipeline/$1 . It contains all the scripts needed to run the pipeline. Make sure to modify the configuration file to suit your data before running the pipeline."
 fi
 
 studyName=$1
