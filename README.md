@@ -46,7 +46,7 @@ cd eASV-pipeline-for-515Y-926R
 
 2. Enter the folder for the latest `qiime2` version:
 
-`cd qiime2-2022.8-DADA2-SILVA138.1-PR2_4.14.0`
+`cd qiime2-2022.2-DADA2-SILVA138.1-PR2_4.14.0`
 
 3. Install `qiime2` by running the following script (see `qiime2` install link above if you want a different version or want a different operating system):
 
