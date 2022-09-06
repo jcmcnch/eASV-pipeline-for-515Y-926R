@@ -17,6 +17,7 @@ mkdir -p $studyDir/scripts $studyDir/runscripts $studyDir/01-trimmed $studyDir/0
 cp 00-trimming-sorting-scripts/* 02-utility-scripts/* $studyDir/scripts
 cp 01-prok-scripts/* $studyDir/02-PROKs/scripts
 cp 01-euk-scripts/* $studyDir/02-EUKs/scripts
+cp runscripts/* $studyDir/runscripts
 
 cp config/qiime2-2022.2-SILVA138.1-PR2-4.14.0.cfg $studyDir/515FY-926R.cfg
 echo "studyName=$studyName" >> $studyDir/515FY-926R.cfg
