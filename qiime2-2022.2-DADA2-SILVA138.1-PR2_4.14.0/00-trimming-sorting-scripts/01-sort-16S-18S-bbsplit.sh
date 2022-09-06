@@ -31,4 +31,8 @@ mv *PROK*fastq 02-PROKs/00-fastq
 
 rm -rf ref
 
+timestamp=`date +"%y%m%d-%H%M"`
+
+./scripts/calc-EUK-fraction-per-sample.sh > $timestamp.$studyName.EUKfrac-after-bbpsplit.tsv
+
 conda deactivate
