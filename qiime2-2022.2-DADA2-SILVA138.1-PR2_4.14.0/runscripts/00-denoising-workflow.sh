@@ -9,8 +9,7 @@ cd 02-PROKs
 ./scripts/P00-create-manifest.sh
 ./scripts/P01-import.sh
 ./scripts/P02-visualize-quality_R1-R2.sh
-#fwd trim=220bp, rev trim=180bp
-./scripts/P03-DADA2.sh 220 180
+./scripts/P03-DADA2.sh
 #needed for merging script
 ./scripts/P04-export-DADA2-results.sh
 ./scripts/P05-classify-eASVs.sh
@@ -34,7 +33,7 @@ cd ../02-EUKs
 #./scripts/E00-create-manifest-viz.sh
 #./scripts/E01-import.sh
 #./scripts/E02-visualize-quality_R1-R2.sh
-./scripts/E03-bbduk-cut-reads.sh 220 180
+./scripts/E03-bbduk-cut-reads.sh
 ./scripts/E04-fuse-EUKs-withoutNs.sh
 ./scripts/E05-create-manifest-concat.sh
 ./scripts/E06-import-concat.sh
