@@ -54,7 +54,7 @@ cd eASV-pipeline-for-515Y-926R
 #to install qiime2-2022.8 for GNU/Linux systems
 #it will also install mamba for you which is faster than conda
 #needs to be modified for different versions or operating systems
-./setup-scripts/00-install-qiime2-2022.8.sh
+./setup-scripts/00-install-qiime2-2022.2.sh
 ```
 
 2. Install accessory conda environments (for initial trimming and splitting steps). This has only been tested on GNU/Linux so again, YMMV. See note above if you want to contribute your setup scripts.
@@ -64,10 +64,11 @@ cd eASV-pipeline-for-515Y-926R
 ./setup-scripts/01-install-conda-envs.sh
 ```
 
-3. Download and create the necessary databases:
+3. Download classifiers and create the necessary databases for splitting:
 
 ```
-Tutorial under construction... we apologize for the inconvenience ;-)
+./setup-scripts/02-download-qiime2-classifiers-qiime2-2022.2.sh
+./setup-scripts/03-make-bbsplit-db.sh
 ```
 
 ## 1. Preamble
