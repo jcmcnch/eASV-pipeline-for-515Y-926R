@@ -4,7 +4,7 @@
 
 **Latest News (2022-09-02):**
 
-- The new version of the pipeline and associated helper scripts are mostly working, so feel free to test them out as I refine things]
+- The new version of the pipeline and associated helper scripts are mostly working, so feel free to test them out as I refine things
 - New tutorial under construction
 - PROK pipeline tested up to step P12a
 - EUK pipeline tested up to step E17 
@@ -48,7 +48,7 @@ cd eASV-pipeline-for-515Y-926R
 
 `cd qiime2-2022.2-DADA2-SILVA138.1-PR2_4.14.0`
 
-3. Install `qiime2` by running the following script (see `qiime2` install link above if you want a different version or want a different operating system):
+3. Install `qiime2` by running the following script (see `qiime2` install link above if you want a different version or operating system):
 
 ```
 #to install qiime2-2022.8 for GNU/Linux systems
