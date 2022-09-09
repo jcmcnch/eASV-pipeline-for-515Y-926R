@@ -2,8 +2,8 @@
 #Note: I would normally run these steps semi-manually to inspect outputs at each step, but they are provided here together for clarity
 #All scripts should be run from either the base directory (i.e. here) or the two subfolders created by the pipeline after splitting (i.e. "02-PROKs", and "02-EUKs")
 #Raw data needs to be put in a folder named "00-raw"
-./eASV-pipeline-for-515Y-926R/DADA2-pipeline/00-trimming-sorting-scripts/00-run-cutadapt.sh 
-./eASV-pipeline-for-515Y-926R/DADA2-pipeline/00-trimming-sorting-scripts/01-sort-16S-18S-bbsplit.sh
+./scripts/00-run-cutadapt.sh 
+./scripts/01-sort-16S-18S-bbsplit.sh
 #files have now been split into 16S and 18S pools, and can be denoised separately
 cd 02-PROKs
 ./scripts/P00-create-manifest.sh
