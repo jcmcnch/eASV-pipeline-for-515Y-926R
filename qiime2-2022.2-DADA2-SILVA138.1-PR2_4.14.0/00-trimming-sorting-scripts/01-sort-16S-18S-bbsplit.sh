@@ -4,7 +4,10 @@ conda activate bbmap-env
 
 source 515FY-926R.cfg
 
-cp /home/db/in-silico-mocks/*fastq 01-trimmed/
+#optionally add in in-silico mocks to denoising pipeline
+if [[ $inSilicoMocks = "true" ]] ; then
+	cp $inSilicoMockLocation/*fastq 01-trimmed/
+fi
 
 mkdir -p 02-PROKs/00-fastq
 mkdir -p 02-EUKs/00-fastq
@@ -33,6 +36,7 @@ rm -rf ref
 
 timestamp=`date +"%y%m%d-%H%M"`
 
-./scripts/calc-EUK-fraction-per-sample.sh > $timestamp.$studyName.EUKfrac-after-bbpsplit.tsv
+./scripts/calc-EUK-fraction-per-sample.sh > $timestamp.$studyName.EUKfrac-per-sample-after-bbpsplit.tsv
+./scripts/calc-EUK-fraction.sh > $timestamp.$studyName.EUKfrac-whole-dataset-after-bbpsplit.tsv
 
 conda deactivate
