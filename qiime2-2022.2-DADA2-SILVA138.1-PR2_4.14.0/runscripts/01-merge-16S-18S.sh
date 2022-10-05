@@ -16,6 +16,8 @@ mkdir -p 03-Merged
 #these `ls` expressions will generate more than one file name if you export your data more than once!
 inProks=`ls 02-PROKs/10-exports/*$studyName.16S.all-16S-seqs.with-tax.tsv`
 inEuks=`ls 02-EUKs/15-exports/*$studyName.18S.all-18S-seqs.with-PR2-tax.tsv`
+prokStats=`ls 02-PROKs/03-DADA2d/*stats.tsv`
+eukStats=`ls 02-EUKs/08-DADA2d/*stats.tsv`
 
 #correction factor for 18S, as determined empirically
 ### Change this to reflect your dataset! Placeholder value of 3.84 is for P16N-S. ###
@@ -23,8 +25,8 @@ bias=3.84
 
 #run script
 ./scripts/normalize_16S_18S_ASVs.R \
-  --inputproks $inProks \
-  --inputeuks $inEuks \
+  --inputproks $inProks --prokstats $prokStats \
+  --inputeuks $inEuks --eukstats $eukStats \
   --outputfile ${timestamp}_${studyName}_$bias-fold-18S-correction \
   --bias $bias 
 
