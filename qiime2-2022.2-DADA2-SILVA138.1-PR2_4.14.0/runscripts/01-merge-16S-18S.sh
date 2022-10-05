@@ -22,7 +22,7 @@ inEuks=`ls 02-EUKs/15-exports/*$studyName.18S.all-18S-seqs.with-PR2-tax.tsv`
 bias=3.84
 
 #run script
-normalizing_16S_18S_tags/normalize_16S_18S_ASVs.R \
+./scripts/normalize_16S_18S_ASVs.R \
   --inputproks $inProks \
   --inputeuks $inEuks \
   --outputfile ${timestamp}_${studyName}_$bias-fold-18S-correction \
