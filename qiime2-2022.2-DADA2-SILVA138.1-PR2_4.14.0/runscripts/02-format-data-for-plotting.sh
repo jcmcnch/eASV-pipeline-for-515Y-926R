@@ -5,12 +5,12 @@ mkdir -p 04-Formatted
 mergedNorm=`ls 03-Merged/*normalized*tsv`
 mergedProp=`ls 03-Merged/*proportions.tsv`
 filestem=`basename $mergedNorm _normalized_sequence_counts.tsv`
-#user provides these
-mergedNormLastColumn=242
-mergedPropLastColumn=242
+#user provides the last column
+mergedNormLastColumn=207
+mergedPropLastColumn=207
 #to remove blanks, controls, station 02 that lacks any metadata
-mergedNormFirstSample=43
-mergedPropFirstSample=43
+mergedNormFirstSample=8
+mergedPropFirstSample=8
 #calculate second last
 mergedNormSecondLast=$((mergedNormLastColumn-1))
 mergedPropSecondLast=$((mergedPropLastColumn-1))
@@ -34,7 +34,6 @@ conda activate opedia-env
 #then edit manually to add in appropriate sample IDs
 
 #remove empty rows with pandas, passing empty-file as sys.argv[1]
-./eASV-pipeline-for-515Y-926R/DADA2-pipeline/02-utility-scripts/remove-bad-columns-and-empty-rows.py lt5000seq-samples.txt 04-Formatted/${filestem}_normalized_sequence_counts_reordered.tsv 04-Formatted/${filestem}_normalized_sequence_counts_reordered.empty-rows-removed.tsv
+./scripts/remove-bad-columns-and-empty-rows.py lt5000seq-samples.txt 04-Formatted/${filestem}_normalized_sequence_counts_reordered.tsv 04-Formatted/${filestem}_normalized_sequence_counts_reordered.empty-rows-removed.tsv
 
-./eASV-pipeline-for-515Y-926R/DADA2-pipeline/02-utility-scripts/remove-bad-columns-and-empty-rows.py lt5000seq-samples.txt 04-Formatted/${filestem}_proportions_reordered.tsv 04-Formatted/${filestem}_proportions_reordered.empty-rows-removed.tsv
-
+./scripts/remove-bad-columns-and-empty-rows.py lt5000seq-samples.txt 04-Formatted/${filestem}_proportions_reordered.tsv 04-Formatted/${filestem}_proportions_reordered.empty-rows-removed.tsv
