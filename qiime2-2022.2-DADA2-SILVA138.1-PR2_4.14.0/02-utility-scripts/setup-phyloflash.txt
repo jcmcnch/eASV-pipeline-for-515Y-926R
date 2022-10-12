@@ -1,0 +1,12 @@
+#NOTES for phyloflash
+
+#set up a conda env as follows
+conda create --name phyloflash-env
+conda activate phyloflash-env
+mamba install r-base
+
+#entered interactive R session
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install(version = "3.15")
+BiocManager::install("phyloseq")
