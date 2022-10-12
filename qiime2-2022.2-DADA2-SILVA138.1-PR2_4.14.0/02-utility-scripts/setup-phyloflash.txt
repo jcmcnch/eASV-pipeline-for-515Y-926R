@@ -3,7 +3,7 @@
 #set up a conda env as follows
 conda create --name phyloflash-env
 conda activate phyloflash-env
-mamba install r-base
+mamba install r-base r-tidyverse
 
 #entered interactive R session
 if (!require("BiocManager", quietly = TRUE))
