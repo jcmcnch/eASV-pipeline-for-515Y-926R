@@ -115,7 +115,7 @@ Why hasn't this approach been used commonly before? One reason comes from the mi
 
 \* *Note: Other universal primers are possible and have been proven to work. There is another universal binding location at 1392, so you can do 926F/1392R or 515F/1392R.*
 
-However, for *Eukarya*, the binding coordinates for the primers are 562 and 1150 (in *S. cerevisieae* coordinates). That's an eukaryotic amplicon of 588 bp. Similar caveats apply about organismal biology but on average eukaryotic amplicons will be 177 bp longer than prokaryotic amplicons.
+However, for *Eukarya*, the binding coordinates for the primers are 562 and 1150 (in *S. cerevisieae* coordinates). That's an eukaryotic amplicon of 588 bp. Although there is certainly evolutionary and ecological variation in 18S length, but on average eukaryotic amplicons will be on the order of 177 bp longer than prokaryotic amplicons.
 
 What does this all mean? Well, modern *Illumina* sequencing has a maximum paired-end read length of 300bp but typically you can't use all of that length. Some has to be trimmed off to remove low-quality bases, especially from the reverse read. With what you're left with, the 16S (prokaryotic) amplicons from the forward and reverse reads overlap, but the 18S reads do not.
 
