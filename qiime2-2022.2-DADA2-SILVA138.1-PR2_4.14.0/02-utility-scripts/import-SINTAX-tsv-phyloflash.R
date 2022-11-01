@@ -19,6 +19,13 @@ getArgs = function() {
       metavar = "character"
     ),
     make_option(
+      c("-m", "--inputMetadata"),
+      default = "",
+      type = "character",
+      help = "A TSV metadata table corresponding to sampleIDs found in the input tables",
+      metavar = "character"
+    ),
+    make_option(
       c("-o", "--outOTUtable"),
       default = file.path(getwd(), 'plots'),
       type = "character",
@@ -71,6 +78,8 @@ main = function() {
   top30 <- names(sort(taxa_sums(por), decreasing=TRUE))[1:30]
   por_top30 <- transform_sample_counts(por, function(OTU) OTU/sum(OTU))
   por_top30 <- prune_taxa(top30, por_top30)
+
+  #inputMetadata <- read.delim(opts$inputMetadata, sep = "\t", header = TRUE)
 
   p <- plot_bar(por_top30, fill="Family") +
 
