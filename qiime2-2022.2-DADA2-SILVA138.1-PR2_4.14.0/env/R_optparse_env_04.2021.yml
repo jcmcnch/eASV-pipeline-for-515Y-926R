@@ -1,4 +1,4 @@
-name: R-env
+name: r-optparse-env
 channels:
   - conda-forge
   - bioconda
