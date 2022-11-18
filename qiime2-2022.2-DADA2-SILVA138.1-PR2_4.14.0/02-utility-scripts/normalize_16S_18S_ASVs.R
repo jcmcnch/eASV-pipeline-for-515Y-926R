@@ -8,7 +8,7 @@
 #Author: Colette Fletcher-Hoppe 
 #Final version: 11.16.2022
 
-print("Compatible with output files from QIIME-2 version 2022.8.3")
+print("This version of the script has only been tested with output files from qiime2-2022.2. Use with other versions may fail due to hardcoded column names.")
 
 #0. Set up arguments to allow user to specify input file name, output file name, and bias-----
 suppressMessages(library("optparse"))
