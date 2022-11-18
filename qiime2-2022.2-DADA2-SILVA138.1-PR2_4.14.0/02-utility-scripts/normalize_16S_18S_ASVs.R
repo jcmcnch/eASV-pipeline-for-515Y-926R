@@ -6,16 +6,18 @@
 #Note: we recommend assuming a 2-fold bias against 18S sequences, which has been found with Illumina HiSeq or MiSeq data (Yeh et al. 2018)
 #This script must be run from the base directory (the folder that contains 02-PROKs/ and 02-EUKs/)
 #Author: Colette Fletcher-Hoppe 
-#Final version: 04.19.2021
+#Final version: 11.16.2022
+
+print("Compatible with output files from QIIME-2 version 2022.8.3")
 
 #0. Set up arguments to allow user to specify input file name, output file name, and bias-----
 suppressMessages(library("optparse"))
 
 option_list=list(
-  make_option(c("--inputproks"), default="02-PROKs/10-exports/all-16S-seqs.with-tax.tsv", type="character", help="Input file for prokaryotic (16S) ASV counts, default='02-PROKs/10-exports/all-16S-seqs.with-tax.tsv'. If using another file, please specify the full filepath and make sure it matches the format of default, including '#Constructed from biom file'.", metavar="character", action="store_true"),
-  make_option(c("--inputeuks"), default="02-EUKs/15-exports/all-18S-seqs.with-PR2-tax.tsv", type="character", help="Input file for eukaryotic (18S) ASV counts, default='02-EUKs/15-exports/all-18S-seqs.with-PR2-tax.tsv'. If using another file, please specify the full filepath and make sure it matches the format of default, including '#Constructed from biom file'.", metavar="character", action="store_true"),
-  make_option(c("--prokstats"), default="02-PROKs/03-DADA2d/stats.tsv", type="character", help="Denoising statistics for 16S as output by qiime2, default='02-PROKs/03-DADA2d/stats.tsv'. If using another file, please specify the full filepath.", metavar="character", action="store_true"),
-  make_option(c("--eukstats"), default="02-EUKs/08-DADA2d/stats.tsv", type="character", help="Denoising statistics for 18S as output by qiime2, default='02-EUKs/08-DADA2d/stats.tsv'. If using another file, please specify the full filepath.", metavar="character", action="store_true"),
+  make_option(c("--inputproks"), type="character", help="Input file for prokaryotic (16S) ASV counts, default filepath='02-PROKs/10-exports/'. Please specify filepath and make sure the file matches the default qiime2 output format, including ASV hashes in first column, taxonomy in last column, and header '#Constructed from biom file'.", metavar="character", action="store_true"),
+  make_option(c("--inputeuks"), type="character", help="Input file for eukaryotic (18S) ASV counts, default filepath='02-EUKs/15-exports/'. Please specify filepath and make sure the file matches the default qiime2 output format, including ASV hashes in first column, taxonomy in last column, and header '#Constructed from biom file'.", metavar="character", action="store_true"),
+  make_option(c("--prokstats"), type="character", help="Denoising statistics for 16S as output by qiime2, default filepath='02-PROKs/03-DADA2d/'.", metavar="character", action="store_true"),
+  make_option(c("--eukstats"), type="character", help="Denoising statistics for 18S as output by qiime2, default filepath='02-EUKs/08-DADA2d/'.", metavar="character", action="store_true"),
   make_option(c("--outputfile"), type="character", help="Prefix name of output file", metavar="character", action="store_true"),
   make_option(c("--bias"), default=2, type="numeric", help="Bias against 18S sequences, 2 by default", metavar="numeric", action="store_true")
 );
@@ -34,11 +36,27 @@ if(is.null(opt$bias)){
 
 #1. Calculate percent of reads that passed DADA2 denoising for both proks and euks -----
 print("1. Calculating DADA2 stats")
-proks_stats <- read.table(opt$prokstats, sep="\t", header=T, stringsAsFactors = F)
-proks_stats$perc.passed=proks_stats$non.chimeric/proks_stats$input
+temp=as.character(opt$prokstats)
+proks_stats=read.table(temp, col.names=c("sample-id", "input", "filtered", "perc.passed.filter", "denoised", "merged", "perc.merged", "non.chimeric", "perc.non.chimeric"), header=T, stringsAsFactors = F, sep="\t")
+#Calculate percent passing
+for(i in 1:nrow(proks_stats)){
+  if(proks_stats$input[i]==0){
+    proks_stats$perc.passed.final[i]=0
+  } else{
+    proks_stats$perc.passed.final[i]=proks_stats$non.chimeric[i]/proks_stats$input[i]
+  }
+}
 
-euks_stats <- read.table(opt$eukstats, sep="\t", header=T, stringsAsFactors = F)
-euks_stats$perc.passed=euks_stats$non.chimeric/euks_stats$input
+temp <- as.character(opt$eukstats) 
+euks_stats=read.table(temp, col.names=c("sample-id", "input", "filtered", "perc.passed.filter", "denoised", "non.chimeric", "perc.non.chimeric"), header=T, stringsAsFactors = F, sep="\t")
+#Calculate percent passing
+for(i in 1:nrow(euks_stats)){
+  if(euks_stats$input[i]==0){
+    euks_stats$perc.passed.final[i]=0
+  }else{
+    euks_stats$perc.passed.final[i]=euks_stats$non.chimeric[i]/euks_stats$input[i]
+  }
+}
 
 #2. Normalize ASV counts (divide counts of ASVs/ percent passed for each sample, multiply euks ASV counts by the bias you specified)------
 print("2. Normalizing ASV counts for proks and euks")
@@ -46,7 +64,7 @@ print("2. Normalizing ASV counts for proks and euks")
 #a. Proks--------
 #Read in ASV counts data
 #Fix "#OTU ID" and read in the counts table with taxonomy 
-temp <- as.character(opt$inputproks)
+temp=as.character(opt$inputproks) 
 colnames <- scan(text=readLines(temp, 2), what="", quiet=T)
 colnames <- colnames[-c(1:7)]
 proks_data <- read.table(temp, col.names=c("OTU_ID",colnames), sep="\t", stringsAsFactors = F)
@@ -62,16 +80,16 @@ colnames(proks_norm)=colnames(proks_subs)
 
 #Divide ASV count for each sample by percent passing, write into the new matrix
 for(i in proks_stats$sample.id){
-  if(proks_stats$perc.passed[grep(i, proks_stats$sample.id)]==0){
-    proks_norm[,grep(i, colnames(proks_subs))]=0
+  if(subset(proks_stats, sample.id==i)[1,10]==0){
+    proks_norm[,i]=0
   } else{
-    proks_norm[,grep(i, colnames(proks_subs))]=proks_subs[,grep(i, colnames(proks_subs))]/proks_stats$perc.passed[grep(i, proks_stats$sample.id)]
+    proks_norm[,i]=proks_subs[,i]/subset(proks_stats, sample.id==i)[1,10]
   }
 }
 
 #b. Now repeat normalization for the euks, and also multiply by the bias you specified-----
 #Read in files (use file with PR2 taxonomy)
-temp <- as.character(opt$inputeuks)
+temp <- as.character(opt$inputeuks) 
 colnames <- scan(text=readLines(temp, 2), what="", quiet=T)
 colnames <- colnames[-c(1:7)] #Keep taxonomy in for now
 euks_data <- read.table(temp, col.names=c("OTU_ID",colnames), sep="\t", stringsAsFactors = F)
@@ -86,16 +104,11 @@ euks_norm[,1]=euks_subs$OTU_ID
 colnames(euks_norm)=colnames(euks_subs)
 
 #Divide ASV count by percent passing DADA2 for each sample and multiply by the given bias to normalize ASV counts
-euks_norm <- as.data.frame(matrix(nrow=nrow(euks_subs), ncol=ncol(euks_subs)))
-euks_norm[,1]=euks_subs$OTU_ID
-colnames(euks_norm)=colnames(euks_subs)
-
-#Divide ASV count by percent passing DADA2 for each sample and multiply by the given bias to normalize ASV counts
-for(i in euks_stats$sample.id){
-  if(euks_stats$perc.passed[grep(i, euks_stats$sample.id)]==0){
-    euks_norm[,grep(i, colnames(euks_subs))]=0
+for(i in euks_stats$sample.id){ 
+  if(subset(euks_stats, sample.id==i)[1,8]==0){
+    euks_norm[,i]=0
   } else{
-    euks_norm[,grep(i, colnames(euks_subs))]=opt$bias*euks_subs[,grep(i, colnames(euks_subs))]/euks_stats$perc.passed[grep(i, euks_stats$sample.id)]
+    euks_norm[,i]=opt$bias*euks_subs[,i]/subset(euks_stats, sample.id==i)[1,8] 
   }
 }
 
@@ -198,7 +211,11 @@ relabun_proks_euks$OTU_ID=norm_ordered_proks_euks$OTU_ID
 
 #Write in normalized data
 for(i in c(2:ncol(relabun_proks_euks))){
-  relabun_proks_euks[,i]=norm_ordered_proks_euks[,i]/colsums[(i-1)]
+  if(colsums[(i-1)]==0){
+    relabun_proks_euks[,i]=0
+  } else{
+    relabun_proks_euks[,i]=norm_ordered_proks_euks[,i]/colsums[(i-1)] 
+  }
 }
 
 #5. Add in taxonomy and write it out!-----
