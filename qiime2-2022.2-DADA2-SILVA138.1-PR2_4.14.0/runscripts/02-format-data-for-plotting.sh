@@ -34,8 +34,8 @@ conda activate opedia-env
 #then edit manually to add in appropriate sample IDs
 
 #remove empty rows with pandas, passing empty-file as sys.argv[1]
-./scripts/remove-bad-columns-and-empty-rows.py lt5000seq-samples.txt 04-Formatted/${filestem}_normalized_sequence_counts_reordered.tsv 04-Formatted/${filestem}_counts.QCd.tsv
+./scripts/remove-bad-columns-and-empty-rows.py lt5000seq-samples.txt 04-Formatted/${filestem}_normalized_sequence_counts_reordered.tsv 04-Formatted/${filestem}_merged_16S_18S_counts.QCd.tsv
 
-./scripts/remove-bad-columns-and-empty-rows.py lt5000seq-samples.txt 04-Formatted/${filestem}_proportions_reordered.tsv 04-Formatted/${filestem}_proportions.QCd.tsv
+./scripts/remove-bad-columns-and-empty-rows.py lt5000seq-samples.txt 04-Formatted/${filestem}_proportions_reordered.tsv 04-Formatted/${filestem}_merged_16S_18S_proportions.QCd.tsv
 
 rm -f 04-Formatted/*reordered.tsv
