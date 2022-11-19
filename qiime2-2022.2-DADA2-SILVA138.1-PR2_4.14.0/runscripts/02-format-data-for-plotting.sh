@@ -19,13 +19,13 @@ mergedPropSecondLast=$((mergedPropLastColumn-1))
 cut -f1,$mergedNormLastColumn $mergedNorm > 04-Formatted/tmp1
 cut -f$mergedNormFirstSample-$mergedNormSecondLast $mergedNorm > 04-Formatted/tmp2
 paste 04-Formatted/tmp1 04-Formatted/tmp2 > 04-Formatted/${filestem}_normalized_sequence_counts_reordered.tsv
-rm 04-Formatted/tmp* 2> /dev/null
+rm -f 04-Formatted/tmp* 2> /dev/null
 
 #same but for proportions file
 cut -f1,$mergedPropLastColumn $mergedProp > 04-Formatted/tmp1
 cut -f$mergedPropFirstSample-$mergedPropSecondLast $mergedProp > 04-Formatted/tmp2
 paste 04-Formatted/tmp1 04-Formatted/tmp2 > 04-Formatted/${filestem}_proportions_reordered.tsv
-rm 04-Formatted/tmp* 2> /dev/null
+rm -f 04-Formatted/tmp* 2> /dev/null
 
 conda activate opedia-env
 
@@ -38,4 +38,4 @@ conda activate opedia-env
 
 ./scripts/remove-bad-columns-and-empty-rows.py lt5000seq-samples.txt 04-Formatted/${filestem}_proportions_reordered.tsv 04-Formatted/${filestem}_proportions.QCd.tsv
 
-rm 04-Formatted/*reordered.tsv
+rm -f 04-Formatted/*reordered.tsv
