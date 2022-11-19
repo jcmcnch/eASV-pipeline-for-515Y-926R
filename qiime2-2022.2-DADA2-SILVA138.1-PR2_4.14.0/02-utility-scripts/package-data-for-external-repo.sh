@@ -41,12 +41,16 @@ cp 02-EUKs/15-exports/*all-18S*with-*tax.proportions.tsv data-export/18S/
 cp -r 02-PROKs/scripts/ data-export/16S
 cp -r 02-EUKs/scripts/ data-export/18S
 
-#zip up tsvs and fastas
+#zip up files to save space
 for item in `find data-export/ -name "*fasta"`; do
 	zip -m $item.zip $item
 done
 
 for item in `find data-export/ -name "*tsv"`; do
+        zip -m $item.zip $item
+done
+
+for item in `find data-export/ -name "*biom"`; do
         zip -m $item.zip $item
 done
 
