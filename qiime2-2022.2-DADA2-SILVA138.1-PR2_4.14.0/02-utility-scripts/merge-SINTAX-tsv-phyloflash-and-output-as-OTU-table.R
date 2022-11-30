@@ -3,6 +3,9 @@ suppressMessages(library(tidyverse))
 suppressMessages(library(phyloseq))
 suppressMessages(library(ggplot2))
 suppressMessages(library(optparse))
+suppressMessages(library(readr))
+suppressMessages(library(tidyr))
+
 
 # Arguments. Directly modified from Ken's script found here:
 # https://github.com/simonscmap/c-microbial-map
@@ -19,17 +22,10 @@ getArgs = function() {
       metavar = "character"
     ),
     make_option(
-      c("-m", "--inputMetadata"),
+      c("-o", "--OTUout"),
       default = "",
       type = "character",
-      help = "A TSV metadata table corresponding to sampleIDs found in the input tables",
-      metavar = "character"
-    ),
-    make_option(
-      c("-o", "--outOTUtable"),
-      default = file.path(getwd(), 'plots'),
-      type = "character",
-      help = "Output directory",
+      help = "Output OTU file name",
       metavar = "character"
     )
   )
@@ -66,26 +62,31 @@ importCleanSINTAXtsv <- function(inputTSV) {
 	return(phylo_object)
 }
 
+#Export function from https://gist.github.com/smdabdoub/f5451c654006426a70e22a13fc18b276
+
+write_biom_tsv <- function(ps, file, sep = "; ") {
+  phyloseq::otu_table(ps) %>%
+    as.data.frame() %>%
+    rownames_to_column("#OTU ID") %>%
+    left_join(phyloseq::tax_table(ps) %>%
+                as.data.frame() %>%
+                rownames_to_column("#OTU ID") %>%
+                tidyr::unite("taxonomy", !`#OTU ID`, sep = sep)) -> phyloseq_biom
+
+  write_tsv(phyloseq_biom, file = file)
+}
+
 #Main function definition
 
 main = function() {
 
+  #import data from bash arguments, combine
   opts = getArgs()
   inputTSV = unlist(strsplit(opts$inputTSV, ","))
   phyloList <- lapply(inputTSV, importCleanSINTAXtsv)
   phylo_object <- do.call(merge_phyloseq, phyloList)
-  por <- transform_sample_counts(phylo_object, function(x) x*100 / sum(x))
-  top30 <- names(sort(taxa_sums(por), decreasing=TRUE))[1:30]
-  por_top30 <- transform_sample_counts(por, function(OTU) OTU/sum(OTU))
-  por_top30 <- prune_taxa(top30, por_top30)
-
-  #inputMetadata <- read.delim(opts$inputMetadata, sep = "\t", header = TRUE)
-
-  p <- plot_bar(por_top30, fill="Family") +
-
-       scale_fill_manual(values = c("darkblue", "darkgoldenrod1", "darkseagreen", "darkorchid", "darkolivegreen1", "lightskyblue", "darkgreen", "deeppink", "khaki2", "firebrick", "brown1", "darkorange1", "cyan1", "royalblue4", "darksalmon", "dodgerblue3", "lightskyblue", "darkgoldenrod1", "darkseagreen", "darkorchid", "darkolivegreen1", "brown1", "darkorange1", "cyan1", "darkgrey", "darkblue", "darkgoldenrod1", "darkseagreen", "darkorchid", "darkolivegreen1", "lightskyblue", "darkgreen", "deeppink", "khaki2", "firebrick", "brown1", "darkorange1", "cyan1", "royalblue4", "darksalmon", "darkblue", "royalblue4", "dodgerblue3", "steelblue1", "lightskyblue", "darkseagreen", "darkgoldenrod1", "darkseagreen", "darkorchid", "darkolivegreen1", "brown1", "darkorange1", "cyan1", "darkgrey"))
-
-  ggsave(file="foo.jpg", width=10, height=8)
+  #por <- transform_sample_counts(phylo_object, function(x) x*100 / sum(x))
+  write_biom_tsv(phylo_object, opts$OTUout, sep = "; ")
 
 }
 
