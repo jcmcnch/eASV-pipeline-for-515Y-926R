@@ -22,7 +22,7 @@ for item in `ls 01-trimmed-$seqrun/*.R1.trimmed.fastq`
 	R1in=01-trimmed-$seqrun/$filestem.R1.trimmed.fastq
 	R2in=01-trimmed-$seqrun/$filestem.R2.trimmed.fastq
 
-	bbsplit.sh usequality=f qtrim=f minratio=0.30 minid=0.30 pairedonly=f threads=20 -Xmx100g \
+	echo bbsplit.sh usequality=f qtrim=f minratio=0.30 minid=0.30 pairedonly=f threads=20 -Xmx100g \
 	path=$bbsplitdb \
 	in=$R1in in2=$R2in basename=$filestem.trimmed.%_#.fastq \
 	2>&1 | tee -a logs/02-bbsplit-$seqrun/$filestem.bbsplit_log
@@ -38,8 +38,10 @@ done
 
 timestamp=`date +"%y%m%d-%H%M"`
 
-#hack to get overall eukfrac by soft-linking to 01-trimmed folder
-mkdir -p 01-trimmed ; for item in `ls $PWD/01-trimmed-*/*fastq` ; do ln -s $item $PWD/01-trimmed/ ; done
+#hack to get overall eukfrac by soft-linking everything to 00-fastq folder
+mkdir -p 02-PROKs/00-fastq 02-EUKs/00-fastq
+for item in `ls $PWD/02-PROKs-*/00-fastq/*` ; do ln -s $item $PWD/02-PROKs/00-fastq ; done
+for item in `ls $PWD/02-EUKs-*/00-fastq/*` ; do ln -s $item $PWD/02-EUKs/00-fastq ; done
 
 ./scripts/calc-EUK-fraction-per-sample.sh > $timestamp.$studyName.EUKfrac-per-sample-after-bbpsplit.tsv
 ./scripts/calc-EUK-fraction.sh > $timestamp.$studyName.EUKfrac-whole-dataset-after-bbpsplit.tsv
