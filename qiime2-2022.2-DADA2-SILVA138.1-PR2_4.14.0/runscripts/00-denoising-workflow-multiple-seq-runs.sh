@@ -2,23 +2,23 @@
 #Note: I would normally run these steps semi-manually to inspect outputs at each step, but they are provided here together for clarity
 #All scripts should be run from either the base directory (i.e. here) or the two subfolders created by the pipeline after splitting (i.e. "02-PROKs", and "02-EUKs")
 #Raw data needs to be put in a folder named "00-raw"
-#./scripts/00-run-cutadapt-multiple-seq-runs.sh
-#./scripts/01-sort-16S-18S-bbsplit-multiple-seq-runs.sh
+./scripts/00-run-cutadapt-multiple-seq-runs.sh
+./scripts/01-sort-16S-18S-bbsplit-multiple-seq-runs.sh
 #files have now been split into 16S and 18S pools, and can be denoised separately
 
-#for seqrun in `ls | grep 00-raw- | cut -f3 -d-`; do
+for seqrun in `ls | grep 00-raw- | cut -f3 -d-`; do
 
-#cp -r 02-PROKs/scripts 02-PROKs-$seqrun
-#cd 02-PROKs-$seqrun
-#./scripts/P00-create-manifest.sh
-#./scripts/P01-import.sh
-#./scripts/P02-visualize-quality_R1-R2.sh
-#./scripts/P03-DADA2.sh
+cp -r 02-PROKs/scripts 02-PROKs-$seqrun
+cd 02-PROKs-$seqrun
+./scripts/P00-create-manifest.sh
+./scripts/P01-import.sh
+./scripts/P02-visualize-quality_R1-R2.sh
+./scripts/P03-DADA2.sh
 #needed for merging script
-#./scripts/P04-export-DADA2-results.sh
-#cd ..
+./scripts/P04-export-DADA2-results.sh
+cd ..
 
-#done
+done
 
 source 515FY-926R.cfg
 conda activate $qiime2version
@@ -59,24 +59,24 @@ cd 02-PROKs
 #./scripts/P17-optional-merge-taxonomy.sh
 cd ..
 
-#for seqrun in `ls | grep 00-raw- | cut -f3 -d-`; do
+for seqrun in `ls | grep 00-raw- | cut -f3 -d-`; do
 
-#cp -r 02-EUKs/scripts 02-EUKs-$seqrun
-#cd 02-EUKs-$seqrun
+cp -r 02-EUKs/scripts 02-EUKs-$seqrun
+cd 02-EUKs-$seqrun
 #./scripts/E00-create-manifest-viz.sh
 #./scripts/E01-import.sh
 #./scripts/E02-visualize-quality_R1-R2.sh
-#./scripts/E03-bbduk-cut-reads.sh
-#./scripts/E04-fuse-EUKs-withoutNs.sh
-#./scripts/E05-create-manifest-concat.sh
-#./scripts/E06-import-concat.sh
-#./scripts/E07-visualize-quality-single-seqs.sh
+./scripts/E03-bbduk-cut-reads.sh
+./scripts/E04-fuse-EUKs-withoutNs.sh
+./scripts/E05-create-manifest-concat.sh
+./scripts/E06-import-concat.sh
+./scripts/E07-visualize-quality-single-seqs.sh
 #do not need trim length since using concatenated fwd+rev reads
-#./scripts/E08-DADA2.sh
-#./scripts/E09-export-DADA2-results.sh
-#cd ..
+./scripts/E08-DADA2.sh
+./scripts/E09-export-DADA2-results.sh
+cd ..
 
-#done
+done
 
 source 515FY-926R.cfg
 conda activate $qiime2version
