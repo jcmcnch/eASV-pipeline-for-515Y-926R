@@ -22,7 +22,7 @@ for item in `ls 01-trimmed-$seqrun/*.R1.trimmed.fastq`
 	R1in=01-trimmed-$seqrun/$filestem.R1.trimmed.fastq
 	R2in=01-trimmed-$seqrun/$filestem.R2.trimmed.fastq
 
-	echo bbsplit.sh usequality=f qtrim=f minratio=0.30 minid=0.30 pairedonly=f threads=20 -Xmx100g \
+	bbsplit.sh usequality=f qtrim=f minratio=0.30 minid=0.30 pairedonly=f threads=20 -Xmx100g \
 	path=$bbsplitdb \
 	in=$R1in in2=$R2in basename=$filestem.trimmed.%_#.fastq \
 	2>&1 | tee -a logs/02-bbsplit-$seqrun/$filestem.bbsplit_log
