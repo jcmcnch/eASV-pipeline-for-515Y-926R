@@ -10,3 +10,9 @@ if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 BiocManager::install(version = "3.15")
 BiocManager::install("phyloseq")
+
+#install rstudio
+mamba install -c conda-forge rstudio-desktop 
+mamba install -c r r-codetools 
+mamba install -c conda-forge r-rcpp
+mamba install -c conda-forge r-rcurl
