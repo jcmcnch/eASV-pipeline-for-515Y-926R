@@ -1,8 +1,8 @@
-#NOTES for phyloflash
+#NOTES for phyloseq
 
 #set up a conda env as follows
-conda create --name phyloflash-env
-conda activate phyloflash-env
+conda create --name phyloseq-env
+conda activate phyloseq-env
 mamba install r-base r-tidyverse
 
 #entered interactive R session
