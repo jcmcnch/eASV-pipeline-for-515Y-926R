@@ -27,7 +27,7 @@ qiime feature-classifier classify-sklearn \
 qiime feature-classifier classify-sklearn \
   --i-classifier $SILVAdb \
   --i-reads 08-DADA2d/representative_sequences.qza \
-  --p-confidence -1 \
+  --p-confidence "disable" \
   --o-classification 19-reclassified/SILVA/SILVA-All-18S-seqs-minus1-p-confidence-classification.qza
 
 #############################
@@ -53,7 +53,7 @@ qiime feature-classifier classify-sklearn \
 qiime feature-classifier classify-sklearn \
   --i-classifier $PR2db \
   --i-reads 08-DADA2d/representative_sequences.qza \
-  --p-confidence -1 \
+  --p-confidence "disable" \
   --o-classification 19-reclassified/PR2/PR2-All-18S-seqs-minus1-p-confidence-classification.qza
 
 conda deactivate
