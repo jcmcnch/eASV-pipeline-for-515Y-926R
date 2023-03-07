@@ -22,7 +22,7 @@ qiime feature-classifier classify-sklearn \
         --p-confidence 0.3 \
         --o-classification 14-reclassified/non-chloroplasts/SILVA-non-chloroplast-point3-p-confidence-classification.qza
 
-#Classify all the non-chloroplast 16S sequences with SILVA and do not set a confidence disable the confidence calculation [-1]
+#Classify all the non-chloroplast 16S sequences with SILVA and do not set a confidence disable the confidence calculation
 
 qiime feature-classifier classify-sklearn \
         --i-classifier $SILVAdb \
