@@ -48,7 +48,7 @@ qiime feature-classifier classify-sklearn \
         --p-confidence 0.3 \
         --o-classification 14-reclassified/chloroplasts/PR2-chloroplast-point3-p-confidence-classification.qza
 
-#Classify all the chloroplast 16S sequences with PR2 and do not set a confidence disable the confidence calculation [-1]
+#Classify all the chloroplast 16S sequences with PR2 and do not set a confidence disable the confidence calculation
 
 qiime feature-classifier classify-sklearn \
         --i-classifier $PR2db \
