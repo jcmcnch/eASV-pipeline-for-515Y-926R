@@ -28,7 +28,7 @@ qiime feature-classifier classify-sklearn \
         --i-classifier $SILVAdb \
         --i-reads 09-subsetting/split-seqs/exclude_o__Chloroplast_subset_filtered_seqs.qza \
         --p-confidence "disable" \
-        --o-classification 14-reclassified/non-chloroplasts/SILVA-non-chloroplast-minus1-p-confidence-classification.qza
+        --o-classification 14-reclassified/non-chloroplasts/SILVA-non-chloroplast-disable-p-confidence-classification.qza
 
 ########################
 
@@ -54,6 +54,6 @@ qiime feature-classifier classify-sklearn \
         --i-classifier $PR2db \
         --i-reads 09-subsetting/split-seqs/include_o__Chloroplast_subset_filtered_seqs.qza \
         --p-confidence "disable" \
-        --o-classification 14-reclassified/chloroplasts/PR2-chloroplast-minus1-p-confidence-classification.qza
+        --o-classification 14-reclassified/chloroplasts/PR2-chloroplast-disable-p-confidence-classification.qza
  
 conda deactivate

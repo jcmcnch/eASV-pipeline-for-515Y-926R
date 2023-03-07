@@ -16,7 +16,7 @@ for item in `ls 20-exports/04-converted-biom-to-tsv/PR2/*point5-p-confidence-con
 for item in `ls 20-exports/04-converted-biom-to-tsv/PR2/*point3-p-confidence-converted-biom.proportions.tsv`; do confidence=`basename $item | cut -d\- -f1,5` &&  cut -f2 $item | sed "1s/taxonomy/taxonomy-$confidence/" | paste 22-taxonomy-lookup-table/All-18S-Lookup-Table.tsv - | sponge 22-taxonomy-lookup-table/All-18S-Lookup-Table.tsv ; done
 
 
-for item in `ls 20-exports/04-converted-biom-to-tsv/PR2/*minus1-p-confidence-converted-biom.proportions.tsv`; do confidence=`basename $item | cut -d\- -f1,5` &&  cut -f2 $item | sed "1s/taxonomy/taxonomy-$confidence/" | paste 22-taxonomy-lookup-table/All-18S-Lookup-Table.tsv - | sponge 22-taxonomy-lookup-table/All-18S-Lookup-Table.tsv ; done
+for item in `ls 20-exports/04-converted-biom-to-tsv/PR2/*disable-p-confidence-converted-biom.proportions.tsv`; do confidence=`basename $item | cut -d\- -f1,5` &&  cut -f2 $item | sed "1s/taxonomy/taxonomy-$confidence/" | paste 22-taxonomy-lookup-table/All-18S-Lookup-Table.tsv - | sponge 22-taxonomy-lookup-table/All-18S-Lookup-Table.tsv ; done
 
 
 #Part 3: Add the taxonomy from all the other SILVA proportion TSV files, including the default. 
@@ -28,7 +28,7 @@ for item in `ls 20-exports/04-converted-biom-to-tsv/SILVA/*point5-p-confidence-c
 
 for item in `ls 20-exports/04-converted-biom-to-tsv/SILVA/*point3-p-confidence-converted-biom.proportions.tsv`; do confidence=`basename $item | cut -d\- -f1,5` &&  cut -f2 $item | sed "1s/taxonomy/taxonomy-$confidence/" | paste 22-taxonomy-lookup-table/All-18S-Lookup-Table.tsv - | sponge 22-taxonomy-lookup-table/All-18S-Lookup-Table.tsv ; done
 
-for item in `ls 20-exports/04-converted-biom-to-tsv/SILVA/*minus1-p-confidence-converted-biom.proportions.tsv`; do confidence=`basename $item | cut -d\- -f1,5` &&  cut -f2 $item | sed "1s/taxonomy/taxonomy-$confidence/" | paste 22-taxonomy-lookup-table/All-18S-Lookup-Table.tsv - | sponge 22-taxonomy-lookup-table/All-18S-Lookup-Table.tsv ; done
+for item in `ls 20-exports/04-converted-biom-to-tsv/SILVA/*disable-p-confidence-converted-biom.proportions.tsv`; do confidence=`basename $item | cut -d\- -f1,5` &&  cut -f2 $item | sed "1s/taxonomy/taxonomy-$confidence/" | paste 22-taxonomy-lookup-table/All-18S-Lookup-Table.tsv - | sponge 22-taxonomy-lookup-table/All-18S-Lookup-Table.tsv ; done
 
 #Part 4: Add the remaining columns with sample information. 
 

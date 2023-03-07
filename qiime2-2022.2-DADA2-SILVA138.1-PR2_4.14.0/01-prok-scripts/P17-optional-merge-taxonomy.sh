@@ -15,7 +15,7 @@ for item in `ls 15-exports/04-converted-biom-to-tsv/chloroplasts/*point5-p-confi
 
 for item in `ls 15-exports/04-converted-biom-to-tsv/chloroplasts/*point3-p-confidence-converted-biom.proportions.tsv`; do confidence=`basename $item | cut -d\- -f1,3` &&  cut -f2 $item | sed "1s/taxonomy/taxonomy-$confidence/" | paste 17-taxonomy-lookup-table/chloroplasts/Chloroplasts-Lookup-Table.tsv - | sponge 17-taxonomy-lookup-table/chloroplasts/Chloroplasts-Lookup-Table.tsv ; done
 
-for item in `ls 15-exports/04-converted-biom-to-tsv/chloroplasts/*minus1-p-confidence-converted-biom.proportions.tsv`; do confidence=`basename $item | cut -d\- -f1,3` &&  cut -f2 $item | sed "1s/taxonomy/taxonomy-$confidence/" | paste 17-taxonomy-lookup-table/chloroplasts/Chloroplasts-Lookup-Table.tsv - | sponge 17-taxonomy-lookup-table/chloroplasts/Chloroplasts-Lookup-Table.tsv ; done
+for item in `ls 15-exports/04-converted-biom-to-tsv/chloroplasts/*disable-p-confidence-converted-biom.proportions.tsv`; do confidence=`basename $item | cut -d\- -f1,3` &&  cut -f2 $item | sed "1s/taxonomy/taxonomy-$confidence/" | paste 17-taxonomy-lookup-table/chloroplasts/Chloroplasts-Lookup-Table.tsv - | sponge 17-taxonomy-lookup-table/chloroplasts/Chloroplasts-Lookup-Table.tsv ; done
 
 #Part 3: Add the remaining columns with sample information. 
 
@@ -32,7 +32,7 @@ for item in `ls 15-exports/04-converted-biom-to-tsv/non-chloroplasts/*point5-p-c
 
 for item in `ls 15-exports/04-converted-biom-to-tsv/non-chloroplasts/*point3-p-confidence-converted-biom.proportions.tsv` ; do confidence=`basename $item | cut -d\- -f1,4` &&  cut -f2 $item | sed "1s/taxonomy/taxonomy-$confidence/" | paste 17-taxonomy-lookup-table/non-chloroplasts/Non-Chloroplasts-Lookup-Table.tsv - | sponge 17-taxonomy-lookup-table/non-chloroplasts/Non-Chloroplasts-Lookup-Table.tsv ; done
 
-for item in `ls 15-exports/04-converted-biom-to-tsv/non-chloroplasts/*minus1-p-confidence-converted-biom.proportions.tsv` ; do confidence=`basename $item | cut -d\- -f1,4` &&  cut -f2 $item | sed "1s/taxonomy/taxonomy-$confidence/" | paste 17-taxonomy-lookup-table/non-chloroplasts/Non-Chloroplasts-Lookup-Table.tsv - | sponge 17-taxonomy-lookup-table/non-chloroplasts/Non-Chloroplasts-Lookup-Table.tsv ; done
+for item in `ls 15-exports/04-converted-biom-to-tsv/non-chloroplasts/*disable-p-confidence-converted-biom.proportions.tsv` ; do confidence=`basename $item | cut -d\- -f1,4` &&  cut -f2 $item | sed "1s/taxonomy/taxonomy-$confidence/" | paste 17-taxonomy-lookup-table/non-chloroplasts/Non-Chloroplasts-Lookup-Table.tsv - | sponge 17-taxonomy-lookup-table/non-chloroplasts/Non-Chloroplasts-Lookup-Table.tsv ; done
 
 #Part 3: Add the remaining columns with sample information.
 cut -f3- 10-exports/exclude_o__Chloroplast_filtered_table.with-tax.proportions.tsv | paste 17-taxonomy-lookup-table/non-chloroplasts/Non-Chloroplasts-Lookup-Table.tsv - | sponge 17-taxonomy-lookup-table/non-chloroplasts/Non-Chloroplasts-Lookup-Table.tsv
