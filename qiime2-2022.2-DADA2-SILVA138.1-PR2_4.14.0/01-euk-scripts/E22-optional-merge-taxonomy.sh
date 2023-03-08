@@ -6,7 +6,7 @@ mkdir -p 22-taxonomy-lookup-table
 
 #Part 1: Cut the first two columns (eASV ID and default (0.7) taxonomy) from the transformed to proportions default PR2 .tsv file.
 
-PR2export=`ls 15-exports/*all-18S-seqs.with-PR2-tax.tsv`
+PR2export=`ls 15-exports/*all-18S-seqs.with-PR2-tax.proportions.tsv`
 PR2output=`basename $PR2export | sed 's/.tsv/.multiple-taxonomy-confidences.tsv/'`
 
 tail -n+2 $PR2export | cut -f1,2 | sed '1s/taxonomy/taxonomy-PR2-default-point7/' > 22-taxonomy-lookup-table/$PR2output
@@ -23,7 +23,7 @@ for item in `ls 20-exports/04-converted-biom-to-tsv/PR2/*disable-p-confidence-co
 
 #Part 3: Add the taxonomy from all the other SILVA proportion TSV files, including the default. 
 
-SILVAexport=`ls 15-exports/*all-18S-seqs.with-SILVA-tax.tsv`
+SILVAexport=`ls 15-exports/*all-18S-seqs.with-SILVA-tax.proportions.tsv`
 SILVAoutput=`basename $SILVAexport | sed 's/.tsv/.multiple-taxonomy-confidences.tsv/'`
 
 tail -n+2 $SILVAexport | cut -f1,2 | sed '1s/taxonomy/taxonomy-SILVA-default-point7/' > 22-taxonomy-lookup-table/$SILVAoutput
