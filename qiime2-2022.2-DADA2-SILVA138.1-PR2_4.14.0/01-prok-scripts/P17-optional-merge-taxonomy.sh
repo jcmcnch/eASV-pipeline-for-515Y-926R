@@ -31,7 +31,7 @@ mv 17-taxonomy-lookup-table/chloroplasts/Chloroplasts-Lookup-Table.tsv 17-taxono
 
 #Part 1:  Cut the first column two columns (eASV ID and default (0.7) taxonomy) from the transformed to proportions SILVA .tsv file.
 
-nonchloroplasts=`ls 10-exports/*exclude_o__Chloroplast_filtered_table.with-tax.proportions.tsv`
+nonchloroplasts=`ls 10-exports/*.exclude_o__Chloroplast_filtered_table.with-tax.proportions.tsv`
 nonChloroplastOutput=`basename $nonchloroplasts | sed 's/.tsv/.multiple-taxonomy-confidences.tsv/'`
 
 cut -f1,2 $nonchloroplasts | sed '1s/taxonomy/taxonomy-SILVA-default-point7/' > 17-taxonomy-lookup-table/non-chloroplasts/Non-Chloroplasts-Lookup-Table.tsv
