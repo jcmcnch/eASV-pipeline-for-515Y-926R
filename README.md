@@ -2,11 +2,16 @@
 
 ---
 
+This is a collection of bash scripts to automate the analysis of mixed 16S/18S amplicon sequences using `bbtools`, `qiime2`, `DADA2`, and other associated software. They are designed to make the in silico workflow for the 515Y/926R primer set easier, reproducible, and more accessible.
+
+The main difference between this pipeline and standard workflows is that it contains an initial 16S/18S splitting step, which is accomplished using bbsplit against curated 16S / 18S databases derived from SILVA and PR2. This results in two "pools" of data from the same initial raw reads(16S and 18S rRNA) that are then denoised separately, and later merged if desired. The pipeline will also allow you to generate `qiime2` plots, obtain biologically-relevant classifications for your metabarcodes using the latest iterations of the SILVA/PR2 databases. To read more about the primers and this pipeline, please check out the [Preamble](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#1-preamble) which explains in more detail why this workflow was created.
+
+---
+
 **Latest News (2023-03-21):**
 
 - The new version of the pipeline and associated helper scripts have been fully tested.
 - There is now a workflow for analyzing multiple sequencing runs, which allows you to denoise several sequencing runs separately and then merge samples later.
-are mostly working, so feel free to test them out as I refine things
 - Tutorial video in progress.
 
 ---
@@ -125,6 +130,13 @@ I think a visual summary of the pipeline is always helpful. So here's a diagram:
 
 ![Pipeline structure](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R/blob/master/visualizations/qiime2-pipeline-revised.svg)
 
+
+... To be continued ...
+
+---
+
+### Previous updates / notes:
+
 ***Update April 2021:
 Pipeline now uses latest versions of SILVA138 and PR2 (which includes plastid sequences that were previously found in a separate database known as phytoRef). For those running the pipeline on kraken, just pull down the new scripts. For those running the pipeline elsewhere, you can find the necessary classifiers [here](https://osf.io/z8arq/). Raw artifacts are also provided for others in case you wish to slice these databases to different primer regions.***
 
@@ -137,9 +149,6 @@ One of the options of the qiime feature-classifier classify-sklearn step is to d
 
 ***UPDATE March 2019 - New functionality has been added for automatically slicing and dicing eASV tables according to various pre-set categories (e.g. 16S sequences without chloroplasts or mitochondria, 18S sequences with Metazoan sequences removed; see below for exact categories), and automatically making qiime2 barplots for each of these categories. Also, the repository was cleaned up so that the previous (confusing) way of cloning different branches is no longer used - now you just have clone the master branch and you will find all 3 pipeline variants stored in separate folders.***
 
-This is a collection of scripts for analyzing mixed 16S/18S amplicon sequences using bbtools, qiime2, DADA2, Deblur, biom, BLAST, and other tools. They are wrappers of a wrapper (qiime2), and are designed to make the in silico workflow for the 515Y/926R primer set easier, reproducible, and more accessible.
-
-The main difference between this pipeline and standard workflows is that it contains an initial 16S/18S splitting step, which is accomplished using bbsplit against curated 16S / 18S databases derived from SILVA and PR2.
 
 *While DADA2 is superior to Deblur in terms of sequence recovery and accurate recovery of the natural community (especially for our Eukaryotic amplicons - ~80% DADA2 vs ~20% Deblur), we have noticed that it creates spurious eASVs on occasion (a spurious eASV is defined here as an eASV with 1 mismatch to the reference mock community sequence that cannot be accounted for by sample bleedthrough). This seems to be either due to noisy data (e.g. 2x300 PE reads) or due to something that trips up the error model (i.e. it happened once when we had in extra mocks from the same run but different lane that had more reads on average than the first lane). For us, this isn't necessarily a problem since we use the mocks as a way to validate our results, and we can tweak parameters to avoid these potential artifacts. But for those who don't have access to the mocks, or those who are working with data downloaded from the SRA, then it will be easier to use Deblur. HOWEVER, I've recently come across some evidence that deblur may be removing closely-related things and thus potentially distorting the quantitative nature of the amplicon sequences. More to come on this, but at this point if you must exclude all false positives then deblur seems the best choice - whereas if you're concerned about false negatives and making sure your data is as quantitatively accurate as possible, DADA2 seems to be the way to go.
 
