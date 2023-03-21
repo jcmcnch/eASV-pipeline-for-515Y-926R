@@ -4,7 +4,11 @@
 
 This is a collection of bash scripts to automate the analysis of mixed 16S/18S amplicon sequences using `bbtools`, `qiime2`, `DADA2`, and other associated software. They are designed to make the in silico workflow for the 515Y/926R primer set easier, reproducible, and more accessible.
 
-The main difference between this pipeline and standard workflows is that it contains an initial 16S/18S splitting step, which is accomplished using bbsplit against curated 16S / 18S databases derived from SILVA and PR2. This results in two "pools" of data (16S and 18S rRNA) that are then denoised separately, and later merged if desired. The pipeline will also allow you to generate `qiime2` plots, obtain biologically-relevant classifications for your metabarcodes using the latest iterations of the SILVA/PR2 databases. To read more about the primers and this pipeline, please check out the [Preamble](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#1-preamble) which explains in more detail why this workflow was created.
+The main difference between this pipeline and standard workflows is that it contains an initial 16S/18S splitting step, which is accomplished using bbsplit against curated 16S / 18S databases derived from SILVA and PR2. This results in two "pools" of data (16S and 18S rRNA) that are then denoised separately, and later merged if desired. The pipeline will also allow you to generate `qiime2` plots, obtain biologically-relevant classifications for your metabarcodes using the latest iterations of the SILVA/PR2 databases. 
+
+- If you just need to set up and run the pipeline, check out the [Quickstart](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#0-quickstart)
+
+- To read more about the primers and why this workflow was created, check out the [Preamble](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#1-preamble)
 
 ---
 
