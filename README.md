@@ -99,7 +99,7 @@ vi 515FY-926R.cfg
 
 ```
 
-**To denoise multiple sequencing runs together, simply create multiple 00-raw folders with a dash, i.e. `00-raw-01`, `00-raw-02`, etc.** 
+**To denoise multiple sequencing runs together, simply create multiple `00-raw` folders with numbers after a dash, i.e. `00-raw-01`, `00-raw-02`, etc. The workflow script will iterate over these folders and merge data after denoising is run in parallel.**
 
 6. Run one of the workflow scripts:
 
