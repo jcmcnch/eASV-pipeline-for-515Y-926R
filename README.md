@@ -78,6 +78,44 @@ cd eASV-pipeline-for-515Y-926R
 ./setup-scripts/03-make-bbsplit-db.sh
 ```
 
+4. Create a new template analysis directory with a custom name, using provided setup script:
+
+```
+#input your study name (no spaces) after the script
+./setup-scripts/04-setup-new-analysis-directory.sh tutorial
+```
+
+5. Enter into that directory, setup configuration file, then add raw reads.
+
+```
+#enter analysis dir
+cd ~/515FY-926R-pipeline/tutorial
+
+#add your raw files to 00-raw folder, for example by softlinking from another folder:
+ln -s /home/jesse/demultiplexed/tutorial-data/*fastq.gz $PWD/00-raw #provide full (not relative) paths if softlinking
+
+#edit config file, using your preferred text editor, making sure to at least change the file endings to whatever format your raw data is in
+vi 515FY-926R.cfg
+
+```
+
+**To denoise multiple sequencing runs together, simply create multiple 00-raw folders with a dash, i.e. `00-raw-01`, `00-raw-02`, etc.** 
+
+6. Run one of the workflow scripts:
+
+```
+#run this one if all your data are in one sequencing run
+./runscripts/00-denoising-workflow.sh
+
+#run this one if you have data that need to be merged from multiple sequencing runs
+./runscripts/00-denoising-workflow-multiple-seq-runs.sh
+```
+
+7. Optionally merge 16S and 18S data.
+
+8. Optionally run plotting / other scripts.
+
+
 ## 1. Preamble
 
 Metabarcoding using SSU rRNA as a marker gene is a powerful technique for profiling biological communities. My (admittedly subjective) impression is that metabarcoding studies are separated into roughly three different camps:
