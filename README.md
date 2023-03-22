@@ -113,7 +113,9 @@ vi 515FY-926R.cfg
 
 7. Optionally merge 16S and 18S data.
 
-8. Optionally run plotting / other scripts.
+8. Optionally run plotting / other scripts after inputting your metadata in `sample-metadata.tsv`.
+
+9. Optionally export data and/or scripts for upload to an external repository such as [The Open Science Framework](https://osf.io/).
 
 
 ## 1. Preamble
