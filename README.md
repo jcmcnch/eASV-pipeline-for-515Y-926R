@@ -14,7 +14,7 @@ The main difference between this pipeline and standard workflows is that it cont
 
 ** Latest News (2023-09-04): **
 
-- We have noticed an issue where in rare cases our artificially-concatenated eukaryotic 18S ASVs are less than the sum of the forward and reverse trim lengths, indicating possible production of spurious ASVs due to poor quallity sequences. If you are using this pipeline to generate 18S ASVs from the Parada primers, we recommend you check to make sure your lengths are all the same as follows:
+- We have noticed an issue where in rare cases our artificially-concatenated eukaryotic 18S ASVs are less than the sum of the forward and reverse trim lengths, indicating production of spurious ASVs due to poor quality sequences that get truncated. If you are using this pipeline to generate 18S ASVs from the Parada primers, we recommend you check to make sure your lengths are all the same as follows:
 
 ```
 conda activate bbmap-env
@@ -37,7 +37,7 @@ The output should look like this:
 400     9444    100.000%        9444    100.000%        3777600 100.000%        3777600 100.000%
 ```
 
-In this case, all 18S ASVs are 400bp which matches the fwd/rev trim lengths specified (220/180), so there is no issue. *NB: These trim lengths (220/180) have worked well for us, and are default in the configuration of the newer version of the pipeline. Unless you have a strong reason to change them, we recommend sticking with these trim lengths.*
+In this case, all 18S ASVs are 400bp which matches the sum of the fwd/rev trim lengths specified (220/180), so there is no issue. *NB: These trim lengths (220/180) have worked well for us, and are default in the configuration of the newer version of the pipeline. Unless you have a strong reason to change them, we recommend sticking with these trim lengths.*
 
 According to advice from Yi-Chun Yeh, I have also added an additional parameter to the 18S denoising step (`--p-trunc-q 0`), which may prevent the production of some of these spurious ASVs.
 
