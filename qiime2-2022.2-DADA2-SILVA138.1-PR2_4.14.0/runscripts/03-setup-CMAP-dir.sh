@@ -1,6 +1,8 @@
 #!/bin/bash -i
 
-mkdir -p 05-P16N-S_CMAP
+source 515FY-926R.cfg
+
+mkdir -p 05-${studyName}_CMAP
 cd 05-P16N-S_CMAP
 git clone https://github.com/jcmcnch/OTUandMetadata2CMAP.git
 git clone https://github.com/simonscmap/c-microbial-map.git
