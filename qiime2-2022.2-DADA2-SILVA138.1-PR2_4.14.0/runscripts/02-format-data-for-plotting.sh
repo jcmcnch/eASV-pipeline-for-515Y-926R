@@ -9,8 +9,8 @@ filestem=`basename $mergedNorm _normalized_sequence_counts.tsv`
 mergedNormLastColumn=207
 mergedPropLastColumn=207
 #to remove blanks, controls, station 02 that lacks any metadata
-mergedNormFirstSample=8
-mergedPropFirstSample=8
+mergedNormFirstSample=2
+mergedPropFirstSample=2
 #calculate second last
 mergedNormSecondLast=$((mergedNormLastColumn-1))
 mergedPropSecondLast=$((mergedPropLastColumn-1))
