@@ -13,7 +13,7 @@ cd 02-PROKs
 #needed for merging script
 ./scripts/P04-export-DADA2-results.sh
 ./scripts/P05-classify-eASVs.sh
-./scripts/P06-make-sample-metadata-file.py
+./scripts/P06-make-sample-metadata-file.sh
 ./scripts/P07-make-barplot.sh
 #did not cluster this time, seemed to confuse collaborators and adds too much data to CMAP
 #./scripts/P08-optionally-cluster-eASVs.sh
@@ -43,7 +43,7 @@ cd ../02-EUKs
 ./scripts/E09-export-DADA2-results.sh
 ./scripts/E10-classify-seqs.sh
 #see sample-metadata files in this directory
-./scripts/E11-make-sample-metadata-file.py
+./scripts/E11-make-sample-metadata-file.sh
 ./scripts/E12-make-barplot.sh
 #./scripts/E13-optionally-cluster-eASVs.sh
 ./scripts/E14-split-metazoans-PR2-alternative-class.sh
