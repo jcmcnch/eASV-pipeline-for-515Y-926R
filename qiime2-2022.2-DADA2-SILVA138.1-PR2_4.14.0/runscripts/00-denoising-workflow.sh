@@ -22,7 +22,7 @@ cd 02-PROKs
 ./scripts/P10-generate-tsv-biom-tables-with-taxonomy.sh
 #following step optional, gives you proportional data to play with
 ./scripts/P11-transform-tsv-to-proportions.sh
-#./scripts/P12a-remake-barplot-with-PR2-taxonomy.sh
+./scripts/P12a-remake-barplot-with-PR2-taxonomy.sh
 #./scripts/P12-make-subsetted-barplots.sh
 #./scripts/P13-exclude-samples-from-barplots.sh
 #./scripts/P14-optional-reclassify-multiple-p-confidence.sh
@@ -43,8 +43,8 @@ cd ../02-EUKs
 ./scripts/E09-export-DADA2-results.sh
 ./scripts/E10-classify-seqs.sh
 #see sample-metadata files in this directory
-#./scripts/E11-make-sample-metadata-file.py
-#./scripts/E12-make-barplot.sh
+./scripts/E11-make-sample-metadata-file.py
+./scripts/E12-make-barplot.sh
 #./scripts/E13-optionally-cluster-eASVs.sh
 ./scripts/E14-split-metazoans-PR2-alternative-class.sh
 ./scripts/E15-generate-tsv-biom-tables-with-taxonomy.sh
