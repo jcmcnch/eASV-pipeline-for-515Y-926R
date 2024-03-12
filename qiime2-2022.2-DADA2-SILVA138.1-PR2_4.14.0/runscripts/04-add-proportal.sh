@@ -3,7 +3,7 @@
 #Automated script for adding Proportal classifications to an ASV table
 
 #clone into external repo
-git clone git@github.com:jcmcnch/ProPortal-ASV-Annotation.git
+git clone https://github.com/jcmcnch/ProPortal-ASV-Annotation.git 
 mkdir -p ProPortal-intermediates
 
 #get ASV table names
