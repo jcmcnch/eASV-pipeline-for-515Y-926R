@@ -2,7 +2,7 @@
 
 source 515FY-926R.cfg
 timestamp=`date +"%y%m%d-%H%M"`
-outDir=$HOME/515-926R-code-exports/${timestamp}_${studyName}_code-export
+outDir=$HOME/515Y-926R-code-exports/${timestamp}_${studyName}_code-export
 
 mkdir -p  $outDir/02-EUKs/ $outDir/02-PROKs
 cp -r *cfg runscripts scripts $outDir/

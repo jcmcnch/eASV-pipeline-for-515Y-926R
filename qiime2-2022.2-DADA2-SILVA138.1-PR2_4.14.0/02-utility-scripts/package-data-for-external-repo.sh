@@ -2,7 +2,7 @@
 
 source 515FY-926R.cfg
 timestamp=`date +"%y%m%d-%H%M"`
-outDir=$HOME/515-926R-data-exports/${timestamp}_${studyName}_data-export
+outDir=$HOME/515Y-926R-data-exports/${timestamp}_${studyName}_data-export
 
 mkdir -p $outDir/eukfrac $outDir/16S/subsetted-ASV-tables $outDir/18S/subsetted-ASV-tables $outDir/merged $outDir/merged-qcd
 cp 03-Merged/* $outDir/merged
