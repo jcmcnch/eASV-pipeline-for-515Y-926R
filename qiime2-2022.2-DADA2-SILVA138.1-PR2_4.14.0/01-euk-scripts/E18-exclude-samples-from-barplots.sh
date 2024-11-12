@@ -13,6 +13,8 @@ mkdir -p 18-customized-barplots/subsetted-tables/
 source ../515FY-926R.cfg
 conda activate $qiime2version 
 
+timestamp=`date +"%y%m%d-%H%M"`
+
 #Use qiime feature-table filter-samples to modify the feature tables to include only the samples-to-keep (STK) 
 for STK in `ls samples-to-keep*`; do
 
@@ -93,5 +95,16 @@ for item in `ls 18-customized-barplots/*/visualization.qzv`; do
 
 done
 
+for item in 18-customized-barplots/*qzv ; do
+
+        mv $item 18-customized-barplots/$timestamp.$studyName.18S.`basename $item`
+
+done
+
+for item in 18-customized-barplots/subsetted-tables/*qza ; do
+
+        mv $item 18-customized-barplots/subsetted-tables/$timestamp.$studyName.18S.`basename $item`
+
+done
 
 conda deactivate
