@@ -8,6 +8,11 @@ else
         exit 0
 fi
 
+source ../515FY-926R.cfg
+conda activate $qiime2version
+
+timestamp=`date +"%y%m%d-%H%M"`
+
 mkdir -p 13-customized-barplots/subsetted-tables/
 
 source ../515FY-926R.cfg
@@ -46,5 +51,18 @@ for item in `ls 13-customized-barplots/*/visualization.qzv`; do
   rmdir `dirname $item`
 
 done
+
+for item in 13-customized-barplots/*qzv ; do
+
+        mv $item 13-customized-barplots/$timestamp.$studyName.16S.`basename $item`
+
+done
+
+for item in 13-customized-barplots/subsetted-tables/*qza ; do
+
+        mv $item 13-customized-barplots/subsetted-tables/$timestamp.$studyName.16S.`basename $item`
+
+done
+
 
 conda deactivate
