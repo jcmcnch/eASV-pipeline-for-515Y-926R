@@ -10,6 +10,8 @@ The main difference between this pipeline and standard workflows is that it cont
 
 - To read more about the primers and why this workflow was created, check out the [Preamble](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#1-preamble)
 
+
+
 ---
 
 ** Latest News (2023-09-04): **
@@ -258,3 +260,20 @@ One of the options of the qiime feature-classifier classify-sklearn step is to d
 -18S sequences with Metazoa subtracted according to SILVA classifications
 
 -18S sequences with Metazoa subtracted according to PR2 classifications
+
+## 3. Data / Code Archiving
+
+This pipeline generates *a lot* of output files that can be useful for later visualization / inspection. Because the organization of folders tracks the bioinformatic steps, it can be somewhat confusing for someone who didn't design the pipeline to know where to find stuff. For example, maybe you want to find:
+
+- 16S or 18S ASV sequences to do some BLASTing
+- The statistics of denoising
+- Some of those nice *qiime2* visualizations to share with collaborators
+
+In addition, for publication review you'll probably want to archive:
+
+- Your config files, which would include parameters such as trim length
+- All the bash scripts used in your iteration of this pipeline which might include modifications specific to your workflow
+
+To simplify the collection and organization of these files, I've put together a couple of bash scripts that will automatically do this for you. It's pretty simple:
+
+1. Go into
