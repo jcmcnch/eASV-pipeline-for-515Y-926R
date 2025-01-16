@@ -21,6 +21,8 @@ The main difference between this pipeline and standard workflows is that it cont
 2. [pipeline architecture](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#2-pipeline-architecture)
 3. [data and code archiving](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#3-data--code-archiving)
 
+Note: *hyperlinks seem to be broken on my browser, can't figure out why*
+
 ---
 
 ** Latest News (2023-09-04): **
@@ -279,4 +281,20 @@ In addition, for publication review you'll probably want to archive:
 
 To simplify the collection and organization of these files, I've put together a couple of bash scripts that will automatically do this for you. It's pretty simple:
 
-1. Go into
+1. Go into your base analysis directory (i.e. where your `00-raw` folder is).
+2. Run the following 2 bash scripts, as follows:
+```
+./package-data-for-external-repo.sh
+#The above script will automatically zip all the files up in your output directory. This can be useful if you're on a system with low hard drive space but can be annoying since you have to unzip everything to view it. You can disable the automatic zipping by running it as follows:
+./package-data-for-external-repo.sh nozip
+./package-code-for-external-repo.sh
+```
+3. This will create 2 output directories `~/515Y-926R-data-exports` and `~/515Y-926R-code-exports/`. These folders will contain a subdirectory for each study (labelled with a timestamp and with a filename from your studyName parameter in your config file).
+4. These folders can then be zipped up and uploaded to OSF, Zenodo, etc to ensure the exact parameters, scripts and conda envs as well as ASV tables, fasta files, etc are recorded for posterity. 
+
+To zip, you can do something like this:
+
+```
+#Note, if this pipeline is still in use in 2030, change 2* to 3*
+for item in 2* ; do zip -r $item.zip $item ; done
+```
