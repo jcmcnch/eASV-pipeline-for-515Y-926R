@@ -16,10 +16,10 @@ The main difference between this pipeline and standard workflows is that it cont
 
 **Table of contents:**
 
-0. [quickStart](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#0-quickstart-and-reproducibility)
-1. [Preamble](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#1-preamble)
-2. [Pipeline Architecture](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#2-pipeline-architecture)
-3. [Data / Code Archiving](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#3-data--code-archiving)
+0. [quickstart](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#0-quickstart-and-reproducibility)
+1. [preamble](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#1-preamble)
+2. [pipeline architecture](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#2-pipeline-architecture)
+3. [data and code archiving](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#3-data--code-archiving)
 
 ---
 
