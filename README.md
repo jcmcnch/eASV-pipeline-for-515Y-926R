@@ -6,7 +6,7 @@ This is a collection of bash scripts to automate the analysis of mixed 16S/18S a
 
 The main difference between this pipeline and standard workflows is that it contains an initial 16S/18S splitting step, which is accomplished using bbsplit against curated 16S / 18S databases derived from SILVA and PR2. This results in two "pools" of data (16S and 18S rRNA) that are then denoised separately, and later merged if desired. The pipeline will also allow you to generate `qiime2` plots, obtain biologically-relevant classifications for your metabarcodes using the latest iterations of the SILVA/PR2 databases. 
 
-- If you just need to set up and run the pipeline, check out the [Quickstart](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#0-quickstart)
+- If you just need to set up and run the pipeline, check out the [QuickStart](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#0-quickstart-and-reproducibility) 
 
 - To read more about the primers and why this workflow was created, check out the [Preamble](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#1-preamble)
 
