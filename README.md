@@ -6,11 +6,20 @@ This is a collection of bash scripts to automate the analysis of mixed 16S/18S a
 
 The main difference between this pipeline and standard workflows is that it contains an initial 16S/18S splitting step, which is accomplished using bbsplit against curated 16S / 18S databases derived from SILVA and PR2. This results in two "pools" of data (16S and 18S rRNA) that are then denoised separately, and later merged if desired. The pipeline will also allow you to generate `qiime2` plots, obtain biologically-relevant classifications for your metabarcodes using the latest iterations of the SILVA/PR2 databases. 
 
-- If you just need to set up and run the pipeline, check out the Quickstart below. 
+- If you just need to set up and run the pipeline, check out the *Quickstart* below. 
 
-- To read more about the primers and why this workflow was created, check out the [Pipeline Architecture](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#2-pipeline-architecture) 
+- To read more about the primers and why this workflow was created, check out the *Pipeline Architecture* section.
 
-- To see how to quickly archive your code/data for review, check out [Data / Code Archiving](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#3-data--code-archiving) 
+- To see how to quickly archive your code/data for review, check out *Data / Code Archiving*.
+
+---
+
+**Table of contents:**
+
+0. [QuickStart](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#0-quickstart-and-reproducibility)
+1. [Preamble](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#1-preamble)
+2. [Pipeline Architecture](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#2-pipeline-architecture)
+3. [Data / Code Archiving](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#3-data--code-archiving)
 
 ---
 
@@ -62,13 +71,6 @@ McNichol, J., Berube, P., Biller, S., Fuhrman, J., 2021. [Evaluating and Improvi
 Yeh, Y.C., McNichol, J., Needham, D., Fichot, E., Berdjeb, L., Fuhrman, J., 2021. [Comprehensive single-PCR 16S and 18S rRNA community analysis validated with mock communities, and estimation of sequencing bias against 18S](https://sfamjournals.onlinelibrary.wiley.com/doi/10.1111/1462-2920.15553). Environmental Microbiology. doi: 10.1111/1462-2920.15553.
 
 ---
-
-**Table of contents:**
-
-0. [QuickStart](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#0-quickstart-and-reproducibility)
-1. [Preamble](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#1-preamble)
-2. [Pipeline Architecture](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#2-pipeline-architecture)
-3. [Data / Code Archiving](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#3-data--code-archiving)
 
 ## 0. Quickstart
 
