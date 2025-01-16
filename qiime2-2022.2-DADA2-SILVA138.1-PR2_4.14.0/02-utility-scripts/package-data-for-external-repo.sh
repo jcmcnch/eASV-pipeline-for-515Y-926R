@@ -46,17 +46,21 @@ cp 02-EUKs/15-exports/*all-18S*with-*tax.proportions.tsv $outDir/18S/
 cp -r 02-PROKs/scripts/ $outDir/16S
 cp -r 02-EUKs/scripts/ $outDir/18S
 
-#zip up files to save space
-for item in `find $outDir/ -name "*fasta"`; do
-	zip -m -j $item.zip $item
-done
+if [ "$1" != "nozip" ] ; then 
+        
+	#zip up files to save space
+	for item in `find $outDir/ -name "*fasta"`; do
+		zip -m -j $item.zip $item
+	done
 
-for item in `find $outDir/ -name "*tsv"`; do
-        zip -m -j $item.zip $item
-done
+	for item in `find $outDir/ -name "*tsv"`; do
+        	zip -m -j $item.zip $item
+	done
 
-for item in `find $outDir/ -name "*biom"`; do
-        zip -m -j $item.zip $item
-done
+	for item in `find $outDir/ -name "*biom"`; do
+        	zip -m -j $item.zip $item
+	done
+
+fi
 
 echo "This repository contains scripts and data from a custom pipeline for analyzing amplicons from the 515Y/926R primers (https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R). The configuration file included here specifies parameters that the user chose during the analysis. The \`eukfrac\` folder indicates the fraction of 18S sequences in each sample after primer trimming and before denoising (i.e. 18S/(16S+18S)). 16S and 18S data tables are presented separately and merged if the user has run the merging script. Depending on your research question, you may choose to analyze any of those tables in isolation but the merged table will give the most comprehensive picture of the community. Various ASV tables subsetted by taxonomy strings are also included by default (for example, if you wanted to exclude Metazoa, Chloroplasts, or Mitochondria from your ASV table). ASV sequences are exported in a file ending in \*dna-sequences.fasta and denoising statistics as a file ending with \*stats.tsv." > $outDir/README.md
