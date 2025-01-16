@@ -292,10 +292,10 @@ To simplify the collection and organization of these files, I've put together a 
 ./package-data-for-external-repo.sh nozip
 ./package-code-for-external-repo.sh
 ```
-3. This will create 2 output directories `~/515Y-926R-data-exports` and `~/515Y-926R-code-exports/`. These folders will contain a subdirectory for each study (labelled with a timestamp and with a filename from your studyName parameter in your config file).
+3. This will create 2 output directories `~/515Y-926R-data-exports/` and `~/515Y-926R-code-exports/`. These folders will contain a subdirectory for each study (labelled with a timestamp and with a filename from your `studyName` parameter in your config file).
 4. These folders can then be zipped up and uploaded to OSF, Zenodo, etc to ensure the exact parameters, scripts and conda envs as well as ASV tables, fasta files, etc are recorded for posterity. 
 
-To zip, you can do something like this:
+To zip up a bunch of directories quickly, you can do something like this:
 
 ```
 #Note, if this pipeline is still in use in 2030, change 2* to 3*
