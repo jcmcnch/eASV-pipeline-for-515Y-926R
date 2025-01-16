@@ -285,7 +285,10 @@ To simplify the collection and organization of these files, I've put together a 
 2. Run the following 2 bash scripts, as follows:
 ```
 ./package-data-for-external-repo.sh
-#The above script will automatically zip all the files up in your output directory. This can be useful if you're on a system with low hard drive space but can be annoying since you have to unzip everything to view it. You can disable the automatic zipping by running it as follows:
+#The above script will automatically zip all the files up in your output directory.
+#This can be useful if you're on a system with low hard drive space but can be
+#annoying since you have to unzip everything to view it. 
+#You can disable the automatic zipping by running it as follows:
 ./package-data-for-external-repo.sh nozip
 ./package-code-for-external-repo.sh
 ```
