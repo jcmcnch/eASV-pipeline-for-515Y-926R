@@ -10,7 +10,9 @@ The main difference between this pipeline and standard workflows is that it cont
 
 - To read more about the primers and why this workflow was created, check out the [Preamble](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#1-preamble)
 
+- To see how to quickly archive your code/data for review, check out the [Data / Code Archiving How-To](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#0-quickstart)
 
+Data / Code Archiving
 
 ---
 
@@ -68,6 +70,7 @@ Yeh, Y.C., McNichol, J., Needham, D., Fichot, E., Berdjeb, L., Fuhrman, J., 2021
 0. [QuickStart](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#0-quickstart-and-reproducibility)
 1. [Preamble](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#1-preamble)
 2. [Pipeline Architecture](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#2-pipeline-architecture)
+3. [Data / Code Archiving](https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R#3-data-code-archiving)
 
 ## 0. Quickstart
 
