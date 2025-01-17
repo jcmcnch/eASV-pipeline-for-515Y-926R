@@ -284,13 +284,13 @@ To simplify the collection and organization of these files, I've put together a 
 1. Go into your base analysis directory (i.e. where your `00-raw` folder is).
 2. Run the following 2 bash scripts, as follows:
 ```
-./package-data-for-external-repo.sh
+./scripts/package-data-for-external-repo.sh
 #The above script will automatically zip all the files up in your output directory.
 #This can be useful if you're on a system with low hard drive space but can be
 #annoying since you have to unzip everything to view it. 
 #You can disable the automatic zipping by running it as follows:
-./package-data-for-external-repo.sh nozip
-./package-code-for-external-repo.sh
+./scripts/package-data-for-external-repo.sh nozip
+./scripts/package-code-for-external-repo.sh
 ```
 3. This will create 2 output directories `~/515Y-926R-data-exports/` and `~/515Y-926R-code-exports/`. These folders will contain a subdirectory for each study (labelled with a timestamp and with a filename from your `studyName` parameter in your config file).
 4. These folders can then be zipped up and uploaded to OSF, Zenodo, etc to ensure the exact parameters, scripts and conda envs as well as ASV tables, fasta files, etc are recorded for posterity. 
