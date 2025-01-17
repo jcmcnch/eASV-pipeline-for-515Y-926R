@@ -2,7 +2,7 @@
 
 mkdir -p logs/03-bbduk
 
-source ../515FY-926R.cfg
+source ../515Y-926R.cfg
 conda activate bbmap-env
 
 echo "forward trim length = $trimR1 bp" > trim_lengths.txt

@@ -1,6 +1,9 @@
 #!/bin/bash -i
 
-#note to self - add in lines for pulling study names (from config) and datestamps
+source 515Y-926R.cfg
+timestamp=`date +"%y%m%d-%H%M"`
+outDir=$HOME/515Y-926R-data-shares/${timestamp}_${studyName}_data-and-viz-export
+mkdir -p $outDir
 
 mkdir -p data-export/eukfrac data-export/16S/subsetted-ASV-tables data-export/18S/subsetted-ASV-tables data-export/merged data-export/merged-qcd data-export/visualizations
 cp 03-Merged/* data-export/merged

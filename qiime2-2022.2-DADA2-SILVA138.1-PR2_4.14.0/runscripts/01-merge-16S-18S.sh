@@ -3,7 +3,7 @@
 conda activate r-optparse-env
 
 #get variables
-source 515FY-926R.cfg
+source 515Y-926R.cfg
 timestamp=`date +"%y%m%d-%H%M"`
 
 ### 2022-10-05: The sed regex replacement is no longer needed since PR2 update includes this by default in their taxonomy strings as ":plas" ###

@@ -1,9 +1,9 @@
 #!/bin/bash -i
 
-source 515FY-926R.cfg
+source 515Y-926R.cfg
 timestamp=`date +"%y%m%d-%H%M"`
 outDir=$HOME/515Y-926R-code-exports/${timestamp}_${studyName}_code-export
-mkdir $outDir
+mkdir -p $outDir
 
 #copy basic info and overall runscripts
 cp -r *cfg runscripts scripts $outDir/

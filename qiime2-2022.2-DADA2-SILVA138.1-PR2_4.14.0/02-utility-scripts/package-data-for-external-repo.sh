@@ -1,6 +1,6 @@
 #!/bin/bash -i
 
-source 515FY-926R.cfg
+source 515Y-926R.cfg
 timestamp=`date +"%y%m%d-%H%M"`
 outDir=$HOME/515Y-926R-data-exports/${timestamp}_${studyName}_data-export
 

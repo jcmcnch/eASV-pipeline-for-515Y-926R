@@ -2,7 +2,7 @@
 
 conda activate bbmap-env
 
-source 515FY-926R.cfg
+source 515Y-926R.cfg
 
 #optionally add in in-silico mocks to denoising pipeline
 if [[ $inSilicoMocks = "true" ]] ; then

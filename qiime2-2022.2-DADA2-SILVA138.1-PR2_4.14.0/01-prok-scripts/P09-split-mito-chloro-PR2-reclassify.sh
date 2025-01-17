@@ -1,5 +1,5 @@
 #!/bin/bash -i
-source ../515FY-926R.cfg
+source ../515Y-926R.cfg
 conda activate $qiime2version
 
 mkdir -p 09-subsetting/split-tables

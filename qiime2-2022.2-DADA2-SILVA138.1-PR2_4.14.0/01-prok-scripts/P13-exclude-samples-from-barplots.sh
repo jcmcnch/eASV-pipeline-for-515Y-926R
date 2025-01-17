@@ -8,14 +8,14 @@ else
         exit 0
 fi
 
-source ../515FY-926R.cfg
+source ../515Y-926R.cfg
 conda activate $qiime2version
 
 timestamp=`date +"%y%m%d-%H%M"`
 
 mkdir -p 13-customized-barplots/subsetted-tables/
 
-source ../515FY-926R.cfg
+source ../515Y-926R.cfg
 conda activate $qiime2version
 
 for STK in `ls samples-to-keep*`; do
