@@ -1,6 +1,6 @@
 #!/bin/bash -i
 
-source 515Y-926R.cfg
+source 515Y-806RB.cfg
 
 conda activate cutadapt-env
 

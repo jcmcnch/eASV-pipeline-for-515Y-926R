@@ -1,8 +1,8 @@
 #!/bin/bash -i
 
-source 515Y-926R.cfg
+source 515Y-806RB.cfg
 timestamp=`date +"%y%m%d-%H%M"`
-outDir=$HOME/515Y-926R-code-exports/${timestamp}_${studyName}_code-export
+outDir=$HOME/515Y-806RB-code-exports/${timestamp}_${studyName}_code-export
 mkdir -p $outDir
 
 #copy basic info and overall runscripts
@@ -26,4 +26,4 @@ for item in 02-EUKs* ; do
 
 done
 
-echo "This directory contains scripts from a custom pipeline for analyzing amplicons from the 515Y/926R primers (https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R). The configuration file included here specifies parameters that the user chose during the analysis." > $outDir/README.md
+echo "This directory contains scripts from a custom pipeline for analyzing amplicons from the 515Y/926R primers (https://github.com/jcmcnch/eASV-pipeline-for-515Y-806RB). The configuration file included here specifies parameters that the user chose during the analysis." > $outDir/README.md

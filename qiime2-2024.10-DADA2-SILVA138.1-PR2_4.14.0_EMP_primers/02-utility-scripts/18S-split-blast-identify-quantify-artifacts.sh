@@ -22,7 +22,7 @@ fi
 
 conda activate biopython-env
 
-python3 /home/jesse/eASV-pipeline-for-515Y-926R/DADA2-pipeline/02-utility-scripts/split_18S_eASV_by_trim_length.py \
+python3 /home/jesse/eASV-pipeline-for-515Y-806RB/DADA2-pipeline/02-utility-scripts/split_18S_eASV_by_trim_length.py \
   --repseqs $1 --forwardtrim $2 --reversetrim $3
 
 conda deactivate
@@ -34,6 +34,6 @@ blastn -query $filestem.R2.fasta -db /home/db/in-silico-mocks/BLAST-db/18s/all_s
 
 conda activate biopython-env
 
-python3 /home/jesse/eASV-pipeline-for-515Y-926R/DADA2-pipeline/02-utility-scripts/identify_quantify_mock_artifacts.py --forwardtrim $2 --reversetrim $3 --tsvasvtable $4 --forwardBLASTout $filestem.R1.blastout.tsv --reverseBLASTout $filestem.R2.blastout.tsv
+python3 /home/jesse/eASV-pipeline-for-515Y-806RB/DADA2-pipeline/02-utility-scripts/identify_quantify_mock_artifacts.py --forwardtrim $2 --reversetrim $3 --tsvasvtable $4 --forwardBLASTout $filestem.R1.blastout.tsv --reverseBLASTout $filestem.R2.blastout.tsv
 
 conda deactivate

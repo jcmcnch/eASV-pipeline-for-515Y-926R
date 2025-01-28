@@ -1,8 +1,8 @@
 #!/bin/bash -i
 
-source 515Y-926R.cfg
+source 515Y-806RB.cfg
 timestamp=`date +"%y%m%d-%H%M"`
-outDir=$HOME/515Y-926R-data-shares/${timestamp}_${studyName}_data-and-viz-export
+outDir=$HOME/515Y-806RB-data-shares/${timestamp}_${studyName}_data-and-viz-export
 mkdir -p $outDir
 
 mkdir -p $outDir/eukfrac $outDir/16S/subsetted-ASV-tables $outDir/18S/subsetted-ASV-tables $outDir/merged $outDir/merged-qcd $outDir/visualizations
@@ -68,4 +68,4 @@ if [ "$1" != "nozip" ] ; then
 
 fi
 
-echo "This repository contains scripts and data from a custom pipeline for analyzing amplicons from the 515Y/926R primers (https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R). The configuration file included here specifies parameters that the user chose during the analysis. The \`eukfrac\` folder indicates the fraction of 18S sequences in each sample after primer trimming and before denoising (i.e. 18S/(16S+18S)). 16S and 18S data tables are presented separately and merged if the user has run the merging script. Depending on your research question, you may choose to analyze any of those tables in isolation but the merged table will give the most comprehensive picture of the community. Various ASV tables subsetted by taxonomy strings are also included by default (for example, if you wanted to exclude Metazoa, Chloroplasts, or Mitochondria from your ASV table). ASV sequences are exported in a file ending in \*dna-sequences.fasta and denoising statistics as a file ending with \*stats.tsv." > $outDir/README.md
+echo "This repository contains scripts and data from a custom pipeline for analyzing amplicons from the 515Y/926R primers (https://github.com/jcmcnch/eASV-pipeline-for-515Y-806RB). The configuration file included here specifies parameters that the user chose during the analysis. The \`eukfrac\` folder indicates the fraction of 18S sequences in each sample after primer trimming and before denoising (i.e. 18S/(16S+18S)). 16S and 18S data tables are presented separately and merged if the user has run the merging script. Depending on your research question, you may choose to analyze any of those tables in isolation but the merged table will give the most comprehensive picture of the community. Various ASV tables subsetted by taxonomy strings are also included by default (for example, if you wanted to exclude Metazoa, Chloroplasts, or Mitochondria from your ASV table). ASV sequences are exported in a file ending in \*dna-sequences.fasta and denoising statistics as a file ending with \*stats.tsv." > $outDir/README.md

@@ -13,7 +13,7 @@ mkdir 15-exports/04-converted-biom-to-tsv
 mkdir 15-exports/04-converted-biom-to-tsv/non-chloroplasts
 mkdir 15-exports/04-converted-biom-to-tsv/chloroplasts
 
-source ../515Y-926R.cfg
+source ../515Y-806RB.cfg
 conda activate $qiime2version 
 
 ############

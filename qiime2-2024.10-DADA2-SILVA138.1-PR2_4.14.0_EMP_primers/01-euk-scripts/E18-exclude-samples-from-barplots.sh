@@ -10,7 +10,7 @@ fi
 
 mkdir -p 18-customized-barplots/subsetted-tables/
 
-source ../515Y-926R.cfg
+source ../515Y-806RB.cfg
 conda activate $qiime2version 
 
 timestamp=`date +"%y%m%d-%H%M"`

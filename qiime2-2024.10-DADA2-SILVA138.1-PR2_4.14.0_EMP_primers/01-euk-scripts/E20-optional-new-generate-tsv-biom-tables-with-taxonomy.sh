@@ -9,7 +9,7 @@ mkdir 20-exports/03-biom-tables-with-tax/SILVA
 mkdir -p 20-exports/04-converted-biom-to-tsv/PR2
 mkdir 20-exports/04-converted-biom-to-tsv/SILVA
 
-source ../515Y-926R.cfg
+source ../515Y-806RB.cfg
 conda activate $qiime2version
 
 #####Part A: Convert the all 18S table.qza into a .biom table

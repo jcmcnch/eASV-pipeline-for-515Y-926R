@@ -20,7 +20,7 @@ cd ..
 
 done
 
-source 515Y-926R.cfg
+source 515Y-806RB.cfg
 conda activate $qiime2version
 
 #merge denoised prok data
@@ -78,7 +78,7 @@ cd ..
 
 done
 
-source 515Y-926R.cfg
+source 515Y-806RB.cfg
 conda activate $qiime2version
 
 #merge denoised euk data
