@@ -19,5 +19,5 @@ cp 01-prok-scripts/* $studyDir/02-PROKs/scripts
 cp 01-euk-scripts/* $studyDir/02-EUKs/scripts
 cp runscripts/* $studyDir/runscripts
 
-cp config/qiime2-2022.2-SILVA138.1-PR2-4.14.0.cfg $studyDir/515Y-926R.cfg
-echo "studyName=$studyName" >> $studyDir/515Y-926R.cfg
+cp config/qiime2-2024.10-DADA2-SILVA138.1-PR2_4.14.0_EMP_primers.cfg $studyDir/515Y-806RB.cfg
+echo "studyName=$studyName" >> $studyDir/515Y-806RB.cfg
