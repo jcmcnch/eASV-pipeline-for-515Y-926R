@@ -6,7 +6,7 @@ timestamp=`date +"%y%m%d-%H%M"`
 
 mkdir 10-exports
 
-for item in `ls */*table.qza && ls */*/*table.qza`
+for item in `ls */*table.qza `
 	do
 	if [ `basename $item` = "table.qza" ] ; then name="all-16S-seqs" ; else name=`basename $item .qza`; fi
 	qiime tools export --input-path $item --output-path 10-exports/$name
@@ -14,7 +14,7 @@ for item in `ls */*table.qza && ls */*/*table.qza`
 	rmdir 10-exports/$name
 done
 
-qiime tools export --input-path 09-subsetting/tax-merged/chloroplasts-PR2-reclassified-merged-classification.qza --output-path 10-exports/
+qiime tools export --input-path 05-classified/classification.qza --output-path 10-exports/
 
 sed -i '1c#OTUID	taxonomy	confidence' 10-exports/taxonomy.tsv
 
