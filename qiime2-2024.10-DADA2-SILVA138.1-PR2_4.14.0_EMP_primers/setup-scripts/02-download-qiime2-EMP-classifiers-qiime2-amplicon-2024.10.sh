@@ -4,8 +4,8 @@ currdir=$PWD
 
 mkdir -p /home/$USER/databases/qiime2-classification-db ; cd /home/$USER/databases/qiime2-classification-db 
 
-#download database files from OSF, raw artifacts, and scripts
-for item in w32ac nvgru ; do curl -O -J -L https://osf.io/$item/download ; done
+#download pre-trained classifiers from qiime2 folks
+wget https://data.qiime2.org/classifiers/sklearn-1.4.2/silva/silva-138-99-nb-classifier.qza
 
 cd $currdir
 
