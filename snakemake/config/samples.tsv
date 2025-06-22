@@ -1,3 +1,7 @@
-sample	condition	replicate	read1	read2
-sample1	wild_type	1	sample1.bwa.read1.fastq.gz	sample1.bwa.read2.fastq.gz
-sample2	wild_type	2	sample2.bwa.read1.fastq.gz	sample2.bwa.read2.fastq.gz
+sample	replicate	read1	read2
+S0440	1	$HOME/github/nativemicrobiota/ocean-data/S0440.R1.fastq.gz.head400.fastq.gz	$HOME/github/nativemicrobiota/ocean-data/S0440.R2.fastq.gz.head400.fastq.gz
+S0441	1	$HOME/github/nativemicrobiota/ocean-data/S0441.R1.fastq.gz.head400.fastq.gz	$HOME/github/nativemicrobiota/ocean-data/S0441.R2.fastq.gz.head400.fastq.gz
+S0443	1	$HOME/github/nativemicrobiota/ocean-data/S0443.R1.fastq.gz.head400.fastq.gz	$HOME/github/nativemicrobiota/ocean-data/S0443.R2.fastq.gz.head400.fastq.gz
+S0444	1	$HOME/github/nativemicrobiota/ocean-data/S0444.R1.fastq.gz.head400.fastq.gz	$HOME/github/nativemicrobiota/ocean-data/S0444.R2.fastq.gz.head400.fastq.gz
+S0445	1	$HOME/github/nativemicrobiota/ocean-data/S0445.R1.fastq.gz.head400.fastq.gz	$HOME/github/nativemicrobiota/ocean-data/S0445.R2.fastq.gz.head400.fastq.gz
+S0446	1	$HOME/github/nativemicrobiota/ocean-data/S0446.R1.fastq.gz.head400.fastq.gz	$HOME/github/nativemicrobiota/ocean-data/S0446.R2.fastq.gz.head400.fastq.gz
