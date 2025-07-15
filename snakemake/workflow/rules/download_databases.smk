@@ -4,7 +4,7 @@
 
 rule download_prok_db:
     output:
-        "databases/bbsplit-db/SILVA_132_PROK.cdhit95pc.fasta",
+        temp("databases/bbsplit-db/SILVA_132_PROK.cdhit95pc.fasta"),
     log:
         "logs/aria2_bbsplit_prok_db_download.log",
     params:
@@ -19,7 +19,7 @@ rule download_prok_db:
 
 rule download_euk_db:
     output:
-        "databases/bbsplit-db/SILVA_132_and_PR2_EUK.cdhit95pc.fasta",
+        temp("databases/bbsplit-db/SILVA_132_and_PR2_EUK.cdhit95pc.fasta"),
     log:
         "logs/aria2_bbsplit_euk_db_download.log",
     params:
