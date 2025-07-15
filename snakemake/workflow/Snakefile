@@ -8,12 +8,12 @@
 # -----------------------------------------------------
 configfile: "config/config.yml"
 
-
 # load rules
 # -----------------------------------------------------
 include: "rules/common.smk"
 include: "rules/remove_primers.smk"
-
+include: "rules/download_databases.smk"
+include: "rules/prepare_bbsplit_db.smk"
 
 # optional messages, log and error handling
 # -----------------------------------------------------

@@ -16,6 +16,10 @@ def get_final_output():
         sample=samples["sample"],
     )
 
+    final_output.append("databases/bbsplit-db/SILVA_132_PROK.cdhit95pc.fasta"),
+    final_output.append("databases/bbsplit-db/SILVA_132_and_PR2_EUK.cdhit95pc.fasta"),
+    final_output.append(temp(directory("databases/bbsplit-db/ref/genome/")))
+
     return final_output
 
 # validate sample sheet and config file
