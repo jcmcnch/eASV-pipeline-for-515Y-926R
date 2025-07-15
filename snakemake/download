@@ -1,8 +1,0 @@
-#!/bin/bash -i
-conda activate bbmap-env
-
-bbsplit.sh build=1 ref=SILVA_132_and_PR2_EUK.cdhit95pc.fasta,SILVA_132_PROK.cdhit95pc.fasta path=EUK-PROK-bbsplit-db
-bbsplit.sh build=1 ref=SILVA_132_BACT.cdhit95pc.fasta,SILVA_132_ARCH.cdhit95pc.fasta path=BACT-ARCH-bbsplit-db
-bbsplit.sh build=1 ref=SILVA_132_BACT-NON-CYANO.cdhit95pc.fasta,SILVA_132_BACT-CYANO.cdhit95pc.fasta path=BACT-CYANO-bbsplit-db
-
-conda deactivate
