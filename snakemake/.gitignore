@@ -1,3 +1,5 @@
 results/**
 logs/**
 .snakemake
+databases
+*swp
