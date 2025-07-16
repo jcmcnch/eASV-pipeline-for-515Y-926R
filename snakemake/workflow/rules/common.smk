@@ -13,7 +13,7 @@ samples = (
 def get_final_output():
     final_output = expand(
         "results/01-split/{sample}.prok.fastq",
-        #"results/00-trimmed/{sample}.{direction}.fastq.gz",
+        #"results/00-trimmed/{sample}.{direction}.fastq",
         sample=samples["sample"], direction=["1","2"],
     )
 
