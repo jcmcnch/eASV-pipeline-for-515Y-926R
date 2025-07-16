@@ -1,6 +1,3 @@
-#SILVA_132_and_PR2_EUK.cdhit95pc
-#SILVA_132_PROK.cdhit95pc
-
 rule bbsplit_prok_euk:
     input:
         r1="results/00-trimmed/{sample}.1.fastq",
@@ -10,24 +7,42 @@ rule bbsplit_prok_euk:
         euk=temp("results/01-split/{sample}.euk.fastq")
     conda:
         "../envs/bbmap.yaml"
-#need to include ways of setting params for memory/cores
+    resources:
+        mem_mb=4000,
     log:
         "logs/01-splitting/{sample}_bbsplit.log"
-#capture log output with &2> ? - currently no logging info in output file
     shell:
-        "bbsplit.sh usequality=f qtrim=f minratio=0.30 minid=0.30 pairedonly=f path=/home/jesse/github/eASV-pipeline-for-515Y-926R/snakemake/databases/bbsplit-db/EUK-PROK-bbsplit-db/ in={input.r1} in2={input.r2} out_SILVA_132_PROK.cdhit95pc={output.prok} out_SILVA_132_and_PR2_EUK.cdhit95pc={output.euk}"
+        "bbsplit.sh usequality=f qtrim=f minratio=0.30 minid=0.30 pairedonly=f path=databases/bbsplit-db/EUK-PROK-bbsplit-db/ in={input.r1} in2={input.r2} out_SILVA_132_PROK.cdhit95pc={output.prok} out_SILVA_132_and_PR2_EUK.cdhit95pc={output.euk} 2>&1 | tee -a {log}"
 
-# step 2: deinterlace according to BB's post
 
-# step 3: compress split output
- 
-#rule compress_split_output:
-#    input:
-#        "{prefix}.vcf",
-#    output:
-#        "{prefix}.vcf.gz",
-#    threads: 1
-#    log:
-#        "logs/bgzip/{prefix}.log",
-#    wrapper:
-#        "v7.2.0/bio/bgzip"
+rule deinterleave_split_reads_euk:
+    input:
+        "results/01-split/{sample}.euk.fastq"
+    output:
+        out="results/01-split/{sample}.euk.R1.fastq.gz",
+        out2="results/01-split/{sample}.euk.R2.fastq.gz"
+    params:
+        command="reformat.sh",
+        overwrite=True,  # recommended
+        pigz=True,
+    threads: 4 
+    resources:
+        mem_mb=4000,  # optional: bbmap normaly needs a lot of memory, e.g. 60GB
+    wrapper:
+        "v7.2.0/bio/bbtools"
+
+rule deinterleave_split_reads_prok:
+    input:
+        "results/01-split/{sample}.prok.fastq"
+    output:
+        out="results/01-split/{sample}.prok.R1.fastq.gz",
+        out2="results/01-split/{sample}.prok.R2.fastq.gz"
+    params:
+        command="reformat.sh",
+        overwrite=True,  # recommended
+        pigz=True,
+    threads: 4
+    resources:
+        mem_mb=4000,  # optional: bbmap normaly needs a lot of memory, e.g. 60GB
+    wrapper:
+        "v7.2.0/bio/bbtools"

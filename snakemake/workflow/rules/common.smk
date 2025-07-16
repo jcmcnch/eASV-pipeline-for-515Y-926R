@@ -12,9 +12,10 @@ samples = (
 # define output as function
 def get_final_output():
     final_output = expand(
-        "results/01-split/{sample}.prok.fastq",
+        "results/01-split/{sample}.{organism}.R1.fastq.gz", sample=samples["sample"], organism=["prok","euk"]
+        #"results/01-split/{sample}.prok.fastq",
         #"results/00-trimmed/{sample}.{direction}.fastq",
-        sample=samples["sample"], direction=["1","2"],
+        #sample=samples["sample"], direction=["1","2"]
     )
 
     final_output.append("databases/bbsplit-db/SILVA_132_PROK.cdhit95pc.fasta"),
