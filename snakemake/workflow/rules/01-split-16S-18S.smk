@@ -13,7 +13,7 @@ rule bbsplit_prok_euk:
     log:
         "logs/01-splitting/{sample}_bbsplit.log"
     shell:
-        "bbsplit.sh usequality=f qtrim=f minratio=0.30 minid=0.30 pairedonly=f threads=20 -Xmx100g path=../../databases/bbsplit-db/ in={input.r1} in2={input.r2} out_SILVA_132_PROK.cdhit95pc={output.prok}, out_SILVA_132_and_PR2_EUK.cdhit95pc={output.euk}"
+        "bbsplit.sh usequality=f qtrim=f minratio=0.30 minid=0.30 pairedonly=f threads=20 -Xmx100g path=/home/jesse/github/eASV-pipeline-for-515Y-926R/snakemake/databases/bbsplit-db/EUK-PROK-bbsplit-db/ in={input.r1} in2={input.r2} out_SILVA_132_PROK.cdhit95pc={output.prok}, out_SILVA_132_and_PR2_EUK.cdhit95pc={output.euk}"
 
 #rule compress_split_output:
 #    input:

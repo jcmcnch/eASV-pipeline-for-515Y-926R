@@ -19,7 +19,7 @@ def get_final_output():
 
     final_output.append("databases/bbsplit-db/SILVA_132_PROK.cdhit95pc.fasta"),
     final_output.append("databases/bbsplit-db/SILVA_132_and_PR2_EUK.cdhit95pc.fasta"),
-    final_output.append(directory("databases/bbsplit-db/ref/genome/"))
+    final_output.append(directory("databases/bbsplit-db/EUK-PROK-bbsplit-db/"))
 
     return final_output
 
