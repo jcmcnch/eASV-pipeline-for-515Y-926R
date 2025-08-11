@@ -11,3 +11,4 @@ rule prepare_bbsplit_db:
         "logs/bbsplit_db_prep.log"
     shell:
         "bbsplit.sh build=1 ref={input.file1},{input.file2} path={output}"
+    priority: 50
