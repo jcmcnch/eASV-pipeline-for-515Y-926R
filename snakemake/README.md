@@ -34,3 +34,6 @@ snakemake --executor slurm --default-resources --jobs N #replacing "N" with the 
 #or possibly with the --use-conda flag
 snakemake --use-conda --executor slurm --default-resources --jobs N
 ```
+
+For your reference, in case the above commands are incomplete:
+https://snakemake.github.io/snakemake-plugin-catalog/plugins/executor/slurm.html#usage
