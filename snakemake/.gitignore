@@ -3,3 +3,6 @@ logs/**
 .snakemake
 databases
 *swp
+tmp
+TODO.md
+nativemicrobiota

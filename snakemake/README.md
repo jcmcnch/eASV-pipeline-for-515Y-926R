@@ -2,11 +2,17 @@ This workflow is in progress, and not yet ready for production...
 
 Please continue to use the bash workflow until otherwise indicated on the base README.
 
-Notes to self:
-- For basic tasks can use wrappers: https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/bio.html
-- Examples: seqtk, blast, DADA2, cutadapt
-- Check out also other example workflows for inspiration: https://snakemake.github.io/snakemake-workflow-catalog/docs/all_other_workflows.html (search for `qiime2`)
--
+Instructions for Nathan:
 
-Notes on configuration:
-- Make sure to do the full snakemake install instead of "minimal" 
+1. Install latest version of snakemake via conda, making sure to do the full snakemake install instead of "minimal"
+(Snakemake install instructions)[https://snakemake.readthedocs.io/en/stable/getting_started/installation.html]
+2. Activate snakemake conda env
+`conda activate snakemake`
+3. Install slurm plugin
+`pip install snakemake-executor-plugin-slurm`
+4. Clone the latest version of the eASV pipeline:
+`git clone https://github.com/jcmcnch/eASV-pipeline-for-515Y-926R.git`
+5. Enter repo, navigate to `snakemake` folder
+6. Clone another repo with test data (yes, inside the other repo)
+`git clone https://github.com/stfx-microeco-lab/nativemicrobiota`
+7. Now you should have all the data needed to run the pipeline.

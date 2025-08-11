@@ -1,7 +1,7 @@
 sample	condition	replicate	read1	read2
-S0440	grump	1	/home/jesse/github/nativemicrobiota/ocean-data/S0440.R1.head400.fastq.gz	/home/jesse/github/nativemicrobiota/ocean-data/S0440.R2.head400.fastq.gz
-S0441	grump	1	/home/jesse/github/nativemicrobiota/ocean-data/S0441.R1.head400.fastq.gz	/home/jesse/github/nativemicrobiota/ocean-data/S0441.R2.head400.fastq.gz
-S0443	grump	1	/home/jesse/github/nativemicrobiota/ocean-data/S0443.R1.head400.fastq.gz	/home/jesse/github/nativemicrobiota/ocean-data/S0443.R2.head400.fastq.gz
-S0444	grump	1	/home/jesse/github/nativemicrobiota/ocean-data/S0444.R1.head400.fastq.gz	/home/jesse/github/nativemicrobiota/ocean-data/S0444.R2.head400.fastq.gz
-S0445	grump	1	/home/jesse/github/nativemicrobiota/ocean-data/S0445.R1.head400.fastq.gz	/home/jesse/github/nativemicrobiota/ocean-data/S0445.R2.head400.fastq.gz
-S0446	grump	1	/home/jesse/github/nativemicrobiota/ocean-data/S0446.R1.head400.fastq.gz	/home/jesse/github/nativemicrobiota/ocean-data/S0446.R2.head400.fastq.gz
+S0440	grump	1	nativemicrobiota/ocean-data/S0440.R1.head400.fastq.gz	nativemicrobiota/ocean-data/S0440.R2.head400.fastq.gz
+S0441	grump	1	nativemicrobiota/ocean-data/S0441.R1.head400.fastq.gz	nativemicrobiota/ocean-data/S0441.R2.head400.fastq.gz
+S0443	grump	1	nativemicrobiota/ocean-data/S0443.R1.head400.fastq.gz	nativemicrobiota/ocean-data/S0443.R2.head400.fastq.gz
+S0444	grump	1	nativemicrobiota/ocean-data/S0444.R1.head400.fastq.gz	nativemicrobiota/ocean-data/S0444.R2.head400.fastq.gz
+S0445	grump	1	nativemicrobiota/ocean-data/S0445.R1.head400.fastq.gz	nativemicrobiota/ocean-data/S0445.R2.head400.fastq.gz
+S0446	grump	1	nativemicrobiota/ocean-data/S0446.R1.head400.fastq.gz	nativemicrobiota/ocean-data/S0446.R2.head400.fastq.gz
