@@ -14,6 +14,7 @@ rule download_prok_db:
     resources:
         mem_mb=1024,
         runtime=30,
+    priority: 50
     wrapper:
         "v7.2.0/utils/aria2c"
 
@@ -29,5 +30,6 @@ rule download_euk_db:
     resources:
         mem_mb=1024,
         runtime=30,
+    priority: 50
     wrapper:
         "v7.2.0/utils/aria2c"
