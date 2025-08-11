@@ -5,9 +5,11 @@ Please continue to use the bash workflow until otherwise indicated on the base R
 Instructions for Nathan:
 
 1. Install latest version of snakemake via conda, making sure to do the full snakemake install instead of "minimal"
-(Snakemake install instructions)[https://snakemake.readthedocs.io/en/stable/getting_started/installation.html]
+[Snakemake install instructions](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)
 2. Activate snakemake conda env
-```conda activate snakemake```
+```
+conda activate snakemake
+```
 3. Install slurm plugin
 ```pip install snakemake-executor-plugin-slurm```
 4. Clone the latest version of the eASV pipeline:
