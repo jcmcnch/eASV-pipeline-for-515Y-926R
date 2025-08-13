@@ -3,7 +3,11 @@ rule create_manifest_prok:
         r1=temp("results/01-split/{sample}.prok.R1.fastq.gz"),
         r2=temp("results/01-split/{sample}.prok.R2.fastq.gz")
     output:
-        manifest.tsv
+        results/02-proks/manifest.tsv
+    conda:
+        "../envs/qiime2-amplicon-ubuntu-2025-7-conda.yml"
+    script:
+        workflow/scripts/P00-create-manifest.sh
 
 rule import_prok:
     input:
