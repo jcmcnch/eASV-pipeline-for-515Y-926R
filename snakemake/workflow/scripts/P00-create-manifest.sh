@@ -4,7 +4,7 @@
 #modified for snakemake
 
 #remove empty files
-#find ./results/01-split/*prok* -size 0 -print0 | xargs -0 rm -- 2> /dev/null
+find ./results/01-split/*prok* -size 0 -print0 | xargs -0 rm -- 2> /dev/null
 
 #the bit you want to cut from the file names, leaving only the sample name
 cutME=".prok.R1.fastq.gz" 
