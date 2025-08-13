@@ -7,7 +7,7 @@ rule create_manifest_prok:
     conda:
         "../envs/qiime2-amplicon-ubuntu-2025-7-conda.yml"
     script:
-        "scripts/P00-create-manifest.sh"
+        "../scripts/P00-create-manifest.sh"
 
 """
 rule import_prok:
