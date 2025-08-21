@@ -18,3 +18,13 @@ rule import_prok:
         "../envs/qiime2-amplicon-ubuntu-2025-7-conda.yml"
     script:
         "../scripts/P01-import.sh"
+
+rule visualize_prok_seq_quality:
+    input:
+        "results/02-proks/16S.qza"
+    output:
+        directory("results/02-proks/02-quality-plots-R1-R2/")
+    conda:
+        "../envs/qiime2-amplicon-ubuntu-2025-7-conda.yml"
+    script:
+        "../scripts/P02-visualize-quality_R1-R2.sh"
