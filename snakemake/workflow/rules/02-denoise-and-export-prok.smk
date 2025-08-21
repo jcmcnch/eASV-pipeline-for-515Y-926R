@@ -28,3 +28,18 @@ rule visualize_prok_seq_quality:
         "../envs/qiime2-amplicon-ubuntu-2025-7-conda.yml"
     script:
         "../scripts/P02-visualize-quality_R1-R2.sh"
+
+rule denoise_prok_dada2:
+    input:
+        "results/02-proks/16S.qza"
+    params:
+        truncR1=config["trunclens"]["truncR1"],
+        truncR2=config["trunclens"]["truncR2"]
+    output:
+        directory("results/02-proks/03-DADA2d/")
+    conda:
+        "../envs/qiime2-amplicon-ubuntu-2025-7-conda.yml"
+    log:
+        "logs/02-denoise-and-export-prok/03-DADA2/DADA2.stderrout"
+    script:
+        "../scripts/P03-DADA2.sh"

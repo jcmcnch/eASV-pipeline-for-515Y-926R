@@ -2,6 +2,10 @@ samplesheet: "config/samples.tsv"
 
 database_dir: "databases"
 
+trunclens:
+  truncR1: 220
+  truncR2: 180
+
 get_genome:
   ncbi_ftp: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_genomic.fna.gz
 
