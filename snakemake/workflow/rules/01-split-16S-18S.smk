@@ -29,7 +29,7 @@ rule deinterleave_split_reads_euk:
     resources:
         mem_mb=4000,  # optional: bbmap normaly needs a lot of memory, e.g. 60GB
     wrapper:
-        "v7.2.0/bio/bbtools"
+        "v8.0.3/bio/bbtools"
 
 rule deinterleave_split_reads_prok:
     input:
@@ -45,4 +45,4 @@ rule deinterleave_split_reads_prok:
     resources:
         mem_mb=4000,  # optional: bbmap normaly needs a lot of memory, e.g. 60GB
     wrapper:
-        "v7.2.0/bio/bbtools"
+        "v8.0.3/bio/bbtools"
