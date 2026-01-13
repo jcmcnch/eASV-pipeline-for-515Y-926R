@@ -1,5 +1,7 @@
 samplesheet: "config/samples.tsv"
 
+studyName: "tutorial"
+
 database_dir: "databases"
 
 trunclens:

@@ -24,7 +24,8 @@ def get_final_output():
     final_output.append("results/02-proks/manifest.tsv"),
     final_output.append("results/02-proks/16S.qza"),
     final_output.append(directory("results/02-proks/02-quality-plots-R1-R2/")),
-    final_output.append(directory("results/02-proks/03-DADA2d/"))
+    final_output.append(directory("results/02-proks/03-DADA2d/")),
+    final_output.append(directory("results/02-proks/03-DADA2d-plaintext-exports"))
 
     return final_output
 

@@ -43,3 +43,17 @@ rule denoise_prok_dada2:
         "logs/02-denoise-and-export-prok/03-DADA2/DADA2.stderrout"
     script:
         "../scripts/P03-DADA2.sh"
+
+rule export_DADA2_results:
+    input:
+        directory("results/02-proks/03-DADA2d/")
+    params:
+        studyName=config["studyName"]
+    output:
+        directory("results/02-proks/03-DADA2d-plaintext-exports/")
+    conda:
+        "../envs/qiime2-amplicon-ubuntu-2025-7-conda.yml"
+    log:
+        "logs/02-denoise-and-export-prok/04_export_DADA2_results/DADA2_export.stderrout"
+    script:
+        "../scripts/P04-export-DADA2-results.sh"

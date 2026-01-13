@@ -1,18 +1,17 @@
-#!/bin/bash -i
-source ../515Y-926R.cfg
-conda activate $qiime2version
+#!/usr/bin/env bash
 
 timestamp=`date +"%y%m%d-%H%M"`
 
-qiime tools export --input-path 03-DADA2d/representative_sequences.qza --output-path 03-DADA2d/
-qiime tools export --input-path 03-DADA2d/denoising_stats.qza --output-path 03-DADA2d/
-qiime tools export --input-path 03-DADA2d/table.qza --output-path 03-DADA2d/
-biom convert -i 03-DADA2d/feature-table.biom -o 03-DADA2d/feature-table.biom.tsv --to-tsv
+qiime tools export --input-path ${snakemake_input[0]}/representative_sequences.qza --output-path ${snakemake_output[0]} 2>&1 | tee -a ${snakemake_log[0]}
 
-for item in 03-DADA2d/*fasta 03-DADA2d/*tsv ; do
+qiime tools export --input-path ${snakemake_input[0]}/denoising_stats.qza --output-path ${snakemake_output[0]} 2>&1 | tee -a ${snakemake_log[0]}
 
-	mv $item 03-DADA2d/$timestamp.$studyName.16S.`basename $item`
+qiime tools export --input-path ${snakemake_input[0]}/table.qza --output-path ${snakemake_output[0]} 2>&1 | tee -a ${snakemake_log[0]}
 
-done
+biom convert -i ${snakemake_output[0]}/feature-table.biom -o ${snakemake_output[0]}/feature-table.biom.tsv --to-tsv 2>&1 | tee -a ${snakemake_log[0]}
 
-conda deactivate
+for item in ${snakemake_output[0]}/*fasta ${snakemake_output[0]}/*tsv ; do
+
+	mv $item ${snakemake_output[0]}/$timestamp.${snakemake_params[studyName]}.16S.`basename $item`
+
+done 2>&1 | tee -a ${snakemake_log[0]}
