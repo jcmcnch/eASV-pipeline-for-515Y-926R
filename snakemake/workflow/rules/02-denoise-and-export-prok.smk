@@ -5,7 +5,7 @@ rule create_manifest_prok:
     output:
         "results/02-proks/manifest.tsv"
     conda:
-        "../envs/qiime2-amplicon-ubuntu-2025-7-conda.yml"
+        config["qiime2version"]
     script:
         "../scripts/P00-create-manifest.sh"
 
@@ -15,7 +15,7 @@ rule import_prok:
     output:
         "results/02-proks/16S.qza"
     conda:
-        "../envs/qiime2-amplicon-ubuntu-2025-7-conda.yml"
+        config["qiime2version"]
     script:
         "../scripts/P01-import.sh"
 
@@ -25,7 +25,7 @@ rule visualize_prok_seq_quality:
     output:
         directory("results/02-proks/02-quality-plots-R1-R2/")
     conda:
-        "../envs/qiime2-amplicon-ubuntu-2025-7-conda.yml"
+        config["qiime2version"]
     script:
         "../scripts/P02-visualize-quality_R1-R2.sh"
 
@@ -38,7 +38,7 @@ rule denoise_prok_dada2:
     output:
         directory("results/02-proks/03-DADA2d/")
     conda:
-        "../envs/qiime2-amplicon-ubuntu-2025-7-conda.yml"
+        config["qiime2version"]
     log:
         "logs/02-denoise-and-export-prok/03-DADA2/DADA2.stderrout"
     script:
@@ -52,8 +52,10 @@ rule export_DADA2_results:
     output:
         directory("results/02-proks/03-DADA2d-plaintext-exports/")
     conda:
-        "../envs/qiime2-amplicon-ubuntu-2025-7-conda.yml"
+        config["qiime2version"]
     log:
         "logs/02-denoise-and-export-prok/04_export_DADA2_results/DADA2_export.stderrout"
     script:
         "../scripts/P04-export-DADA2-results.sh"
+
+

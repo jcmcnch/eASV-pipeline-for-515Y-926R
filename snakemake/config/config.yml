@@ -1,3 +1,5 @@
+#make sure variables below point to the right place / are named appropriately
+
 samplesheet: "config/samples.tsv"
 
 studyName: "tutorial"
@@ -7,6 +9,14 @@ database_dir: "databases"
 trunclens:
   truncR1: 220
   truncR2: 180
+
+qiime2version: "{{../envs/ ~ qiime2-amplicon-ubuntu-2024-5-conda.yml}}" #input name of your yaml file here after the "~", and make sure to put it in the workflow/envs/ directory
+
+#you shouldn't need to change variables below unless you want to customize the pipeline
+
+database_dir: "databases"
+
+#text below can be deleted later (from tutorial config)
 
 get_genome:
   ncbi_ftp: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_genomic.fna.gz
