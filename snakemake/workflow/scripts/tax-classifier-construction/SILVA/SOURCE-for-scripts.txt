@@ -1,0 +1,3 @@
+https://github.com/jcmcnch/515F-Y_926R_database_construction
+
+#can be done manually if you want using the bash scripts in the above repo, but hopefully the snakemake implementation is hassle-free
