@@ -92,11 +92,26 @@ rule dereplicated_sliced_data:
         slicedDNA="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + ".qza",
         dereplicatedTaxa="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated.qza"
     output:
-        slicedDNA="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + ".qza"
+        slicedDNAdereplicated="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated.qza",
+        dereplicatedTaxaSliced="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated.qza"
     log:
         "logs/SILVA_classification_db_prep_qc_SILVA_seqs_dereplicate_sliced_data.log"
     priority: 50
     conda:
         config["qiime2version"]
     script:
-        "../scripts/tax-classifier-construction/SILVA/06-extract-primers.sh"
+        "../scripts/tax-classifier-construction/SILVA/07-deduplicate-sliced-data.sh"
+
+rule train_classifier:
+    input:
+        slicedDNAdereplicated="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated.qza",
+        dereplicatedTaxaSliced="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated.qza"
+    output:
+        "databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated_final_classifier_USE_ME.qza"
+    log:
+        "logs/SILVA_classification_db_prep_qc_SILVA_seqs_train_sliced_classifier.log"
+    priority: 50
+    conda:
+        config["qiime2version"]
+    script:
+        "../scripts/tax-classifier-construction/SILVA/08-train-classifier.sh"
