@@ -1,15 +1,102 @@
 #set up rules with different scripts for rescript pipeline as implemented in bash, may need to split out
 #make variables for everything that can have variables - db version, primer sequence, etc
 
-rule prepare_bbsplit_db:
-    input:
-        file1="databases/bbsplit-db/SILVA_132_and_PR2_EUK.cdhit95pc.fasta", file2="databases/bbsplit-db/SILVA_132_PROK.cdhit95pc.fasta",
+rule download_SILVA:
     output:
-        path=directory("databases/bbsplit-db/EUK-PROK-bbsplit-db/")
-    conda:
-        "../envs/bbmap.yaml"
+        seqs=temp("databases/classification/SILVA/silva-ssu-nr99-rna-seqs.qza"),
+        taxonomy="databases/classification/SILVA/silva-ssu-nr99-tax.qza"
+    params:
+        SILVAversion=config["SILVAversion"]
     log:
-        "logs/bbsplit_db_prep.log"
+        "logs/SILVA_classification_db_prep_download.log"
     priority: 50
-    shell:
-        "bbsplit.sh build=1 ref={input.file1},{input.file2} path={output}"
+    conda:
+        config["qiime2version"]
+    script:
+        "../scripts/tax-classifier-construction/SILVA/01-rescript-dl-database-file.sh"
+
+rule reverse_transcribe:
+    input:
+        "databases/classification/SILVA/silva-ssu-nr99-rna-seqs.qza" 
+    output:
+        "databases/classification/SILVA/silva-ssu-nr99-dna-seqs.qza"
+    log:
+        "logs/SILVA_classification_db_prep_reverse_transcribe.log"
+    priority: 50
+    conda:
+        config["qiime2version"]
+    script:
+        "../scripts/tax-classifier-construction/SILVA/02-reverse-transcribe.sh"
+
+rule qc_seqs_cull:
+    input:
+        rawDNA="databases/classification/SILVA/silva-ssu-nr99-dna-seqs.qza"
+    output:
+        cleanDNA="databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled.qza"
+    log:
+        "logs/SILVA_classification_db_prep_qc_SILVA_seqs_cull.log"
+    priority: 50
+    conda:
+        config["qiime2version"]
+    script:
+        "../scripts/tax-classifier-construction/SILVA/03-qc-seqs-cull.sh"
+
+rule qc_seqs_filter:
+    input:
+        cleanDNA="databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled.qza",
+        taxonomy="databases/classification/SILVA/silva-ssu-nr99-tax.qza"
+    output:
+        filteredDNA="databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled-filtered.qza",
+        discardedDNA="databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled-discarded.qza"
+    log:
+        "logs/SILVA_classification_db_prep_qc_SILVA_seqs_filter.log"
+    priority: 50
+    conda:
+        config["qiime2version"]
+    script:
+        "../scripts/tax-classifier-construction/SILVA/04-qc-seqs-length-filter.sh"
+
+rule qc_seqs_dereplicate:
+    input:
+        filteredDNA="databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled-filtered.qza",
+        taxonomy="databases/classification/SILVA/silva-ssu-nr99-tax.qza"
+    output:
+        dereplicatedDNA="databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled-filtered-dereplicated.qza",
+        dereplicatedTaxa="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated.qza"
+    log:
+        "logs/SILVA_classification_db_prep_qc_SILVA_seqs_dereplicate.log"
+    priority: 50
+    conda:
+        config["qiime2version"]
+    script:
+        "../scripts/tax-classifier-construction/SILVA/05-qc-seqs-dereplicate.sh"
+
+rule extract_primers:
+    input:
+        dereplicatedDNA="databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled-filtered-dereplicated.qza"
+    params:
+        fwdPrimer=config["fwdPrimer"],
+        revPrimer=config["revPrimer"]
+    output:
+        slicedDNA="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + ".qza"
+    log:
+        "logs/SILVA_classification_db_prep_qc_SILVA_seqs_extract_primers.log"
+    priority: 50
+    conda:
+        config["qiime2version"]
+    script:
+        "../scripts/tax-classifier-construction/SILVA/06-extract-primers.sh"
+
+rule dereplicated_sliced_data:
+    input:
+        slicedDNA="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + ".qza",
+        dereplicatedTaxa="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated.qza"
+    output:
+        slicedDNA="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + ".qza"
+    log:
+        "logs/SILVA_classification_db_prep_qc_SILVA_seqs_dereplicate_sliced_data.log"
+    priority: 50
+    conda:
+        config["qiime2version"]
+    script:
+        "../scripts/tax-classifier-construction/SILVA/06-extract-primers.sh"

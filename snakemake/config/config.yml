@@ -10,7 +10,12 @@ trunclens:
   truncR1: 220
   truncR2: 180
 
-qiime2version: "{{../envs/ ~ qiime2-amplicon-ubuntu-2024-5-conda.yml}}" #input name of your yaml file here after the "~", and make sure to put it in the workflow/envs/ directory
+fwdPrimer: "GTGYCAGCMGCCGCGGTAA"
+revPrimer: "CCGYCAATTYMTTTRAGTTT"
+
+qiime2version: "../envs/qiime2-amplicon-ubuntu-2024-5-conda.yml" #input name of your yaml file here after the "../env/", and make sure to put it in the workflow/envs/ directory
+
+SILVAversion: "138.1"
 
 #you shouldn't need to change variables below unless you want to customize the pipeline
 

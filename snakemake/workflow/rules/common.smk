@@ -21,6 +21,7 @@ def get_final_output():
     final_output.append("databases/bbsplit-db/SILVA_132_PROK.cdhit95pc.fasta"),
     final_output.append("databases/bbsplit-db/SILVA_132_and_PR2_EUK.cdhit95pc.fasta"),
     final_output.append(directory("databases/bbsplit-db/EUK-PROK-bbsplit-db/")),
+    final_output.append("databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + ".qza"),
     final_output.append("results/02-proks/manifest.tsv"),
     final_output.append("results/02-proks/16S.qza"),
     final_output.append(directory("results/02-proks/02-quality-plots-R1-R2/")),
