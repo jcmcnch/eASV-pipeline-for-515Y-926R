@@ -12,6 +12,7 @@ configfile: "config/config.yml"
 # -----------------------------------------------------
 include: "rules/common.smk"
 include: "rules/download_databases.smk"
+include: "rules/prepare_classification_dbs.smk"
 include: "rules/prepare_bbsplit_db.smk"
 include: "rules/00-remove_primers.smk"
 include: "rules/01-split-16S-18S.smk"
