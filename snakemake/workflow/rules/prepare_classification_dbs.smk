@@ -4,7 +4,7 @@
 rule download_SILVA:
     output:
         seqs=temp("databases/classification/SILVA/silva-ssu-nr99-rna-seqs.qza"),
-        taxonomy="databases/classification/SILVA/silva-ssu-nr99-tax.qza"
+        taxonomy=temp("databases/classification/SILVA/silva-ssu-nr99-tax.qza")
     params:
         SILVAversion=config["SILVAversion"]
     log:
@@ -17,9 +17,9 @@ rule download_SILVA:
 
 rule reverse_transcribe:
     input:
-        "databases/classification/SILVA/silva-ssu-nr99-rna-seqs.qza" 
+        "databases/classification/SILVA/silva-ssu-nr99-rna-seqs.qza"
     output:
-        "databases/classification/SILVA/silva-ssu-nr99-dna-seqs.qza"
+        temp("databases/classification/SILVA/silva-ssu-nr99-dna-seqs.qza")
     log:
         "logs/SILVA_classification_db_prep_reverse_transcribe.log"
     priority: 50
@@ -32,7 +32,7 @@ rule qc_seqs_cull:
     input:
         rawDNA="databases/classification/SILVA/silva-ssu-nr99-dna-seqs.qza"
     output:
-        cleanDNA="databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled.qza"
+        cleanDNA=temp("databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled.qza")
     log:
         "logs/SILVA_classification_db_prep_qc_SILVA_seqs_cull.log"
     priority: 50
@@ -46,8 +46,8 @@ rule qc_seqs_filter:
         cleanDNA="databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled.qza",
         taxonomy="databases/classification/SILVA/silva-ssu-nr99-tax.qza"
     output:
-        filteredDNA="databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled-filtered.qza",
-        discardedDNA="databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled-discarded.qza"
+        filteredDNA=temp("databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled-filtered.qza"),
+        discardedDNA=temp("databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled-discarded.qza")
     log:
         "logs/SILVA_classification_db_prep_qc_SILVA_seqs_filter.log"
     priority: 50
@@ -59,10 +59,10 @@ rule qc_seqs_filter:
 rule qc_seqs_dereplicate:
     input:
         filteredDNA="databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled-filtered.qza",
-        taxonomy="databases/classification/SILVA/silva-ssu-nr99-tax.qza"
+        taxonomy="databases/classification/SILVA/silva-ssu-nr99-tax.qza")
     output:
-        dereplicatedDNA="databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled-filtered-dereplicated.qza",
-        dereplicatedTaxa="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated.qza"
+        dereplicatedDNA=temp("databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled-filtered-dereplicated.qza"),
+        dereplicatedTaxa=temp("databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated.qza")
     log:
         "logs/SILVA_classification_db_prep_qc_SILVA_seqs_dereplicate.log"
     priority: 50
@@ -78,7 +78,7 @@ rule extract_primers:
         fwdPrimer=config["fwdPrimer"],
         revPrimer=config["revPrimer"]
     output:
-        slicedDNA="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + ".qza"
+        slicedDNA=temp("databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + ".qza")
     log:
         "logs/SILVA_classification_db_prep_qc_SILVA_seqs_extract_primers.log"
     priority: 50
@@ -92,8 +92,8 @@ rule dereplicated_sliced_data:
         slicedDNA="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + ".qza",
         dereplicatedTaxa="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated.qza"
     output:
-        slicedDNAdereplicated="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated.qza",
-        dereplicatedTaxaSliced="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated.qza"
+        slicedDNAdereplicated=temp("databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated.qza"),
+        dereplicatedTaxaSliced=temp("databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated.qza")
     log:
         "logs/SILVA_classification_db_prep_qc_SILVA_seqs_dereplicate_sliced_data.log"
     priority: 50
