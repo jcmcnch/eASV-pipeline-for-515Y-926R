@@ -59,7 +59,7 @@ rule qc_seqs_filter:
 rule qc_seqs_dereplicate:
     input:
         filteredDNA="databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled-filtered.qza",
-        taxonomy="databases/classification/SILVA/silva-ssu-nr99-tax.qza")
+        taxonomy="databases/classification/SILVA/silva-ssu-nr99-tax.qza"
     output:
         dereplicatedDNA=temp("databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled-filtered-dereplicated.qza"),
         dereplicatedTaxa=temp("databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated.qza")
