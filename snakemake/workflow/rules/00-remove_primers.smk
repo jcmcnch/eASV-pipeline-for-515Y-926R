@@ -1,7 +1,7 @@
 rule cutadapt:
     input:
-        ["/home/jesse/github/nativemicrobiota/ocean-data/{sample}.R1.head400.fastq.gz",
-        "/home/jesse/github/nativemicrobiota/ocean-data/{sample}.R2.head400.fastq.gz"],
+        ["nativemicrobiota/ocean-data/{sample}.R1.head400.fastq.gz",
+        "nativemicrobiota/ocean-data/{sample}.R2.head400.fastq.gz"],
     output:
         fastq1=temp("results/00-trimmed/{sample}.1.fastq"),
         fastq2=temp("results/00-trimmed/{sample}.2.fastq"),
