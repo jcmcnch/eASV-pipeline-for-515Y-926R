@@ -58,4 +58,16 @@ rule export_DADA2_results:
     script:
         "../scripts/P04-export-DADA2-results.sh"
 
-
+rule classify_ASVs:
+    input:
+        "results/02-proks/03-DADA2d/representative_sequences.qza"
+    params:
+        classDB="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_GTGYCAGCMGCCGCGGTAA_CCGYCAATTYMTTTRAGTTT_dereplicated_final_classifier_USE_ME.qza"
+    output:
+        directory("results/02-proks/05-classified")
+    conda:
+        config["qiime2version"]
+    log:
+        "logs/02-denoise-and-export-prok/05-classify-ASVs.log"
+    script:
+        "../scripts/P05-classify-eASVs.sh"
