@@ -4,16 +4,16 @@ import pandas as pd
 import sys
 
 #read in previously produced manifest
-manifestDF = pd.read_csv(sys.argv[2], sep='\t', header=0)
+manifestDF = pd.read_csv(snakemake.input[0], sep='\t', header=0)
 manifestDF.set_index("sample-id", inplace=True) #This makes the first column the index
 
 #samples.tsv, provided by user, containing metadata
-samplesDF = pd.read_csv(sys.argv[1], sep='\t', header=0)
+samplesDF = pd.read_csv(snakemake.input[1], sep='\t', header=0)
 samplesDF.set_index("sample", inplace=True) #This makes the first column the index
 
 #import qiime2 stats from DADA2, get only "non-chimeric" which is
 #the number of reads remaining after DADA2 pipeline
-denoisingStatsDF = pd.read_csv(sys.argv[3], sep='\t', header=0)
+denoisingStatsDF = pd.read_csv(snakemake.input[2], sep='\t', header=0)
 denoisingStatsDF.set_index("sample-id", inplace=True)
 denoisingStatsDF = denoisingStatsDF.filter(["non-chimeric"])
 

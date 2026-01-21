@@ -62,7 +62,7 @@ rule classify_ASVs:
     input:
         "results/02-proks/03-DADA2d/representative_sequences.qza"
     params:
-        classDB="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_GTGYCAGCMGCCGCGGTAA_CCGYCAATTYMTTTRAGTTT_dereplicated_final_classifier_USE_ME.qza"
+        classDB="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated_final_classifier_USE_ME.qza"
     output:
         directory("results/02-proks/05-classified")
     conda:
@@ -71,3 +71,17 @@ rule classify_ASVs:
         "logs/02-denoise-and-export-prok/05-classify-ASVs.log"
     script:
         "../scripts/P05-classify-eASVs.sh"
+
+rule create_sample_metadata_file:
+    input:
+        "results/02-proks/manifest.tsv",
+        "config/samples.tsv",
+        "results/02-proks/04-DADA2d-plaintext-exports/" + config["studyName"] + ".16S.latest.stats.tsv"
+    output:
+        "results/02-proks/sample-metadata.tsv"
+    conda:
+        config["qiime2version"]
+    log:
+        "logs/02-denoise-and-export-prok/06-make-sample-metadata-file.log"
+    script:
+        "../scripts/P06-make-sample-metadata-file.py"

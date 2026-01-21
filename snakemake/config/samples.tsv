@@ -1,7 +1,7 @@
-sample	condition	replicate	read1	read2
-S0440	grump	1	nativemicrobiota/ocean-data/S0440.R1.head400.fastq.gz	nativemicrobiota/ocean-data/S0440.R2.head400.fastq.gz
-S0441	grump	1	nativemicrobiota/ocean-data/S0441.R1.head400.fastq.gz	nativemicrobiota/ocean-data/S0441.R2.head400.fastq.gz
-S0443	grump	1	nativemicrobiota/ocean-data/S0443.R1.head400.fastq.gz	nativemicrobiota/ocean-data/S0443.R2.head400.fastq.gz
-S0444	grump	1	nativemicrobiota/ocean-data/S0444.R1.head400.fastq.gz	nativemicrobiota/ocean-data/S0444.R2.head400.fastq.gz
-S0445	grump	1	nativemicrobiota/ocean-data/S0445.R1.head400.fastq.gz	nativemicrobiota/ocean-data/S0445.R2.head400.fastq.gz
-S0446	grump	1	nativemicrobiota/ocean-data/S0446.R1.head400.fastq.gz	nativemicrobiota/ocean-data/S0446.R2.head400.fastq.gz
+sample	replicate	condition	read1	read2	Depth (m)	Latitude and Longitude	Longitude [degrees_east]	Latitude [degrees_north]	time
+S0440	1	biogeotraces-test-dataset	nativemicrobiota/ocean-data/S0440.R1.head400.fastq.gz	nativemicrobiota/ocean-data/S0440.R2.head400.fastq.gz	32	32.499 S 169.00233 W	191.00101	-32.4977	2011-06-12T07:56:00
+S0441	1	biogeotraces-test-dataset	nativemicrobiota/ocean-data/S0441.R1.head400.fastq.gz	nativemicrobiota/ocean-data/S0441.R2.head400.fastq.gz	52	32.499 S 169.00233 W	191.00101	-32.4977	2011-06-12T07:56:00
+S0443	1	biogeotraces-test-dataset	nativemicrobiota/ocean-data/S0443.R1.head400.fastq.gz	nativemicrobiota/ocean-data/S0443.R2.head400.fastq.gz	101	32.499 S 169.00233 W	191.00101	-32.4977	2011-06-12T07:56:00
+S0444	1	biogeotraces-test-dataset	nativemicrobiota/ocean-data/S0444.R1.head400.fastq.gz	nativemicrobiota/ocean-data/S0444.R2.head400.fastq.gz	15	32.495 S 168.002 W	191.998	-32.4955	2011-06-12T17:23:53
+S0445	1	biogeotraces-test-dataset	nativemicrobiota/ocean-data/S0445.R1.head400.fastq.gz	nativemicrobiota/ocean-data/S0445.R2.head400.fastq.gz	30	32.495 S 168.002 W	191.998	-32.4955	2011-06-12T17:23:53
+S0446	1	biogeotraces-test-dataset	nativemicrobiota/ocean-data/S0446.R1.head400.fastq.gz	nativemicrobiota/ocean-data/S0446.R2.head400.fastq.gz	50	32.495 S 168.002 W	191.998	-32.4955	2011-06-12T17:23:53

@@ -27,7 +27,8 @@ def get_final_output():
     final_output.append(directory("results/02-proks/02-quality-plots-R1-R2/")),
     final_output.append(directory("results/02-proks/03-DADA2d/")),
     final_output.append(directory("results/02-proks/04-DADA2d-plaintext-exports")),
-    final_output.append(directory("results/02-proks/05-classified"))
+    final_output.append(directory("results/02-proks/05-classified")),
+    final_output.append("results/02-proks/sample-metadata.tsv")
 
     return final_output
 
