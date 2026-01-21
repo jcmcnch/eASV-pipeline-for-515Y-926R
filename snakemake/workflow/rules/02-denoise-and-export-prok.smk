@@ -50,7 +50,7 @@ rule export_DADA2_results:
     params:
         studyName=config["studyName"]
     output:
-        directory("results/02-proks/03-DADA2d-plaintext-exports/")
+        directory("results/02-proks/04-DADA2d-plaintext-exports/")
     conda:
         config["qiime2version"]
     log:
