@@ -23,5 +23,5 @@ mergedDF = mergedDF.drop(["read1","read2","forward-absolute-filepath","reverse-a
 mergedDF = pd.merge(mergedDF, denoisingStatsDF, left_index=True, right_index=True)
 
 #export as tsv
-mergedDF.to_csv("foo.tsv", encoding='utf-8', sep="\t", index=True)
+mergedDF.to_csv(snakemake.output[0], encoding='utf-8', sep="\t", index=True)
 
