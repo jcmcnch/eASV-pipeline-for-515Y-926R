@@ -89,7 +89,7 @@ rule extract_primers:
 
 rule dereplicated_sliced_data:
     input:
-        slicedDNA=rule.extract_primers.output.slicedDNA,
+        slicedDNA=rules.extract_primers.output.slicedDNA,
         dereplicatedTaxa="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated.qza"
     output:
         slicedDNAdereplicated=temp("databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated.qza"),
@@ -104,8 +104,8 @@ rule dereplicated_sliced_data:
 
 rule train_classifier:
     input:
-        slicedDNAdereplicated=rule.dereplicated_sliced_data.output.slicedDNAdereplicated,
-        dereplicatedTaxaSliced=rule.dereplicated_sliced_data.output.dereplicatedTaxaSliced
+        slicedDNAdereplicated=rules.dereplicated_sliced_data.output.slicedDNAdereplicated,
+        dereplicatedTaxaSliced=rules.dereplicated_sliced_data.output.dereplicatedTaxaSliced
     output:
         "databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated_final_classifier_USE_ME.qza"
     log:
