@@ -22,7 +22,7 @@ rule reverse_transcribe:
         temp("databases/classification/SILVA/silva-ssu-nr99-dna-seqs.qza")
     log:
         "logs/SILVA_classification_db_prep_reverse_transcribe.log"
-    priority: 50
+    priority: 49
     conda:
         config["qiime2version"]
     script:
@@ -35,7 +35,7 @@ rule qc_seqs_cull:
         cleanDNA=temp("databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled.qza")
     log:
         "logs/SILVA_classification_db_prep_qc_SILVA_seqs_cull.log"
-    priority: 50
+    priority: 48
     conda:
         config["qiime2version"]
     script:
@@ -50,7 +50,7 @@ rule qc_seqs_filter:
         discardedDNA=temp("databases/classification/SILVA/silva-ssu-nr99-dna-seqs-culled-discarded.qza")
     log:
         "logs/SILVA_classification_db_prep_qc_SILVA_seqs_filter.log"
-    priority: 50
+    priority: 47
     conda:
         config["qiime2version"]
     script:
@@ -65,7 +65,7 @@ rule qc_seqs_dereplicate:
         dereplicatedTaxa=temp("databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated.qza")
     log:
         "logs/SILVA_classification_db_prep_qc_SILVA_seqs_dereplicate.log"
-    priority: 50
+    priority: 46
     conda:
         config["qiime2version"]
     script:
@@ -81,7 +81,7 @@ rule extract_primers:
         slicedDNA=temp("databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + ".qza")
     log:
         "logs/SILVA_classification_db_prep_qc_SILVA_seqs_extract_primers.log"
-    priority: 50
+    priority: 45
     conda:
         config["qiime2version"]
     script:
@@ -96,7 +96,7 @@ rule dereplicated_sliced_data:
         dereplicatedTaxaSliced=temp("databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated.qza")
     log:
         "logs/SILVA_classification_db_prep_qc_SILVA_seqs_dereplicate_sliced_data.log"
-    priority: 50
+    priority: 44
     conda:
         config["qiime2version"]
     script:
@@ -110,7 +110,7 @@ rule train_classifier:
         "databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated_final_classifier_USE_ME.qza"
     log:
         "logs/SILVA_classification_db_prep_qc_SILVA_seqs_train_sliced_classifier.log"
-    priority: 50
+    priority: 43
     conda:
         config["qiime2version"]
     script:
