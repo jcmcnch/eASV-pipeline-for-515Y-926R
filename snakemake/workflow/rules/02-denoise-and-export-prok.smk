@@ -62,7 +62,7 @@ rule classify_ASVs:
     input:
         "results/02-proks/03-DADA2d/representative_sequences.qza"
     params:
-        classDB="databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated_final_classifier_USE_ME.qza"
+        classDB=rules.train_classifier.output,
     output:
         directory("results/02-proks/05-classified")
     conda:
