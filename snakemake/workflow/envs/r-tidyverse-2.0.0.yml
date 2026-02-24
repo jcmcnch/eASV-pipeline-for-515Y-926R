@@ -137,6 +137,7 @@ dependencies:
   - r-modelr=0.1.11
   - r-munsell=0.5.1
   - r-openssl=2.3.4
+  - r-patchwork=1.3.2
   - r-pillar=1.11.1
   - r-pkgconfig=2.0.3
   - r-prettyunits=1.2.0
