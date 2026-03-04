@@ -8,10 +8,15 @@ else
         exit 0
 fi
 
-mkdir 13-customized-barplots/
-mkdir 13-customized-barplots/subsetted-tables/
+source ../515Y-806RB.cfg
+conda activate $qiime2version
 
-conda activate qiime2-2019.4
+timestamp=`date +"%y%m%d-%H%M"`
+
+mkdir -p 13-customized-barplots/subsetted-tables/
+
+source ../515Y-806RB.cfg
+conda activate $qiime2version
 
 for STK in `ls samples-to-keep*`; do
 
@@ -31,9 +36,20 @@ for item in `ls 13-customized-barplots/subsetted-tables/*qza`; do
 
   name=`basename $item .qza`
 
+#failsafe mode if chloroplasts not present in 16S data, occurs for some datasets  
+if [ -e 09-subsetting/tax-merged/*PR2* ] ; then
+
+  tax=09-subsetting/tax-merged/chloroplasts-PR2-reclassified-merged-classification.qza
+
+else
+
+  tax=05-classified/classification.qza
+
+fi
+
   qiime taxa barplot \
     --i-table $item \
-    --i-taxonomy 09-subsetting/tax-merged/chloroplasts-PhytoRef-reclassified-merged-classification.qza \
+    --i-taxonomy $tax \
     --m-metadata-file sample-metadata.tsv \
     --output-dir 13-customized-barplots/$name
 
@@ -46,5 +62,18 @@ for item in `ls 13-customized-barplots/*/visualization.qzv`; do
   rmdir `dirname $item`
 
 done
+
+for item in 13-customized-barplots/*qzv ; do
+
+        mv $item 13-customized-barplots/$timestamp.$studyName.16S.`basename $item`
+
+done
+
+for item in 13-customized-barplots/subsetted-tables/*qza ; do
+
+        mv $item 13-customized-barplots/subsetted-tables/$timestamp.$studyName.16S.`basename $item`
+
+done
+
 
 conda deactivate
