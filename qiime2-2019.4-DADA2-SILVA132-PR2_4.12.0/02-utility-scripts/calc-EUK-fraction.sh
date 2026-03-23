@@ -21,9 +21,9 @@ totalEUKseqs=`./eukrunfile.sh | grep -c "^@"`
 
 totalSeqs=$(python -c "print($totalEUKseqs + $totalPROKseqs)")
 eukFrac=`bc <<< "scale=8; $totalEUKseqs/$totalSeqs"` 
-printf "There were $totalPROKseqs total PROK seqs.\n"
-printf "There were $totalEUKseqs total EUK seqs.\n"
-printf "The total run-specific EUK fraction is $eukFrac\n"
+printf "PROK_reads\tEUK_reads\n"
+printf "$totalPROKseqs\t$totalEUKseqs\n"
+#printf "The total run-specific EUK fraction is $eukFrac\n"
 
 rm eukrunfile.sh
 rm prokrunfile.sh
