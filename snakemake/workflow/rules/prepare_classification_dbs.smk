@@ -115,3 +115,12 @@ rule train_classifier:
         config["qiime2version"]
     script:
         "../scripts/tax-classifier-construction/SILVA/08-train-classifier.sh"
+
+rule clean_pr2_fasta_extract_headers:
+    input:
+        "databases/PR2/pr2_version_5.1.1_SSU_dada2.fasta"
+    output:
+        clean=temp("databases/PR2/pr2_version_5.1.1_SSU_dada2.clean.fasta"),
+        headers=temp("databases/PR2/pr2_version_5.1.1_SSU_dada2.headers.txt")
+    script:
+        "../scripts/tax-classifier-construction/PR2/script_to_reformat_PR.sh"
