@@ -69,7 +69,8 @@ rule classify_ASVs:
     params:
         classDB=rules.train_classifier.output,
     output:
-        directory("results/02-proks/05-classified")
+        directory("results/02-proks/05-classified/"),
+        classifier="results/02-proks/05-classified/" + config["studyName"] + "SILVA.classified.qza"
     conda:
         config["qiime2version"]
     log:
@@ -90,3 +91,13 @@ rule create_sample_metadata_file:
         "logs/02-denoise-and-export-prok/06-make-sample-metadata-file.log"
     script:
         "../scripts/P06-make-sample-metadata-file.py"
+
+rule make_SILVA_only_prok_barplots:
+    input:
+        proktable="results/02-proks/03-DADA2d/table.qza",
+        proktax="results/02-proks/05-classified/" + config["studyName"] + "SILVA.classified.qza",
+        prokmetadata="results/02-proks/sample-metadata.tsv"
+    output:
+        directory("results/07-barplots/")
+    script:
+        "../scripts/P07-make-barplot.sh"
