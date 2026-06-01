@@ -36,7 +36,10 @@ rule denoise_prok_dada2:
         truncR1=config["trunclens"]["truncR1"],
         truncR2=config["trunclens"]["truncR2"]
     output:
-        directory("results/02-proks/03-DADA2d/")
+        directory("results/02-proks/03-DADA2d/"),
+        prokrepseqs="results/02-proks/03-DADA2d/representative_sequences.qza",
+        prokstats="results/02-proks/03-DADA2d/denoising_stats.qza",
+        proktable="results/02-proks/03-DADA2d/table.qza"
     conda:
         config["qiime2version"]
     log:
@@ -50,7 +53,9 @@ rule export_DADA2_results:
     params:
         studyName=config["studyName"]
     output:
-        directory("results/02-proks/04-DADA2d-plaintext-exports/")
+        directory("results/02-proks/04-DADA2d-plaintext-exports/"),
+        lateststats="results/02-proks/04-DADA2d-plaintext-exports/" + config["studyName"] + "16S.latest_stats.tsv",
+        latestseqs="results/02-proks/04-DADA2d-plaintext-exports/" + config["studyName"] + "16S.latest_seqs.fasta"
     conda:
         config["qiime2version"]
     log:
@@ -76,7 +81,7 @@ rule create_sample_metadata_file:
     input:
         "results/02-proks/manifest.tsv",
         "config/samples.tsv",
-        "results/02-proks/04-DADA2d-plaintext-exports/" + config["studyName"] + ".16S.latest.stats.tsv"
+        "results/02-proks/04-DADA2d-plaintext-exports/" + config["studyName"] + "16S.latest_stats.tsv"
     output:
         "results/02-proks/sample-metadata.tsv"
     conda:
