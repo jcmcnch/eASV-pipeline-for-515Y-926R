@@ -70,7 +70,7 @@ rule classify_ASVs:
         classDB=rules.train_classifier.output,
     output:
         directory("results/02-proks/05-classified/"),
-        classifier="results/02-proks/05-classified/" + config["studyName"] + "SILVA.classified.qza"
+        classified="results/02-proks/05-classified/" + config["studyName"] + "_SILVA.classified.qza"
     conda:
         config["qiime2version"]
     log:
@@ -95,9 +95,28 @@ rule create_sample_metadata_file:
 rule make_SILVA_only_prok_barplots:
     input:
         proktable="results/02-proks/03-DADA2d/table.qza",
-        proktax="results/02-proks/05-classified/" + config["studyName"] + "SILVA.classified.qza",
+        proktax=rules.classify_ASVs.output.classified,
         prokmetadata="results/02-proks/sample-metadata.tsv"
+    params:
+        studyName=config["studyName"]
     output:
-        directory("results/07-barplots/")
+        directory("results/02-proks/07-SILVA-only-barplots/")
+    conda:
+        config["qiime2version"]
     script:
         "../scripts/P07-make-barplot.sh"
+
+rule split_chloroplasts:
+    input:
+        proktable=rules.denoise_prok_dada2.output.proktable,
+        proktax=rules.classify_ASVs.output.classified,
+        prokseqs=rules.denoise_prok_dada2.output.prokrepseqs
+    output:
+        includechlorotable="results/02-proks/09-subsetting/split-tables/include_o__Chloroplast_filtered_table.qza",
+        excludechlorotable="results/02-proks/09-subsetting/split-tables/exclude_o__Chloroplast_filtered_table.qza",
+        includechloroseqs="results/02-proks/09-subsetting/split-seqs/include_o__Chloroplast_subset_filtered_s",
+        excludechloroseqs="results/02-proks/09-subsetting/split-seqs/exclude_o__Chloroplast_subset_filtered_seqs.qza"
+    conda:
+        config["qiime2version"]
+    script:
+        "../scripts/P09a-split-chloroplast.sh"
