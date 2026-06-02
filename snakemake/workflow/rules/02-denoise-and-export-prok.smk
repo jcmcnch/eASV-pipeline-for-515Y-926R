@@ -82,7 +82,7 @@ rule create_sample_metadata_file:
     input:
         "results/02-proks/manifest.tsv",
         "config/samples.tsv",
-        "results/02-proks/04-DADA2d-plaintext-exports/" + config["studyName"] + "16S.latest_stats.tsv"
+        rules.export_DADA2_results.output.lateststats
     output:
         "results/02-proks/sample-metadata.tsv"
     conda:
