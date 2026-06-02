@@ -31,6 +31,7 @@ def get_final_output():
     final_output.append(directory("results/02-proks/05-classified")),
     final_output.append(directory("results/02-proks/07-SILVA-only-barplots/")),
     final_output.append("results/02-proks/09-subsetting/split-seqs/exclude_o__Chloroplast_subset_filtered_seqs.qza"),
+    final_output.append("results/02-proks/09-subsetting/reclassified/include_o__Chloroplast_subset_reclassified_PR2.qza"),
     final_output.append("results/02-proks/sample-metadata.tsv")
 
     return final_output

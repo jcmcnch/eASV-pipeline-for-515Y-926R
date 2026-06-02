@@ -106,7 +106,7 @@ rule make_SILVA_only_prok_barplots:
     script:
         "../scripts/P07-make-barplot.sh"
 
-rule split_chloroplasts:
+rule splitchloroplasts:
     input:
         proktable=rules.denoise_prok_dada2.output.proktable,
         proktax=rules.classify_ASVs.output.classified,
@@ -114,9 +114,34 @@ rule split_chloroplasts:
     output:
         includechlorotable="results/02-proks/09-subsetting/split-tables/include_o__Chloroplast_filtered_table.qza",
         excludechlorotable="results/02-proks/09-subsetting/split-tables/exclude_o__Chloroplast_filtered_table.qza",
-        includechloroseqs="results/02-proks/09-subsetting/split-seqs/include_o__Chloroplast_subset_filtered_s",
+        includechloroseqs="results/02-proks/09-subsetting/split-seqs/include_o__Chloroplast_subset_filtered_subset_filtered_seqs.qza",
         excludechloroseqs="results/02-proks/09-subsetting/split-seqs/exclude_o__Chloroplast_subset_filtered_seqs.qza"
     conda:
         config["qiime2version"]
     script:
         "../scripts/P09a-split-chloroplast.sh"
+
+rule reclassify_chloro_split_tables:
+    input:
+        PR2classifier="databases/classification/PR2/pr2_version_5.1.1_SSU_dada2.clean.culled.derep-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated_final_classifier_USE_ME.qza",
+        proktable=rules.denoise_prok_dada2.output.proktable,
+        proktax=rules.classify_ASVs.output.classified,
+        includechloroseqs=rules.splitchloroplasts.output.includechloroseqs
+    output:
+        PR2classifiedchloroseqs="results/02-proks/09-subsetting/reclassified/include_o__Chloroplast_subset_reclassified_PR2.qza",
+        mergedclass="results/02-proks/09-subsetting/tax-merged/chloroplasts-PR2-reclassified-merged-classification.qza",
+        nochlorotable="results/02-proks/09-subsetting/split-tables/exclude_o__Chloroplast_filtered_table.qza",
+        onlymitotable="results/02-proks/09-subsetting/split-tables/include_f__Mitochondria_filtered_table.qza",
+        onlyalgaetable="results/02-proks/09-subsetting/split-tables/include_p__Cyanobacteria_NOTE_includes_chloroplasts_filtered_table.qza",
+        onlycyanotable="results/02-proks/09-subsetting/split-tables/include_p__Cyanobacteria_exclude_o__Chloroplast_filtered_table.qza",
+        nomitotable="results/02-proks/09-subsetting/split-tables/exclude_f__Mitochondria_filtered_table.qza",
+        nomitonochlorotable="results/02-proks/09-subsetting/split-tables/exclude_o__Chloroplast_exclude_f__Mitochondria_filtered_table.qza",
+        nomitonochloronocyanotable="results/02-proks/09-subsetting/split-tables/exclude_p__Cyanobacteria_exclude_f__Mitochondria_NOTE_excludes_chloroplasts_filtered_table.qza",
+        onlyarchaeatable="results/02-proks/09-subsetting/split-tables/include_d__Archaea_filtered_table.qza",
+        noarchaeatable="results/02-proks/09-subsetting/split-tables/exclude_d__Archaea_filtered_table.qza" 
+    params:
+        studyName=config["studyName"]
+    conda:
+        config["qiime2version"]
+    script:
+        "../scripts/P09b-PR2-reclassify-chloroplasts-split-categories.sh"
