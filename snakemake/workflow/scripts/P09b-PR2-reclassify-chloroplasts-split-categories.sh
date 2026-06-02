@@ -34,13 +34,6 @@ cp ${snakemake_input[proktax]} ${snakemake_output[mergedclass]}
 
 fi
 
-#Filter out Chloroplasts from overall table
-qiime taxa filter-table \
-    --i-table ${snakemake_input[proktable]} \
-    --i-taxonomy ${snakemake_input[proktax]} \
-    --p-exclude "o__Chloroplast" \
-    --o-filtered-table ${snakemake_output[nochlorotable]} || touch ${snakemake_output[nochlorotable]}
-
 #Create Mitochondria table
 qiime taxa filter-table \
    --i-table ${snakemake_input[proktable]} \
