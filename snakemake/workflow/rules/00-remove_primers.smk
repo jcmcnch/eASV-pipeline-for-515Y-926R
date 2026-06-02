@@ -1,7 +1,7 @@
 rule cutadapt:
     input:
-        ["/home/jessem/Data/250121_DH_demux/demultiplexed/{sample}_Parada_PCRRep1.R1.fastq.gz",
-        "/home/jessem/Data/250121_DH_demux/demultiplexed/{sample}_Parada_PCRRep1.R2.fastq.gz"],
+        ["nativemicrobiota/ocean-data/{sample}.R1.head400.fastq.gz",
+        "nativemicrobiota/ocean-data/{sample}.R2.head400.fastq.gz"],
     output:
         fastq1=temp("results/00-trimmed/{sample}.1.fastq"),
         fastq2=temp("results/00-trimmed/{sample}.2.fastq"),
