@@ -36,7 +36,7 @@ rule download_euk_db:
 
 rule download_pr2:
     output:
-        temp("databases/PR2/pr2_version_5.1.1_SSU_dada2.fasta.gz")
+        temp("databases/classification/PR2/pr2_version_5.1.1_SSU_dada2.fasta.gz")
     log:
         "logs/download_pr2.log"
     params:
@@ -53,9 +53,9 @@ rule download_pr2:
 
 rule unzip_pr2:
     input:
-        temp("databases/PR2/pr2_version_5.1.1_SSU_dada2.fasta.gz"),
+        temp("databases/classification/PR2/pr2_version_5.1.1_SSU_dada2.fasta.gz"),
     output:
-        temp("databases/PR2/pr2_version_5.1.1_SSU_dada2.fasta"),
+        temp("databases/classification/PR2/pr2_version_5.1.1_SSU_dada2.fasta"),
     log:
         "logs/gunzip/extract_pr2.log",
     threads: 1
