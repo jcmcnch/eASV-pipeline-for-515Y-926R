@@ -20,7 +20,7 @@ def get_final_output():
 
     final_output.append("databases/bbsplit-db/SILVA_132_PROK.cdhit95pc.fasta"),
     final_output.append("databases/bbsplit-db/SILVA_132_and_PR2_EUK.cdhit95pc.fasta"),
-    final_output.append("databases/PR2/pr2_version_5.1.1_SSU_dada2.clean.culled.derep-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated_final_classifier_USE_ME.qza"),
+    final_output.append("databases/classification/PR2/pr2_version_5.1.1_SSU_dada2.clean.culled.derep-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated_final_classifier_USE_ME.qza"),
     final_output.append(directory("databases/bbsplit-db/EUK-PROK-bbsplit-db/")),
     final_output.append("databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated_final_classifier_USE_ME.qza"),
     final_output.append("results/02-proks/manifest.tsv"),
