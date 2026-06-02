@@ -9,8 +9,8 @@ manifestDF.set_index("sample-id", inplace=True) #This makes the first column the
 
 #samples.tsv, provided by user, containing metadata
 samplesDF = pd.read_csv(snakemake.input["samplesdottsv"], sep='\t', header=0)
-samplesDF.set_index("sample", inplace=True) #This makes the first column the index
 samplesDF["sample"].str.replace('_','-')
+samplesDF.set_index("sample", inplace=True) #This makes the first column the index
 
 #import qiime2 stats from DADA2, get only "non-chimeric" which is
 #the number of reads remaining after DADA2 pipeline
