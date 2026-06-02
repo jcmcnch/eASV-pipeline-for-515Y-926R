@@ -80,9 +80,9 @@ rule classify_ASVs:
 
 rule create_sample_metadata_file:
     input:
-        "results/02-proks/manifest.tsv",
-        "config/samples.tsv",
-        rules.export_DADA2_results.output.lateststats
+        manifest="results/02-proks/manifest.tsv",
+        samplesdottsv="config/samples.tsv",
+        prokstats=rules.export_DADA2_results.output.lateststats
     output:
         "results/02-proks/sample-metadata.tsv"
     conda:
