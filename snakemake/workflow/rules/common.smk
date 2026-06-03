@@ -33,7 +33,7 @@ def get_final_output():
     final_output.append("results/02-proks/09-subsetting/split-seqs/exclude_o__Chloroplast_subset_filtered_seqs.qza"),
     final_output.append("results/02-proks/09-subsetting/reclassified/include_o__Chloroplast_subset_reclassified_PR2.qza"),
     final_output.append("results/02-proks/10-exports/taxonomy.tsv"),
-    final_output.append("results/02-proks/10-exports/all-16S-seqs.with-tax.biom"),
+    final_output.append("results/02-proks/10-exports/all-16S-seqs.with-tax.tsv"),
     final_output.append("results/02-proks/sample-metadata.tsv")
 
     return final_output
