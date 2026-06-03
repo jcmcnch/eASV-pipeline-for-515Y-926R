@@ -176,3 +176,34 @@ rule export_tax_convert_biom:
         config["qiime2version"]
     script:
         "../scripts/P10a-generate-biom-tables.sh"
+
+rule add_tax_to_biom:
+    input:
+        mergedtaxtsv="results/02-proks/10-exports/taxonomy.tsv",
+        all16Stable_biom="results/02-proks/10-exports/all-16S-seqs.biom",
+        noarch_biom="results/02-proks/10-exports/exclude_d__Archaea_filtered_table.biom",
+        nomito_biom="results/02-proks/10-exports/exclude_f__Mitochondria_filtered_table.biom",
+        nochloronomito_biom="results/02-proks/10-exports/exclude_o__Chloroplast_exclude_f__Mitochondria_filtered_table.biom",
+        nochloro_biom="results/02-proks/10-exports/exclude_o__Chloroplast_filtered_table.biom",
+        nochloronocyanonomito_biom="results/02-proks/10-exports/exclude_p__Cyanobacteria_exclude_f__Mitochondria_NOTE_excludes_chloroplasts_filtered_table.biom",
+        onlyarch_biom="results/02-proks/10-exports/include_d__Archaea_filtered_table.biom",
+        onlymito_biom="results/02-proks/10-exports/include_f__Mitochondria_filtered_table.biom",
+        onlychloro_biom="results/02-proks/10-exports/include_o__Chloroplast_filtered_table.biom",
+        onlycyano_biom="results/02-proks/10-exports/include_p__Cyanobacteria_exclude_o__Chloroplast_filtered_table.biom",
+        onlyalgae_biom="results/02-proks/10-exports/include_p__Cyanobacteria_NOTE_includes_chloroplasts_filtered_table.qza.biom",
+    output:
+        all16Stable_biomtax=temp("results/02-proks/10-exports/all-16S-seqs.with-tax.biom"),
+        noarch_biomtax=temp("results/02-proks/10-exports/exclude_d__Archaea_filtered_table.with-tax.biom"),
+        nomito_biomtax=temp("results/02-proks/10-exports/exclude_f__Mitochondria_filtered_table.with-tax.biom"),
+        nochloronomito_biomtax=temp("results/02-proks/10-exports/exclude_o__Chloroplast_exclude_f__Mitochondria_filtered_table.with-tax.biom"),
+        nochloro_biomtax=temp("results/02-proks/10-exports/exclude_o__Chloroplast_filtered_table.with-tax.biom"),
+        nochloronocyanonomito_biomtax=temp("results/02-proks/10-exports/exclude_p__Cyanobacteria_exclude_f__Mitochondria_NOTE_excludes_chloroplasts_filtered_table.with-tax.biom"),
+        onlyarch_biomtax=temp("results/02-proks/10-exports/include_d__Archaea_filtered_table.with-tax.biom"),
+        onlymito_biomtax=temp("results/02-proks/10-exports/include_f__Mitochondria_filtered_table.with-tax.biom"),
+        onlychloro_biomtax=temp("results/02-proks/10-exports/include_o__Chloroplast_filtered_table.with-tax.biom"),
+        onlycyano_biomtax=temp("results/02-proks/10-exports/include_p__Cyanobacteria_exclude_o__Chloroplast_filtered_table.with-tax.biom"),
+        onlyalgae_biomtax=temp("results/02-proks/10-exports/include_p__Cyanobacteria_NOTE_includes_chloroplasts_filtered_table.qza.with-tax.biom")
+    conda:
+        config["qiime2version"]
+    script:
+        "../scripts/P10b-add-tax-to-biom.sh"
