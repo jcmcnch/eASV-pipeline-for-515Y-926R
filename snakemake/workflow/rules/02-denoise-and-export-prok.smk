@@ -144,3 +144,35 @@ rule reclassify_chloro_split_tables:
         config["qiime2version"]
     script:
         "../scripts/P09b-PR2-reclassify-chloroplasts-split-categories.sh"
+
+rule export_tax_convert_biom:
+    input:
+        mergedtax=rules.reclassify_chloro_split_tables.output.mergedclass,
+        all16Stable="results/02-proks/03-DADA2d/table.qza",
+        noarch="results/02-proks/09-subsetting/split-tables/exclude_d__Archaea_filtered_table.qza",
+        nomito="results/02-proks/09-subsetting/split-tables/exclude_f__Mitochondria_filtered_table.qza",
+        nochloronomito="results/02-proks/09-subsetting/split-tables/exclude_o__Chloroplast_exclude_f__Mitochondria_filtered_table.qza",
+        nochloro="results/02-proks/09-subsetting/split-tables/exclude_o__Chloroplast_filtered_table.qza",
+        nochloronocyanonomito="results/02-proks/09-subsetting/split-tables/exclude_p__Cyanobacteria_exclude_f__Mitochondria_NOTE_excludes_chloroplasts_filtered_table.qza",
+        onlyarch="results/02-proks/09-subsetting/split-tables/include_d__Archaea_filtered_table.qza",
+        onlymito="results/02-proks/09-subsetting/split-tables/include_f__Mitochondria_filtered_table.qza",
+        onlychloro="results/02-proks/09-subsetting/split-tables/include_o__Chloroplast_filtered_table.qza",
+        onlycyano="results/02-proks/09-subsetting/split-tables/include_p__Cyanobacteria_exclude_o__Chloroplast_filtered_table.qza",
+        onlyalgae="results/02-proks/09-subsetting/split-tables/include_p__Cyanobacteria_NOTE_includes_chloroplasts_filtered_table.qza",
+    output:
+        mergedtaxtsv="results/02-proks/10-exports/taxonomy.tsv",
+        all16Stable_biom=temp("results/02-proks/10-exports/all-16S-seqs.biom"),
+        noarch_biom=temp("results/02-proks/10-exports/exclude_d__Archaea_filtered_table.biom"),
+        nomito_biom=temp("results/02-proks/10-exports/exclude_f__Mitochondria_filtered_table.biom"),
+        nochloronomito_biom=temp("results/02-proks/10-exports/exclude_o__Chloroplast_exclude_f__Mitochondria_filtered_table.biom"),
+        nochloro_biom=temp("results/02-proks/10-exports/exclude_o__Chloroplast_filtered_table.biom"),
+        nochloronocyanonomito_biom=temp("results/02-proks/10-exports/exclude_p__Cyanobacteria_exclude_f__Mitochondria_NOTE_excludes_chloroplasts_filtered_table.biom"),
+        onlyarch_biom=temp("results/02-proks/10-exports/include_d__Archaea_filtered_table.biom"),
+        onlymito_biom=temp("results/02-proks/10-exports/include_f__Mitochondria_filtered_table.biom"),
+        onlychloro_biom=temp("results/02-proks/10-exports/include_o__Chloroplast_filtered_table.biom"),
+        onlycyano_biom=temp("results/02-proks/10-exports/include_p__Cyanobacteria_exclude_o__Chloroplast_filtered_table.biom"),
+        onlyalgae_biom="results/02-proks/10-exports/include_p__Cyanobacteria_NOTE_includes_chloroplasts_filtered_table.qza.biom",
+    conda:
+        config["qiime2version"]
+    script:
+        "../scripts/P10a-generate-biom-tables.sh"
