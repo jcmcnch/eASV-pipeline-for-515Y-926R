@@ -1,4 +1,4 @@
-rule create_manifest_euk:
+rule create_manifest_euk_viz:
     input:
         r1=expand("results/01-split/{sample}.euk.R1.fastq.gz", sample=samples["sample"]),
         r2=expand("results/01-split/{sample}.euk.R2.fastq.gz", sample=samples["sample"])
@@ -58,6 +58,26 @@ rule fuse_trimmed_euk_seqs:
         "logs/euk-fusing.{sample}.log"
     script:
         "../scripts/E04-fuse-EUKs-withoutNs.sh"
+
+rule create_manifest_euk_concat:
+    input:
+        rules.fuse_trimmed_euk_seqs.output
+    output:
+        "results/02-euks/manifest-concat.tsv"
+    conda:
+        config["qiime2version"]
+    script:
+        "../scripts/E05-create-manifest-concat.sh"
+
+rule import_euk_concat:
+    input:
+        "results/02-euks/manifest-concat.tsv"
+    output:
+        "results/02-euks/18S-concat.qza"
+    conda:
+        config["qiime2version"]
+    script:
+        "../scripts/E06-import-concat.sh"
 
 """
 rule denoise_euk_dada2:
