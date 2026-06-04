@@ -3,36 +3,53 @@ rule create_manifest_euk:
         r1=expand("results/01-split/{sample}.euk.R1.fastq.gz", sample=samples["sample"]),
         r2=expand("results/01-split/{sample}.euk.R2.fastq.gz", sample=samples["sample"])
     output:
-        "results/02-euks/manifest.tsv"
+        "results/02-euks/manifest-viz.tsv"
     conda:
         config["qiime2version"]
     script:
         "../scripts/E00-create-manifest.sh"
 
+rule import_euk_viz:
+    input:
+        "results/02-euks/manifest-viz.tsv"
+    output:
+        "results/02-euks/18S-viz.qza"
+    conda:
+        config["qiime2version"]
+    script:
+        "../scripts/E01-import.sh"
+
+rule visualize_euk_seq_quality:
+    input:
+        "results/02-euks/18S-viz.qza"
+    output:
+        directory("results/02-euks/02-quality-plots-R1-R2/")
+    conda:
+        config["qiime2version"]
+    script:
+        "../scripts/E02-visualize-quality_R1-R2.sh"
+
+rule bbduk_cut_reads:
+    input:
+        r1="results/01-split/{sample}.euk.R1.fastq.gz",
+        r2="results/01-split/{sample}.euk.R2.fastq.gz"
+    output:
+        r1="results/02-euks/03-size-selected/{sample}.euk.R1.trimmed.fastq.gz",
+        r2="results/02-euks/03-size-selected/{sample}.euk.R2.trimmed.fastq.gz"
+    params:
+        truncR1=config["trunclens"]["truncR1"],
+        truncR2=config["trunclens"]["truncR2"]
+    conda:
+        "../envs/bbmap.yaml"
+    log:
+        "logs/euk-trimming.{sample}.log"
+    script:
+        "../scripts/E03-bbduk-cut-reads.sh"
+
 """
-rule import_prok:
+rule denoise_euk_dada2:
     input:
-        "results/02-proks/manifest.tsv"
-    output:
-        "results/02-proks/16S.qza"
-    conda:
-        config["qiime2version"]
-    script:
-        "../scripts/P01-import.sh"
-
-rule visualize_prok_seq_quality:
-    input:
-        "results/02-proks/16S.qza"
-    output:
-        directory("results/02-proks/02-quality-plots-R1-R2/")
-    conda:
-        config["qiime2version"]
-    script:
-        "../scripts/P02-visualize-quality_R1-R2.sh"
-
-rule denoise_prok_dada2:
-    input:
-        "results/02-proks/16S.qza"
+        "results/02-euks/18S.qza"
     params:
         truncR1=config["trunclens"]["truncR1"],
         truncR2=config["trunclens"]["truncR2"]

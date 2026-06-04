@@ -23,7 +23,7 @@ def get_final_output():
     final_output.append("databases/classification/PR2/pr2_version_5.1.1_SSU_dada2.clean.culled.derep-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated_final_classifier_USE_ME.qza"),
     final_output.append(directory("databases/bbsplit-db/EUK-PROK-bbsplit-db/")),
     final_output.append("databases/classification/SILVA/silva-ssu-nr99-tax-dereplicated-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated_final_classifier_USE_ME.qza"),
-    final_output.append("results/02-proks/manifest.tsv"),
+#    final_output.append("results/02-proks/manifest.tsv"),
     final_output.append("results/02-proks/16S.qza"),
     final_output.append(directory("results/02-proks/02-quality-plots-R1-R2/")),
     final_output.append(directory("results/02-proks/03-DADA2d/")),
@@ -35,7 +35,9 @@ def get_final_output():
     final_output.append("results/02-proks/10-exports/taxonomy.tsv"),
     final_output.append("results/02-proks/10-exports/all-16S-seqs.with-tax.tsv"),
     final_output.append("results/02-proks/sample-metadata.tsv"),
-    final_output.append("results/02-euks/manifest.tsv")
+    final_output.append("results/02-euks/18S-viz.qza"),
+    final_output.append(directory("results/02-euks/02-quality-plots-R1-R2/")),
+    final_output.append(expand("results/02-euks/03-size-selected/{sample}.euk.R1.trimmed.fastq.gz", sample=samples["sample"]))
 
     return final_output
 
