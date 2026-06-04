@@ -34,8 +34,8 @@ rule bbduk_cut_reads:
         r1="results/01-split/{sample}.euk.R1.fastq.gz",
         r2="results/01-split/{sample}.euk.R2.fastq.gz"
     output:
-        r1="results/02-euks/03-size-selected/{sample}.euk.R1.trimmed.fastq.gz",
-        r2="results/02-euks/03-size-selected/{sample}.euk.R2.trimmed.fastq.gz"
+        r1=temp("results/02-euks/03-size-selected/{sample}.euk.R1.trimmed.fastq"),
+        r2=temp("results/02-euks/03-size-selected/{sample}.euk.R2.trimmed.fastq")
     params:
         truncR1=config["trunclens"]["truncR1"],
         truncR2=config["trunclens"]["truncR2"]
@@ -45,6 +45,19 @@ rule bbduk_cut_reads:
         "logs/euk-trimming.{sample}.log"
     script:
         "../scripts/E03-bbduk-cut-reads.sh"
+
+rule fuse_trimmed_euk_seqs:
+    input:
+        r1=rules.bbduk_cut_reads.output.r1,
+        r2=rules.bbduk_cut_reads.output.r2
+    output:
+        "results/02-euks/04-concatenated/{sample}.euk.concatenated.fastq",
+    conda:
+        "../envs/bbmap.yaml"
+    log:
+        "logs/euk-fusing.{sample}.log"
+    script:
+        "../scripts/E04-fuse-EUKs-withoutNs.sh"
 
 """
 rule denoise_euk_dada2:

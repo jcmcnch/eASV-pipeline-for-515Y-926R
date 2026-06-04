@@ -37,7 +37,7 @@ def get_final_output():
     final_output.append("results/02-proks/sample-metadata.tsv"),
     final_output.append("results/02-euks/18S-viz.qza"),
     final_output.append(directory("results/02-euks/02-quality-plots-R1-R2/")),
-    final_output.append(expand("results/02-euks/03-size-selected/{sample}.euk.R1.trimmed.fastq.gz", sample=samples["sample"]))
+    final_output.append(expand("results/02-euks/04-concatenated/{sample}.euk.concatenated.fastq", sample=samples["sample"]))
 
     return final_output
 
