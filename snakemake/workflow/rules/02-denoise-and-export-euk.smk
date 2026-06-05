@@ -104,23 +104,23 @@ rule denoise_euk_dada2:
     script:
         "../scripts/E08-DADA2.sh"
 
-"""
-rule export_DADA2_results:
+rule export_DADA2_results_euk:
     input:
         directory("results/02-euks/08-DADA2d/")
     params:
         studyName=config["studyName"]
     output:
-        directory("results/02-euks/04-DADA2d-plaintext-exports/"),
-        lateststats="results/02-euks/04-DADA2d-plaintext-exports/" + config["studyName"] + "16S.latest_stats.tsv",
-        latestseqs="results/02-euks/04-DADA2d-plaintext-exports/" + config["studyName"] + "16S.latest_seqs.fasta"
+        directory("results/02-euks/09-DADA2d-plaintext-exports/"),
+        lateststats="results/02-euks/09-DADA2d-plaintext-exports/" + config["studyName"] + ".18S.latest_stats.tsv",
+        latestseqs="results/02-euks/09-DADA2d-plaintext-exports/" + config["studyName"] + ".18S.latest_seqs.fasta"
     conda:
         config["qiime2version"]
     log:
-        "logs/02-denoise-and-export-euk/04_export_DADA2_results/DADA2_export.stderrout"
+        "logs/02-denoise-and-export-euk/09_export_DADA2_results/DADA2_export.stderrout"
     script:
-        "../scripts/P04-export-DADA2-results.sh"
+        "../scripts/E09-export-DADA2-results.sh"
 
+"""
 rule classify_ASVs:
     input:
         "results/02-euks/08-DADA2d/representative_sequences.qza"

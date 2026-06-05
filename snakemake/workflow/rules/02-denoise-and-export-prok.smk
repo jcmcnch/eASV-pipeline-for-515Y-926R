@@ -54,8 +54,8 @@ rule export_DADA2_results:
         studyName=config["studyName"]
     output:
         directory("results/02-proks/04-DADA2d-plaintext-exports/"),
-        lateststats="results/02-proks/04-DADA2d-plaintext-exports/" + config["studyName"] + "16S.latest_stats.tsv",
-        latestseqs="results/02-proks/04-DADA2d-plaintext-exports/" + config["studyName"] + "16S.latest_seqs.fasta"
+        lateststats="results/02-proks/04-DADA2d-plaintext-exports/" + config["studyName"] + ".16S.latest_stats.tsv",
+        latestseqs="results/02-proks/04-DADA2d-plaintext-exports/" + config["studyName"] + ".16S.latest_seqs.fasta"
     conda:
         config["qiime2version"]
     log:

@@ -40,7 +40,8 @@ def get_final_output():
     final_output.append(directory("results/02-euks/07-quality-plots-concat")),
     final_output.append(directory("results/02-euks/08-DADA2d")),
     final_output.append("results/02-euks/18S-concat.qza"),
-    final_output.append(expand("results/02-euks/04-concatenated/{sample}.euk.concatenated.fastq", sample=samples["sample"]))
+    final_output.append(expand("results/02-euks/04-concatenated/{sample}.euk.concatenated.fastq", sample=samples["sample"])),
+    final_output.append(directory("results/02-euks/09-DADA2d-plaintext-exports/"))
 
     return final_output
 
