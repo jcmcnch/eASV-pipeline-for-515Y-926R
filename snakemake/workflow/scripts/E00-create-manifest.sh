@@ -11,7 +11,7 @@ cutME=".euk.R1.fastq.gz"
 
 printf "sample-id	forward-absolute-filepath	reverse-absolute-filepath\n" > ${snakemake_output[0]}
 
-for item in ${snakemake_input[0]}; do
+for item in ${snakemake_input[r1]}; do
 
 	sampleID=`basename $item $cutME | sed 's/_/-/g'` #remove underscores before importing
 	sampleIDstring=`basename $item $cutME`

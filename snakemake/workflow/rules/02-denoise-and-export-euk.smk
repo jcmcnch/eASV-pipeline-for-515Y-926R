@@ -61,8 +61,7 @@ rule fuse_trimmed_euk_seqs:
 
 rule create_manifest_euk_concat:
     input:
-        expand("results/02-euks/04-concatenated/{sample}.euk.concatenated.fastq", sample=samples["sample"])
-#        rules.fuse_trimmed_euk_seqs.output
+        files=expand("results/02-euks/04-concatenated/{sample}.euk.concatenated.fastq", sample=samples["sample"])
     output:
         "results/02-euks/manifest-concat.tsv"
     conda:
@@ -79,17 +78,23 @@ rule import_euk_concat:
         config["qiime2version"]
     script:
         "../scripts/E06-import-concat.sh"
-
 """
+rule visualize_quality_single_seqs:
+    input:
+        "results/02-euks/18S-concat.qza"
+    output:
+        "results/02-euks/07-quality-plots-concat"
+    conda:
+        config["qiime2version"]
+    script:
+        "../scripts/E07-visualize-quality-single-seqs.sh"
+
 rule denoise_euk_dada2:
     input:
         "results/02-euks/18S.qza"
-    params:
-        truncR1=config["trunclens"]["truncR1"],
-        truncR2=config["trunclens"]["truncR2"]
     output:
-        directory("results/02-proks/03-DADA2d/"),
-        prokrepseqs="results/02-proks/03-DADA2d/representative_sequences.qza",
+        directory("results/02-euks/03-DADA2d/"),
+        prokrepseqs="results/02-euks/03-DADA2d/representative_sequences.qza",
         prokstats="results/02-proks/03-DADA2d/denoising_stats.qza",
         proktable="results/02-proks/03-DADA2d/table.qza"
     conda:

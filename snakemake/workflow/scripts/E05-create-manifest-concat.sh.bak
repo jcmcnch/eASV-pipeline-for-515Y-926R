@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+#shortcut for making manifests based on fasta file names
+
+cutME=".euk.concatenated.fastq" #the bit you want to cut from the file names, leaving only the sample name
+
+printf "sample-id	absolute-filepath\n" > ${snakemake_output[0]}
+
+echo ${snakemake_input[0]}
+
+for item in ${snakemake_input[0]} ; do
+
+	echo $item
+        sampleID=`basename $item $cutME | sed 's/_/-/g'` #remove underscores before importing
+        sampleIDstring=`basename $item $cutME`
+        R1=`ls results/02-euks/04-concatenated/$sampleIDstring$cutME`
+        echo $R1
+
+        printf "$sampleID	\$PWD/$R1\n" >> ${snakemake_output[0]}
+
+done
