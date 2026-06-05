@@ -61,7 +61,8 @@ rule fuse_trimmed_euk_seqs:
 
 rule create_manifest_euk_concat:
     input:
-        rules.fuse_trimmed_euk_seqs.output
+        expand("results/02-euks/04-concatenated/{sample}.euk.concatenated.fastq", sample=samples["sample"])
+#        rules.fuse_trimmed_euk_seqs.output
     output:
         "results/02-euks/manifest-concat.tsv"
     conda:
