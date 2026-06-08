@@ -120,22 +120,21 @@ rule export_DADA2_results_euk:
     script:
         "../scripts/E09-export-DADA2-results.sh"
 
-"""
-rule classify_ASVs:
+rule classify_ASVs_euk:
     input:
         "results/02-euks/08-DADA2d/representative_sequences.qza"
     params:
-        classDB=rules.train_classifier.output,
+        classDB=rules.train_classifier_pr2.output,
     output:
-        directory("results/02-euks/05-classified/"),
-        classified="results/02-euks/05-classified/" + config["studyName"] + "_SILVA.classified.qza"
+        directory("results/02-euks/10-classified/"),
+        classified="results/02-euks/10-classified/" + config["studyName"] + "_SILVA.classified.qza"
     conda:
         config["qiime2version"]
     log:
-        "logs/02-denoise-and-export-euk/05-classify-ASVs.log"
+        "logs/02-denoise-and-export-euk/10-classify-ASVs.log"
     script:
-        "../scripts/P05-classify-eASVs.sh"
-
+        "../scripts/E10-classify-seqs.sh"
+"""
 rule create_sample_metadata_file:
     input:
         manifest="results/02-euks/manifest.tsv",
