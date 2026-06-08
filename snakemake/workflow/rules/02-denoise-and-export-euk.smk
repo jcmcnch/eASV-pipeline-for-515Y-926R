@@ -134,21 +134,21 @@ rule classify_ASVs_euk:
         "logs/02-denoise-and-export-euk/10-classify-ASVs.log"
     script:
         "../scripts/E10-classify-seqs.sh"
-"""
-rule create_sample_metadata_file:
+
+rule create_sample_metadata_file_euk:
     input:
-        manifest="results/02-euks/manifest.tsv",
+        manifest="results/02-euks/manifest-concat.tsv",
         samplesdottsv="config/samples.tsv",
-        eukstats=rules.export_DADA2_results.output.lateststats
+        eukstats=rules.export_DADA2_results_euk.output.lateststats
     output:
         "results/02-euks/sample-metadata.tsv"
     conda:
         config["qiime2version"]
     log:
-        "logs/02-denoise-and-export-euk/06-make-sample-metadata-file.log"
+        "logs/02-denoise-and-export-euk/11-make-sample-metadata-file.log"
     script:
-        "../scripts/P06-make-sample-metadata-file.py"
-
+        "../scripts/E11-make-sample-metadata-file.py"
+"""
 rule make_SILVA_only_euk_barplots:
     input:
         euktable="results/02-euks/08-DADA2d/table.qza",

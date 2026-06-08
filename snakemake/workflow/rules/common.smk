@@ -42,7 +42,8 @@ def get_final_output():
     final_output.append("results/02-euks/18S-concat.qza"),
     final_output.append(expand("results/02-euks/04-concatenated/{sample}.euk.concatenated.fastq", sample=samples["sample"])),
     final_output.append(directory("results/02-euks/09-DADA2d-plaintext-exports/")),
-    final_output.append(directory("results/02-euks/10-classified/"))
+    final_output.append(directory("results/02-euks/10-classified/")),
+    final_output.append("results/02-euks/sample-metadata.tsv")
 
     return final_output
 
