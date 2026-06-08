@@ -148,21 +148,21 @@ rule create_sample_metadata_file_euk:
         "logs/02-denoise-and-export-euk/11-make-sample-metadata-file.log"
     script:
         "../scripts/E11-make-sample-metadata-file.py"
-"""
+
 rule make_SILVA_only_euk_barplots:
     input:
         euktable="results/02-euks/08-DADA2d/table.qza",
-        euktax=rules.classify_ASVs.output.classified,
+        euktax=rules.classify_ASVs_euk.output.classified,
         eukmetadata="results/02-euks/sample-metadata.tsv"
     params:
         studyName=config["studyName"]
     output:
-        directory("results/02-euks/07-SILVA-only-barplots/")
+        directory("results/02-euks/12-SILVA-only-barplots/")
     conda:
         config["qiime2version"]
     script:
-        "../scripts/P07-make-barplot.sh"
-
+        "../scripts/E12-make-barplot.sh"
+"""
 rule splitchloroplasts:
     input:
         euktable=rules.denoise_euk_dada2.output.euktable,
