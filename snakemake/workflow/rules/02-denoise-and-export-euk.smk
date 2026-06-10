@@ -162,6 +162,23 @@ rule make_SILVA_only_euk_barplots:
         config["qiime2version"]
     script:
         "../scripts/E12-make-barplot.sh"
+
+rule euk_PR2_reclassify:
+    input:
+        classifier="databases/classification/PR2/pr2_version_5.1.1_SSU_dada2.clean.culled.derep-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated_final_classifier_USE_ME.qza",
+        euktable=rules.denoise_euk_dada2.output.euktable,
+        eukseqs=rules.denoise_euk_dada2.output.eukrepseqs
+    output:
+        PR2classeuk="results/02-euks/14-subsetting/reclassified-PR2/classification.qza",
+        fixedtax="results/02-euks/14-subsetting/reclassified-PR2/fixed/",
+        taxasmetadata="results/02-euks/14-subsetting/reclassified-PR2/fixed/taxonomy-as-metadata.qzv",
+        taxasmetadatafolder="results/02-euks/14-subsetting/reclassified-PR2/fixed/taxonomy-as-metadata/",
+        taxwithoutspaces="results/02-euks/14-subsetting/reclassified-PR2/fixed/taxonomy-without-spaces.qza"
+    conda:
+        config["qiime2version"]
+    script:
+        "../scripts/E14a-PR2-alternative-class.sh"
+
 """
 rule splitchloroplasts:
     input:
