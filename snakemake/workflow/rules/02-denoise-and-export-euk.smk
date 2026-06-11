@@ -170,31 +170,32 @@ rule euk_PR2_reclassify:
         eukseqs=rules.denoise_euk_dada2.output.eukrepseqs
     output:
         PR2classeuk="results/02-euks/14-subsetting/reclassified-PR2/classification.qza",
-        fixedtax="results/02-euks/14-subsetting/reclassified-PR2/fixed/",
+        fixedtax=directory("results/02-euks/14-subsetting/reclassified-PR2/fixed/"),
         taxasmetadata="results/02-euks/14-subsetting/reclassified-PR2/fixed/taxonomy-as-metadata.qzv",
-        taxasmetadatafolder="results/02-euks/14-subsetting/reclassified-PR2/fixed/taxonomy-as-metadata/",
+        taxasmetadatafolder=directory("results/02-euks/14-subsetting/reclassified-PR2/fixed/taxonomy-as-metadata/"),
         taxwithoutspaces="results/02-euks/14-subsetting/reclassified-PR2/fixed/taxonomy-without-spaces.qza"
     conda:
         config["qiime2version"]
     script:
         "../scripts/E14a-PR2-alternative-class.sh"
 
-"""
-rule splitchloroplasts:
+rule splitmetazoa_euk:
     input:
         euktable=rules.denoise_euk_dada2.output.euktable,
-        euktax=rules.classify_ASVs.output.classified,
+        euktaxSILVA=rules.classify_ASVs_euk.output.classified,
+        euktaxPR2=rules.euk_PR2_reclassify.output.taxwithoutspaces,
         eukseqs=rules.denoise_euk_dada2.output.eukrepseqs
     output:
-        includechlorotable="results/02-euks/09-subsetting/split-tables/include_o__Chloroplast_filtered_table.qza",
-        excludechlorotable="results/02-euks/09-subsetting/split-tables/exclude_o__Chloroplast_filtered_table.qza",
-        includechloroseqs="results/02-euks/09-subsetting/split-seqs/include_o__Chloroplast_subset_filtered_subset_filtered_seqs.qza",
-        excludechloroseqs="results/02-euks/09-subsetting/split-seqs/exclude_o__Chloroplast_subset_filtered_seqs.qza"
+        excludemetazoaSILVAtable="results/02-euks/14-subsetting/split-tables/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.qza",
+        excludemetazoaPR2table="14-subsetting/split-tables/exclude_Metazoa_PR2_filtered_table.qza",
+        includemetazoaSILVAtable="results/02-euks/14-subsetting/split-tables/include_D_3__Metazoa_Animalia_SILVA_filtered_table.qza",
+        includemetazoaPR2table="14-subsetting/split-tables/include_Metazoa_PR2_filtered_table.qza"
     conda:
         config["qiime2version"]
     script:
-        "../scripts/P09a-split-chloroplast.sh"
+        "../scripts/E14b-split-metazoans.sh"
 
+"""
 rule reclassify_chloro_split_tables:
     input:
         PR2classifier="databases/classification/PR2/pr2_version_5.1.1_SSU_dada2.clean.culled.derep-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated_final_classifier_USE_ME.qza",
