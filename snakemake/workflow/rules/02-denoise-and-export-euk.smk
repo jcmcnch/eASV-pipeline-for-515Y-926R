@@ -187,41 +187,37 @@ rule splitmetazoa_euk:
         eukseqs=rules.denoise_euk_dada2.output.eukrepseqs
     output:
         excludemetazoaSILVAtable="results/02-euks/14-subsetting/split-tables/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.qza",
-        excludemetazoaPR2table="14-subsetting/split-tables/exclude_Metazoa_PR2_filtered_table.qza",
+        excludemetazoaPR2table="results/02-euks/14-subsetting/split-tables/exclude_Metazoa_PR2_filtered_table.qza",
         includemetazoaSILVAtable="results/02-euks/14-subsetting/split-tables/include_D_3__Metazoa_Animalia_SILVA_filtered_table.qza",
-        includemetazoaPR2table="14-subsetting/split-tables/include_Metazoa_PR2_filtered_table.qza"
+        includemetazoaPR2table="results/02-euks/14-subsetting/split-tables/include_Metazoa_PR2_filtered_table.qza"
     conda:
         config["qiime2version"]
     script:
         "../scripts/E14b-split-metazoans.sh"
 
-"""
-rule reclassify_chloro_split_tables:
+rule export_tax_convert_biom_euk:
     input:
-        PR2classifier="databases/classification/PR2/pr2_version_5.1.1_SSU_dada2.clean.culled.derep-sliced_" + config["fwdPrimer"] + "_" + config["revPrimer"] + "_dereplicated_final_classifier_USE_ME.qza",
-        euktable=rules.denoise_euk_dada2.output.euktable,
-        euktax=rules.classify_ASVs.output.classified,
-        includechloroseqs=rules.splitchloroplasts.output.includechloroseqs
+        SILVAclassified=rules.classify_ASVs_euk.output.classified,
+        PR2classified=rules.euk_PR2_reclassify.output.taxwithoutspaces,
+        excludemetazoaSILVAtable="results/02-euks/14-subsetting/split-tables/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.qza",
+        excludemetazoaPR2table="results/02-euks/14-subsetting/split-tables/exclude_Metazoa_PR2_filtered_table.qza",
+        includemetazoaSILVAtable="results/02-euks/14-subsetting/split-tables/include_D_3__Metazoa_Animalia_SILVA_filtered_table.qza",
+        includemetazoaPR2table="results/02-euks/14-subsetting/split-tables/include_Metazoa_PR2_filtered_table.qza"
     output:
-        PR2classifiedchloroseqs="results/02-euks/09-subsetting/reclassified/include_o__Chloroplast_subset_reclassified_PR2.qza",
-        mergedclass="results/02-euks/09-subsetting/tax-merged/chloroplasts-PR2-reclassified-merged-classification.qza",
-        onlymitotable="results/02-euks/09-subsetting/split-tables/include_f__Mitochondria_filtered_table.qza",
-        onlyalgaetable="results/02-euks/09-subsetting/split-tables/include_p__Cyanobacteria_NOTE_includes_chloroplasts_filtered_table.qza",
-        onlycyanotable="results/02-euks/09-subsetting/split-tables/include_p__Cyanobacteria_exclude_o__Chloroplast_filtered_table.qza",
-        nomitotable="results/02-euks/09-subsetting/split-tables/exclude_f__Mitochondria_filtered_table.qza",
-        nomitonochlorotable="results/02-euks/09-subsetting/split-tables/exclude_o__Chloroplast_exclude_f__Mitochondria_filtered_table.qza",
-        nomitonochloronocyanotable="results/02-euks/09-subsetting/split-tables/exclude_p__Cyanobacteria_exclude_f__Mitochondria_NOTE_excludes_chloroplasts_filtered_table.qza",
-        onlyarchaeatable="results/02-euks/09-subsetting/split-tables/include_d__Archaea_filtered_table.qza",
-        noarchaeatable="results/02-euks/09-subsetting/split-tables/exclude_d__Archaea_filtered_table.qza" 
-    params:
-        studyName=config["studyName"]
+        SILVAtaxdir=temp(directory("results/02-euks/15-exports/taxonomy-SILVA/")),
+        PR2taxdir=temp(directory("results/02-euks/15-exports/taxonomy-PR2/")),
+        SILVAtaxfile="results/02-euks/15-exports/taxonomy-SILVA.tsv",
+        PR2taxfile="results/02-euks/15-exports/taxonomy-PR2.tsv",
+        excludemetazoaSILVAtablebiom="results/02-euks/15-exports/split-tables/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.biom",
+        excludemetazoaPR2tablebiom="results/02-euks/15-exports/exclude_Metazoa_PR2_filtered_table.biom",
+        includemetazoaSILVAtablebiom="results/02-euks/15-exports/include_D_3__Metazoa_Animalia_SILVA_filtered_table.biom",
+        includemetazoaPR2tablebiom="results/02-euks/15-exports/include_Metazoa_PR2_filtered_table.biom",
     conda:
         config["qiime2version"]
     script:
-        "../scripts/P09b-PR2-reclassify-chloroplasts-split-categories.sh"
+        "../scripts/E15a-generate-biom-tables.sh"
 
-rule export_tax_convert_biom:
-    input:
+"""
         mergedtax=rules.reclassify_chloro_split_tables.output.mergedclass,
         all16Stable="results/02-euks/08-DADA2d/table.qza",
         noarch="results/02-euks/09-subsetting/split-tables/exclude_d__Archaea_filtered_table.qza",
@@ -250,7 +246,8 @@ rule export_tax_convert_biom:
     conda:
         config["qiime2version"]
     script:
-        "../scripts/P10a-generate-biom-tables.sh"
+        "../scripts/E15a-generate-biom-tables.sh"
+
 
 rule add_tax_to_biom:
     input:
