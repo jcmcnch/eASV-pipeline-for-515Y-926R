@@ -2,16 +2,11 @@
 
 timestamp=`date +"%y%m%d-%H%M"`
 
-if [ -s ${snakemake_input[excludemetazoaSILVAtablebiomtax]} ] ; then
+biom convert -i ${snakemake_input[all18StablebiomSILVAtax]} -o ${snakemake_output[all18StablebiomSILVAtaxtsv]} --to-tsv --header-key taxonomy || touch ${snakemake_output[all18StablebiomSILVAtaxtsv]}
 
-	biom convert -i ${snakemake_input[excludemetazoaSILVAtablebiomtax]} -o ${snakemake_output[excludemetazoaSILVAtablebiomtaxtsv]} --to-tsv --header-key taxonomy 
-	
-else
-	
-	touch ${snakemake_output[excludemetazoaSILVAtablebiomtaxtsv]}
+biom convert -i ${snakemake_input[all18StablebiomPR2tax]} -o ${snakemake_output[all18StablebiomPR2taxtsv]} --to-tsv --header-key taxonomy || touch ${snakemake_output[all18StablebiomPR2taxtsv]}
 
-fi
-
+biom convert -i ${snakemake_input[excludemetazoaSILVAtablebiomtax]} -o ${snakemake_output[excludemetazoaSILVAtablebiomtaxtsv]} --to-tsv --header-key taxonomy || touch ${snakemake_output[excludemetazoaSILVAtablebiomtaxtsv]}
 
 if [ -s ${snakemake_input[excludemetazoaPR2tablebiomtax]} ] ; then
 

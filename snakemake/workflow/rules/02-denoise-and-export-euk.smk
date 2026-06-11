@@ -199,6 +199,7 @@ rule export_tax_convert_biom_euk:
     input:
         SILVAclassified=rules.classify_ASVs_euk.output.classified,
         PR2classified=rules.euk_PR2_reclassify.output.taxwithoutspaces,
+        all18Stable=rules.denoise_euk_dada2.output.euktable,
         excludemetazoaSILVAtable="results/02-euks/14-subsetting/split-tables/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.qza",
         excludemetazoaPR2table="results/02-euks/14-subsetting/split-tables/exclude_Metazoa_PR2_filtered_table.qza",
         includemetazoaSILVAtable="results/02-euks/14-subsetting/split-tables/include_D_3__Metazoa_Animalia_SILVA_filtered_table.qza",
@@ -208,7 +209,8 @@ rule export_tax_convert_biom_euk:
         PR2taxdir=temp(directory("results/02-euks/15-exports/taxonomy-PR2/")),
         SILVAtaxfile="results/02-euks/15-exports/taxonomy-SILVA.tsv",
         PR2taxfile="results/02-euks/15-exports/taxonomy-PR2.tsv",
-        excludemetazoaSILVAtablebiom="results/02-euks/15-exports/split-tables/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.biom",
+        all18Stablebiom="results/02-euks/15-exports/all-18S-seqs.biom",
+        excludemetazoaSILVAtablebiom="results/02-euks/15-exports/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.biom",
         excludemetazoaPR2tablebiom="results/02-euks/15-exports/exclude_Metazoa_PR2_filtered_table.biom",
         includemetazoaSILVAtablebiom="results/02-euks/15-exports/include_D_3__Metazoa_Animalia_SILVA_filtered_table.biom",
         includemetazoaPR2tablebiom="results/02-euks/15-exports/include_Metazoa_PR2_filtered_table.biom",
@@ -217,17 +219,19 @@ rule export_tax_convert_biom_euk:
     script:
         "../scripts/E15a-generate-biom-tables.sh"
 
-
 rule add_tax_to_biom_euk:
     input:
         SILVAtaxfile="results/02-euks/15-exports/taxonomy-SILVA.tsv",
         PR2taxfile="results/02-euks/15-exports/taxonomy-PR2.tsv",
-        excludemetazoaSILVAtablebiom="results/02-euks/15-exports/split-tables/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.biom",
+        all18Stablebiom="results/02-euks/15-exports/all-18S-seqs.biom",
+        excludemetazoaSILVAtablebiom="results/02-euks/15-exports/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.biom",
         excludemetazoaPR2tablebiom="results/02-euks/15-exports/exclude_Metazoa_PR2_filtered_table.biom",
         includemetazoaSILVAtablebiom="results/02-euks/15-exports/include_D_3__Metazoa_Animalia_SILVA_filtered_table.biom",
         includemetazoaPR2tablebiom="results/02-euks/15-exports/include_Metazoa_PR2_filtered_table.biom",
     output:
-        excludemetazoaSILVAtablebiomtax="results/02-euks/15-exports/split-tables/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.biom",
+        all18StablebiomSILVAtax="results/02-euks/15-exports/all-18S-seqs.with-SILVA-tax.biom",
+        all18StablebiomPR2tax="results/02-euks/15-exports/all-18S-seqs.with-PR2-tax.biom",
+        excludemetazoaSILVAtablebiomtax="results/02-euks/15-exports/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.biom",
         excludemetazoaPR2tablebiomtax="results/02-euks/15-exports/exclude_Metazoa_PR2_filtered_table.with-tax.biom",
         includemetazoaSILVAtablebiomtax="results/02-euks/15-exports/include_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.biom",
         includemetazoaPR2tablebiomtax="results/02-euks/15-exports/include_Metazoa_PR2_filtered_table.with-tax.biom",
@@ -238,12 +242,16 @@ rule add_tax_to_biom_euk:
 
 rule export_biom_tsv_euk:
     input:
-        excludemetazoaSILVAtablebiomtax="results/02-euks/15-exports/split-tables/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.biom",
+        all18StablebiomSILVAtax="results/02-euks/15-exports/all-18S-seqs.with-SILVA-tax.biom",
+        all18StablebiomPR2tax="results/02-euks/15-exports/all-18S-seqs.with-PR2-tax.biom",
+        excludemetazoaSILVAtablebiomtax="results/02-euks/15-exports/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.biom",
         excludemetazoaPR2tablebiomtax="results/02-euks/15-exports/exclude_Metazoa_PR2_filtered_table.with-tax.biom",
         includemetazoaSILVAtablebiomtax="results/02-euks/15-exports/include_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.biom",
         includemetazoaPR2tablebiomtax="results/02-euks/15-exports/include_Metazoa_PR2_filtered_table.with-tax.biom",
     output:
-        excludemetazoaSILVAtablebiomtaxtsv="results/02-euks/15-exports/split-tables/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.tsv",
+        all18StablebiomSILVAtaxtsv="results/02-euks/15-exports/all-18S-seqs.with-SILVA-tax.tsv",
+        all18StablebiomPR2taxtsv="results/02-euks/15-exports/all-18S-seqs.with-PR2-tax.tsv",
+        excludemetazoaSILVAtablebiomtaxtsv="results/02-euks/15-exports/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.tsv",
         excludemetazoaPR2tablebiomtaxtsv="results/02-euks/15-exports/exclude_Metazoa_PR2_filtered_table.with-tax.tsv",
         includemetazoaSILVAtablebiomtaxtsv="results/02-euks/15-exports/include_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.tsv",
         includemetazoaPR2tablebiomtaxtsv="results/02-euks/15-exports/include_Metazoa_PR2_filtered_table.with-tax.tsv",

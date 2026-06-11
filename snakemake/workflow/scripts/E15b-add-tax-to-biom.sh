@@ -2,6 +2,10 @@
 
 timestamp=`date +"%y%m%d-%H%M"`
 
+biom add-metadata -i ${snakemake_input[all18Stablebiom]} -o ${snakemake_output[all18StablebiomSILVAtax]} --observation-metadata-fp ${snakemake_input[SILVAtaxfile]} --sc-separated taxonomy || touch ${snakemake_output[all18StablebiomSILVAtax]}
+
+biom add-metadata -i ${snakemake_input[all18Stablebiom]} -o ${snakemake_output[all18StablebiomPR2tax]} --observation-metadata-fp ${snakemake_input[PR2taxfile]} --sc-separated taxonomy || touch ${snakemake_output[all18StablebiomPR2tax]}
+
 biom add-metadata -i ${snakemake_input[excludemetazoaSILVAtablebiom]} -o ${snakemake_output[excludemetazoaSILVAtablebiomtax]} --observation-metadata-fp ${snakemake_input[SILVAtaxfile]} --sc-separated taxonomy || touch ${snakemake_output[excludemetazoaSILVAtablebiomtax]}
 
 biom add-metadata -i ${snakemake_input[excludemetazoaPR2tablebiom]} -o ${snakemake_output[excludemetazoaPR2tablebiomtax]} --observation-metadata-fp ${snakemake_input[PR2taxfile]} --sc-separated taxonomy || touch ${snakemake_output[excludemetazoaPR2tablebiomtax]}

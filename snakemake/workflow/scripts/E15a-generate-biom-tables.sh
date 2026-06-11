@@ -15,42 +15,12 @@ sed -i '1c#OTUID        taxonomy        confidence' ${snakemake_output[PR2taxfil
 
 #next, export biom files for all artifacts
 
-if [ -s ${snakemake_input[excludemetazoaSILVAtable]} ] ; then
+qiime tools export --input-path ${snakemake_input[all18Stable]} --output-path results/02-euks/15-exports/ ; mv results/02-euks/15-exports/feature-table.biom ${snakemake_output[all18Stablebiom]} || touch ${snakemake_output[all18Stablebiom]}
 
-	qiime tools export --input-path ${snakemake_input[excludemetazoaSILVAtable]} --output-path results/02-euks/15-exports/ ; mv results/02-euks/15-exports/feature-table.biom ${snakemake_output[excludemetazoaSILVAtablebiom]} 
+qiime tools export --input-path ${snakemake_input[excludemetazoaSILVAtable]} --output-path results/02-euks/15-exports/ ; mv results/02-euks/15-exports/feature-table.biom ${snakemake_output[excludemetazoaSILVAtablebiom]} || touch ${snakemake_output[excludemetazoaSILVAtablebiom]} 
 
-else
+qiime tools export --input-path ${snakemake_input[excludemetazoaPR2table]} --output-path results/02-euks/15-exports/ ; mv results/02-euks/15-exports/feature-table.biom ${snakemake_output[excludemetazoaPR2tablebiom]} || touch ${snakemake_output[excludemetazoaPR2tablebiom]}
 
-	touch ${snakemake_output[excludemetazoaSILVAtablebiom]} 
+qiime tools export --input-path ${snakemake_input[includemetazoaSILVAtable]} --output-path results/02-euks/15-exports/ ; mv results/02-euks/15-exports/feature-table.biom ${snakemake_output[includemetazoaSILVAtablebiom]} || touch ${snakemake_output[includemetazoaSILVAtablebiom]}
 
-fi
-
-if [ -s ${snakemake_input[excludemetazoaPR2table]} ] ; then
-
-	qiime tools export --input-path ${snakemake_input[excludemetazoaPR2table]} --output-path results/02-euks/15-exports/ ; mv results/02-euks/15-exports/feature-table.biom ${snakemake_output[excludemetazoaPR2tablebiom]} 
-
-else
-
-	touch ${snakemake_output[excludemetazoaPR2tablebiom]}
-
-fi
-
-if [ -s ${snakemake_input[includemetazoaSILVAtable]} ] ; then
-
-	qiime tools export --input-path ${snakemake_input[includemetazoaSILVAtable]} --output-path results/02-euks/15-exports/ ; mv results/02-euks/15-exports/feature-table.biom ${snakemake_output[includemetazoaSILVAtablebiom]} 
-
-else 
-	
-	touch ${snakemake_output[includemetazoaSILVAtablebiom]}
-
-fi
-
-if [ -s ${snakemake_input[includemetazoaPR2table]} ] ; then
-	
-	qiime tools export --input-path ${snakemake_input[includemetazoaPR2table]} --output-path results/02-euks/15-exports/ ; mv results/02-euks/15-exports/feature-table.biom ${snakemake_output[includemetazoaPR2tablebiom]} 
-	
-else
-
-	touch ${snakemake_output[includemetazoaPR2tablebiom]}
-
-fi
+qiime tools export --input-path ${snakemake_input[includemetazoaPR2table]} --output-path results/02-euks/15-exports/ ; mv results/02-euks/15-exports/feature-table.biom ${snakemake_output[includemetazoaPR2tablebiom]} || touch ${snakemake_output[includemetazoaPR2tablebiom]}
