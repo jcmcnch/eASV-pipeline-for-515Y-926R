@@ -217,69 +217,26 @@ rule export_tax_convert_biom_euk:
     script:
         "../scripts/E15a-generate-biom-tables.sh"
 
-"""
-        mergedtax=rules.reclassify_chloro_split_tables.output.mergedclass,
-        all16Stable="results/02-euks/08-DADA2d/table.qza",
-        noarch="results/02-euks/09-subsetting/split-tables/exclude_d__Archaea_filtered_table.qza",
-        nomito="results/02-euks/09-subsetting/split-tables/exclude_f__Mitochondria_filtered_table.qza",
-        nochloronomito="results/02-euks/09-subsetting/split-tables/exclude_o__Chloroplast_exclude_f__Mitochondria_filtered_table.qza",
-        nochloro="results/02-euks/09-subsetting/split-tables/exclude_o__Chloroplast_filtered_table.qza",
-        nochloronocyanonomito="results/02-euks/09-subsetting/split-tables/exclude_p__Cyanobacteria_exclude_f__Mitochondria_NOTE_excludes_chloroplasts_filtered_table.qza",
-        onlyarch="results/02-euks/09-subsetting/split-tables/include_d__Archaea_filtered_table.qza",
-        onlymito="results/02-euks/09-subsetting/split-tables/include_f__Mitochondria_filtered_table.qza",
-        onlychloro="results/02-euks/09-subsetting/split-tables/include_o__Chloroplast_filtered_table.qza",
-        onlycyano="results/02-euks/09-subsetting/split-tables/include_p__Cyanobacteria_exclude_o__Chloroplast_filtered_table.qza",
-        onlyalgae="results/02-euks/09-subsetting/split-tables/include_p__Cyanobacteria_NOTE_includes_chloroplasts_filtered_table.qza",
-    output:
-        mergedtaxtsv="results/02-euks/10-exports/taxonomy.tsv",
-        all16Stable_biom=temp("results/02-euks/10-exports/all-16S-seqs.biom"),
-        noarch_biom=temp("results/02-euks/10-exports/exclude_d__Archaea_filtered_table.biom"),
-        nomito_biom=temp("results/02-euks/10-exports/exclude_f__Mitochondria_filtered_table.biom"),
-        nochloronomito_biom=temp("results/02-euks/10-exports/exclude_o__Chloroplast_exclude_f__Mitochondria_filtered_table.biom"),
-        nochloro_biom=temp("results/02-euks/10-exports/exclude_o__Chloroplast_filtered_table.biom"),
-        nochloronocyanonomito_biom=temp("results/02-euks/10-exports/exclude_p__Cyanobacteria_exclude_f__Mitochondria_NOTE_excludes_chloroplasts_filtered_table.biom"),
-        onlyarch_biom=temp("results/02-euks/10-exports/include_d__Archaea_filtered_table.biom"),
-        onlymito_biom=temp("results/02-euks/10-exports/include_f__Mitochondria_filtered_table.biom"),
-        onlychloro_biom=temp("results/02-euks/10-exports/include_o__Chloroplast_filtered_table.biom"),
-        onlycyano_biom=temp("results/02-euks/10-exports/include_p__Cyanobacteria_exclude_o__Chloroplast_filtered_table.biom"),
-        onlyalgae_biom=temp("results/02-euks/10-exports/include_p__Cyanobacteria_NOTE_includes_chloroplasts_filtered_table.qza.biom"),
-    conda:
-        config["qiime2version"]
-    script:
-        "../scripts/E15a-generate-biom-tables.sh"
 
-
-rule add_tax_to_biom:
+rule add_tax_to_biom_euk:
     input:
-        mergedtaxtsv="results/02-euks/10-exports/taxonomy.tsv",
-        all16Stable_biom="results/02-euks/10-exports/all-16S-seqs.biom",
-        noarch_biom="results/02-euks/10-exports/exclude_d__Archaea_filtered_table.biom",
-        nomito_biom="results/02-euks/10-exports/exclude_f__Mitochondria_filtered_table.biom",
-        nochloronomito_biom="results/02-euks/10-exports/exclude_o__Chloroplast_exclude_f__Mitochondria_filtered_table.biom",
-        nochloro_biom="results/02-euks/10-exports/exclude_o__Chloroplast_filtered_table.biom",
-        nochloronocyanonomito_biom="results/02-euks/10-exports/exclude_p__Cyanobacteria_exclude_f__Mitochondria_NOTE_excludes_chloroplasts_filtered_table.biom",
-        onlyarch_biom="results/02-euks/10-exports/include_d__Archaea_filtered_table.biom",
-        onlymito_biom="results/02-euks/10-exports/include_f__Mitochondria_filtered_table.biom",
-        onlychloro_biom="results/02-euks/10-exports/include_o__Chloroplast_filtered_table.biom",
-        onlycyano_biom="results/02-euks/10-exports/include_p__Cyanobacteria_exclude_o__Chloroplast_filtered_table.biom",
-        onlyalgae_biom="results/02-euks/10-exports/include_p__Cyanobacteria_NOTE_includes_chloroplasts_filtered_table.qza.biom",
+        SILVAtaxfile="results/02-euks/15-exports/taxonomy-SILVA.tsv",
+        PR2taxfile="results/02-euks/15-exports/taxonomy-PR2.tsv",
+        excludemetazoaSILVAtablebiom="results/02-euks/15-exports/split-tables/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.biom",
+        excludemetazoaPR2tablebiom="results/02-euks/15-exports/exclude_Metazoa_PR2_filtered_table.biom",
+        includemetazoaSILVAtablebiom="results/02-euks/15-exports/include_D_3__Metazoa_Animalia_SILVA_filtered_table.biom",
+        includemetazoaPR2tablebiom="results/02-euks/15-exports/include_Metazoa_PR2_filtered_table.biom",
     output:
-        all16Stable_biomtax=temp("results/02-euks/10-exports/all-16S-seqs.with-tax.biom"),
-        noarch_biomtax=temp("results/02-euks/10-exports/exclude_d__Archaea_filtered_table.with-tax.biom"),
-        nomito_biomtax=temp("results/02-euks/10-exports/exclude_f__Mitochondria_filtered_table.with-tax.biom"),
-        nochloronomito_biomtax=temp("results/02-euks/10-exports/exclude_o__Chloroplast_exclude_f__Mitochondria_filtered_table.with-tax.biom"),
-        nochloro_biomtax=temp("results/02-euks/10-exports/exclude_o__Chloroplast_filtered_table.with-tax.biom"),
-        nochloronocyanonomito_biomtax=temp("results/02-euks/10-exports/exclude_p__Cyanobacteria_exclude_f__Mitochondria_NOTE_excludes_chloroplasts_filtered_table.with-tax.biom"),
-        onlyarch_biomtax=temp("results/02-euks/10-exports/include_d__Archaea_filtered_table.with-tax.biom"),
-        onlymito_biomtax=temp("results/02-euks/10-exports/include_f__Mitochondria_filtered_table.with-tax.biom"),
-        onlychloro_biomtax=temp("results/02-euks/10-exports/include_o__Chloroplast_filtered_table.with-tax.biom"),
-        onlycyano_biomtax=temp("results/02-euks/10-exports/include_p__Cyanobacteria_exclude_o__Chloroplast_filtered_table.with-tax.biom"),
-        onlyalgae_biomtax=temp("results/02-euks/10-exports/include_p__Cyanobacteria_NOTE_includes_chloroplasts_filtered_table.qza.with-tax.biom")
+        excludemetazoaSILVAtablebiomtax="results/02-euks/15-exports/split-tables/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.biom",
+        excludemetazoaPR2tablebiomtax="results/02-euks/15-exports/exclude_Metazoa_PR2_filtered_table.with-tax.biom",
+        includemetazoaSILVAtablebiomtax="results/02-euks/15-exports/include_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.biom",
+        includemetazoaPR2tablebiomtax="results/02-euks/15-exports/include_Metazoa_PR2_filtered_table.with-tax.biom",
     conda:
         config["qiime2version"]
     script:
-        "../scripts/P10b-add-tax-to-biom.sh"
+        "../scripts/E15b-add-tax-to-biom.sh"
 
+"""
 rule export_biom_tsv:
     input:
         all16Stable_biomtax="results/02-euks/10-exports/all-16S-seqs.with-tax.biom",
