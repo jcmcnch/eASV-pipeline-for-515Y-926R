@@ -19,31 +19,31 @@ statistics_18S   <- snakemake@input[["stats_18S"]]
 ############ LOCAL DATA IMPORT ############
 
 # Import 16S locally
-raw_16S <- list.files(pattern = '*.16S.all-16S-seqs.with-tax.tsv') %>%
+raw_16S <- list.files(pattern = raw16s_files) %>%
   purrr::map_dfr(~ readr::read_delim(.x, delim = "\t", skip = 1, col_names = TRUE)) %>%
   as_tibble() %>% 
   rename(ASV_hash = `#OTU ID`)
 raw_16S <- as.data.table(raw_16S)
 
 # Import 18S locally
-raw_18S <- list.files(pattern = '*.18S.all-18S-seqs.with-PR2-tax.tsv') %>%
+raw_18S <- list.files(pattern = raw18s_files) %>%
   purrr::map_dfr(~ readr::read_delim(.x, delim = "\t", skip = 1, col_names = TRUE)) %>%
   as_tibble() %>%
   dplyr::rename(ASV_hash = `#OTU ID`)
 raw_18S <- as.data.table(raw_18S)
 
 #Import Stats Local
-statistics_18S <- list.files(pattern = '*.18S.stats.tsv') %>%
+statistics_18S <- list.files(pattern = statistics_18S) %>%
   map_dfr(~ readr::read_delim(.x, delim = "\t")) %>%
   slice(-1)
 
-statistics_16S <- list.files(pattern = '*.16S.stats.tsv') %>% 
+statistics_16S <- list.files(pattern = statistics_16S) %>% 
   map_dfr(~ readr::read_delim(.x, delim = "\t")) %>% 
   slice(-1)
 
 #TSV IMPORT NEEDED HERE
 #Load in read_summary results locally
-read_summary <- list.files(pattern = "EUKfrac-whole-dataset-after-bbpsplit\\.tsv$") %>%
+read_summary <- list.files(pattern = read_summary) %>%
   purrr::map_dfr(function(f) {
     lines <- readr::read_lines(f)
     tibble(
@@ -54,7 +54,7 @@ read_summary <- list.files(pattern = "EUKfrac-whole-dataset-after-bbpsplit\\.tsv
     )}) %>% as.data.table()
 
 #Load in bioanalyzer results locally
-bioanalyzer_results <- read_tsv("bioanalyzer.tsv") %>%
+bioanalyzer_results <- read_tsv("ioanalyzer.tsv") %>%
   as.data.table()
 
 ############ SNAKEMAKE DATA IMPORT ############
