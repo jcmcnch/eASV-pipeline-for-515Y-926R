@@ -6,6 +6,16 @@
 library(tidyverse)
 library(data.table)
 
+############ SNAKEMAKE DATA IMPORT ############
+
+# Get input paths from Snakemake
+raw16s_files <- snakemake@input[["raw_16S"]]
+raw18s_files <- snakemake@input[["raw_18S"]]
+read_summary <- snakemake@input[["read_summary"]]
+bioanalyzer_results <- snakemake@input[["bioanalyzer"]]
+statistics_16S   <- snakemake@input[["stats_16S"]]
+statistics_18S   <- snakemake@input[["stats_18S"]]
+
 ############ LOCAL DATA IMPORT ############
 
 # Import 16S locally
@@ -31,6 +41,7 @@ statistics_16S <- list.files(pattern = '*.16S.stats.tsv') %>%
   map_dfr(~ readr::read_delim(.x, delim = "\t")) %>% 
   slice(-1)
 
+#TSV IMPORT NEEDED HERE
 #Load in read_summary results locally
 read_summary <- list.files(pattern = "EUKfrac-whole-dataset-after-bbpsplit\\.tsv$") %>%
   purrr::map_dfr(function(f) {
