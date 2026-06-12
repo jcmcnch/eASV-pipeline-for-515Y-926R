@@ -47,7 +47,8 @@ def get_final_output():
     final_output.append(directory("results/02-euks/12-SILVA-only-barplots/")),
     final_output.append("results/02-euks/14-subsetting/reclassified-PR2/fixed/taxonomy-without-spaces.qza"),
     final_output.append("results/02-euks/14-subsetting/split-tables/include_Metazoa_PR2_filtered_table.qza"),
-    final_output.append("results/02-euks/15-exports/include_Metazoa_PR2_filtered_table.with-tax.tsv")
+    final_output.append("results/02-euks/15-exports/include_Metazoa_PR2_filtered_table.with-tax.tsv"),
+    final_output.append("results/eukfrac-all.tsv")
 
     return final_output
 

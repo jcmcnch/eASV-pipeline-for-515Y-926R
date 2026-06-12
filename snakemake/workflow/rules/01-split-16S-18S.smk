@@ -43,6 +43,17 @@ rule deinterleave_split_reads_prok:
         pigz=True,
     threads: 4
     resources:
-        mem_mb=4000,  # optional: bbmap normaly needs a lot of memory, e.g. 60GB
+        mem_mb=4000,  # optional: bbmap normally needs a lot of memory, e.g. 60GB
     wrapper:
         "v8.0.3/bio/bbtools"
+
+rule calculate_eukfrac:
+    input:
+        splitdir=directory("results/01-split/"),
+    output:
+        eukfracall="results/eukfrac-all.tsv"
+    conda:
+        config["qiime2version"]
+    script:
+        "../scripts/calc-EUK-fraction.sh"
+        
