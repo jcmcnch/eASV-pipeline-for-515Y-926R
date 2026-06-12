@@ -9,57 +9,6 @@ library(data.table)
 ############ SNAKEMAKE DATA IMPORT ############
 
 # Get input paths from Snakemake
-raw16s_files <- snakemake@input[["raw_16S"]]
-raw18s_files <- snakemake@input[["raw_18S"]]
-read_summary <- snakemake@input[["read_summary"]]
-bioanalyzer_results <- snakemake@input[["bioanalyzer"]]
-statistics_16S   <- snakemake@input[["stats_16S"]]
-statistics_18S   <- snakemake@input[["stats_18S"]]
-
-############ LOCAL DATA IMPORT ############
-
-# Import 16S locally
-raw_16S <- list.files(pattern = raw16s_files) %>%
-  purrr::map_dfr(~ readr::read_delim(.x, delim = "\t", skip = 1, col_names = TRUE)) %>%
-  as_tibble() %>% 
-  rename(ASV_hash = `#OTU ID`)
-raw_16S <- as.data.table(raw_16S)
-
-# Import 18S locally
-raw_18S <- list.files(pattern = raw18s_files) %>%
-  purrr::map_dfr(~ readr::read_delim(.x, delim = "\t", skip = 1, col_names = TRUE)) %>%
-  as_tibble() %>%
-  dplyr::rename(ASV_hash = `#OTU ID`)
-raw_18S <- as.data.table(raw_18S)
-
-#Import Stats Local
-statistics_18S <- list.files(pattern = statistics_18S) %>%
-  map_dfr(~ readr::read_delim(.x, delim = "\t")) %>%
-  slice(-1)
-
-statistics_16S <- list.files(pattern = statistics_16S) %>% 
-  map_dfr(~ readr::read_delim(.x, delim = "\t")) %>% 
-  slice(-1)
-
-#TSV IMPORT NEEDED HERE
-#Load in read_summary results locally
-read_summary <- list.files(pattern = read_summary) %>%
-  purrr::map_dfr(function(f) {
-    lines <- readr::read_lines(f)
-    tibble(
-      SourceFile = f,
-      PROK_reads = as.numeric(str_extract(lines[1], "[0-9]+")),
-      EUK_reads  = as.numeric(str_extract(lines[2], "[0-9]+")),
-      EUK_fraction = as.numeric(str_extract(lines[3], "[0-9]*\\.?[0-9]+"))
-    )}) %>% as.data.table()
-
-#Load in bioanalyzer results locally
-bioanalyzer_results <- read_tsv("ioanalyzer.tsv") %>%
-  as.data.table()
-
-############ SNAKEMAKE DATA IMPORT ############
-
-# Get input paths from Snakemake
 raw16s_files     <- snakemake@input[["raw_16S"]]
 raw18s_files     <- snakemake@input[["raw_18S"]]
 readsum_files    <- snakemake@input[["read_summary"]]
@@ -198,13 +147,13 @@ combined_asv_no_correction <- combined_asv_long_no_correction %>%
   pivot_wider(names_from = SampleID, values_from = read_abundance, values_fill = 0)
 
 #Write out file
-filename_corrected <- paste0("corrected_18S_16S_counts", ".tsv")
-write_tsv(combined_asv_corrected, filename_corrected)
+#filename_corrected <- paste0("corrected_18S_16S_counts", ".tsv")
+write_tsv(combined_asv_corrected, snakemake@output[["mergedtabledada218Scorrected"]])
 
-filename_corrected_dada2 <- paste0("corrected_dada2_18S_16S_counts", ".tsv")
-write_tsv(combined_asv_corrected_dada2, filename_corrected_dada2)
+#filename_corrected_dada2 <- paste0("corrected_dada2_18S_16S_counts", ".tsv")
+write_tsv(combined_asv_corrected_dada2, snakemake@output[["mergedtabledada2"]])
 
-filename <- paste0("no_correction_18S_16S_counts", ".tsv")
-write_tsv(combined_asv_no_correction, filename)
+#filename <- paste0("no_correction_18S_16S_counts", ".tsv")
+write_tsv(combined_asv_no_correction, snakemake@output[["mergedtableuncorrected"]])
 
 q()
