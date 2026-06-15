@@ -5,7 +5,7 @@ timestamp=`date +"%y%m%d-%H%M"`
 #export plaintext taxonomy from merged PR2 and SILVA taxonomy file
 qiime tools export --input-path ${snakemake_input[mergedtax]} --output-path results/02-proks/10-exports/
 touch ${snakemake_output[mergedtaxtsv]}
-sed -i '1c#OTUID        taxonomy        confidence' ${snakemake_output[mergedtaxtsv]}
+sed -i '1c#OTUID	taxonomy	confidence' ${snakemake_output[mergedtaxtsv]}
 
 #next, export biom files for all artifacts, add tax, then export as tsv
 
