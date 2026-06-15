@@ -9,12 +9,12 @@ library(data.table)
 ############ SNAKEMAKE DATA IMPORT ############
 
 # Get input paths from Snakemake
-raw16s_files     <- snakemake@input[["raw_16S"]]
-raw18s_files     <- snakemake@input[["raw_18S"]]
+raw16s_files     <- snakemake@input[["raw16S"]]
+raw18s_files     <- snakemake@input[["raw18S"]]
 readsum_files    <- snakemake@input[["read_summary"]]
 bioanalyzer_path <- snakemake@input[["bioanalyzer"]]
-stats16s_files   <- snakemake@input[["stats_16S"]]
-stats18s_files   <- snakemake@input[["stats_18S"]]
+stats16s_files   <- snakemake@input[["stats16S"]]
+stats18s_files   <- snakemake@input[["stats18S"]]
 
 # Import 16S
 raw_16S <- purrr::map_dfr(raw16s_files, ~
@@ -24,6 +24,8 @@ raw_16S <- purrr::map_dfr(raw16s_files, ~
   dplyr::rename(ASV_hash = `#OTU ID`) %>%
   as.data.table()
 
+#write_csv(raw_16S, "1.csv")
+
 # Import 18S
 raw_18S <- purrr::map_dfr(raw18s_files, ~
                             readr::read_delim(.x, delim = "\t", skip = 1, col_names = TRUE, show_col_types = FALSE)
@@ -32,24 +34,19 @@ raw_18S <- purrr::map_dfr(raw18s_files, ~
   dplyr::rename(ASV_hash = `#OTU ID`) %>%
   as.data.table()
 
+#write_csv(raw_18S, "2.csv")
+
 # Import read_summary
-read_summary <- purrr::map_dfr(readsum_files, ~{
-  lines <- readr::read_lines(.x)
-  tibble(
-    SourceFile = .x,
-    PROK_reads = as.numeric(stringr::str_extract(lines[1], "[0-9]+")),
-    EUK_reads  = as.numeric(stringr::str_extract(lines[2], "[0-9]+")),
-    EUK_fraction = as.numeric(stringr::str_extract(lines[3], "[0-9]*\\.?[0-9]+"))
-  )
-}) %>% as.data.table()
+read_summary <- readr::read_tsv(readsum_files, show_col_types = FALSE) %>% as.data.table()
+#write_csv(read_summary, "3.csv")
 
 # Import bioanalyzer
 bioanalyzer_results <- readr::read_tsv(bioanalyzer_path, show_col_types = FALSE) %>% as.data.table()
+#write_csv(
 
 # Import Stats
 statistics_18S <- purrr::map_dfr(stats18s_files, ~ readr::read_delim(.x, delim = "\t", show_col_types = FALSE)) %>% slice(-1)
 statistics_16S <- purrr::map_dfr(stats16s_files, ~ readr::read_delim(.x, delim = "\t", show_col_types = FALSE)) %>% slice(-1)
-
 
 #0. - Calculate the correction factor
 
@@ -110,6 +107,7 @@ raw_16S_long <- raw_16S %>%
   left_join(statistics_16S, by = "SampleID") %>%
   mutate(corrected_read_abundance = (read_abundance * correction_factor_16S) / percentage_passed_final) %>%
   mutate(corrected_read_abundance_dada2 = read_abundance / percentage_passed_final)
+str(raw_16S_long)
 
 #Arrange and connect 18S data and then make the DADA2 statistics calculation
 raw_18S_long <- raw_18S %>%
@@ -120,6 +118,7 @@ raw_18S_long <- raw_18S %>%
   left_join(statistics_18S, by = "SampleID") %>%
   mutate(corrected_read_abundance = (read_abundance * correction_factor_18S) / percentage_passed_final) %>%
   mutate(corrected_read_abundance_dada2 = read_abundance / percentage_passed_final)
+str(raw_18S_long)
 
 #Join the two data frames together, pivot wider and then export
 combined_asv_long_corrected <- rbind(raw_18S_long, raw_16S_long) %>%
@@ -130,7 +129,7 @@ combined_asv_long_corrected_dada2 <- rbind(raw_18S_long, raw_16S_long) %>%
   rename(Taxonomy = taxonomy) %>%
   select(SampleID, ASV_hash, Taxonomy, corrected_read_abundance_dada2)
 
-combined_asv_long_no_correction <- rbind(raw_18S_long, raw_16S_long) %>%
+combined_asv_long_no_correction <-  rbind(raw_18S_long, raw_16S_long) %>%
   rename(Taxonomy = taxonomy) %>%
   select(SampleID, ASV_hash, Taxonomy, read_abundance)
 
@@ -147,13 +146,6 @@ combined_asv_no_correction <- combined_asv_long_no_correction %>%
   pivot_wider(names_from = SampleID, values_from = read_abundance, values_fill = 0)
 
 #Write out file
-#filename_corrected <- paste0("corrected_18S_16S_counts", ".tsv")
 write_tsv(combined_asv_corrected, snakemake@output[["mergedtabledada218Scorrected"]])
-
-#filename_corrected_dada2 <- paste0("corrected_dada2_18S_16S_counts", ".tsv")
 write_tsv(combined_asv_corrected_dada2, snakemake@output[["mergedtabledada2"]])
-
-#filename <- paste0("no_correction_18S_16S_counts", ".tsv")
 write_tsv(combined_asv_no_correction, snakemake@output[["mergedtableuncorrected"]])
-
-q()

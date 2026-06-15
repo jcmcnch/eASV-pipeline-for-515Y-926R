@@ -7,7 +7,7 @@ rule merge_prok_euk:
         read_summary="results/eukfrac-all.tsv",
         bioanalyzer="config/bioanalyzer.tsv"
     output:
-        mergedtable="results/03-merged/merged_uncorected.tsv",
+        mergedtableuncorrected="results/03-merged/merged_uncorected.tsv",
         mergedtabledada2="results/03-merged/merged_dada2_corrected.tsv",
         mergedtabledada218Scorrected="results/03-merged/merged_dada2_18S_corrected.tsv"
     conda:
