@@ -10,8 +10,8 @@ mv ${snakemake_output[SILVAtaxdir]}/taxonomy.tsv ${snakemake_output[SILVAtaxfile
 qiime tools export --input-path ${snakemake_input[SILVAclassified]} --output-path ${snakemake_output[PR2taxdir]}
 mv ${snakemake_output[PR2taxdir]}/taxonomy.tsv ${snakemake_output[PR2taxfile]}
 
-sed -i '1c#OTUID        taxonomy        confidence' ${snakemake_output[SILVAtaxfile]} 
-sed -i '1c#OTUID        taxonomy        confidence' ${snakemake_output[PR2taxfile]}
+sed -i '1c#OTUID	taxonomy	confidence' ${snakemake_output[SILVAtaxfile]} 
+sed -i '1c#OTUID	taxonomy	confidence' ${snakemake_output[PR2taxfile]}
 
 #next, export biom files for all artifacts
 
