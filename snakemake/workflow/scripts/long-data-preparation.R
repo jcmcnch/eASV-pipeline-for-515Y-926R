@@ -4,21 +4,16 @@
 library(tidyverse)
 library(lubridate)
 library(patchwork)
+library(data.table)
 
 #This script will load in the data for the cruise that is being uploaded to CMAP. We will convert it into long format.
 
 #Import data
-counts <- list.files(pattern = snakemake@input[["mergedtabledada218Scorrected"]])
-counts_df <- lapply(counts, readr::read_tsv) # Import each file and store the data frames in a list
-counts <- data.table::rbindlist(counts_df, use.names = TRUE, fill = TRUE) # If you want to combine the data frames into a single data frame, you can use functions like bind_rows
+counts <- readr::read_tsv(snakemake@input[["mergedtabledada218Scorrected"]], show_col_types = FALSE) %>% as.data.table()
 
-counts_dada2_corrected <- list.files(pattern = snakemake@input[["mergedtabledada2"]])
-counts_dada2_corrected_df <- lapply(counts_dada2_corrected, readr::read_tsv)
-counts_dada2_corrected <- data.table::rbindlist(counts_dada2_corrected_df, use.names = TRUE, fill = TRUE)
+counts_dada2_corrected <- readr::read_tsv(snakemake@input[["mergedtabledada2"]], show_col_types = FALSE) %>% as.data.table()
 
-counts_uncorrected <- list.files(pattern = snakemake@input[["mergedtableuncorrected"]])
-counts_uncorrected_df <- lapply(counts_uncorrected, readr::read_tsv)
-counts_uncorrected <- data.table::rbindlist(counts_uncorrected_df, use.names = TRUE, fill = TRUE)
+counts_uncorrected <- readr::read_tsv(snakemake@input[["mergedtableuncorrected"]], show_col_types = FALSE) %>% as.data.table()
 
 #Import all the ASV sequences from the 16S data
 files <- list.files(pattern = '*16S.dna-sequences.fasta', full.names = TRUE) # List all files in the directory that match the pattern '*16S.dna-sequences.fasta'
