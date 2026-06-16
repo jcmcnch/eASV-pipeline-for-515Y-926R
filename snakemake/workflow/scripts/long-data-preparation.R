@@ -1,10 +1,5 @@
 #!/usr/bin/env Rscript
 
-#Set directory for libraries.
-myPaths <- .libPaths()
-myPaths <- c(myPaths, '/home1/nathanwi/R/x86_64-pc-linux-gnu-library/4.3')
-.libPaths(myPaths)
-
 #Load dependencies
 library(tidyverse)
 library(lubridate)
@@ -13,15 +8,15 @@ library(patchwork)
 #This script will load in the data for the cruise that is being uploaded to CMAP. We will convert it into long format.
 
 #Import data
-counts <- list.files(pattern = '*corrected_18S_16S_counts_ProPortal.tsv')
+counts <- list.files(pattern = snakemake@input[["mergedtabledada218Scorrected"]])
 counts_df <- lapply(counts, readr::read_tsv) # Import each file and store the data frames in a list
 counts <- data.table::rbindlist(counts_df, use.names = TRUE, fill = TRUE) # If you want to combine the data frames into a single data frame, you can use functions like bind_rows
 
-counts_dada2_corrected <- list.files(pattern = '*corrected_dada2_18S_16S_counts.tsv')
+counts_dada2_corrected <- list.files(pattern = snakemake@input[["mergedtabledada2"]])
 counts_dada2_corrected_df <- lapply(counts_dada2_corrected, readr::read_tsv)
 counts_dada2_corrected <- data.table::rbindlist(counts_dada2_corrected_df, use.names = TRUE, fill = TRUE)
 
-counts_uncorrected <- list.files(pattern = '*no_correction_18S_16S_counts.tsv')
+counts_uncorrected <- list.files(pattern = snakemake@input[["mergedtableuncorrected"]])
 counts_uncorrected_df <- lapply(counts_uncorrected, readr::read_tsv)
 counts_uncorrected <- data.table::rbindlist(counts_uncorrected_df, use.names = TRUE, fill = TRUE)
 
@@ -89,18 +84,13 @@ for (file in files) {
 }
 
 #Import asv_sequences now that htey have been converted to csv files
-prokaryote_asv_sequences <- read.csv("prokaryote_asv_sequences.csv", header=FALSE)
-eukaryote_asv_sequences  <- read.csv("eukaryote_asv_sequences.csv",header=FALSE)
+prokaryote_asv_sequences <- read.csv(snakemake@input[["fasta16S"]], header=FALSE)
+eukaryote_asv_sequences  <- read.csv(snakemake@input[["fasta18S"]], header=FALSE)
 
 #Join together asv sequences
 asv_sequences <- bind_rows(eukaryote_asv_sequences,prokaryote_asv_sequences)
 asv_sequences <- asv_sequences %>% rename(ASV = V1)
-asv_sequences <- write_csv(asv_sequences, "asv_sequences.csv")
-
-#Rearrange asv sequences so that we can work with it
-asv_sequences <- read.delim("asv_sequences.csv", sep = "\t", header = T, row.names = NULL) %>% rename(ASV_hash = row.names) 
-asv_sequences <- lapply(asv_sequences, gsub, pattern='>', replacement='')
-asv_sequences <- lapply(asv_sequences, gsub, pattern=' ', replacement='')
+asv_sequences <- write_csv(asv_sequences, snakemake@output[["asvsequences"]])
 asv_sequences <- as.data.frame(asv_sequences)
 
 #parse out plas to get a yes/no column for whether something came from a plastid or not.
@@ -167,10 +157,10 @@ counts_long <- counts %>%
   gather(key = SampleID, value = Corrected_Sequence_Counts, -c(1:16)) %>%
   filter(Corrected_Sequence_Counts != 0)
 
-counts_dada2 <- gather(data = counts_dada2_corrected, key = SampleID, value = Corrected_dada2_Sequence_Counts, -c(1,2)) %>%
+counts_dada2 <- gather(data = counts_dada2_corrected, key = SampleID, value = Corrected_dada2_Sequence_Counts, -c(1,2,3)) %>%
   filter(Corrected_dada2_Sequence_Counts != 0)
 
-counts_raw <- gather(data = counts_uncorrected, key = SampleID, value = Raw_Sequence_Counts, -c(1,2)) %>%
+counts_raw <- gather(data = counts_uncorrected, key = SampleID, value = Raw_Sequence_Counts, -c(1,2,3)) %>%
   filter(Raw_Sequence_Counts !=0)
 
 asv_long <- counts_long %>% 
@@ -204,12 +194,6 @@ Unassigned      <- asv_long %>% filter(Plas_Domain %in% c("no_Unassigned"))  %>%
 
 asv_long <- bind_rows(Prokaryotic_16S,Chloroplast_16S,Eukaryote_18S,Unassigned)
 
-#Calculate the counts for each sample, and then remove anything with a maximum read count of under 5000
-Sample_Read_Count_Total <- asv_long %>% ungroup() %>% group_by(SampleID) %>% summarise(Count_Total = sum(Corrected_Sequence_Counts))
-Below.5000 <- Sample_Read_Count_Total %>% filter(Count_Total <= 5000)
-Below.5000.List <- Below.5000 %>% pull(SampleID)
-asv_long <- asv_long %>% filter(!SampleID %in% Below.5000.List)
-
 #Tidy order of columns and what's included in final sheet
 asv_long <- asv_long %>% 
   select(SampleID, Domain, Supergroup, Division, Subdivision, Phylum, Class, Order, Family, Genus, 
@@ -219,6 +203,4 @@ asv_long <- asv_long %>%
 asv_long <- asv_long %>% filter(!Corrected_Sequence_Counts %in% (0))
 
 #Write asv long
-write_csv(asv_long,'asv_long.csv')
-
-#q()
+write_csv(asv_long,snakemake@output[["longdata"]])

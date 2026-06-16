@@ -19,7 +19,7 @@ include: "rules/01-split-16S-18S.smk"
 include: "rules/02-denoise-and-export-prok.smk"
 include: "rules/02-denoise-and-export-euk.smk"
 include: "rules/03-merge-16S-18S.smk"
-include: "rules/04-prepare-long-data.sh"
+include: "rules/04-prepare-long-data.smk"
 
 # optional messages, log and error handling
 # -----------------------------------------------------
