@@ -237,4 +237,3 @@ rule export_biom_tsv:
         config["qiime2version"]
     script:
         "../scripts/P10c-export-tax-tsvs.sh"
-
