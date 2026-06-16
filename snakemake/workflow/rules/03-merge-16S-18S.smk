@@ -5,7 +5,8 @@ rule merge_prok_euk:
         stats16S="results/02-proks/04-DADA2d-plaintext-exports/" + config["studyName"] + ".16S.latest_stats.tsv",
         stats18S="results/02-euks/09-DADA2d-plaintext-exports/" + config["studyName"] + ".18S.latest_stats.tsv",
         read_summary="results/" + config["studyName"] + ".eukfrac-all.tsv",
-        bioanalyzer="config/bioanalyzer.tsv"
+        bioanalyzer="config/bioanalyzer.tsv",
+        proportalclassification="results/02-proks/10-exports/" + config["studyName"] + ".Synechococcales.proportal-classified.tsv"
     output:
         mergedtableuncorrected="results/03-merged/" + config["studyName"] + ".merged_uncorected.tsv",
         mergedtabledada2="results/03-merged/" + config["studyName"] + ".merged_dada2_corrected.tsv",
@@ -16,14 +17,3 @@ rule merge_prok_euk:
         "logs/03-merging/merge_prok_euk.log"
     script:
         "../scripts/correct_16S_18S_ASV-snakemake-v1.R"
-
-rule proportal_classify:
-    input:
-        mergedtable="results/03-merged/" + config["studyName"] + ".merged_uncorected.tsv",
-        dnaseqs="results/02-proks/04-DADA2d-plaintext-exports/" + config["studyName"] + ".16S.latest_seqs.fasta"
-    output:
-        taxonomy="results/03-merged/" + config["studyName"] + ".Synechococcales.proportal-classified.tsv",
-    conda:
-        "../envs/proportal.yml"
-    script:
-        "../scripts/add-proportal-taxonomy.sh"

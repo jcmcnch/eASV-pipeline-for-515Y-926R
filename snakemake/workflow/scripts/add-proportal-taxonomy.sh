@@ -8,7 +8,7 @@ intermediatedir=workflow/scripts/ProPortal-ASV-Annotation/ProPortal-intermediate
 mkdir -p $intermediatedir
 
 #get ASV table names
-counts=${snakemake_input[mergedtable]}
+counts=${snakemake_input[proktable]}
 
 #get DNA sequence file name for denoised 16S
 dnaseqs=${snakemake_input[dnaseqs]}

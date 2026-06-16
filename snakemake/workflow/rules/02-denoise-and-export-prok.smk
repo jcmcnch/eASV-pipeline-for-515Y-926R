@@ -237,3 +237,14 @@ rule export_biom_tsv:
         config["qiime2version"]
     script:
         "../scripts/P10c-export-tax-tsvs.sh"
+
+rule proportal_classify:
+    input:
+        proktable="results/02-proks/10-exports/" + config["studyName"] + ".all-16S-seqs.with-tax.tsv",
+        dnaseqs="results/02-proks/04-DADA2d-plaintext-exports/" + config["studyName"] + ".16S.latest_seqs.fasta"
+    output:
+        taxonomy="results/02-proks/10-exports/" + config["studyName"] + ".Synechococcales.proportal-classified.tsv",
+    conda:
+        "../envs/proportal.yml"
+    script:
+        "../scripts/add-proportal-taxonomy.sh"
