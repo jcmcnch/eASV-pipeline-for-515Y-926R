@@ -1,9 +1,9 @@
 rule merge_prok_euk:
     input:
         raw16S="results/02-proks/10-exports/" + config["studyName"] + ".all-16S-seqs.with-tax.tsv",
-        raw18S="results/02-euks/15-exports/all-18S-seqs.with-PR2-tax.tsv",
-        stats16S="results/02-proks/04-DADA2d-plaintext-exports/tutorial.16S.latest_stats.tsv",
-        stats18S="results/02-euks/09-DADA2d-plaintext-exports/tutorial.18S.latest_stats.tsv",
+        raw18S="results/02-euks/15-exports/" + config["studyName"] + ".all-18S-seqs.with-PR2-tax.tsv",
+        stats16S="results/02-proks/04-DADA2d-plaintext-exports/" + config["studyName"] + ".16S.latest_stats.tsv",
+        stats18S="results/02-euks/09-DADA2d-plaintext-exports/" + config["studyName"] + ".18S.latest_stats.tsv",
         read_summary="results/" + config["studyName"] + ".eukfrac-all.tsv",
         bioanalyzer="config/bioanalyzer.tsv"
     output:

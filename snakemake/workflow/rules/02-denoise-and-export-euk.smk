@@ -205,15 +205,15 @@ rule export_tax_convert_biom_euk:
         includemetazoaSILVAtable="results/02-euks/14-subsetting/split-tables/include_D_3__Metazoa_Animalia_SILVA_filtered_table.qza",
         includemetazoaPR2table="results/02-euks/14-subsetting/split-tables/include_Metazoa_PR2_filtered_table.qza"
     output:
-        SILVAtaxdir=temp(directory("results/02-euks/15-exports/taxonomy-SILVA/")),
-        PR2taxdir=temp(directory("results/02-euks/15-exports/taxonomy-PR2/")),
-        SILVAtaxfile="results/02-euks/15-exports/taxonomy-SILVA.tsv",
-        PR2taxfile="results/02-euks/15-exports/taxonomy-PR2.tsv",
-        all18Stablebiom=temp("results/02-euks/15-exports/all-18S-seqs.biom"),
-        excludemetazoaSILVAtablebiom=temp("results/02-euks/15-exports/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.biom"),
-        excludemetazoaPR2tablebiom=temp("results/02-euks/15-exports/exclude_Metazoa_PR2_filtered_table.biom"),
-        includemetazoaSILVAtablebiom=temp("results/02-euks/15-exports/include_D_3__Metazoa_Animalia_SILVA_filtered_table.biom"),
-        includemetazoaPR2tablebiom=temp("results/02-euks/15-exports/include_Metazoa_PR2_filtered_table.biom"),
+        SILVAtaxdir=temp(directory("results/02-euks/15-exports/" + config["studyName"] + ".taxonomy-SILVA/")),
+        PR2taxdir=temp(directory("results/02-euks/15-exports/" + config["studyName"] + ".taxonomy-PR2/")),
+        SILVAtaxfile="results/02-euks/15-exports/" + config["studyName"] + ".taxonomy-SILVA.tsv",
+        PR2taxfile="results/02-euks/15-exports/" + config["studyName"] + ".taxonomy-PR2.tsv",
+        all18Stablebiom=temp("results/02-euks/15-exports/" + config["studyName"] + ".all-18S-seqs.biom"),
+        excludemetazoaSILVAtablebiom=temp("results/02-euks/15-exports/" + config["studyName"] + ".exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.biom"),
+        excludemetazoaPR2tablebiom=temp("results/02-euks/15-exports/" + config["studyName"] + ".exclude_Metazoa_PR2_filtered_table.biom"),
+        includemetazoaSILVAtablebiom=temp("results/02-euks/15-exports/" + config["studyName"] + ".include_D_3__Metazoa_Animalia_SILVA_filtered_table.biom"),
+        includemetazoaPR2tablebiom=temp("results/02-euks/15-exports/" + config["studyName"] + ".include_Metazoa_PR2_filtered_table.biom"),
     conda:
         config["qiime2version"]
     script:
@@ -221,20 +221,20 @@ rule export_tax_convert_biom_euk:
 
 rule add_tax_to_biom_euk:
     input:
-        SILVAtaxfile="results/02-euks/15-exports/taxonomy-SILVA.tsv",
-        PR2taxfile="results/02-euks/15-exports/taxonomy-PR2.tsv",
-        all18Stablebiom="results/02-euks/15-exports/all-18S-seqs.biom",
-        excludemetazoaSILVAtablebiom="results/02-euks/15-exports/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.biom",
-        excludemetazoaPR2tablebiom="results/02-euks/15-exports/exclude_Metazoa_PR2_filtered_table.biom",
-        includemetazoaSILVAtablebiom="results/02-euks/15-exports/include_D_3__Metazoa_Animalia_SILVA_filtered_table.biom",
-        includemetazoaPR2tablebiom="results/02-euks/15-exports/include_Metazoa_PR2_filtered_table.biom",
+        SILVAtaxfile="results/02-euks/15-exports/" + config["studyName"] + ".taxonomy-SILVA.tsv",
+        PR2taxfile="results/02-euks/15-exports/" + config["studyName"] + ".taxonomy-PR2.tsv",
+        all18Stablebiom="results/02-euks/15-exports/" + config["studyName"] + ".all-18S-seqs.biom",
+        excludemetazoaSILVAtablebiom="results/02-euks/15-exports/" + config["studyName"] + ".exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.biom",
+        excludemetazoaPR2tablebiom="results/02-euks/15-exports/" + config["studyName"] + ".exclude_Metazoa_PR2_filtered_table.biom",
+        includemetazoaSILVAtablebiom="results/02-euks/15-exports/" + config["studyName"] + ".include_D_3__Metazoa_Animalia_SILVA_filtered_table.biom",
+        includemetazoaPR2tablebiom="results/02-euks/15-exports/" + config["studyName"] + ".include_Metazoa_PR2_filtered_table.biom",
     output:
-        all18StablebiomSILVAtax=temp("results/02-euks/15-exports/all-18S-seqs.with-SILVA-tax.biom"),
-        all18StablebiomPR2tax=temp("results/02-euks/15-exports/all-18S-seqs.with-PR2-tax.biom"),
-        excludemetazoaSILVAtablebiomtax=temp("results/02-euks/15-exports/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.biom"),
-        excludemetazoaPR2tablebiomtax=temp("results/02-euks/15-exports/exclude_Metazoa_PR2_filtered_table.with-tax.biom"),
-        includemetazoaSILVAtablebiomtax=temp("results/02-euks/15-exports/include_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.biom"),
-        includemetazoaPR2tablebiomtax=temp("results/02-euks/15-exports/include_Metazoa_PR2_filtered_table.with-tax.biom"),
+        all18StablebiomSILVAtax=temp("results/02-euks/15-exports/" + config["studyName"] + ".all-18S-seqs.with-SILVA-tax.biom"),
+        all18StablebiomPR2tax=temp("results/02-euks/15-exports/" + config["studyName"] + ".all-18S-seqs.with-PR2-tax.biom"),
+        excludemetazoaSILVAtablebiomtax=temp("results/02-euks/15-exports/" + config["studyName"] + ".exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.biom"),
+        excludemetazoaPR2tablebiomtax=temp("results/02-euks/15-exports/" + config["studyName"] + ".exclude_Metazoa_PR2_filtered_table.with-tax.biom"),
+        includemetazoaSILVAtablebiomtax=temp("results/02-euks/15-exports/" + config["studyName"] + ".include_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.biom"),
+        includemetazoaPR2tablebiomtax=temp("results/02-euks/15-exports/" + config["studyName"] + ".include_Metazoa_PR2_filtered_table.with-tax.biom"),
     conda:
         config["qiime2version"]
     script:
@@ -242,19 +242,19 @@ rule add_tax_to_biom_euk:
 
 rule export_biom_tsv_euk:
     input:
-        all18StablebiomSILVAtax=temp("results/02-euks/15-exports/all-18S-seqs.with-SILVA-tax.biom"),
-        all18StablebiomPR2tax=temp("results/02-euks/15-exports/all-18S-seqs.with-PR2-tax.biom"),
-        excludemetazoaSILVAtablebiomtax=temp("results/02-euks/15-exports/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.biom"),
-        excludemetazoaPR2tablebiomtax=temp("results/02-euks/15-exports/exclude_Metazoa_PR2_filtered_table.with-tax.biom"),
-        includemetazoaSILVAtablebiomtax=temp("results/02-euks/15-exports/include_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.biom"),
-        includemetazoaPR2tablebiomtax=temp("results/02-euks/15-exports/include_Metazoa_PR2_filtered_table.with-tax.biom"),
+        all18StablebiomSILVAtax="results/02-euks/15-exports/" + config["studyName"] + ".all-18S-seqs.with-SILVA-tax.biom",
+        all18StablebiomPR2tax="results/02-euks/15-exports/" + config["studyName"] + ".all-18S-seqs.with-PR2-tax.biom",
+        excludemetazoaSILVAtablebiomtax="results/02-euks/15-exports/" + config["studyName"] + ".exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.biom",
+        excludemetazoaPR2tablebiomtax="results/02-euks/15-exports/" + config["studyName"] + ".exclude_Metazoa_PR2_filtered_table.with-tax.biom",
+        includemetazoaSILVAtablebiomtax="results/02-euks/15-exports/" + config["studyName"] + ".include_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.biom",
+        includemetazoaPR2tablebiomtax="results/02-euks/15-exports/" + config["studyName"] + ".include_Metazoa_PR2_filtered_table.with-tax.biom",
     output:
-        all18StablebiomSILVAtaxtsv="results/02-euks/15-exports/all-18S-seqs.with-SILVA-tax.tsv",
-        all18StablebiomPR2taxtsv="results/02-euks/15-exports/all-18S-seqs.with-PR2-tax.tsv",
-        excludemetazoaSILVAtablebiomtaxtsv="results/02-euks/15-exports/exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.tsv",
-        excludemetazoaPR2tablebiomtaxtsv="results/02-euks/15-exports/exclude_Metazoa_PR2_filtered_table.with-tax.tsv",
-        includemetazoaSILVAtablebiomtaxtsv="results/02-euks/15-exports/include_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.tsv",
-        includemetazoaPR2tablebiomtaxtsv="results/02-euks/15-exports/include_Metazoa_PR2_filtered_table.with-tax.tsv",
+        all18StablebiomSILVAtaxtsv="results/02-euks/15-exports/" + config["studyName"] + ".all-18S-seqs.with-SILVA-tax.tsv",
+        all18StablebiomPR2taxtsv="results/02-euks/15-exports/" + config["studyName"] + ".all-18S-seqs.with-PR2-tax.tsv",
+        excludemetazoaSILVAtablebiomtaxtsv="results/02-euks/15-exports/" + config["studyName"] + ".exclude_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.tsv",
+        excludemetazoaPR2tablebiomtaxtsv="results/02-euks/15-exports/" + config["studyName"] + ".exclude_Metazoa_PR2_filtered_table.with-tax.tsv",
+        includemetazoaSILVAtablebiomtaxtsv="results/02-euks/15-exports/" + config["studyName"] + ".include_D_3__Metazoa_Animalia_SILVA_filtered_table.with-tax.tsv",
+        includemetazoaPR2tablebiomtaxtsv="results/02-euks/15-exports/" + config["studyName"] + ".include_Metazoa_PR2_filtered_table.with-tax.tsv",
     conda:
         config["qiime2version"]
     script:
