@@ -6,6 +6,11 @@ studyName: "tutorial"
 
 database_dir: "databases"
 
+rawdatadir: "nativemicrobiota/ocean-data/"
+
+R1file_ending: ".R1.head400.fastq.gz"
+R2file_ending: ".R2.head400.fastq.gz"
+
 trunclens:
   truncR1: 220
   truncR2: 180

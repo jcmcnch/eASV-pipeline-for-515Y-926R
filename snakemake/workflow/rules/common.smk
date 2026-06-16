@@ -49,7 +49,8 @@ def get_final_output():
     final_output.append("results/02-euks/14-subsetting/split-tables/include_Metazoa_PR2_filtered_table.qza"),
     final_output.append("results/02-euks/15-exports/include_Metazoa_PR2_filtered_table.with-tax.tsv"),
     final_output.append("results/eukfrac-all.tsv"),
-    final_output.append("results/03-merged/merged_uncorected.tsv")
+    final_output.append("results/03-merged/" + config["studyName"] + "merged_uncorected.tsv"),
+    final_output.append("results/03-merged/" + config["studyName"] + ".Synechococcales.proportal-classified.tsv")
 
     return final_output
 

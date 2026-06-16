@@ -1,7 +1,8 @@
 rule cutadapt:
     input:
-        ["nativemicrobiota/ocean-data/{sample}.R1.head400.fastq.gz",
-        "nativemicrobiota/ocean-data/{sample}.R2.head400.fastq.gz"],
+        [config["rawdatadir"] + "{sample}" + config["R1file_ending"],
+        config["rawdatadir"] + "{sample}" + config["R2file_ending"]]
+        #"nativemicrobiota/ocean-data/{sample}.R2.head400.fastq.gz"],
     output:
         fastq1=temp("results/00-trimmed/{sample}.1.fastq"),
         fastq2=temp("results/00-trimmed/{sample}.2.fastq"),
