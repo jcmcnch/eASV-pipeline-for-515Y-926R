@@ -1,15 +1,15 @@
 rule merge_prok_euk:
     input:
-        raw16S="results/02-proks/10-exports/all-16S-seqs.with-tax.tsv",
+        raw16S="results/02-proks/10-exports/" + config["studyName"] + ".all-16S-seqs.with-tax.tsv",
         raw18S="results/02-euks/15-exports/all-18S-seqs.with-PR2-tax.tsv",
         stats16S="results/02-proks/04-DADA2d-plaintext-exports/tutorial.16S.latest_stats.tsv",
         stats18S="results/02-euks/09-DADA2d-plaintext-exports/tutorial.18S.latest_stats.tsv",
-        read_summary="results/eukfrac-all.tsv",
+        read_summary="results/" + config["studyName"] + ".eukfrac-all.tsv",
         bioanalyzer="config/bioanalyzer.tsv"
     output:
-        mergedtableuncorrected="results/03-merged/" + config["studyName"] + "merged_uncorected.tsv",
-        mergedtabledada2="results/03-merged/" + config["studyName"] + "merged_dada2_corrected.tsv",
-        mergedtabledada218Scorrected="results/03-merged/" + config["studyName"] + "merged_dada2_18S_corrected.tsv"
+        mergedtableuncorrected="results/03-merged/" + config["studyName"] + ".merged_uncorected.tsv",
+        mergedtabledada2="results/03-merged/" + config["studyName"] + ".merged_dada2_corrected.tsv",
+        mergedtabledada218Scorrected="results/03-merged/" + config["studyName"] + ".merged_dada2_18S_corrected.tsv"
     conda:
         "../envs/r-tidyverse-2.0.0.yml"
     log:
@@ -19,7 +19,7 @@ rule merge_prok_euk:
 
 rule proportal_classify:
     input:
-        mergedtable="results/03-merged/" + config["studyName"] + "merged_uncorected.tsv",
+        mergedtable="results/03-merged/" + config["studyName"] + ".merged_uncorected.tsv",
         dnaseqs="results/02-proks/04-DADA2d-plaintext-exports/" + config["studyName"] + ".16S.latest_seqs.fasta"
     output:
         taxonomy="results/03-merged/" + config["studyName"] + ".Synechococcales.proportal-classified.tsv",

@@ -14,7 +14,6 @@ rule bbsplit_prok_euk:
     shell:
         "bbsplit.sh usequality=f qtrim=f minratio=0.30 minid=0.30 pairedonly=f path=databases/bbsplit-db/EUK-PROK-bbsplit-db/ in={input.r1} in2={input.r2} out_SILVA_132_PROK.cdhit95pc={output.prok} out_SILVA_132_and_PR2_EUK.cdhit95pc={output.euk} 2>&1 | tee -a {log}"
 
-
 rule deinterleave_split_reads_euk:
     input:
         "results/01-split/{sample}.euk.fastq"
@@ -51,9 +50,8 @@ rule calculate_eukfrac:
     input:
         splitdir=directory("results/01-split/"),
     output:
-        eukfracall="results/eukfrac-all.tsv"
+        eukfracall="results/" + config["studyName"] + ".eukfrac-all.tsv"
     conda:
         config["qiime2version"]
     script:
         "../scripts/calc-EUK-fraction.sh"
-        

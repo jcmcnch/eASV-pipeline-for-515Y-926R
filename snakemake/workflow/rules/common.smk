@@ -32,8 +32,8 @@ def get_final_output():
     final_output.append(directory("results/02-proks/07-SILVA-only-barplots/")),
     final_output.append("results/02-proks/09-subsetting/split-seqs/exclude_o__Chloroplast_subset_filtered_seqs.qza"),
     final_output.append("results/02-proks/09-subsetting/reclassified/include_o__Chloroplast_subset_reclassified_PR2.qza"),
-    final_output.append("results/02-proks/10-exports/taxonomy.tsv"),
-    final_output.append("results/02-proks/10-exports/all-16S-seqs.with-tax.tsv"),
+    final_output.append("results/02-proks/10-exports/" + config["studyName"] + ".taxonomy.tsv"),
+    final_output.append("results/02-proks/10-exports/" + config["studyName"] + ".all-16S-seqs.with-tax.tsv"),
     final_output.append("results/02-proks/sample-metadata.tsv"),
     final_output.append("results/02-euks/18S-viz.qza"),
     final_output.append(directory("results/02-euks/02-quality-plots-R1-R2/")),
@@ -48,8 +48,8 @@ def get_final_output():
     final_output.append("results/02-euks/14-subsetting/reclassified-PR2/fixed/taxonomy-without-spaces.qza"),
     final_output.append("results/02-euks/14-subsetting/split-tables/include_Metazoa_PR2_filtered_table.qza"),
     final_output.append("results/02-euks/15-exports/include_Metazoa_PR2_filtered_table.with-tax.tsv"),
-    final_output.append("results/eukfrac-all.tsv"),
-    final_output.append("results/03-merged/" + config["studyName"] + "merged_uncorected.tsv"),
+    final_output.append("results/" + config["studyName"] + ".eukfrac-all.tsv"),
+    final_output.append("results/03-merged/" + config["studyName"] + ".merged_uncorected.tsv"),
     final_output.append("results/03-merged/" + config["studyName"] + ".Synechococcales.proportal-classified.tsv")
 
     return final_output
