@@ -34,7 +34,11 @@ rule identify_intsd_ASVS:
 rule intstd_correct_data:
     input:
         asvtable="results/04-formatted/" + config["studyName"] + ".long_data.tsv",
-        asvsequences="results/04-formatted/" + config["studyName"] + ".asv_sequences.tsv"
+        BPasvs="config/intstd_fastas/" + config["intstds"]["BP"] + ".asvs.txt",
+        DRasvs="config/intstd_fastas/" + config["intstds"]["DR"] + ".asvs.txt",
+        TTasvs="config/intstd_fastas/" + config["intstds"]["TT"] + ".asvs.txt",
+        isd="config/internal_stds.tsv",
+        isd_added="config/samples.tsv"
     output:
         corrected=""
     conda:

@@ -18,10 +18,10 @@ samples <- read_tsv("samples.tsv")
 #Import Data local
 setwd("~/Library/CloudStorage/Dropbox/USC/Projects/03-My-Projects/Project-3-eASV-pipeline-paper/04-data/snakemake/isd-correction")
 isd <- read_tsv("internal_stds.tsv")
-isd_added <- read_csv("AMT30_isd_added_ng.csv")
-bp_asvs <- read_delim("BP.asvs.txt", delim = "\n", col_names = FALSE)
-dr_asvs <- read_delim("DR.asvs.txt", delim = "\n", col_names = FALSE)
-tt_asvs <- read_delim("TT.asvs.txt", delim = "\n", col_names = FALSE)
+#isd_added <- read_csv("AMT30_isd_added_ng.csv")
+bp_asvs <- read_delim(${snakemake_input[BPasvs]}, delim = "\n", col_names = FALSE)
+dr_asvs <- read_delim(${snakemake_input[DRasvs]}, delim = "\n", col_names = FALSE)
+tt_asvs <- read_delim(${snakemake_input[TTasvs]}, delim = "\n", col_names = FALSE)
 
 
 #Make the ISD dataframe lookup vectors
