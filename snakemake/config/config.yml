@@ -11,6 +11,11 @@ rawdatadir: "nativemicrobiota/ocean-data/"
 R1file_ending: ".R1.head400.fastq.gz"
 R2file_ending: ".R2.head400.fastq.gz"
 
+intstds:
+  BP: "BP"
+  DR: "DR"
+  TT: "TT"
+
 trunclens:
   truncR1: 220
   truncR2: 180
