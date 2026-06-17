@@ -5,20 +5,18 @@
 library(tidyverse)
 
 #Set paths
-asv_path       <- snakemake@input[["asv_table"]]
 isd_path  <- snakemake@input[["isd"]]
 isd_added_path <- snakemake@input[["isd_added"]]
 output_path    <- snakemake@output[["corrected"]]
 
 #Import Data
-asv_table <- read_tsv(asv_path)
+asv_table <- read_tsv(snakemake@input[["asv_table"]])
 isd <- read_tsv(isd_path , show_col_types = FALSE)
 isd_added <- read_tsv(isd_added_path, show_col_types = FALSE)
 samples <- read_tsv("samples.tsv")
 
 #Import Data local
 setwd("~/Library/CloudStorage/Dropbox/USC/Projects/03-My-Projects/Project-3-eASV-pipeline-paper/04-data/snakemake/isd-correction")
-asv_table <- read_csv("AMT30-DNA_251204-1646_asv_long.csv")
 isd <- read_tsv("internal_stds.tsv")
 isd_added <- read_csv("AMT30_isd_added_ng.csv")
 bp_asvs <- read_delim("BP.asvs.txt", delim = "\n", col_names = FALSE)
