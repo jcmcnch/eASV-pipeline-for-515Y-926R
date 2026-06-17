@@ -32,9 +32,9 @@ avogadro <- 6.022 * 1e23
 
 # Do calculation
 isd_copies_added <- isd_added %>% 
-  mutate(TT_copies = ((((TT_ng/1e9) / (bp_weight * genome_len["TT"]))) * avogadro) * copy_number["TT"]) %>%
-  mutate(DR_copies = ((((DR_ng/1e9) / (bp_weight * genome_len["DR"]))) * avogadro) * copy_number["DR"]) %>%
-  mutate(BP_copies = ((((BP_ng/1e9) / (bp_weight * genome_len["BP"]))) * avogadro) * copy_number["BP"])
+  mutate(TT_copies = ((((TT_ng/1e9) / (bp_weight * genome_len_bp["TT"]))) * avogadro) * rRNA_copy_number["TT"]) %>%
+  mutate(DR_copies = ((((DR_ng/1e9) / (bp_weight * genome_len_bp["DR"]))) * avogadro) * rRNA_copy_number["DR"]) %>%
+  mutate(BP_copies = ((((BP_ng/1e9) / (bp_weight * genome_len_bp["BP"]))) * avogadro) * rRNA_copy_number["BP"])
                            
 #Pull internal standard copies out of ASV table frame
 bp_ids <- pull(bp_asvs) %>% as.character()
