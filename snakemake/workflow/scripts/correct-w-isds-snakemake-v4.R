@@ -2,7 +2,9 @@
 #It can only be used if genomic internal standards were added at the time of DNA extraction.
 #Written by Nathan Williams 18/02/2026.
 
+suppressPackageStartupMessages({
 library(tidyverse)
+})
 
 #Set paths
 isd_path  <- snakemake@input[["isd"]]
@@ -16,9 +18,9 @@ isd_added <- read_tsv(isd_added_path, show_col_types = FALSE)
 
 #Import Data local
 #isd_added <- read_csv("AMT30_isd_added_ng.csv")
-bp_asvs <- read_delim(${snakemake_input[BPasvs]}, delim = "\n", col_names = FALSE)
-dr_asvs <- read_delim(${snakemake_input[DRasvs]}, delim = "\n", col_names = FALSE)
-tt_asvs <- read_delim(${snakemake_input[TTasvs]}, delim = "\n", col_names = FALSE)
+bp_asvs <- read_delim(snakemake@input[["BPasvs"]], delim = "\n", col_names = FALSE)
+dr_asvs <- read_delim(snakemake@input[["DRasvs"]], delim = "\n", col_names = FALSE)
+tt_asvs <- read_delim(snakemake@input[["TTasvs"]], delim = "\n", col_names = FALSE)
 
 #Make the ISD dataframe lookup vectors
 genome_len  <- setNames(isd$genome_len_bp, isd$internal_std_ID)
@@ -29,6 +31,14 @@ copy_number <- setNames(isd$rRNA_copy_number, isd$internal_std_ID)
 bp_weight <- 617.9
 avogadro <- 6.022 * 1e23
 # 1e9 is to convert to copies added per L.
+
+BPlength=as.numeric(isd$genome_len_bp["BP"])
+DRlength=
+TTlength=
+
+BPcopynum=
+DRcopynum=
+TTcopynum=
 
 # Do calculation
 isd_copies_added <- isd_added %>% 

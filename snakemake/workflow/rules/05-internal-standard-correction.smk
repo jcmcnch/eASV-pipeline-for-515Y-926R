@@ -33,7 +33,7 @@ rule identify_intsd_ASVS:
 
 rule intstd_correct_data:
     input:
-        asvtable="results/04-formatted/" + config["studyName"] + ".long_data.tsv",
+        asv_table="results/04-formatted/" + config["studyName"] + ".long_data.tsv",
         BPasvs="config/intstd_fastas/" + config["intstds"]["BP"] + ".asvs.txt",
         DRasvs="config/intstd_fastas/" + config["intstds"]["DR"] + ".asvs.txt",
         TTasvs="config/intstd_fastas/" + config["intstds"]["TT"] + ".asvs.txt",
@@ -46,4 +46,4 @@ rule intstd_correct_data:
     log:
         "logs/05-internal-std-correction/prepare_long_data_corrected.log"
     script:
-        "../scripts/long-data-preparation.R"
+        "../scripts/correct-w-isds-snakemake-v4.R"
