@@ -16,77 +16,20 @@ counts_dada2_corrected <- readr::read_tsv(snakemake@input[["mergedtabledada2"]],
 
 counts_uncorrected <- readr::read_tsv(snakemake@input[["mergedtableuncorrected"]], show_col_types = FALSE) %>% as.data.table()
 
-#Import all the ASV sequences from the 16S data
-files <- list.files(pattern = '*16S.dna-sequences.fasta', full.names = TRUE) # List all files in the directory that match the pattern '*16S.dna-sequences.fasta'
-
-for (file in files) {
-  input <- readLines(file)
-  # Standardize the output filename
-  output_filename <- "prokaryote_asv_sequences.csv"
-  # Open the output file
-  output <- file(output_filename, "w")
-  # Initialize sequence counter
-  currentSeq <- 0
-  # Process each line of the input file
-  for (i in 1:length(input)) {
-    if (strtrim(input[i], 1) == ">") {
-      # If it's the first sequence, write the sequence header followed by a tab without newline
-if (currentSeq == 0) {
-  writeLines(paste(input[i], "\t"), output, sep = "")
-  currentSeq <- currentSeq + 1
-} else {
-  # For subsequent sequences, add a newline before the sequence header
-  writeLines(paste("\n", input[i], "\t", sep = ""), output, sep = "")
-}
-} else {
-  # Write sequence data directly
-  writeLines(paste(input[i]), output, sep = "")
-}
-}
-
-# Close the output file
-close(output)
-}
-
-#Import all the ASV sequences from the 18S data
-files <- list.files(pattern = '*18S.dna-sequences.fasta', full.names = TRUE) # List all files in the directory that match the pattern '*16S.dna-sequences.fasta'
-for (file in files) {
-  input <- readLines(file)
-  # Replace the entire filename to standardize the output filename
-  output_filename <- "eukaryote_asv_sequences.csv"
-  # Open the output file
-  output <- file(output_filename, "w")
-  # Initialize sequence counter
-  currentSeq <- 0
-  # Process each line of the input file
-  for (i in 1:length(input)) {
-    if (strtrim(input[i], 1) == ">") {
-      # If it's the first sequence, write the sequence header followed by a tab without newline
-      if (currentSeq == 0) {
-        writeLines(paste(input[i], "\t"), output, sep = "")
-        currentSeq <- currentSeq + 1
-      } else {
-        # For subsequent sequences, add a newline before the sequence header
-        writeLines(paste("\n", input[i], "\t", sep = ""), output, sep = "")
-      }
-    } else {
-      # Write sequence data directly
-      writeLines(paste(input[i]), output, sep = "")
-    }
-  }
-  
-  # Close the output file
-  close(output)
-}
-
-#Import asv_sequences now that htey have been converted to csv files
-prokaryote_asv_sequences <- read.csv(snakemake@input[["fasta16S"]], header=FALSE)
-eukaryote_asv_sequences  <- read.csv(snakemake@input[["fasta18S"]], header=FALSE)
+#Import all the ASV sequences from the 16S and 18S data
+prokaryote_asv_sequences <- readDNAStringSet(snakemake@input[["fasta16S"]])
+ASV_hash <- names(prokaryote_asv_sequences)
+ASV <- paste(prokaryote_asv_sequences)
+prokaryote_asv_sequences <- data.frame(ASV_hash, ASV)
+eukaryote_asv_sequences  <- readDNAStringSet(snakemake@input[["fasta18S"]])
+ASV_hash <- names(eukaryote_asv_sequences)
+ASV <- paste(eukaryote_asv_sequences)
+eukaryote_asv_sequences <- data.frame(ASV_hash, ASV)
 
 #Join together asv sequences
 asv_sequences <- bind_rows(eukaryote_asv_sequences,prokaryote_asv_sequences)
-asv_sequences <- asv_sequences %>% rename(ASV = V1)
-asv_sequences <- write_csv(asv_sequences, snakemake@output[["asvsequences"]])
+#asv_sequences <- asv_sequences %>% rename(ASV = V1)
+asv_sequences <- write_tsv(asv_sequences, snakemake@output[["asvsequences"]])
 asv_sequences <- as.data.frame(asv_sequences)
 
 #parse out plas to get a yes/no column for whether something came from a plastid or not.
@@ -199,4 +142,4 @@ asv_long <- asv_long %>%
 asv_long <- asv_long %>% filter(!Corrected_Sequence_Counts %in% (0))
 
 #Write asv long
-write_csv(asv_long,snakemake@output[["longdata"]])
+write_tsv(asv_long,snakemake@output[["longdata"]])
