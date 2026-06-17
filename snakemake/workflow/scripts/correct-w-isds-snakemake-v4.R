@@ -13,16 +13,12 @@ output_path    <- snakemake@output[["corrected"]]
 asv_table <- read_tsv(snakemake@input[["asv_table"]])
 isd <- read_tsv(isd_path , show_col_types = FALSE)
 isd_added <- read_tsv(isd_added_path, show_col_types = FALSE)
-samples <- read_tsv("samples.tsv")
 
 #Import Data local
-setwd("~/Library/CloudStorage/Dropbox/USC/Projects/03-My-Projects/Project-3-eASV-pipeline-paper/04-data/snakemake/isd-correction")
-isd <- read_tsv("internal_stds.tsv")
 #isd_added <- read_csv("AMT30_isd_added_ng.csv")
 bp_asvs <- read_delim(${snakemake_input[BPasvs]}, delim = "\n", col_names = FALSE)
 dr_asvs <- read_delim(${snakemake_input[DRasvs]}, delim = "\n", col_names = FALSE)
 tt_asvs <- read_delim(${snakemake_input[TTasvs]}, delim = "\n", col_names = FALSE)
-
 
 #Make the ISD dataframe lookup vectors
 genome_len  <- setNames(isd$genome_len_bp, isd$internal_std_ID)
@@ -247,7 +243,6 @@ write_tsv(asv_table_mean_BP_DR_RR, "asv_table_mean_BP_DR_RR.tsv")
 write_tsv(asv_table_mean_BP_TT_RR, "asv_table_mean_BP_TT_RR.tsv")
 write_tsv(asv_table_mean_DR_TT_RR, "asv_table_mean_DR_TT_RR.tsv")
 
-
 #Write plots
 # Export plot1
 ggsave(filename = "recovery_ratios.pdf", plot = plot1, width = 12, height = 8, units = "in")
@@ -256,6 +251,4 @@ ggsave(filename = "recovery_ratios.pdf", plot = plot1, width = 12, height = 8, u
 ggsave(filename = "Domain_by_sampleID.pdf", plot = plot2, width = 12, height = 8,units = "in")
 
 #write csv
-write_csv(asv_table, "ISD_corrected_asv_table.csv")
-
-q()
+write_tsv(asv_table, snakemake@output[["corrected"]] "ISD_corrected_asv_table.csv")

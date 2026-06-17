@@ -40,10 +40,10 @@ rule intstd_correct_data:
         isd="config/internal_stds.tsv",
         isd_added="config/samples.tsv"
     output:
-        corrected=""
+        corrected="results/05-internal-std-corrected/" + config["studyName"] + ".ISD_corrected_asv_table.tsv"
     conda:
         "../envs/r-tidyverse-2.0.0.yml"
     log:
-        "logs/04-formatting/prepare_long_data.log"
+        "logs/05-internal-std-correction/prepare_long_data_corrected.log"
     script:
         "../scripts/long-data-preparation.R"

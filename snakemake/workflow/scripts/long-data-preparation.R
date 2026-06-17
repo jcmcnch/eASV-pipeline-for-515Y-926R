@@ -28,7 +28,6 @@ eukaryote_asv_sequences <- data.frame(ASV_hash, ASV)
 
 #Join together asv sequences
 asv_sequences <- bind_rows(eukaryote_asv_sequences,prokaryote_asv_sequences)
-#asv_sequences <- asv_sequences %>% rename(ASV = V1)
 asv_sequences <- write_tsv(asv_sequences, snakemake@output[["asvsequences"]])
 asv_sequences <- as.data.frame(asv_sequences)
 
