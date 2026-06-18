@@ -21,6 +21,7 @@ isd_added <- read_tsv(isd_added_path, show_col_types = FALSE)
 bp_asvs <- read_delim(snakemake@input[["BPasvs"]], delim = "\n", col_names = FALSE)
 dr_asvs <- read_delim(snakemake@input[["DRasvs"]], delim = "\n", col_names = FALSE)
 tt_asvs <- read_delim(snakemake@input[["TTasvs"]], delim = "\n", col_names = FALSE)
+str(bp_asvs)
 
 #Make the ISD dataframe lookup vectors
 genome_len  <- setNames(isd$genome_len_bp, isd$internal_std_ID)
@@ -32,19 +33,19 @@ bp_weight <- 617.9
 avogadro <- 6.022 * 1e23
 # 1e9 is to convert to copies added per L.
 
-BPlength=as.numeric(isd$genome_len_bp["BP"])
-DRlength=
-TTlength=
+BPlen=isd$genome_len_bp[isd$internal_std_ID == "BP"]
+DRlen=isd$genome_len_bp[isd$internal_std_ID == "DR"]
+TTlen=isd$genome_len_bp[isd$internal_std_ID == "TT"]
 
-BPcopynum=
-DRcopynum=
-TTcopynum=
+BPcopynum=isd$rRNA_copy_number[isd$internal_std_ID == "BP"]
+DRcopynum=isd$rRNA_copy_number[isd$internal_std_ID == "DR"]
+TTcopynum=isd$rRNA_copy_number[isd$internal_std_ID == "TT"]
 
 # Do calculation
 isd_copies_added <- isd_added %>% 
-  mutate(TT_copies = ((((TT_ng/1e9) / (bp_weight * genome_len_bp["TT"]))) * avogadro) * rRNA_copy_number["TT"]) %>%
-  mutate(DR_copies = ((((DR_ng/1e9) / (bp_weight * genome_len_bp["DR"]))) * avogadro) * rRNA_copy_number["DR"]) %>%
-  mutate(BP_copies = ((((BP_ng/1e9) / (bp_weight * genome_len_bp["BP"]))) * avogadro) * rRNA_copy_number["BP"])
+  mutate(TT_copies = (((TT_ng/1e9) / (bp_weight * TTlen * avogadro)) * TTcopynum)) %>%
+  mutate(DR_copies = (((DR_ng/1e9) / (bp_weight * DRlen * avogadro)) * DRcopynum)) %>%
+  mutate(BP_copies = (((BP_ng/1e9) / (bp_weight * BPlen * avogadro)) * TTcopynum))
                            
 #Pull internal standard copies out of ASV table frame
 bp_ids <- pull(bp_asvs) %>% as.character()
