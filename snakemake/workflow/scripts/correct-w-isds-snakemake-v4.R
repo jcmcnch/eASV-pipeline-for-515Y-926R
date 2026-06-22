@@ -14,14 +14,16 @@ output_path    <- snakemake@output[["corrected"]]
 #Import Data
 asv_table <- read_tsv(snakemake@input[["asv_table"]])
 isd <- read_tsv(isd_path , show_col_types = FALSE)
-isd_added <- read_tsv(isd_added_path, show_col_types = FALSE)
+isd_added <- read_tsv(isd_added_path, show_col_types = FALSE) %>%
+  rename(SampleID=sample)
+samples <- read_tsv(isd_added_path, show_col_types = FALSE) %>%
+  rename(SampleID=sample)
 
 #Import Data local
 #isd_added <- read_csv("AMT30_isd_added_ng.csv")
 bp_asvs <- read_delim(snakemake@input[["BPasvs"]], delim = "\n", col_names = FALSE)
 dr_asvs <- read_delim(snakemake@input[["DRasvs"]], delim = "\n", col_names = FALSE)
 tt_asvs <- read_delim(snakemake@input[["TTasvs"]], delim = "\n", col_names = FALSE)
-str(bp_asvs)
 
 #Make the ISD dataframe lookup vectors
 genome_len  <- setNames(isd$genome_len_bp, isd$internal_std_ID)
@@ -128,9 +130,10 @@ recovery_ratios <- merged_isd_data %>% select(c("SampleID", "TT_recovery_ratio",
 asv_table <- asv_table %>%
   left_join(recovery_ratios)
 
+
 #add in unit for normalisation
 isd_norm_fact <- samples %>% 
-  select(SampleID,internal_std_normalization_factor, copy_number_units) %>%
+  select(SampleID,internal_std_normalization_factor,units)
   
 asv_table <- asv_table %>% left_join(isd_norm_fact)
   
@@ -140,7 +143,7 @@ asv_table <- asv_table %>%
   mutate(Copies_DR_RR = (Corrected_Sequence_Counts / DR_recovery_ratio)/internal_std_normalization_factor) %>%
   mutate(Copies_TT_RR = (Corrected_Sequence_Counts / TT_recovery_ratio)/internal_std_normalization_factor) %>%
   mutate(Copies_mean_RR = (Corrected_Sequence_Counts / recovery_mean)/internal_std_normalization_factor) %>%
-  mutate(Copies_median_RR = (Corrected_dSequence_Counts / recovery_median)/internal_std_normalization_factor) %>%
+  mutate(Copies_median_RR = (Corrected_Sequence_Counts / recovery_median)/internal_std_normalization_factor) %>%
   mutate(Copies_BP_DR_mean_recovery_ratio_RR = (Corrected_Sequence_Counts /BP_DR_mean_recovery_ratio)/internal_std_normalization_factor) %>%
   mutate(Copies_BP_TT_mean_recovery_ratio_RR = (Corrected_Sequence_Counts /BP_TT_mean_recovery_ratio)/internal_std_normalization_factor) %>%
   mutate(Copies_DR_TT_mean_recovery_ratio_RR = (Corrected_Sequence_Counts /DR_TT_mean_recovery_ratio)/internal_std_normalization_factor)
@@ -198,7 +201,7 @@ plot2
 # TT_RR wide table
 asv_table_TT_RR <- asv_table %>% select(SampleID, ASV_hash, Copies_TT_RR) %>%
   group_by(ASV_hash, SampleID) %>%
-  summarise(Abundance = sum(Copies_per_Litre_TT_RR, na.rm = TRUE), .groups = "drop") %>%
+  summarise(Abundance = sum(Copies_TT_RR, na.rm = TRUE), .groups = "drop") %>%
   pivot_wider(names_from = SampleID, values_from = Abundance, values_fill = 0)
 
 # BP_RR wide table
@@ -262,4 +265,4 @@ ggsave(filename = "recovery_ratios.pdf", plot = plot1, width = 12, height = 8, u
 ggsave(filename = "Domain_by_sampleID.pdf", plot = plot2, width = 12, height = 8,units = "in")
 
 #write csv
-write_tsv(asv_table, snakemake@output[["corrected"]] "ISD_corrected_asv_table.csv")
+write_tsv(asv_table, snakemake@output[["corrected"]])
