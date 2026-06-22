@@ -15,9 +15,9 @@ output_path    <- snakemake@output[["corrected"]]
 asv_table <- read_tsv(snakemake@input[["asv_table"]])
 isd <- read_tsv(isd_path , show_col_types = FALSE)
 isd_added <- read_tsv(isd_added_path, show_col_types = FALSE) %>%
-  rename(SampleID=sample)
-samples <- read_tsv(isd_added_path, show_col_types = FALSE) %>%
-  rename(SampleID=sample)
+  rename(SampleID=sample) %>%
+  mutate(SampleID = str_replace_all(SampleID, "_", "-"))
+samples <- isd_added
 
 #Import Data local
 #isd_added <- read_csv("AMT30_isd_added_ng.csv")
@@ -45,10 +45,11 @@ TTcopynum=isd$rRNA_copy_number[isd$internal_std_ID == "TT"]
 
 # Do calculation
 isd_copies_added <- isd_added %>% 
+  select(SampleID, TT_ng, BP_ng, DR_ng) %>%
   mutate(TT_copies = (((TT_ng/1e9) / (bp_weight * TTlen * avogadro)) * TTcopynum)) %>%
   mutate(DR_copies = (((DR_ng/1e9) / (bp_weight * DRlen * avogadro)) * DRcopynum)) %>%
   mutate(BP_copies = (((BP_ng/1e9) / (bp_weight * BPlen * avogadro)) * TTcopynum))
-                           
+          
 #Pull internal standard copies out of ASV table frame
 bp_ids <- pull(bp_asvs) %>% as.character()
 dr_ids <- pull(dr_asvs) %>% as.character()
