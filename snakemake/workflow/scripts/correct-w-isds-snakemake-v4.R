@@ -46,9 +46,9 @@ TTcopynum=isd$rRNA_copy_number[isd$internal_std_ID == "TT"]
 # Do calculation
 isd_copies_added <- isd_added %>% 
   select(SampleID, TT_ng, BP_ng, DR_ng) %>%
-  mutate(TT_copies = (((TT_ng/1e9) / (bp_weight * TTlen * avogadro)) * TTcopynum)) %>%
-  mutate(DR_copies = (((DR_ng/1e9) / (bp_weight * DRlen * avogadro)) * DRcopynum)) %>%
-  mutate(BP_copies = (((BP_ng/1e9) / (bp_weight * BPlen * avogadro)) * TTcopynum))
+  mutate(TT_copies = ((((TT_ng/1e9) / (bp_weight * TTlen)) * avogadro) * TTcopynum)) %>%
+  mutate(DR_copies = ((((DR_ng/1e9) / (bp_weight * DRlen)) * avogadro) * DRcopynum)) %>%
+  mutate(BP_copies = ((((BP_ng/1e9) / (bp_weight * BPlen)) * avogadro) * TTcopynum))
           
 #Pull internal standard copies out of ASV table frame
 bp_ids <- pull(bp_asvs) %>% as.character()
