@@ -1,12 +1,12 @@
 rule prepare_16S_BLASTdb:
     input:
-        BP="config/intstd_fastas/" + config["intstds"]["BP"] + ".fasta",
-        DR="config/intstd_fastas/" + config["intstds"]["DR"] + ".fasta",
-        TT="config/intstd_fastas/" + config["intstds"]["TT"] + ".fasta"
+        intstd1="config/intstd_fastas/" + config["intstds"]["intstd1"] + ".fasta",
+        intstd2="config/intstd_fastas/" + config["intstds"]["intstd2"] + ".fasta",
+        intstd3="config/intstd_fastas/" + config["intstds"]["intstd3"] + ".fasta"
     output:
-        BP="config/intstd_fastas/" + config["intstds"]["BP"] + ".fasta.nhr",
-        DR="config/intstd_fastas/" + config["intstds"]["DR"] + ".fasta.nhr",
-        TT="config/intstd_fastas/" + config["intstds"]["TT"] + ".fasta.nhr"
+        intstd1="config/intstd_fastas/" + config["intstds"]["intstd1"] + ".fasta.nhr",
+        intstd2="config/intstd_fastas/" + config["intstds"]["intstd2"] + ".fasta.nhr",
+        intstd3="config/intstd_fastas/" + config["intstds"]["intstd3"] + ".fasta.nhr"
     conda:
         "../envs/blast-env.yaml"
     script:
@@ -16,16 +16,16 @@ rule prepare_16S_BLASTdb:
 rule identify_intsd_ASVS:
     input:
         latestseqs="results/02-proks/04-DADA2d-plaintext-exports/" + config["studyName"] + ".16S.latest_seqs.fasta",
-        BP="config/intstd_fastas/" + config["intstds"]["BP"] + ".fasta.nhr",
-        DR="config/intstd_fastas/" + config["intstds"]["DR"] + ".fasta.nhr",
-        TT="config/intstd_fastas/" + config["intstds"]["TT"] + ".fasta.nhr"
+        intstd1="config/intstd_fastas/" + config["intstds"]["intstd1"] + ".fasta.nhr",
+        intstd2="config/intstd_fastas/" + config["intstds"]["intstd2"] + ".fasta.nhr",
+        intstd3="config/intstd_fastas/" + config["intstds"]["intstd3"] + ".fasta.nhr"
     output:
-        BPtsv="config/intstd_fastas/" + config["intstds"]["BP"] + ".asvs.outfmt6.tsv",
-        BPasvs="config/intstd_fastas/" + config["intstds"]["BP"] + ".asvs.txt",
-        DRtsv="config/intstd_fastas/" + config["intstds"]["DR"] + ".asvs.outfmt6.tsv",
-        DRasvs="config/intstd_fastas/" + config["intstds"]["DR"] + ".asvs.txt",
-        TTtsv="config/intstd_fastas/" + config["intstds"]["TT"] + ".asvs.outfmt6.tsv",
-        TTasvs="config/intstd_fastas/" + config["intstds"]["TT"] + ".asvs.txt"
+        intstd1tsv="config/intstd_fastas/" + config["intstds"]["intstd1"] + ".asvs.outfmt6.tsv",
+        intstd1asvs="config/intstd_fastas/" + config["intstds"]["intstd1"] + ".asvs.txt",
+        intstd2tsv="config/intstd_fastas/" + config["intstds"]["intstd2"] + ".asvs.outfmt6.tsv",
+        intstd2asvs="config/intstd_fastas/" + config["intstds"]["intstd2"] + ".asvs.txt",
+        intstd3tsv="config/intstd_fastas/" + config["intstds"]["intstd3"] + ".asvs.outfmt6.tsv",
+        intstd3asvs="config/intstd_fastas/" + config["intstds"]["intstd3"] + ".asvs.txt"
     conda:
         "../envs/blast-env.yaml"
     script:
@@ -34,9 +34,9 @@ rule identify_intsd_ASVS:
 rule intstd_correct_data:
     input:
         asv_table="results/04-formatted/" + config["studyName"] + ".long_data.tsv",
-        BPasvs="config/intstd_fastas/" + config["intstds"]["BP"] + ".asvs.txt",
-        DRasvs="config/intstd_fastas/" + config["intstds"]["DR"] + ".asvs.txt",
-        TTasvs="config/intstd_fastas/" + config["intstds"]["TT"] + ".asvs.txt",
+        intstd1asvs="config/intstd_fastas/" + config["intstds"]["intstd1"] + ".asvs.txt",
+        intstd2asvs="config/intstd_fastas/" + config["intstds"]["intstd2"] + ".asvs.txt",
+        intstd3asvs="config/intstd_fastas/" + config["intstds"]["intstd3"] + ".asvs.txt",
         isd="config/internal_stds.tsv",
         isd_added="config/samples.tsv"
     output:

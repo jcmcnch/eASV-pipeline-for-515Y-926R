@@ -52,8 +52,8 @@ def get_final_output():
     final_output.append("results/03-merged/" + config["studyName"] + ".merged_uncorected.tsv"),
     final_output.append("results/02-proks/10-exports/" + config["studyName"] + ".Synechococcales.proportal-classified.tsv"),
     final_output.append("results/04-formatted/" + config["studyName"] + ".long_data.tsv"),
-    final_output.append("config/intstd_fastas/" + config["intstds"]["BP"] + ".fasta.nhr"),
-    final_output.append("config/intstd_fastas/" + config["intstds"]["TT"] + ".asvs.txt"),
+    final_output.append("config/intstd_fastas/" + config["intstds"]["intstd1"] + ".fasta.nhr"),
+    final_output.append("config/intstd_fastas/" + config["intstds"]["intstd1"] + ".asvs.txt"),
     final_output.append("results/05-internal-std-corrected/" + config["studyName"] + ".ISD_corrected_asv_table.tsv")
 
     return final_output

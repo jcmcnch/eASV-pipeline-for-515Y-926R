@@ -13,9 +13,9 @@ R1file_ending: ".R1.head400.fastq.gz"
 R2file_ending: ".R2.head400.fastq.gz"
 
 intstds:
-  std1: "BP"
-  std2: "DR"
-  std3: "TT"
+  intstd1: "BP"
+  intstd2: "DR"
+  intstd3: "TT"
 
 trunclens:
   truncR1: 220
@@ -27,6 +27,5 @@ revPrimer: "CCGYCAATTYMTTTRAGTTT"
 qiime2version: "../envs/qiime2-amplicon-ubuntu-2024-5-conda.yml" #input name of your yaml file here after the "../env/", and make sure to put it in the workflow/envs/ directory
 #sometimes snakemake will fail at creating the environment, in which case you can just provide the name of an existing environment here
 
-#input for rescript (qiime2) to download database
+#variables below are input for rescript (qiime2) to download databases, change as needed
 SILVAversion: "138.1"
-
