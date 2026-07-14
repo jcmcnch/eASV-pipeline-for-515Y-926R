@@ -23,7 +23,7 @@ eukfracDF.set_index("sample", inplace=True)
 
 #merge all into one file, removing file paths specified in configs
 mergedDF = pd.merge(manifestDF, samplesDF, left_index=True, right_index=True) 
-#mergedDF = mergedDF.drop(["read1","read2","forward-absolute-filepath","reverse-absolute-filepath"], axis=1)
+mergedDF = mergedDF.drop(["forward-absolute-filepath","reverse-absolute-filepath"], axis=1)
 mergedDF = pd.merge(mergedDF, denoisingStatsDF, left_index=True, right_index=True)
 mergedDF = pd.merge(mergedDF, eukfracDF, left_index=True, right_index=True)
 

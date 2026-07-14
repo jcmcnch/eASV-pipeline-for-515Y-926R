@@ -18,11 +18,14 @@ denoisingStatsDF = pd.read_csv(snakemake.input["eukstats"], sep='\t', header=0)
 denoisingStatsDF.set_index("sample-id", inplace=True)
 denoisingStatsDF = denoisingStatsDF.filter(["non-chimeric"])
 
+eukfracDF = pd.read_csv(snakemake.input["eukfracpersample"], sep='\t', header=0)
+eukfracDF.set_index("sample", inplace=True)
+
 #merge all into one file, removing file paths specified in configs
 mergedDF = pd.merge(manifestDF, samplesDF, left_index=True, right_index=True) 
 mergedDF = mergedDF.drop(["absolute-filepath"], axis=1)
 mergedDF = pd.merge(mergedDF, denoisingStatsDF, left_index=True, right_index=True)
+mergedDF = pd.merge(mergedDF, eukfracDF, left_index=True, right_index=True)
 
 #export as tsv
 mergedDF.to_csv(snakemake.output[0], encoding='utf-8', sep="\t", index=True)
-

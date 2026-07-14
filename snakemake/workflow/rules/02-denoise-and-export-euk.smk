@@ -139,7 +139,8 @@ rule create_sample_metadata_file_euk:
     input:
         manifest="results/02-euks/manifest-concat.tsv",
         samplesdottsv="config/samples.tsv",
-        eukstats=rules.export_DADA2_results_euk.output.lateststats
+        eukstats=rules.export_DADA2_results_euk.output.lateststats,
+        eukfracpersample="results/" + config["studyName"] + ".eukfrac-per-sample.tsv"
     output:
         "results/02-euks/sample-metadata.tsv"
     conda:
