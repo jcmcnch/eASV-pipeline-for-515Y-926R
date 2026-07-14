@@ -1,10 +1,8 @@
-## NOTE : Need to make this a higher priority so it gets done before splitting
-
 rule prepare_bbsplit_db:
     input:
         file1="databases/bbsplit-db/SILVA_132_and_PR2_EUK.cdhit95pc.fasta", file2="databases/bbsplit-db/SILVA_132_PROK.cdhit95pc.fasta",
     output:
-        path=directory("databases/bbsplit-db/EUK-PROK-bbsplit-db/")
+        directory("databases/bbsplit-db/EUK-PROK-bbsplit-db/")
     conda:
         "../envs/bbmap.yaml"
     log:

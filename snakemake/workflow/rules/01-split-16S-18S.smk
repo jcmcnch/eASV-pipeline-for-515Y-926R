@@ -1,5 +1,6 @@
 rule bbsplit_prok_euk:
     input:
+        database=directory("databases/bbsplit-db/EUK-PROK-bbsplit-db/"),
         r1="results/00-trimmed/{sample}.1.fastq",
         r2="results/00-trimmed/{sample}.2.fastq"
     output:
@@ -12,7 +13,7 @@ rule bbsplit_prok_euk:
     log:
         "logs/01-splitting/{sample}_bbsplit.log"
     shell:
-        "bbsplit.sh usequality=f qtrim=f minratio=0.30 minid=0.30 pairedonly=f path=databases/bbsplit-db/EUK-PROK-bbsplit-db/ in={input.r1} in2={input.r2} out_SILVA_132_PROK.cdhit95pc={output.prok} out_SILVA_132_and_PR2_EUK.cdhit95pc={output.euk} 2>&1 | tee -a {log}"
+        "bbsplit.sh usequality=f qtrim=f minratio=0.30 minid=0.30 pairedonly=f path={input.database} in={input.r1} in2={input.r2} out_SILVA_132_PROK.cdhit95pc={output.prok} out_SILVA_132_and_PR2_EUK.cdhit95pc={output.euk} 2>&1 | tee -a {log}"
 
 rule deinterleave_split_reads_euk:
     input:
