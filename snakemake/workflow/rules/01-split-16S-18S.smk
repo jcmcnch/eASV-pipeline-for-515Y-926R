@@ -46,7 +46,6 @@ rule deinterleave_split_reads_prok:
     wrapper:
         "v8.0.3/bio/bbtools"
 
-#need to get these data into the qiime2 configs as eukfrac is a nice piece of metadata to look at
 rule count_seqs:
     input:
         prok="results/01-split/{sample}.prok.R1.fastq.gz",
@@ -60,13 +59,20 @@ rule count_seqs:
     script:
         "../scripts/count-seqs.sh"
 
-#fix this in later step (merging)
 rule concatenate_eukfrac_data:
     input:
         eukfrac=expand("results/01-split/counts/{sample}.eukfrac", sample=samples["sample"])
     output:
-        eukfracall="results/" + config["studyName"] + ".eukfrac-all.tsv"
+        eukfracpersample="results/" + config["studyName"] + ".eukfrac-per-sample.tsv"
     conda:
         config["qiime2version"]
     script:
         "../scripts/concat-eukfrac.sh"
+
+rule calc_eukfrac_overall:
+    input:
+        eukfracpersample="results/" + config["studyName"] + ".eukfrac-per-sample.tsv"
+    output:
+        eukfracall="results/" + config["studyName"] + ".eukfrac-all.tsv"
+    script:
+        "../scripts/calc-EUK-fraction.sh"
