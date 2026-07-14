@@ -9,7 +9,7 @@ rule cutadapt:
         qc="results/00-trimmed/{sample}.qc.txt",
     params:
         # https://cutadapt.readthedocs.io/en/stable/guide.html#adapter-types
-        adapters="-g ^GTGYCAGCMGCCGCGGTAA -G ^CCGYCAATTYMTTTRAGTTT",
+        adapters="-g ^" + config["fwdPrimer"] + " -G ^" + config["revPrimer"],
         # https://cutadapt.readthedocs.io/en/stable/guide.html#
         extra="--no-indels --pair-filter=any --error-rate=0.2 --discard-untrimmed",
     log:
