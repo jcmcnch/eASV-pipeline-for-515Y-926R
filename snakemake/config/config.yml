@@ -4,6 +4,7 @@ samplesheet: "config/samples.tsv"
 
 studyName: "tutorial"
 
+#suggest providing an absolute path here for the first time you run the repo, otherwise databases will be recreated every time you use the same primers and database versions which would be a waste of computational power
 database_dir: "databases"
 
 rawdatadir: "nativemicrobiota/ocean-data/"
@@ -12,9 +13,9 @@ R1file_ending: ".R1.head400.fastq.gz"
 R2file_ending: ".R2.head400.fastq.gz"
 
 intstds:
-  BP: "BP"
-  DR: "DR"
-  TT: "TT"
+  std1: "BP"
+  std2: "DR"
+  std3: "TT"
 
 trunclens:
   truncR1: 220
@@ -24,18 +25,8 @@ fwdPrimer: "GTGYCAGCMGCCGCGGTAA"
 revPrimer: "CCGYCAATTYMTTTRAGTTT"
 
 qiime2version: "../envs/qiime2-amplicon-ubuntu-2024-5-conda.yml" #input name of your yaml file here after the "../env/", and make sure to put it in the workflow/envs/ directory
+#sometimes snakemake will fail at creating the environment, in which case you can just provide the name of an existing environment here
 
+#input for rescript (qiime2) to download database
 SILVAversion: "138.1"
 
-#you shouldn't need to change variables below unless you want to customize the pipeline
-
-database_dir: "databases"
-
-#text below can be deleted later (from tutorial config)
-
-get_genome:
-  ncbi_ftp: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_genomic.fna.gz
-
-simulate_reads:
-  read_length: 100
-  read_number: 10000
