@@ -82,7 +82,8 @@ rule create_sample_metadata_file:
     input:
         manifest="results/02-proks/manifest.tsv",
         samplesdottsv="config/samples.tsv",
-        prokstats=rules.export_DADA2_results.output.lateststats
+        prokstats=rules.export_DADA2_results.output.lateststats,
+        eukfracpersample="results/" + config["studyName"] + ".eukfrac-per-sample.tsv"
     output:
         "results/02-proks/sample-metadata.tsv"
     conda:
