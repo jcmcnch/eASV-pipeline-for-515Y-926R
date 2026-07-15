@@ -101,7 +101,6 @@ raw_16S_long <- raw_16S %>%
   left_join(statistics_16S, by = "SampleID") %>%
   mutate(corrected_read_abundance = (read_abundance * correction_factor_16S) / percentage_passed_final) %>%
   mutate(corrected_read_abundance_dada2 = read_abundance / percentage_passed_final)
-str(raw_16S_long)
 
 #Arrange and connect 18S data and then make the DADA2 statistics calculation
 raw_18S_long <- raw_18S %>%
@@ -112,7 +111,6 @@ raw_18S_long <- raw_18S %>%
   left_join(statistics_18S, by = "SampleID") %>%
   mutate(corrected_read_abundance = (read_abundance * correction_factor_18S) / percentage_passed_final) %>%
   mutate(corrected_read_abundance_dada2 = read_abundance / percentage_passed_final)
-str(raw_18S_long)
 
 #Join the two data frames together, pivot wider and then export
 combined_asv_long_corrected <- rbind(raw_18S_long, raw_16S_long) %>%
