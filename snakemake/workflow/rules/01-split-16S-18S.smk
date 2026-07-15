@@ -4,8 +4,8 @@ rule bbsplit_prok_euk:
         r1="results/00-trimmed/{sample}.1.fastq",
         r2="results/00-trimmed/{sample}.2.fastq"
     output:
-        prok=temp("results/01-split/{sample}.prok.fastq"),
-        euk=temp("results/01-split/{sample}.euk.fastq"),
+        prok="results/01-split/{sample}.prok.fastq",
+        euk="results/01-split/{sample}.euk.fastq",
     conda:
         "../envs/bbmap.yaml"
     resources:
@@ -19,8 +19,8 @@ rule deinterleave_split_reads_euk:
     input:
         "results/01-split/{sample}.euk.fastq"
     output:
-        out="results/01-split/{sample}.euk.R1.fastq.gz",
-        out2="results/01-split/{sample}.euk.R2.fastq.gz"
+        out=temp("results/01-split/{sample}.euk.R1.fastq.gz"),
+        out2=temp("results/01-split/{sample}.euk.R2.fastq.gz")
     params:
         command="reformat.sh",
         overwrite=True,  # recommended
@@ -35,8 +35,8 @@ rule deinterleave_split_reads_prok:
     input:
         "results/01-split/{sample}.prok.fastq"
     output:
-        out="results/01-split/{sample}.prok.R1.fastq.gz",
-        out2="results/01-split/{sample}.prok.R2.fastq.gz"
+        out=temp("results/01-split/{sample}.prok.R1.fastq.gz"),
+        out2=temp("results/01-split/{sample}.prok.R2.fastq.gz")
     params:
         command="reformat.sh",
         overwrite=True,  # recommended
