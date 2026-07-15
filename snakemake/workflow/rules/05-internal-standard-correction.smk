@@ -12,7 +12,6 @@ rule prepare_16S_BLASTdb:
     script:
         "../scripts/B00-makeblastdb.sh"
 
-        
 rule identify_intsd_ASVS:
     input:
         latestseqs="results/02-proks/04-DADA2d-plaintext-exports/" + config["studyName"] + ".16S.latest_seqs.fasta",
