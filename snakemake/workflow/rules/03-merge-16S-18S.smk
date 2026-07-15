@@ -8,7 +8,7 @@ rule merge_prok_euk:
         bioanalyzer="config/bioanalyzer.tsv",
         proportalclassification="results/02-proks/10-exports/" + config["studyName"] + ".Synechococcales.proportal-classified.tsv"
     output:
-        mergedtableuncorrected="results/03-merged/" + config["studyName"] + ".merged_uncorected.tsv",
+        mergedtableuncorrected="results/03-merged/" + config["studyName"] + ".merged_uncorrected.tsv",
         mergedtabledada2="results/03-merged/" + config["studyName"] + ".merged_dada2_corrected.tsv",
         mergedtabledada218Scorrected="results/03-merged/" + config["studyName"] + ".merged_dada2_18S_corrected.tsv"
     conda:
