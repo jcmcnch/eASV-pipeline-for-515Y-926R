@@ -24,8 +24,6 @@ raw_16S <- purrr::map_dfr(raw16s_files, ~
   dplyr::rename(ASV_hash = `#OTU ID`) %>%
   as.data.table()
 
-#write_csv(raw_16S, "1.csv")
-
 # Import 18S
 raw_18S <- purrr::map_dfr(raw18s_files, ~
                             readr::read_delim(.x, delim = "\t", skip = 1, col_names = TRUE, show_col_types = FALSE)
@@ -34,15 +32,11 @@ raw_18S <- purrr::map_dfr(raw18s_files, ~
   dplyr::rename(ASV_hash = `#OTU ID`) %>%
   as.data.table()
 
-#write_csv(raw_18S, "2.csv")
-
 # Import read_summary
 read_summary <- readr::read_tsv(readsum_files, show_col_types = FALSE) %>% as.data.table()
-#write_csv(read_summary, "3.csv")
 
 # Import bioanalyzer
 bioanalyzer_results <- readr::read_tsv(bioanalyzer_path, show_col_types = FALSE) %>% as.data.table()
-#write_csv(
 
 # Import Stats
 statistics_18S <- purrr::map_dfr(stats18s_files, ~ readr::read_delim(.x, delim = "\t", show_col_types = FALSE)) %>% slice(-1)
