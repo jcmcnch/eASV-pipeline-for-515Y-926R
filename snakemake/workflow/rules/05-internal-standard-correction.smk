@@ -38,6 +38,10 @@ rule intstd_correct_data:
         intstd3asvs="config/intstd_fastas/" + config["intstds"]["intstd3"] + ".asvs.txt",
         isd="config/internal_stds.tsv",
         isd_added="config/samples.tsv"
+    params:
+        intstd1name=config["intstds"]["intstd1"],
+        intstd2name=config["intstds"]["intstd2"],
+        intstd3name=config["intstds"]["intstd3"]
     output:
         corrected="results/05-internal-std-corrected/" + config["studyName"] + ".ISD_corrected_asv_table.tsv"
     conda:
