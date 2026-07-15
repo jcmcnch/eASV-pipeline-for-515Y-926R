@@ -114,16 +114,16 @@ raw_18S_long <- raw_18S %>%
 
 #Join the two data frames together, pivot wider and then export
 combined_asv_long_corrected <- rbind(raw_18S_long, raw_16S_long) %>%
-  rename(Taxonomy = taxonomy) %>%
-  select(SampleID, ASV_hash, Taxonomy, corrected_read_abundance)
+  rename(Taxonomy_PR2_SILVA = taxonomy) %>%
+  select(SampleID, ASV_hash, Taxonomy_PR2_SILVA, corrected_read_abundance)
 
 combined_asv_long_corrected_dada2 <- rbind(raw_18S_long, raw_16S_long) %>%
-  rename(Taxonomy = taxonomy) %>%
-  select(SampleID, ASV_hash, Taxonomy, corrected_read_abundance_dada2)
+  rename(Taxonomy_PR2_SILVA = taxonomy) %>%
+  select(SampleID, ASV_hash, Taxonomy_PR2_SILVA, corrected_read_abundance_dada2)
 
 combined_asv_long_no_correction <-  rbind(raw_18S_long, raw_16S_long) %>%
-  rename(Taxonomy = taxonomy) %>%
-  select(SampleID, ASV_hash, Taxonomy, read_abundance)
+  rename(Taxonomy_PR2_SILVA = taxonomy) %>%
+  select(SampleID, ASV_hash, Taxonomy_PR2_SILVA, read_abundance)
 
 #Convert to wide format
 combined_asv_corrected <- combined_asv_long_corrected %>%

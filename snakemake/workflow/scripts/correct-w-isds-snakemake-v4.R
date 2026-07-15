@@ -20,7 +20,6 @@ isd_added <- read_tsv(isd_added_path, show_col_types = FALSE) %>%
 samples <- isd_added
 
 #Import Data local
-#isd_added <- read_csv("AMT30_isd_added_ng.csv")
 bp_asvs <- read_delim(snakemake@input[["BPasvs"]], delim = "\n", col_names = FALSE)
 dr_asvs <- read_delim(snakemake@input[["DRasvs"]], delim = "\n", col_names = FALSE)
 tt_asvs <- read_delim(snakemake@input[["TTasvs"]], delim = "\n", col_names = FALSE)
