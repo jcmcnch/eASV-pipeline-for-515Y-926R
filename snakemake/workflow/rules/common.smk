@@ -50,7 +50,7 @@ def get_final_output():
     final_output.append("results/02-euks/15-exports/" + config["studyName"] + ".include_Metazoa_PR2_filtered_table.with-tax.tsv"),
     final_output.append("results/" + config["studyName"] + ".eukfrac-per-sample.tsv"),
     final_output.append("results/" + config["studyName"] + ".eukfrac-all.tsv"),
-    final_output.append("results/03-merged/" + config["studyName"] + ".merged_uncorected.tsv"),
+    final_output.append("results/03-merged/" + config["studyName"] + ".merged_uncorrected.tsv"),
     final_output.append("results/02-proks/10-exports/" + config["studyName"] + ".Synechococcales.proportal-classified.tsv"),
     final_output.append("results/04-formatted/" + config["studyName"] + ".long_data.tsv"),
     final_output.append("config/intstd_fastas/" + config["intstds"]["intstd1"] + ".fasta.nhr"),
